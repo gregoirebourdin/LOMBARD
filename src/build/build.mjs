@@ -81,8 +81,12 @@ write(join(OUT, '_redirects'), redirects.map(([a, b]) => `${a} ${b} 301\n${a.rep
 write(join(OUT, '_headers'), `/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n`);
 write(join(ROOT, 'vercel.json'), JSON.stringify({
   outputDirectory: 'site', cleanUrls: false, trailingSlash: true,
-  redirects: redirects.map(([source, destination]) => ({ source, destination, permanent: true })),
-  headers: [{ source: '/assets/(.*)', headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }] }],
+  // 301 explicite (permanent: true donnerait un 308)
+  redirects: redirects.map(([source, destination]) => ({ source, destination, statusCode: 301 })),
+  headers: [
+    { source: '/assets/(.*)', headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }] },
+    { source: '/(.*)', headers: [{ key: 'X-Content-Type-Options', value: 'nosniff' }, { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' }] },
+  ],
 }, null, 2) + '\n');
 write(join(OUT, '.htaccess'), `# Redirections 301 (audit SEO)\nRewriteEngine On\n${redirects.map(([a, b]) => `RewriteRule ^${a.replace(/^\//, '').replace(/\/$/, '')}/?$ ${b} [R=301,L]`).join('\n')}\nErrorDocument 404 /404.html\n<IfModule mod_expires.c>\n  ExpiresActive On\n  ExpiresByType image/avif "access plus 1 year"\n  ExpiresByType image/webp "access plus 1 year"\n  ExpiresByType font/woff2 "access plus 1 year"\n  ExpiresByType text/css "access plus 1 year"\n  ExpiresByType application/javascript "access plus 1 year"\n</IfModule>\n`);
 
