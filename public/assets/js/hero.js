@@ -32,9 +32,9 @@
       gsap.set(P.mid, { yPercent: 3 });
       gsap.set(P.front, { yPercent: 2 });
       gsap.set(P.giant, { yPercent: 28 });
-      App.blurHide(P.giant);
-      App.blurHide(kicker);
-      App.blurHide(title);
+      App.titleHide(P.giant);
+      App.textHide(kicker);
+      App.titleHide(title);
       gsap.set(extras, { autoAlpha: 0, y: 14 });
     },
     /* les plans se posent, le grand texte monte de derrière la montagne et se met au point, puis le titre */
@@ -44,15 +44,15 @@
         .to(P.mid, { yPercent: 0, duration: 1.9 * k, ease: 'out' }, .05 * k)
         .to(P.front, { yPercent: 0, duration: 1.7 * k, ease: 'out' }, .1 * k)
         .to(P.giant, { yPercent: 0, duration: 2 * k, ease: 'out' }, .2 * k)
-        .add(App.blurIn(P.giant, { stagger: .12, speed: 1.2 * k, y: 0 }), .25 * k)
-        .add(App.blurIn(kicker, { stagger: .04, speed: k }), .55 * k)
-        .add(App.blurIn(title, { stagger: .07, speed: k }), .65 * k)
+        .add(() => App.title(P.giant, { stagger: .07 * k, duration: 1.3 * k }), .25 * k)
+        .add(() => App.text(kicker), .6 * k)
+        .add(() => App.title(title, { stagger: .028 * k, duration: 1 * k }), .7 * k)
         .to(extras, { autoAlpha: 1, y: 0, duration: .9 * k, ease: 'out', stagger: .08 * k }, 1.15 * k);
       return tl;
     },
     revealStatic() {
       gsap.set([P.back, P.mid, P.front, P.giant, ...extras], { clearProps: 'transform,opacity,visibility' });
-      [P.giant, kicker, title].forEach((el) => { if (el._bw) gsap.set(el._bw.flatMap((x) => [x.w, x.s]), { clearProps: 'all' }); el._bw?.forEach((x) => x.b.remove()); });
+      [P.giant, kicker, title].forEach((el) => el.classList.add('is-in'));
     },
   };
 

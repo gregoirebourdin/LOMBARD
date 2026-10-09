@@ -65,14 +65,14 @@
       const odo = $('.odo', st);
       const roll = odometer(odo);
       const t = $('.step__t', st), sp = $('.step__p', st);
-      App.blurHide(t);
-      App.blurHide(sp, 'block');
+      App.titleHide(t);
+      App.textHide(sp);
       gsap.set(odo, { autoAlpha: 0 });
       App.onEnter(st, () => {
         gsap.to(odo, { autoAlpha: 1, duration: .4 });
         roll();
-        App.blurIn(t);
-        App.blurIn(sp, { mode: 'block', delay: .2 });
+        App.title(t);
+        App.text(sp, { delay: .25 });
       }, 'top 72%');
     });
   }
@@ -95,7 +95,7 @@
         .add(() => {
           a.classList.remove('is-active'); gsap.set([$('blockquote', a), $('figcaption', a)], { clearProps: 'all' });
           b.classList.add('is-active');
-          App.blurReset(pb); App.blurHide(pb); App.blurIn(pb, { stagger: .025, speed: .8 });
+          App.text(pb);
         })
         .fromTo($('figcaption', b), { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: .8 }, '+=.35')
         .to(count, { yPercent: dir > 0 ? -100 : 100, duration: .3, ease: 'in' }, 0)
@@ -114,14 +114,14 @@
   function finale() {
     const photo = $('.finale__photo'), lit = $('.finale__lit'), dim = $('.finale__dim');
     const h2 = $('.finale__head .d1'), kick = $('.finale__head .kicker');
-    App.blurHide(h2);
-    App.blurHide(kick);
+    App.titleHide(h2);
+    App.textHide(kick);
     let shown = false;
     const show = () => {
       if (shown) return;
       shown = true;
-      App.blurIn(kick, { stagger: .03 });
-      App.blurIn(h2, { delay: .15 });
+      App.text(kick);
+      App.title(h2, { delay: .15 });
     };
     const hasDim = dim && !dim.hasAttribute('data-missing') && lit && !lit.hasAttribute('data-missing');
     if (!hasDim) { if (lit) lit.style.maskImage = lit.style.webkitMaskImage = 'none'; App.onEnter(photo, show, 'top 60%'); return; }

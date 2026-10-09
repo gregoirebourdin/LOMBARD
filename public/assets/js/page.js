@@ -82,7 +82,7 @@
   if (!App.ok) { document.addEventListener('DOMContentLoaded', () => { views(); film(); stats(); }); return; }
 
   /* ——— 01 : la phrase se met au point au défilement ; chaque image qu'elle évoque se pose sur la précédente ———
-     Les mots passent du flou au net (faux blur : double flouté figé, seules les opacités bougent) ; quand
+     Les mots passent du flou léger au net, un par un ; quand
      un fragment de la phrase devient net, sa photo arrive d'en bas et recouvre la précédente, qui s'assombrit. */
   function story() {
     const root = $('.real__story');
@@ -90,10 +90,22 @@
     const q = $('.real__quote', root), cards = $$('.real__card', root);
     // les photos sont cachées sous la scène : on les charge à l'approche, pas au dernier moment
     App.onEnter(root, () => cards.forEach((c) => { const im = $('img', c); if (im) im.loading = 'eager'; }), 'top 250%');
-    const words = App.blurWords(q);
-    const shotOf = (w) => { const e = w.w.closest('[data-shot]'); return e ? +e.dataset.shot : -1; };
-    gsap.set(words.map((x) => x.s), { opacity: .1 });
-    gsap.set(words.map((x) => x.b), { opacity: .55 });
+    // la phrase, mot par mot : chaque mot passe du flou (léger) au net au fil du défilement
+    const words = [];
+    const walk = (node) => [...node.childNodes].forEach((n) => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/([ \n\t]+)/).forEach((t) => {
+          if (!t) return;
+          if (/^[ \n\t]+$/.test(t)) { frag.append(t); return; }
+          const w = document.createElement('span'); w.className = 'fx-w'; w.textContent = t; frag.append(w); words.push(w);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1) walk(n);
+    });
+    walk(q);
+    const shotOf = (w) => { const e = w.closest('[data-shot]'); return e ? +e.dataset.shot : -1; };
+    gsap.set(words, { opacity: .14, filter: 'blur(5px)' });
     const tilt = [-1.6, 1.2, -.6];
     const caps = cards.map((c) => $('figcaption', c));
     // départ : sous le bas de l'écran, quelle que soit la place de la pile dans la scène
@@ -115,7 +127,7 @@
       const [a, b] = AT[k], step = list.length ? (b - a) / list.length : 0;
       list.forEach((w, n) => {
         const t = a + n * step;
-        tl.to(w.s, { opacity: 1, duration: step * 2.2 }, t).to(w.b, { opacity: 0, duration: step * 2.2 }, t + step * .3);
+        tl.to(w, { opacity: 1, filter: 'blur(0px)', duration: step * 2.4 }, t);
       });
     });
     // les photos : la nouvelle monte et se pose, l'ancienne recule et s'assombrit
