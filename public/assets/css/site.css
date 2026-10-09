@@ -271,16 +271,16 @@ html.has-intro:not(.intro-done) .header { opacity: 0; transform: translateY(-12p
 }
 
 /* ——— intro : on traverse un nuage ———
-   Brume ivoire, nappes de nuage (bruit fractal doux, tools/clouds.py) qui s'ouvrent et grandissent comme si
+   Brume ivoire, nappes de nuage (dessinées en direct, sans image) qui s'ouvrent et grandissent comme si
    l'on avançait, photo du hero floutée à l'avance qui se met au point. Opacité et transformations seulement. */
 .intro { display: none; }
 html.has-intro .intro { display: block; position: fixed; inset: 0; z-index: 60; pointer-events: none; overflow: hidden; animation: intro-failsafe 0s 5s forwards; }
 html.has-intro .intro.is-running { animation: none; }
 @keyframes intro-failsafe { to { visibility: hidden; } }
 .intro__haze { position: absolute; inset: 0; background: radial-gradient(130% 100% at 50% 42%, #FFFDFA 0%, #F8F4F1 52%, #EEE6EE 100%); }
-.intro__cloud { position: absolute; inset: -18%; background: url(/assets/img/cloud-near.webp) 50% 50% / cover no-repeat; will-change: transform, opacity; }
-.intro__cloud--far { background-image: url(/assets/img/cloud-far.webp); }
-.intro__cloud--b { background-size: 170% auto; background-position: 18% 82%; opacity: .85; }
+/* les nappes sont dessinées par l'intro dans de petits canevas (nuées de dégradés radiaux, sans bord ni
+   compression), agrandis à l'écran : un nuage est flou par nature */
+.intro__cloud { position: absolute; left: -18%; top: -18%; width: 136%; height: 136%; will-change: transform, opacity; }
 .hero__fog { display: none; }
 html.has-intro .hero__fog { display: block; position: absolute; inset: 0; z-index: 2; pointer-events: none; animation: intro-failsafe 0s 5s forwards; }
 html.intro-running .hero__fog { animation: none; }

@@ -26,7 +26,7 @@ Le violet Lombard n’est qu’une touche : il apparaît seulement dans le logo,
 | `tools/grade.py` | Étalonnage commun des photos et des vues 3D. |
 | `tools/hero_planes.py` | Découpe la photo du hero en trois plans de parallaxe (`public/assets/hero/<d|m>/`) : profondeur, segmentation, fond reconstitué derrière le chalet. |
 | `tools/layers.py` | Outils de découpe en plans (profondeur, segmentation, remplissage LaMa), modèles chargés hors ligne. |
-| `tools/hero_fog.py`, `tools/clouds.py`, `tools/paper.py` | Photo floue du hero pour l’intro (2 Ko, insérée dans la page) ; nappes de nuage de l’intro ; texture de papier du fond des sections. |
+| `tools/hero_fog.py`, `tools/paper.py` | Photo floue du hero pour l’intro (2 Ko, insérée dans la page, sans bloc de compression visible) ; texture de papier du fond des sections. Les nuages de l’intro sont dessinés en direct par `intro.js`. |
 | `public/assets/video/` | Le film : extrait de 1:18 à la fin, encodé en H.264 (1920 et 1280 px) avec son image d’attente. |
 | `tools/retouch/*.py` | Retouches documentées et rejouables (objets retirés, recadrages, image « éteinte » de la finale). |
 | `tools/favicon.py` | Favicon et icône Apple (le pignon du logo). |

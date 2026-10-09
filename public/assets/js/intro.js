@@ -1,7 +1,7 @@
 /* Intro — on traverse un nuage. La page s'ouvre dans une brume ivoire ; deux nappes de nuage proches
    s'ouvrent et grandissent comme si l'on avançait, une nappe lointaine se dissipe plus lentement, la photo
    du hero, d'abord floue, se met au point, puis « Le soir tombe. » et le titre apparaissent lettre à
-   lettre. Faux flou : nappes et photo floutées à l'avance ; seules l'opacité et la position bougent.
+   lettre. Faux flou : nappes dessinées une fois, photo floutée à l'avance ; seules l'opacité et la position bougent.
    Plus courte si l'intro a été vue il y a moins de 24 h ; aucune si le mouvement est réduit. */
 (() => {
   const App = window.App;
@@ -17,12 +17,31 @@
   const heroImg = $('.hero__img');
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   // la photo nette doit être décodée avant qu'on s'y mette au point
-  // les nappes de nuage sont de petites images (30 Ko) : on les attend aussi, brièvement
-  const cloud = (src) => { const im = new Image(); im.src = src; return im.decode ? im.decode().catch(() => {}) : Promise.resolve(); };
-  const heroReady = Promise.race([Promise.all([
-    heroImg && heroImg.decode ? heroImg.decode().catch(() => {}) : Promise.resolve(),
-    cloud('/assets/img/cloud-near.webp'), cloud('/assets/img/cloud-far.webp'),
-  ]), sleep(1600)]);
+  const heroReady = Promise.race([heroImg && heroImg.decode ? heroImg.decode().catch(() => {}) : Promise.resolve(), sleep(1600)]);
+
+  /* une nappe de nuage : des amas de dégradés radiaux très doux, dessinés une fois dans un petit canevas
+     (aucune image à charger, aucun bord, aucune compression) ; le dessous des volutes est à peine lavande */
+  function paint(cv, seed, clumps, per, rMin, rMax, a0) {
+    const W = 360, H = Math.round(360 * Math.min(2.2, Math.max(.45, innerHeight / innerWidth)));
+    cv.width = W; cv.height = H;
+    const ctx = cv.getContext('2d');
+    let s = seed;
+    const r = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+    // autant d'amas par unité de surface, quel que soit le format de l'écran : des nappes et des trouées
+    const n = Math.max(4, Math.round(clumps * (H / W) * .9 + 2)), k = Math.min(W, H) / 360; // volutes à l'échelle du petit côté
+    for (let c = 0; c < n; c++) {
+      const cx = r() * W, cy = r() * H, sx = (.1 + r() * .16) * Math.min(W, H) * 1.3, sy = sx * (.45 + r() * .3);
+      for (let i = 0; i < per; i++) {
+        const x = cx + (r() - .5) * 2 * sx, y = cy + (r() - .5) * 2 * sy, rad = (rMin + r() * (rMax - rMin)) * k, a = a0 * (.4 + r() * .6);
+        const shade = ctx.createRadialGradient(x, y + rad * .28, 0, x, y + rad * .28, rad);
+        shade.addColorStop(0, `rgba(232,222,236,${a * .5})`); shade.addColorStop(1, 'rgba(232,222,236,0)');
+        ctx.fillStyle = shade; ctx.fillRect(x - rad, y - rad * .72, rad * 2, rad * 2);
+        const g = ctx.createRadialGradient(x, y, 0, x, y, rad);
+        g.addColorStop(0, `rgba(255,254,252,${a})`); g.addColorStop(.45, `rgba(253,250,249,${a * .62})`); g.addColorStop(1, 'rgba(250,246,248,0)');
+        ctx.fillStyle = g; ctx.fillRect(x - rad, y - rad, rad * 2, rad * 2);
+      }
+    }
+  }
 
   let tl = null, ended = false;
   function showHeader() {
@@ -48,6 +67,8 @@
     html.classList.add('intro-running');
     intro.classList.add('is-running');
     gsap.set(fog, { willChange: 'opacity, transform' });
+    paint(far, 1979, 6, 14, 18, 54, .5);
+    near.forEach((cv, i) => paint(cv, i ? 2021 : 5120, 7, 15, 22, 72, .6));
 
     tl = App.introTl = gsap.timeline({ paused: true, onComplete: end });
     // la brume se lève sur les nappes de nuage…
