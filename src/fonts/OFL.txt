@@ -1,4 +1,0 @@
-Host Grotesk — Copyright 2024 The Host Grotesk Project Authors (Element Type). SIL Open Font License 1.1.
-Newsreader — Copyright 2020 The Newsreader Project Authors (Production Type). SIL Open Font License 1.1.
-Texte de la licence : https://openfontlicense.org/open-font-license-official-text/
-Fichiers : sous-ensemble « latin » (français complet : é è ê à ç œ « » ’ etc.), servis depuis Google Fonts.

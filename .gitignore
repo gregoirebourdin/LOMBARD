@@ -2,5 +2,6 @@ node_modules/
 .DS_Store
 *.log
 __pycache__/
-tools/**/work/
+tools/.cache/
 qa/
+public/assets/img/manifest.json.lock

@@ -1,0 +1,70 @@
+{
+ "w": 1536,
+ "h": 1024,
+ "planes": [
+  {
+   "name": "back",
+   "avif": "/assets/scenes/V27/back.avif",
+   "webp": "/assets/scenes/V27/back.webp",
+   "bbox": [
+    0,
+    0,
+    1536,
+    1024
+   ],
+   "speed": 0.12
+  },
+  {
+   "name": "mid",
+   "avif": "/assets/scenes/V27/mid.avif",
+   "webp": "/assets/scenes/V27/mid.webp",
+   "bbox": [
+    0,
+    0,
+    1536,
+    1024
+   ],
+   "speed": 0.45
+  },
+  {
+   "name": "front",
+   "avif": "/assets/scenes/V27/front.avif",
+   "webp": "/assets/scenes/V27/front.webp",
+   "bbox": [
+    0,
+    741,
+    883,
+    1024
+   ],
+   "speed": 1.0
+  }
+ ],
+ "mobile": {
+  "planes": [
+   {
+    "name": "back+mid",
+    "avif": "/assets/scenes/V27/mobile_back.avif",
+    "webp": "/assets/scenes/V27/mobile_back.webp",
+    "bbox": [
+     0,
+     0,
+     1536,
+     1024
+    ],
+    "speed": 0.3
+   },
+   {
+    "name": "front",
+    "avif": "/assets/scenes/V27/front.avif",
+    "webp": "/assets/scenes/V27/front.webp",
+    "bbox": [
+     0,
+     741,
+     883,
+     1024
+    ],
+    "speed": 1.0
+   }
+  ]
+ }
+}

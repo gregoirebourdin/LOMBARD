@@ -1,0 +1,42 @@
+<form class="form" action="mailto:contact@chalets-lombard.fr" method="post" enctype="text/plain" novalidate data-form>
+  <fieldset class="form__set">
+    <legend class="form__l">Votre projet</legend>
+    <div class="chips" data-group="programme">
+      <label class="chip"><input type="radio" name="programme" value="serre-orchis"><span>Le Serre d’Orchis</span></label>
+      <label class="chip"><input type="radio" name="programme" value="sabot-venus"><span>Le Sabot de Vénus</span></label>
+      <label class="chip"><input type="radio" name="programme" value="la-rouya"><span>La Rouya</span></label>
+      <label class="chip"><input type="radio" name="programme" value="terrain"><span>Un chalet sur mon terrain</span></label>
+    </div>
+  </fieldset>
+  <fieldset class="form__set form__lot" hidden>
+    <legend class="form__l">Chalet</legend>
+    <div class="chips" data-group="lot">
+      <label class="chip"><input type="radio" name="lot" value="A"><span>A</span></label>
+      <label class="chip"><input type="radio" name="lot" value="B"><span>B</span></label>
+    </div>
+  </fieldset>
+  <fieldset class="form__set">
+    <legend class="form__l">Je souhaite</legend>
+    <div class="chips">
+      <label class="chip chip--check"><input type="checkbox" name="souhait" value="plans"><span>Recevoir les plans</span></label>
+      <label class="chip chip--check"><input type="checkbox" name="souhait" value="prix"><span>Connaître les prix</span></label>
+      <label class="chip chip--check"><input type="checkbox" name="souhait" value="rdv"><span>Prendre rendez-vous</span></label>
+    </div>
+  </fieldset>
+  <div class="form__row">
+    <div class="field"><label class="form__l" for="%p%-nom">Prénom et nom *</label><input class="field__i" id="%p%-nom" name="nom" type="text" autocomplete="name" required aria-describedby="%p%-nom-e"><p class="field__e" id="%p%-nom-e" hidden>Indiquez votre prénom et votre nom.</p></div>
+    <div class="field"><label class="form__l" for="%p%-email">E-mail *</label><input class="field__i" id="%p%-email" name="email" type="email" autocomplete="email" required aria-describedby="%p%-email-e"><p class="field__e" id="%p%-email-e" hidden>Indiquez une adresse e-mail valide.</p></div>
+  </div>
+  <div class="field"><label class="form__l" for="%p%-tel">Téléphone (facultatif)</label><input class="field__i" id="%p%-tel" name="tel" type="tel" autocomplete="tel"></div>
+  <div class="field"><label class="form__l" for="%p%-msg">Message (facultatif)</label><textarea class="field__i" id="%p%-msg" name="message" rows="3"></textarea></div>
+  <div class="form__hp" aria-hidden="true"><label for="%p%-site">Site web</label><input id="%p%-site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
+  <div class="consent">
+    <input id="%p%-ok" name="consentement" type="checkbox" required aria-describedby="%p%-ok-e">
+    <label for="%p%-ok">J’accepte que Lombard Vasina utilise ces informations pour me recontacter au sujet de ma demande. * <a class="link" href="https://www.chalets-lombard.fr/mentions-legales/">Mentions légales</a></label>
+    <p class="field__e" id="%p%-ok-e" hidden>Votre accord est nécessaire pour que nous puissions vous répondre.</p>
+  </div>
+  <div class="form__end">
+    <button class="btn btn--submit" type="submit" data-magnetic><span class="btn__label" data-roll>Envoyer ma demande</span><svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg><svg class="btn__check" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg></button>
+    <p class="form__msg" role="status" aria-live="polite"></p>
+  </div>
+</form>
