@@ -1,5 +1,5 @@
-/* Sections 03 à 06 et pied de page : du trait au chalet, odomètres, carrousel des témoignages,
-   le chalet qui s'allume, toit du logo gaufré. L'odomètre est partagé avec page.js (App.odometer). */
+/* Sections 03 et 06 et pied de page : du trait au chalet, odomètres, le chalet qui s'allume,
+   toit du logo gaufré. L'odomètre est partagé (App.odometer). */
 (() => {
   const App = window.App;
   if (!App || !App.ok) return;
@@ -77,39 +77,6 @@
     });
   }
 
-  /* ——— S7 : carrousel des témoignages (sans lecture automatique) ——— */
-  function carousel() {
-    const root = $('.carousel');
-    if (!root) return;
-    const quotes = $$('.quote', root), count = $('.carousel__i span', root);
-    let i = 0, busy = false;
-    function go(dir) {
-      if (busy) return;
-      const n = (i + dir + quotes.length) % quotes.length;
-      const a = quotes[i], b = quotes[n];
-      const pb = $('blockquote p', b);
-      busy = true;
-      // la citation sortante s'efface, la suivante arrive floue et se met au point
-      const tl = gsap.timeline({ onComplete: () => { busy = false; } });
-      tl.to([$('blockquote', a), $('figcaption', a)], { autoAlpha: 0, y: -10, duration: .45, ease: 'in', stagger: .05 })
-        .add(() => {
-          a.classList.remove('is-active'); gsap.set([$('blockquote', a), $('figcaption', a)], { clearProps: 'all' });
-          b.classList.add('is-active');
-          App.text(pb);
-        })
-        .fromTo($('figcaption', b), { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: .8 }, '+=.35')
-        .to(count, { yPercent: dir > 0 ? -100 : 100, duration: .3, ease: 'in' }, 0)
-        .add(() => { count.textContent = String(n + 1); }, .3)
-        .fromTo(count, { yPercent: dir > 0 ? 100 : -100 }, { yPercent: 0, duration: .5, ease: 'out' }, .3);
-      i = n;
-    }
-    $$('.carousel__b', root).forEach((b) => b.addEventListener('click', () => go(+b.dataset.dir)));
-    root.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') { e.preventDefault(); go(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } });
-    let x0 = null;
-    root.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse') x0 = e.clientX; });
-    root.addEventListener('pointerup', (e) => { if (x0 !== null && Math.abs(e.clientX - x0) > 40) go(e.clientX < x0 ? 1 : -1); x0 = null; });
-  }
-
   /* ——— S8 : le chalet s'allume, étage par étage ——— */
   function finale() {
     const photo = $('.finale__photo'), lit = $('.finale__lit'), dim = $('.finale__dim');
@@ -151,18 +118,7 @@
 
   document.addEventListener('app:ready', () => {
     if (!motion) return;
-    mesure(); carousel(); finale(); footer();
+    mesure(); finale(); footer();
     ScrollTrigger.refresh();
-  });
-  // sans mouvement : le carrousel reste pilotable au clavier, sans animation
-  document.addEventListener('DOMContentLoaded', () => {
-    if (motion) return;
-    const root = $('.carousel');
-    if (!root) return;
-    const quotes = $$('.quote', root), count = $('.carousel__i span', root);
-    let i = 0;
-    const go = (d) => { quotes[i].classList.remove('is-active'); i = (i + d + quotes.length) % quotes.length; quotes[i].classList.add('is-active'); count.textContent = String(i + 1); };
-    $$('.carousel__b', root).forEach((b) => b.addEventListener('click', () => go(+b.dataset.dir)));
-    root.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') go(1); if (e.key === 'ArrowLeft') go(-1); });
   });
 })();

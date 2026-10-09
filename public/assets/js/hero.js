@@ -44,15 +44,16 @@
         .to(P.mid, { yPercent: 0, duration: 1.9 * k, ease: 'out' }, .05 * k)
         .to(P.front, { yPercent: 0, duration: 1.7 * k, ease: 'out' }, .1 * k)
         .to(P.giant, { yPercent: 0, duration: 2 * k, ease: 'out' }, .2 * k)
-        .add(() => App.title(P.giant, { stagger: .07 * k, duration: 1.3 * k }), .25 * k)
+        .add(() => App.title(P.giant, { stagger: .16 * k, duration: 1.5 * k }), .25 * k)
         .add(() => App.text(kicker), .6 * k)
-        .add(() => App.title(title, { stagger: .028 * k, duration: 1 * k }), .7 * k)
+        .add(() => App.title(title, { stagger: .09 * k, duration: 1.2 * k }), .7 * k)
         .to(extras, { autoAlpha: 1, y: 0, duration: .9 * k, ease: 'out', stagger: .08 * k }, 1.15 * k);
       return tl;
     },
     revealStatic() {
       gsap.set([P.back, P.mid, P.front, P.giant, ...extras], { clearProps: 'transform,opacity,visibility' });
-      [P.giant, kicker, title].forEach((el) => el.classList.add('is-in'));
+      [P.giant, title].forEach((el) => { if (el._fx) gsap.set(el._fx, { clearProps: 'all' }); });
+      kicker.classList.add('is-in');
     },
   };
 

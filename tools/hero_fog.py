@@ -14,8 +14,10 @@ for k, src in SRC.items():
     im = Image.open(os.path.join(ROOT, src)).convert('RGB')
     # petite et déjà très floue, mais encodée en haute qualité : une fois agrandie à l'écran, aucun bloc
     # de compression ne doit apparaître (à qualité basse, on voit des carrés)
-    w = 160 if k == 'd' else 120
-    im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS).filter(ImageFilter.GaussianBlur(4 if k == 'd' else 3))
+    # assez grande pour n'être agrandie que trois fois (au-delà, l'agrandissement du navigateur dessine
+    # une grille), très floue, et encodée sans perte visible (aucun bloc de compression)
+    w = 480 if k == 'd' else 320
+    im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS).filter(ImageFilter.GaussianBlur(12 if k == 'd' else 8))
     out = os.path.join(ROOT, 'public', 'assets', 'hero', k, 'fog.webp')
-    im.save(out, 'WEBP', quality=92, method=6)
+    im.save(out, 'WEBP', quality=88, method=6)
     print(out, im.size, os.path.getsize(out), 'octets')

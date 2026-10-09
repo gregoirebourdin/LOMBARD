@@ -635,5 +635,179 @@
   },
   "alt": "Vue 3D, illustration non contractuelle : salon de La Rouya, poêle suspendu allumé, canapés clairs et baies vitrées sur la montagne enneigée",
   "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LA ROUYA, SALON"
+ },
+ "t-vallee": {
+  "w": 1920,
+  "h": 1281,
+  "ratio": 1.4988,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#8c848a",
+  "lqip": "data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAABwBQCdASoYABAAPt1apkyopSOiMAgBEBuJZgCdMoMYJn/8/8dIA+Y/J73m3+ZN3ofsNWiYAP7g13gRpY3tXiUp5LpHayicGeOS+aamGAlNosGXEria7PniaXVPMrvwjlkikbFSSrRBtjW1Jb9LL/FeBOiAAJVOsT59y7nvwjIV4VJEHhdjrciZ4XreRCLm/AXRd2ELx/zEXYRcImn0L9hUUek/JgV9XlrDA1C/1BiViVMXDegPvbjXwXWRV4GVBIGIe4bAAAA=",
+  "bytes": {
+   "800": {
+    "avif": 88114,
+    "webp": 120276
+   },
+   "1200": {
+    "avif": 178879,
+    "webp": 248580
+   },
+   "1600": {
+    "avif": 281673,
+    "webp": 396836
+   }
+  },
+  "alt": "Chalet en bois sous la neige au pied de sommets enneigés, dans un hameau de montagne",
+  "label": ""
+ },
+ "t-nuit": {
+  "w": 1920,
+  "h": 1571,
+  "ratio": 1.2222,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#67422b",
+  "lqip": "data:image/webp;base64,UklGRhwBAABXRUJQVlA4IBABAAAQBgCdASoYABQAPt1iqk+opaOiKAqpEBuJbACdMoMnuBij8wy+6aGXIRPnPTzTUDU2QAjyN1UFu3AA/u7b2UUGODRiruPLcYhIFsc1RxWv8Qb+g80SZnD++ZYxk0IPDNyQTiB/r2DnKG07kfT3jXCEbiti1NlnUo7iWnRu0Ks7YIwsostw+pRE2yHEIN6nk7PVOlEcuvS9e0MaqRIbx8VttbvR4l+pkEtoc4mbW61ZFuQ5C2m2ZpbVv5uOVigU6wtua/B97LsP+Jxv6icOokHQsL56uqUe5RW0XICzlYvY11hKKeC9PeS7eLP2DgVI50cieL8ssD6Q2QZTPTgS0Pksi3GIBaeOVStq40bsZhgAAA==",
+  "bytes": {
+   "800": {
+    "avif": 56987,
+    "webp": 81438
+   },
+   "1200": {
+    "avif": 109545,
+    "webp": 155176
+   },
+   "1600": {
+    "avif": 177563,
+    "webp": 236450
+   }
+  },
+  "alt": "Pignon d’un chalet en bois éclairé à la nuit tombée, grand balcon et charpente apparente",
+  "label": ""
+ },
+ "t-hiver": {
+  "w": 1281,
+  "h": 1920,
+  "ratio": 0.6672,
+  "alpha": false,
+  "widths": [
+   640,
+   960,
+   1280
+  ],
+  "color": "#59595e",
+  "lqip": "data:image/webp;base64,UklGRmoBAABXRUJQVlA4IF4BAAAQCACdASoYACQAPt1kq1CopSOipWsxEBuJbACxHsI7WMjqv57M8GMZomXA03MFAYqK+H4cKC3Mkkn0pLcMtQufqF7Elfc7ZNoAAP7YwaNlufrZPD+wKis2ej1TNoyDUGehEUAVMK+m4cgpXa53tyS6BxOTzDuJFdBxf/Vd238uT7bJpEpk/+Fa5Gj92YxrCm0Tx5x9fhYt8HMz2TclZgMOIIa2KiMrQ6voOKCVXkAfxwW8MA5f9VxuyzzliJhEBIJITYj+tWTrqL4XuQ6QjTBWo8o5cVz3f556TwYAGLaKVeJJGi9VW3q7cbwcgfcQmpmuo+gk+U+aVq2SA5uyfzjOt2JT3FvBFPCuXGRdLiWSb+CwhKw4SCFUvbHmthByFDB3LvXDcdM985osm9KxWX3iRt+bvSt1LqcFpte8efiVWheYdjjAUebVCKHpgtZhFlnBb2yio00YuHNlUTpAAA==",
+  "bytes": {
+   "640": {
+    "avif": 84124,
+    "webp": 119980
+   },
+   "960": {
+    "avif": 165776,
+    "webp": 235496
+   },
+   "1280": {
+    "avif": 262493,
+    "webp": 372862
+   }
+  },
+  "alt": "Chalet en mélèze et pierre sous la neige, ciel bleu, sapin enneigé au premier plan",
+  "label": ""
+ },
+ "t-ete": {
+  "w": 1600,
+  "h": 1067,
+  "ratio": 1.4995,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#757566",
+  "lqip": "data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAADwBACdASoYABAAPt1apkyopSOiMAgBEBuJbACdMoMjiYZjlCH35i4r2OtfvOtgw4AAzjbC6tXo4fpy+eB3Q+OFCKxsqHyrRaaDmmi1pSMLSDUHkYkuRZVb1bl0315MMa9YP8Wh7eg6azHY7K6hlyuQ0cz4bo28KHBoK2sUqAyPvm1NmOxTfy/rqn4312g+/HPRMbQ1Oun47GiRDGo0uUqVpY769Q9MyGLiZKyBhNDCQs89DNhAzdz2XHZuL4wfRmX0BhnGKVyTd37PsGPqLc4iYn0au7SCS5lgAA==",
+  "bytes": {
+   "800": {
+    "avif": 62660,
+    "webp": 92254
+   },
+   "1200": {
+    "avif": 119778,
+    "webp": 171764
+   },
+   "1600": {
+    "avif": 180252,
+    "webp": 250940
+   }
+  },
+  "alt": "Grand chalet en bois et pierre en été, deux niveaux de balcons, montagnes sous un ciel bleu",
+  "label": ""
+ },
+ "t-salon": {
+  "w": 1600,
+  "h": 1067,
+  "ratio": 1.4995,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#786658",
+  "lqip": "data:image/webp;base64,UklGRsgAAABXRUJQVlA4ILwAAACwBACdASoYABAAPt1apkyopSOiMAgBEBuJagCdH8BcARPQm9p8vE0ltB3MIKCQAP7dERUmWdOH8SbLaohSjMmGv0hSYwMxd4p5bg/SiWRvXXMv66jbITNXigQQFzdL17EBYofcNzGgJJ9aDZsaYbrSZNgaFuIpOQFxAt5eN4SWPs8ijY0r2x/XD+lP2UQc9TD+bub25ZHlmDq7gkyp17qu/t+PFOZsNbDPxBE6y1O+YzYaSzHeVq2bEEAAAA==",
+  "bytes": {
+   "800": {
+    "avif": 65197,
+    "webp": 97378
+   },
+   "1200": {
+    "avif": 134631,
+    "webp": 197912
+   },
+   "1600": {
+    "avif": 217319,
+    "webp": 313428
+   }
+  },
+  "alt": "Séjour cathédrale d’un chalet : bibliothèque, mezzanine, suspension lumineuse et canapés",
+  "label": ""
+ },
+ "t-sejour": {
+  "w": 1920,
+  "h": 1080,
+  "ratio": 1.7778,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#91796a",
+  "lqip": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABwBACdASoYAA4APt1apkyopSOiMAgBEBuJaACdEf/i2VDGFhj8X2O0VmSqAAD9THJMKeOLbMqlJwEcFpUKeo9VVQTgRdo7Ov9SQBpiyOCDAfCaassVbS3r70A8cjpWrOMTOTyHHK0TjDEUOtz84IUqHkYrQTSo9SMu21PYso6PtTRlyTuwZT852WXtV5lwgu+HoFJ36JU5nYS6t1ZhAAAA",
+  "bytes": {
+   "800": {
+    "avif": 44616,
+    "webp": 60840
+   },
+   "1200": {
+    "avif": 94249,
+    "webp": 126136
+   },
+   "1600": {
+    "avif": 153047,
+    "webp": 196818
+   }
+  },
+  "alt": "Séjour lumineux en bois clair, cheminée vitrée et baies ouvertes sur les sommets",
+  "label": ""
  }
 }

@@ -62,14 +62,14 @@
   App.onEnter = onEnter;
 
   /* ——— apparitions ———
-     Titres : lettre après lettre, chaque lettre passe du flou au net en glissant un peu (comme l'effet
-     « appear » de Framer : blur 5 px, opacité 0, 20 px à droite, ressort amorti, 0,05 s entre lettres).
-     Textes : un simple fondu, avec un flou très léger. Tout est en animations CSS : le navigateur les
-     compose lui-même, sans calcul image par image en JavaScript. */
+     Titres : mot après mot, chaque mot monte, passe de transparent à opaque et du flou au net (comme
+     « Scroll Blur Reveal » de Framer : flou 12 px, 22 px plus bas, chaque mot sur ~2 fois sa part du
+     parcours). Dans les sections, la révélation suit le défilement ; dans le hero, elle suit le temps.
+     Textes : un simple fondu, avec un flou très léger (animation CSS). */
   const SPACE = /([ \t\n\r]+)/; // jamais l'espace fine insécable : « et » ne se détachent pas
-  App.splitChars = (el) => {
+  App.titleWords = (el) => {
     if (el._fx) return el._fx;
-    let i = 0;
+    const words = [];
     const label = el.textContent.replace(/\s+/g, ' ').trim();
     const walk = (node) => [...node.childNodes].forEach((n) => {
       if (n.nodeType === 3) {
@@ -77,30 +77,41 @@
         n.textContent.split(SPACE).forEach((t) => {
           if (!t) return;
           if (SPACE.test(t)) { frag.append(t); return; }
-          const w = document.createElement('span'); w.className = 'fx-w'; w.setAttribute('aria-hidden', 'true');
-          for (const ch of t) { const c = document.createElement('span'); c.className = 'fx-c'; c.textContent = ch; c.style.setProperty('--i', i++); w.append(c); }
-          frag.append(w);
+          const w = document.createElement('span'); w.className = 'fx-w'; w.textContent = t; w.setAttribute('aria-hidden', 'true');
+          frag.append(w); words.push(w);
         });
         n.replaceWith(frag);
       } else if (n.nodeType === 1 && !n.matches('br, svg, .fx-w')) walk(n);
     });
     walk(el);
-    // le titre garde son nom accessible entier (les lettres découpées sont masquées aux lecteurs d'écran)
+    // le titre garde son nom accessible entier (les mots découpés sont masqués aux lecteurs d'écran)
     if (el.matches('h1, h2, h3, h4')) el.setAttribute('aria-label', label);
     el.classList.add('fx-t');
-    el._fx = i;
-    return i;
+    el._fx = words;
+    return words;
   };
-  // révèle un titre (st : écart entre lettres, en s) ; renvoie la durée totale
+  // flou et montée à l'échelle du corps du titre (12 px et 22 px pour un titre de 56 px)
+  const fxFrom = (el) => {
+    const fs = parseFloat(getComputedStyle(el).fontSize) || 40;
+    return { opacity: 0, y: Math.round(fs * .39), filter: `blur(${Math.min(18, Math.max(6, fs * .21)).toFixed(1)}px)` };
+  };
+  const FX_TO = { opacity: 1, y: 0, filter: 'blur(0px)' };
+  App.titleHide = (el) => { const w = App.titleWords(el); gsap.set(w, fxFrom(el)); return w; };
+  // dans le temps (hero, étapes, finale)
   App.title = (el, o = {}) => {
-    const n = App.splitChars(el), st = o.stagger ?? Math.min(.035, 1.1 / Math.max(n, 1)), dur = o.duration ?? .95;
-    el.style.setProperty('--fx-st', `${st}s`);
-    el.style.setProperty('--fx-dur', `${dur}s`);
-    el.style.setProperty('--fx-delay', `${o.delay || 0}s`);
-    el.classList.remove('is-in'); void el.offsetWidth; el.classList.add('is-in');
-    return (o.delay || 0) + n * st + dur;
+    const w = App.titleWords(el);
+    return gsap.fromTo(w, fxFrom(el), { ...FX_TO, duration: o.duration ?? 1.1, ease: 'power3.out', stagger: o.stagger ?? .08, delay: o.delay || 0,
+      onComplete: () => gsap.set(w, { clearProps: 'filter,willChange' }) });
   };
-  App.titleHide = (el) => { App.splitChars(el); el.classList.remove('is-in'); };
+  // au défilement : chaque mot occupe ~2,2 fois sa part du parcours, comme la référence
+  App.titleScroll = (el, o = {}) => {
+    const w = App.titleWords(el), n = w.length, speed = .65, part = speed / n;
+    gsap.set(w, { ...fxFrom(el), willChange: 'opacity, filter, transform' });
+    const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: el, start: o.start || 'top 94%', end: o.end || 'top 52%', scrub: .4 } });
+    w.forEach((x, i) => { const a = (i / n) * speed, b = Math.min(a + part * 2.2, 1); tl.to(x, { ...FX_TO, duration: b - a }, a); });
+    tl.to({}, { duration: Math.max(0, 1 - tl.duration()) });
+    return tl;
+  };
   // un texte : fondu et flou léger
   App.text = (el, o = {}) => {
     el.classList.add('fx-p');
@@ -117,7 +128,7 @@
       const delay = parseFloat(el.dataset.delay || 0);
       if (kind === 'lines' || kind === 'fade') {
         // les titres lettre à lettre, tout le reste (petits titres, paragraphes) en fondu
-        if (isTitle(el)) { App.titleHide(el); onEnter(el, () => App.title(el, { delay })); }
+        if (isTitle(el)) App.titleScroll(el);
         else { App.textHide(el); onEnter(el, () => App.text(el, { delay })); }
       } else if (kind === 'stagger') {
         gsap.set(el.children, { autoAlpha: 0, y: 16 });

@@ -210,44 +210,24 @@
     </div>
   </section>
 
-  <!-- 04 : la maison — une famille, deux ateliers, et quatre chiffres qu'on voit -->
+  <!-- 04 : la maison — une famille, deux ateliers ; quatre chiffres posés comme dans un registre -->
   <section class="maison paper" id="la-maison" aria-labelledby="maison-t" data-header="paper">
     <div class="maison__grid">
-      <figure class="maison__fig">{{pic name="poteau" class="maison__pic" sizes="(min-width: 1024px) 30vw, 50vw"}}<figcaption>Douglas, notre essence de prédilection</figcaption></figure>
-      <div class="maison__body">
+      <div class="maison__head">
         <p class="kicker" data-reveal="lines">04 — La maison Lombard Vasina</p>
         <h2 class="d1" id="maison-t" data-reveal="lines">Une famille, <br class="d">deux <em>ateliers</em>.</h2>
+      </div>
+      <figure class="maison__fig">{{pic name="poteau" class="maison__pic" sizes="(min-width: 1024px) 28vw, 60vw"}}<figcaption>Douglas, notre essence de prédilection</figcaption></figure>
+      <div class="maison__body">
         <p class="maison__txt" data-reveal="fade">Une entreprise familiale créée il y a plus de 45 ans. Depuis une dizaine d’années, Marielle et Mathieu ont rejoint leur père Maurice dans l’aventure. En 2021, ils ont officiellement repris le flambeau.</p>
+        <dl class="ledger">
+          <div class="ledger__row"><dt class="ledger__l">Fondation de l’entreprise</dt><dd class="ledger__n"><span data-count="1979" data-plain>1979</span></dd></div>
+          <div class="ledger__row"><dt class="ledger__l">Chalets réalisés</dt><dd class="ledger__n"><span data-count="800">800</span><span class="ledger__u">+</span></dd></div>
+          <div class="ledger__row"><dt class="ledger__l">Passionnés, <br>du bureau d’études à la pose</dt><dd class="ledger__n"><span data-count="40">40</span></dd></div>
+          <div class="ledger__row"><dt class="ledger__l">D’atelier charpente</dt><dd class="ledger__n"><span data-count="1300">1 300</span><span class="ledger__u ledger__u--m">m²</span></dd></div>
+        </dl>
         <p class="maison__links"><a class="link" href="https://www.chalets-lombard.fr/lombard-vasina/">Notre histoire</a><a class="link" href="https://www.chalets-lombard.fr/qui-sommes-nous/">Qui sommes-nous ?</a></p>
       </div>
-    </div>
-    <div class="stats">
-      <div class="stat stat--roofs">
-        <div class="stat__txt">
-          <p class="stat__n"><span class="stat__count" data-count="800" aria-label="800">800</span><span class="stat__u">+</span></p>
-          <p class="stat__l" data-reveal="lines">Chalets réalisés</p>
-          <p class="stat__key"><svg viewBox="0 0 10 11" aria-hidden="true"><path d="M5 0 10 4.2V11H0V4.2z"/></svg>Une maison pour chaque chalet</p>
-        </div>
-        <canvas class="roofs" aria-hidden="true"></canvas>
-      </div>
-      <ul class="stats__row">
-        <li class="stat stat--years">
-          <p class="stat__n"><span class="odo" data-odo="1979" data-from="1900">1979</span></p>
-          <p class="stat__l" data-reveal="lines">Fondation de l’entreprise</p>
-          <svg class="ruler" aria-hidden="true"></svg>
-        </li>
-        <li class="stat stat--team">
-          <p class="stat__n"><span class="odo" data-odo="40" data-from="00">40</span></p>
-          <p class="stat__l" data-reveal="lines">Passionnés, du bureau d’études à la pose</p>
-          <svg class="tally" viewBox="0 0 400 96" aria-hidden="true"></svg>
-        </li>
-        <li class="stat stat--floor">
-          <p class="stat__n"><span class="odo" data-odo="1300" data-from="0000">1 300</span><span class="stat__u stat__u--m">m²</span></p>
-          <p class="stat__l" data-reveal="lines">D’atelier charpente</p>
-          <canvas class="floor" aria-hidden="true"></canvas>
-          <p class="stat__key"><i aria-hidden="true"></i>Un point pour chaque mètre carré</p>
-        </li>
-      </ul>
     </div>
   </section>
 
@@ -266,32 +246,41 @@
     </div>
   </section>
 
-  <!-- 05 : ils y vivent -->
+  <!-- 05 : ils y vivent — les plus belles photos de chalets réalisés, et la parole des clients -->
   <section class="temo paper" id="temoignages" aria-labelledby="temo-t" data-header="paper">
-    <div class="temo__grid">
-      <div class="temo__body">
-        <p class="kicker" data-reveal="lines">05 — Ils y vivent</p>
-        <h2 class="sr-only" id="temo-t">Témoignages de clients</h2>
-        <blockquote class="andre">
-          <p class="andre__q" data-reveal="lines">Non seulement vous avez réalisé mes envies, mais vous êtes allés plus loin, vous avez réalisé ce que je n’avais pas osé imaginer et qui pourtant me correspond. »</p>
-          <footer>André, client</footer>
-        </blockquote>
-        <div class="carousel" role="region" aria-roledescription="carrousel" aria-label="Autres témoignages de clients" tabindex="0">
-          <div class="carousel__view" aria-live="polite">
-            <figure class="quote is-active"><blockquote><p>« Entreprise très compétente et sérieuse. […] Aucun problème depuis. »</p></blockquote><figcaption><span class="quote__n">Monsieur Dufour</span><span class="quote__y">Chalet construit en 1982</span></figcaption></figure>
-            <figure class="quote"><blockquote><p>« 16 ans maintenant que nous avons pris possession de notre Chalet Lombard et chaque jour qui passe nous conforte dans notre choix ! »</p></blockquote><figcaption><span class="quote__n">Mr &amp; Mme Erbetta</span><span class="quote__y">Chalet construit en 2009</span></figcaption></figure>
-            <figure class="quote"><blockquote><p>« Le professionnalisme, la disponibilité et l’écoute de tous nous ont permis de vivre une formidable expérience riche de découvertes à chaque étape du projet. »</p></blockquote><figcaption><span class="quote__n">Didier &amp; Sylvie</span><span class="quote__y">Livraison en 2023</span></figcaption></figure>
-            <figure class="quote"><blockquote><p>« […] c’est vraiment réconfortant d’être accompagné par une équipe professionnelle et bienveillante. »</p></blockquote><figcaption><span class="quote__n">Alain</span><span class="quote__y">Livraison en 2025</span></figcaption></figure>
-            <figure class="quote"><blockquote><p>« Merci immensément pour la réalisation de ce rêve d’une vie. »</p></blockquote><figcaption><span class="quote__n">Christophe &amp; Virginie</span><span class="quote__y">Livraison en 2025</span></figcaption></figure>
-          </div>
-          <div class="carousel__ctrl">
-            <button class="carousel__b" type="button" data-dir="-1" aria-label="Témoignage précédent"><svg aria-hidden="true"><use href="#i-prev"/></svg></button>
-            <span class="carousel__count"><span class="carousel__i roll-box"><span>1</span></span> / 5</span>
-            <button class="carousel__b" type="button" data-dir="1" aria-label="Témoignage suivant"><svg aria-hidden="true"><use href="#i-next"/></svg></button>
-          </div>
-        </div>
-      </div>
-      <figure class="temo__fig">{{pic name="terrasse" class="temo__pic" sizes="(min-width: 1024px) 34vw, 70vw"}}<figcaption>Photographie · chalet réalisé par Lombard Vasina</figcaption></figure>
+    <div class="temo__head">
+      <p class="kicker" data-reveal="lines">05 — Ils y vivent</p>
+      <h2 class="d1" id="temo-t" data-reveal="lines">Leurs mots, <br class="d"><em>nos chalets</em>.</h2>
+      <p class="temo__note" data-reveal="fade">Photographies de chalets réalisés par Lombard Vasina. Elles accompagnent les témoignages sans montrer forcément le chalet de chaque client.</p>
+    </div>
+    <div class="temo__pin">
+      <ul class="temo__track" tabindex="0" aria-label="Témoignages de clients">
+        <li class="tcard tcard--lead">
+          <div class="tcard__ph" style="--ar:3/2">{{pic name="t-vallee" sizes="(min-width: 1024px) 60vw, 86vw"}}</div>
+          <blockquote class="tcard__q tcard__q--lead"><p class="andre__q">Non seulement vous avez réalisé mes envies, mais vous êtes allés plus loin, vous avez réalisé ce que je n’avais pas osé imaginer et qui pourtant me correspond. »</p><footer class="tcard__who"><span class="tcard__n">André</span><span class="tcard__y">Client</span></footer></blockquote>
+        </li>
+        <li class="tcard">
+          <div class="tcard__ph" style="--ar:1920/1571">{{pic name="t-nuit" sizes="(min-width: 1024px) 40vw, 86vw"}}</div>
+          <blockquote class="tcard__q"><p>« Entreprise très compétente et sérieuse. […] Aucun problème depuis. »</p><footer class="tcard__who"><span class="tcard__n">Monsieur Dufour</span><span class="tcard__y">Chalet construit en 1982</span></footer></blockquote>
+        </li>
+        <li class="tcard">
+          <div class="tcard__ph" style="--ar:2/3">{{pic name="t-hiver" sizes="(min-width: 1024px) 26vw, 86vw"}}</div>
+          <blockquote class="tcard__q"><p>« 16 ans maintenant que nous avons pris possession de notre Chalet Lombard et chaque jour qui passe nous conforte dans notre choix ! »</p><footer class="tcard__who"><span class="tcard__n">Mr &amp; Mme Erbetta</span><span class="tcard__y">Chalet construit en 2009</span></footer></blockquote>
+        </li>
+        <li class="tcard">
+          <div class="tcard__ph" style="--ar:3/2">{{pic name="t-ete" sizes="(min-width: 1024px) 44vw, 86vw"}}</div>
+          <blockquote class="tcard__q"><p>« Le professionnalisme, la disponibilité et l’écoute de tous nous ont permis de vivre une formidable expérience riche de découvertes à chaque étape du projet. »</p><footer class="tcard__who"><span class="tcard__n">Didier &amp; Sylvie</span><span class="tcard__y">Livraison en 2023</span></footer></blockquote>
+        </li>
+        <li class="tcard">
+          <div class="tcard__ph" style="--ar:3/2">{{pic name="t-salon" sizes="(min-width: 1024px) 44vw, 86vw"}}</div>
+          <blockquote class="tcard__q"><p>« […] c’est vraiment réconfortant d’être accompagné par une équipe professionnelle et bienveillante. »</p><footer class="tcard__who"><span class="tcard__n">Alain</span><span class="tcard__y">Livraison en 2025</span></footer></blockquote>
+        </li>
+        <li class="tcard">
+          <div class="tcard__ph" style="--ar:16/9">{{pic name="t-sejour" sizes="(min-width: 1024px) 50vw, 86vw"}}</div>
+          <blockquote class="tcard__q"><p>« Merci immensément pour la réalisation de ce rêve d’une vie. »</p><footer class="tcard__who"><span class="tcard__n">Christophe &amp; Virginie</span><span class="tcard__y">Livraison en 2025</span></footer></blockquote>
+        </li>
+      </ul>
+      <div class="temo__bar" aria-hidden="true"><i></i></div>
     </div>
   </section>
 

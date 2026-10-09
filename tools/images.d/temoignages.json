@@ -1,0 +1,71 @@
+{
+ "_doc": "Section 05 « Ils y vivent » : photographies de chalets réalisés par Lombard Vasina (site actuel), sans retouche. Elles accompagnent les témoignages sans prétendre montrer le chalet de chaque client.",
+ "images": {
+  "t-vallee": {
+   "id": "V27-site",
+   "src": "tools/.cache/2024_09_Chalet-Vallee-Hiver-�-alpesphotographies.com-27.jpg",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalet-Vallee-Hiver-�-alpesphotographies.com-27.jpg",
+   "widths": [
+    800,
+    1200,
+    1600
+   ],
+   "alt": "Chalet en bois sous la neige au pied de sommets enneigés, dans un hameau de montagne"
+  },
+  "t-nuit": {
+   "id": "S100",
+   "src": "tools/.cache/2024_09_Chalets_Lombard_exterieure_chalets-100me.jpg",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalets_Lombard_exterieure_chalets-100me.jpg",
+   "widths": [
+    800,
+    1200,
+    1600
+   ],
+   "alt": "Pignon d’un chalet en bois éclairé à la nuit tombée, grand balcon et charpente apparente"
+  },
+  "t-hiver": {
+   "id": "S-hiver",
+   "src": "tools/.cache/2024_09_Chalets_Lombard_hiver_exterieures.jpg",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalets_Lombard_hiver_exterieures.jpg",
+   "widths": [
+    640,
+    960,
+    1280
+   ],
+   "alt": "Chalet en mélèze et pierre sous la neige, ciel bleu, sapin enneigé au premier plan"
+  },
+  "t-ete": {
+   "id": "S-double",
+   "src": "tools/.cache/2026_01_Chalets_Lombard_Chalet_Double.png",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2026/01/Chalets_Lombard_Chalet_Double.png",
+   "widths": [
+    800,
+    1200,
+    1600
+   ],
+   "alt": "Grand chalet en bois et pierre en été, deux niveaux de balcons, montagnes sous un ciel bleu"
+  },
+  "t-salon": {
+   "id": "S-rive",
+   "src": "tools/.cache/2026_01_Chalets_Lombard_Chalet_Rive_Gauche.png",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2026/01/Chalets_Lombard_Chalet_Rive_Gauche.png",
+   "widths": [
+    800,
+    1200,
+    1600
+   ],
+   "alt": "Séjour cathédrale d’un chalet : bibliothèque, mezzanine, suspension lumineuse et canapés"
+  },
+  "t-sejour": {
+   "id": "S-sejour",
+   "src": "tools/.cache/2026_08_Chalets_Lombard_sejour.webp",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2026/08/Chalets_Lombard_sejour.webp",
+   "widths": [
+    800,
+    1200,
+    1600
+   ],
+   "alt": "Séjour lumineux en bois clair, cheminée vitrée et baies ouvertes sur les sommets"
+  }
+ }
+}

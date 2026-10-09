@@ -22,7 +22,9 @@
   /* une nappe de nuage : des amas de dégradés radiaux très doux, dessinés une fois dans un petit canevas
      (aucune image à charger, aucun bord, aucune compression) ; le dessous des volutes est à peine lavande */
   function paint(cv, seed, clumps, per, rMin, rMax, a0) {
-    const W = 360, H = Math.round(360 * Math.min(2.2, Math.max(.45, innerHeight / innerWidth)));
+    // à mi-résolution de l'écran (le canevas couvre 136 % de l'écran) : agrandi deux fois au plus,
+    // l'image reste lisse ; trop petite, son agrandissement laisse voir une grille
+    const W = Math.round(Math.min(1100, Math.max(420, innerWidth * .68))), H = Math.round(W * Math.min(2.2, Math.max(.45, innerHeight / innerWidth)));
     cv.width = W; cv.height = H;
     const ctx = cv.getContext('2d');
     let s = seed;
@@ -40,6 +42,16 @@
         g.addColorStop(0, `rgba(255,254,252,${a})`); g.addColorStop(.45, `rgba(253,250,249,${a * .62})`); g.addColorStop(1, 'rgba(250,246,248,0)');
         ctx.fillStyle = g; ctx.fillRect(x - rad, y - rad, rad * 2, rad * 2);
       }
+    }
+    // le navigateur trame les dégradés d'un fin motif de points : agrandi, il dessinerait une grille.
+    // On lisse donc le dessin une fois (flou léger, fait une seule fois, jamais animé).
+    if ('filter' in ctx) {
+      const t = document.createElement('canvas'); t.width = W; t.height = H;
+      const c2 = t.getContext('2d');
+      c2.filter = `blur(${Math.max(3, W / 220).toFixed(1)}px)`;
+      c2.drawImage(cv, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      ctx.drawImage(t, 0, 0);
     }
   }
 
