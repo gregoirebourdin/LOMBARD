@@ -7,7 +7,7 @@
   const html = document.documentElement;
   const intro = document.querySelector('.intro');
   if (!html.classList.contains('has-intro') || !intro) return;
-  if (!App || !App.ok) { html.classList.remove('has-intro'); intro.remove(); return; }
+  if (!App || !App.ok) { html.classList.remove('has-intro'); intro.remove(); App?.resolveIntro?.(); return; }
   const { $, $$ } = App;
 
   const short = html.classList.contains('intro--short');
@@ -104,6 +104,7 @@
     try { localStorage.setItem('clv-intro', String(Date.now())); } catch (e) { /* stockage indisponible */ }
     App.lenis?.start();
     App.onScroll?.();
+    App.resolveIntro?.();
   }
 
   function build() {
@@ -121,7 +122,7 @@
     const fadeOut = () => [...L('#ix-mountains, #clv-lombard, #clv-vasina'), coords, rule];
     const startDive = () => { diving = true; gsap.set(cam, { willChange: 'transform' }); };
 
-    tl = gsap.timeline({ onComplete: end });
+    tl = App.introTl = gsap.timeline({ onComplete: end });
     if (short) {
       gsap.set(L('#clv-chalets > path'), { yPercent: 104 });
       if (MOB) { gsap.set(L('#clv-lombard > path'), { yPercent: 104 }); gsap.set(vasina, { autoAlpha: 0 }); }

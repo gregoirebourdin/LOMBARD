@@ -48,16 +48,16 @@ CROP = (0, 0, 2998, 1820)
 STROKES = [
     # ligne de sol : dessus du soubassement en pierre (dessous des poutres qui y reposent)
     dict(name='sol-gauche', pts=[(0, 1664), (690, 1694)], R=6),
-    dict(name='sol-pignon', pts=[(1040, 1676), (1450, 1703)], R=8),
+    dict(name='sol-pignon', pts=[(1100, 1680), (1450, 1703)], R=8),
     # poteaux maîtres : poteau de l'aile (arête droite), poteau d'angle du pignon (arête gauche)
     dict(name='poteau-aile', pts=[(407, 520), (402, 975)], R=8),
     dict(name='poteau-angle', pts=[(971, 1045), (968, 1240)], R=8, end_on='main-courante'),
     # rives : about des planches de rive, rive gauche (vue en fuite), faîtage, rive droite, égout droit
-    dict(name='rives', pts=[(1056, 662), (1060, 512), (1652, 417), (2128, 1180), (2291, 1259)], R=[0, 6, 6, 6], sign=[0, 1, 0, 0]),
+    dict(name='rives', pts=[(1056, 662), (1060, 512), (1652, 417), (2128, 1180), (2291, 1259)], R=[0, 6, 6, 6], sign=[0, 'dark', 0, 0]),
     dict(name='rives-sous-face', pts=[(1057, 663), (1641, 523), (2124, 1277)], R=6),
     # égouts : chéneau de l'aile gauche, chéneau de l'égout gauche du pignon
     dict(name='egout-aile', pts=[(0, 106), (779, 499)], R=6),
-    dict(name='egout-pignon', pts=[(447, 750), (1059, 564)], R=6),
+    dict(name='egout-pignon', pts=[(441, 731), (1053, 545)], R=8, sign=-1, end_on='rives'),
     # pannes sous la rive droite (arête basse)
     dict(name='panne-1', pts=[(1590, 860), (1794, 811)], R=6),
     dict(name='panne-2', pts=[(1726, 1040), (1943, 993)], R=6),
@@ -65,18 +65,18 @@ STROKES = [
     # pignon vitré : sablière, puis chaque vitrage par son contour (montant, rampant ou jambe de force, montant)
     dict(name='sabliere', pts=[(1043, 983), (1803, 1256)], R=6),
     dict(name='vitrage-angle', parts=[
-        ('line', [(1039, 1262), (1042, 862)]),
+        ('line', [(1041, 990), (1042, 862)]),
         ('edge', [(1042, 862), (1080, 795), (1120, 740), (1158, 693)]),
-        ('line', [(1171, 693), (1173, 1250)])], R=6, Rparts=[0, 6, 6], end_on='main-courante', start_on='main-courante'),
+        ('line', [(1171, 693), (1173, 1250)])], R=6, Rparts=[6, 6, 6], end_on='main-courante', start_on='sabliere'),
     dict(name='vitrage-ab', pts=[(1237, 1270), (1237, 722), (1380, 903), (1384, 1300)], R=6, end_on='main-courante', start_on='main-courante'),
-    dict(name='vitrage-bc', pts=[(1431, 1300), (1431, 783), (1469, 717), (1557, 839), (1568, 1330)], R=6, end_on='main-courante', start_on='main-courante'),
+    dict(name='vitrage-bc', pts=[(1431, 1300), (1430, 783), (1469, 717), (1557, 839), (1568, 1330)], R=[0, 6, 6, 6], end_on='main-courante', start_on='main-courante'),
     dict(name='vitrage-cd', pts=[(1600, 1340), (1599, 888), (1688, 1021), (1690, 1380)], R=6, end_on='main-courante', start_on='main-courante'),
     # jambes de force cintrées : arête haute (l'arête basse borde le vitrage)
     dict(name='jambe-angle', kind='edge', pts=[(984, 900), (1040, 800), (1100, 730), (1135, 690)], R=10),
     dict(name='jambe-b', kind='edge', pts=[(1408, 777), (1470, 680), (1538, 589)], R=8),
     # balcon : main courante (balcon gauche, retour, façade, puis poteau d'extrémité), lisse basse, poteau d'angle
     dict(name='main-courante', pts=[(1, 1181), (854, 1292), (1133, 1243), (2233, 1561), (2239, 1745)], R=6),
-    dict(name='lisse-basse', pts=[(1146, 1484), (2222, 1665)], R=5, sign=1),
+    dict(name='lisse-basse', pts=[(1146, 1487), (2221, 1690)], R=5, sign=1),
     dict(name='poteau-balcon', pts=[(1123, 1245), (1118, 1620)], R=6),
     dict(name='plancher', pts=[(1140, 1545), (2225, 1725)], R=8),
     # madriers de l'aile gauche
@@ -87,7 +87,7 @@ STROKES = [
     dict(name='cheminee', pts=[(570, 277), (635, 250), (693, 282), (727, 368)], R=5),
     # épicéa : tronc (bord gauche de l'écorce), branches maîtresses (axe sombre sur le ciel, depuis le tronc)
     dict(name='tronc', kind='edge', pts=[(2893, 250), (2958, 1450)], R=12),
-    dict(name='branche-1', kind='ridge', pts=[(2900, 405), (2600, 425), (2300, 450), (2100, 480), (1850, 505)], R=14),
+    dict(name='branche-1', kind='ridge', pts=[(2890, 395), (2800, 411), (2700, 434), (2580, 466), (2450, 477), (2300, 487), (2200, 495), (2100, 501), (2000, 510), (1850, 520)], R=10),
     dict(name='branche-2', kind='ridge', pts=[(2910, 595), (2600, 610), (2300, 628), (2100, 615), (1960, 590)], R=14),
     dict(name='branche-3', kind='ridge', pts=[(2925, 830), (2800, 850), (2600, 875), (2400, 880), (2200, 850), (2050, 790), (1900, 720), (1720, 640)], R=14),
     dict(name='branche-4', kind='ridge', pts=[(2915, 680), (2850, 700), (2700, 750), (2550, 790), (2400, 815), (2300, 800), (2210, 745)], R=14),
@@ -107,7 +107,8 @@ def load():
         _I.update(img=im, gray=g,
                   gx=cv2.Sobel(gs, cv2.CV_32F, 1, 0, ksize=3) / 8,
                   gy=cv2.Sobel(gs, cv2.CV_32F, 0, 1, ksize=3) / 8,
-                  dark=cv2.GaussianBlur(g, (0, 0), 5))
+                  dark=cv2.GaussianBlur(g, (0, 0), 5),
+                  thin=cv2.GaussianBlur(g, (0, 0), 1.5))
     return _I
 
 
@@ -117,10 +118,13 @@ def samp(a, xs, ys):
 
 
 def seg_score(p0, p1, sign=0):
+    """sign = +1/-1 : arête de sens imposé ; 0 : arête des deux sens ; 'dark' : filet sombre fin."""
     I = load()
     d = p1 - p0; L = np.hypot(*d); n = np.array([-d[1], d[0]]) / L
     t = np.linspace(0.04, 0.96, max(8, int(L)))
     xs = p0[0] + d[0] * t; ys = p0[1] + d[1] * t
+    if sign == 'dark':
+        return -samp(I['thin'], xs, ys).mean()
     m = (samp(I['gx'], xs, ys) * n[0] + samp(I['gy'], xs, ys) * n[1]).mean()
     return m * sign if sign else abs(m)
 
@@ -183,19 +187,26 @@ def fit_cubic(Q):
 
 
 def snap_curve(pts, R, mode, sign=0, n=60):
-    """Échantillons recalés le long de la normale (arête ou creux sombre), lissés."""
+    """Échantillons recalés le long de la normale, lissés.
+    edge  : arête la plus forte (gradient signé, sens majoritaire).
+    ridge : axe ligneux d'une branche = creux d'intensité le plus sombre, moyenné le long de la
+            tangente sur ±14 px (la tige est continue, les aiguilles sont obliques et s'annulent)."""
     I = load()
     P = resample(pts, n)
     d = np.gradient(P, axis=0); d /= np.hypot(d[:, 0], d[:, 1])[:, None]
     N = np.stack([-d[:, 1], d[:, 0]], 1)
     offs = np.arange(-R, R + 0.01, 0.5)
     V = []
-    for p, nv in zip(P, N):
-        xs = p[0] + offs * nv[0]; ys = p[1] + offs * nv[1]
+    for p, nv, tv in zip(P, N, d):
         if mode == 'edge':
+            xs = p[0] + offs * nv[0]; ys = p[1] + offs * nv[1]
             V.append(samp(I['gx'], xs, ys) * nv[0] + samp(I['gy'], xs, ys) * nv[1])
         else:
-            V.append(-samp(I['dark'], xs, ys))
+            acc = 0
+            for u in np.linspace(-14, 14, 8):
+                q = p + u * tv
+                acc = acc - samp(I['thin'], q[0] + offs * nv[0], q[1] + offs * nv[1])
+            V.append(acc / 8)
     V = np.array(V)
     if mode == 'edge':
         if not sign:
@@ -203,12 +214,12 @@ def snap_curve(pts, R, mode, sign=0, n=60):
         V = V * sign
     off = offs[V.argmax(1)]
     # un échantillon isolé qui saute sur une autre arête (touffe d'aiguilles, nœud) est ramené
-    # à ses voisins ; puis moyenne glissante courte
+    # à ses voisins ; puis moyenne glissante courte pour les branches
     k = 3 if mode == 'edge' else 5
     med = np.array([np.median(off[max(0, i - k):i + k + 1]) for i in range(len(off))])
     off = np.where(np.abs(off - med) > 3, med, off)
     if mode == 'ridge':
-        off = np.convolve(np.pad(off, 3, mode='edge'), np.ones(7) / 7, mode='valid')
+        off = np.convolve(np.pad(off, 2, mode='edge'), np.ones(5) / 5, mode='valid')
     return P + off[:, None] * N
 
 
@@ -255,7 +266,7 @@ def fit_spline(Q, tol=5.0):
 def build_lines(pts, R, sign=0):
     pts = [np.asarray(p, float) for p in pts]
     Rs = R if isinstance(R, (list, tuple)) else [R] * (len(pts) - 1)
-    Ss = sign if isinstance(sign, (list, tuple)) else [sign] * (len(pts) - 1)
+    Ss = list(sign) if isinstance(sign, (list, tuple)) else [sign] * (len(pts) - 1)
     segs = [refine_segment(pts[i], pts[i + 1], Rs[i], Ss[i])[:2] if Rs[i] else (pts[i], pts[i + 1])
             for i in range(len(pts) - 1)]
     out = [project(pts[0], *segs[0])]
@@ -281,10 +292,13 @@ def build(st):
         return [('L', la), ('C', cub), ('L', lc)], float(res.max())
     if kind in ('edge', 'ridge'):
         Q = snap_curve(st['pts'], st['R'], kind, st.get('sign', 0))
+        if kind == 'ridge':
+            segs, _ = fit_spline(Q, st.get('tol', 3.0))
+            Q = snap_curve(np.vstack([bez(sg, np.linspace(0, 1, 30)) for sg in segs]), 6, kind)
         if kind == 'edge':
             c, res = fit_cubic(Q)
             return [('C', c)], float(res.max())
-        segs, res = fit_spline(Q, st.get('tol', 5.0))
+        segs, res = fit_spline(Q, st.get('tol', 3.0))
         return [('C', s) for s in segs], res
     out, _ = build_lines(st['pts'], st['R'], st.get('sign', 0))
     return [('L', out)], 0.0
@@ -308,6 +322,17 @@ def clip_end(elems, target, first=False):
             if best is None or np.hypot(*(p - b)) < np.hypot(*(best - b)):
                 best = p
     g[0 if first else -1] = best
+
+
+def on_trunk(elems, trunk):
+    """Pose le premier point d'une branche sur le bord du tronc (même y), en déplaçant d'autant
+    son premier point de contrôle : la branche part du tronc, sans jour ni dépassement."""
+    k, g = elems[0]
+    C = bez(trunk, np.linspace(0, 1, 2000))
+    x = np.interp(g[0][1], C[:, 1], C[:, 0])
+    dx = x - g[0][0]
+    g = list(g); g[0] = g[0] + np.array([dx, 0]); g[1] = g[1] + np.array([dx * 0.5, 0])
+    elems[0] = (k, tuple(g))
 
 
 def fmt(v):
@@ -347,7 +372,10 @@ def main():
             clip_end(built[st['name']][0], built[st['end_on']][0])
         if 'start_on' in st:
             clip_end(built[st['name']][0], built[st['start_on']][0], first=True)
-    lines = ['<svg xmlns="http://www.w3.org/2000/svg" class="trait" viewBox="0 0 2998 1820" '
+        if st.get('kind') == 'ridge':
+            on_trunk(built[st['name']][0], built['tronc'][0][0][1])
+    # inséré tel quel dans la page par {{include _trait.svg}} (SVG en ligne : pas de xmlns)
+    lines = ['<svg class="trait" viewBox="0 0 2998 1820" '
              'preserveAspectRatio="xMidYMid slice" aria-hidden="true" fill="none">']
     for st in STROKES:
         lines.append(f'<path d="{to_d(built[st["name"]][0])}"/>')

@@ -389,11 +389,17 @@
     }));
   }
 
+  // l'intro passe avant tout : les initialisations lourdes (découpage des titres, recalcul des
+  // déclencheurs) attendent sa fin, puis un moment calme du navigateur
+  App.introDone = new Promise((r) => { App.resolveIntro = r; });
+  if (!html.classList.contains('has-intro')) App.resolveIntro();
+  const idle = () => new Promise((r) => (window.requestIdleCallback ? requestIdleCallback(r, { timeout: 700 }) : setTimeout(r, 120)));
+
   App.init = () => {
     if (App.ready) return;
     App.ready = true;
     initButtons(); initCursor(); initForms(); initFooter(); initEssences();
-    fontsReady.then(() => {
+    Promise.all([fontsReady, App.introDone]).then(idle).then(() => {
       initPill(); initReveals(); initParallax();
       document.dispatchEvent(new CustomEvent('app:ready'));
       ScrollTrigger.refresh();
