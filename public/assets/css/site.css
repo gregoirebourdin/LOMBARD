@@ -408,6 +408,32 @@ html.motion .real__card figcaption { position: absolute; left: 0; top: 100%; }
 html.motion .real__end { margin-top: 0; }
 @media (min-width: 1024px) { .real__aside { grid-column: 9 / span 4; } }
 
+/* ——— votre chalet vous attend ———
+   Une photo en trois plans (ciel, chalet, branches de sapin floues tout près). La scène couvre l'écran
+   comme une image en « cover » ; avec mouvement, elle reste à l'écran pendant qu'on avance à travers les
+   branches (piloté par page.js) et que le titre se met au point entre les branches et le chalet. */
+.vca { position: relative; background: #e8edf2; color: #FBF7F2; }
+.vca__pin {
+  --ar: .6672; --by: .32; --bw: 104vw; --bh: 104vh;
+  --sw: max(var(--bw), calc(var(--bh) * var(--ar))); --sh: calc(var(--sw) / var(--ar));
+  --sl: calc(-2vw + (var(--bw) - var(--sw)) * .5); --st: calc(-2vh + (var(--bh) - var(--sh)) * var(--by));
+  position: relative; height: 100vh; height: 100svh; overflow: hidden; overflow: clip; isolation: isolate;
+}
+@supports (height: 1svh) { .vca__pin { --bh: 104svh; --st: calc(-2svh + (var(--bh) - var(--sh)) * var(--by)); } }
+.vp { position: absolute; left: var(--sl); top: var(--st); width: var(--sw); height: var(--sh); max-width: none; display: block; transform-origin: 50% 46%; }
+.vp img { width: 100%; height: 100%; max-width: none; }
+.vca__veil { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 55% at 50% 52%, rgb(16 8 14 / .5) 0%, rgb(16 8 14 / .22) 55%, rgb(16 8 14 / 0) 80%); }
+.vca__t {
+  position: absolute; left: var(--gutter); right: var(--gutter); top: 50%; translate: 0 -50%; margin: 0; text-align: center;
+  font-family: var(--ff-display); font-weight: 300; font-size: clamp(3rem, 1.4rem + 6.6vw, 9.5rem); line-height: .95; letter-spacing: -.035em;
+  text-shadow: 0 2px 40px rgb(16 8 14 / .35); text-wrap: balance;
+}
+.vca__t em { font-style: italic; }
+.vca__credit { position: absolute; right: var(--gutter); bottom: calc(16px + env(safe-area-inset-bottom)); margin: 0; font-family: var(--ff-mono); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: rgb(251 247 242 / .75); z-index: 2; }
+html.motion .vca { height: 250vh; height: 250svh; }
+html.motion .vca__pin { position: sticky; top: 0; }
+html.motion .vp { will-change: transform; }
+
 /* ——— 02 : en vente sur plan ——— */
 .vente { padding-block: var(--section-pad) clamp(72px, 11svh, 140px); }
 .vente__head, .progs, .vendus { max-width: 1680px; margin-inline: auto; padding-inline: var(--gutter); }

@@ -116,6 +116,19 @@ function heroCss() {
   return `<style>${rules('d')}@media ${PORTRAIT}{${rules('m')}}</style>`;
 }
 
+/* ——— scène « Votre chalet vous attend » en trois plans (tools/scene_planes.py) ——— */
+const VCA = existsSync(join(PUB, 'assets/scenes/vca/scene.json')) ? json(join(PUB, 'assets/scenes/vca/scene.json')) : null;
+function scenePic(name) {
+  if (!VCA) { missing.add(`scene ${name}`); return ''; }
+  const ws = VCA.planes.find((x) => x.name === name).files;
+  const set = (ext) => ws.map((w) => `/assets/scenes/vca/${name}-${w}.${ext} ${w}w`).join(', ');
+  const sizes = '(max-aspect-ratio: 1/1) 72vh, 104vw';
+  // le fond porte la description de toute la scène (les trois plans recomposent la photo)
+  const alt = name === 'back' ? 'Chalet en bois sous la neige, vu à travers des branches de sapin enneigées' : '';
+  return `<picture class="vp vp--${name}"><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}">`
+    + `<img src="/assets/scenes/vca/${name}-${ws[ws.length - 1]}.webp" alt="${alt}" width="${VCA.w}" height="${VCA.h}" loading="lazy" decoding="async"></picture>`;
+}
+
 /* ——— logo ——— */
 const LOGO = read(join(ROOT, 'brand/logo/logo.svg'));
 const logoPaths = (() => {
@@ -230,6 +243,7 @@ html = html.replace(/\{\{logo([^}]*)\}\}/g, (_, s) => logo(attrs(s)));
 html = html.replace(/\{\{programmes:(\w+)\}\}/g, (_, k) => partials[k]());
 html = html.replace(/\{\{hero:(back|mid|front)\}\}/g, (_, n) => hero(n));
 html = html.replace(/\{\{hero:fog\}\}/g, heroFog);
+html = html.replace(/\{\{scene:(back|mid|front)\}\}/g, (_, n) => scenePic(n));
 html = html.replace(/\{\{hero:preload\}\}/g, heroPreload);
 html = html.replace(/\{\{hero:css\}\}/g, heroCss);
 html = html.replace(/\{\{site\}\}/g, process.env.SITE_URL || 'https://chalets-lombard.vercel.app');

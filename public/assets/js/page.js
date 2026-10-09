@@ -162,6 +162,32 @@
     });
   }
 
+  /* ——— votre chalet vous attend : on avance à travers les sapins ———
+     Les trois plans gardent le même cadrage mais avancent à des vitesses différentes : les branches,
+     tout près, grandissent et s'ouvrent ; le chalet approche à peine ; le ciel presque pas. Sur grand
+     écran, la vue descend en même temps le long du pignon. Le titre se met au point mot à mot, entre
+     les branches et le chalet, sur un voile sombre qui le rend lisible. */
+  function vca() {
+    const root = $('.vca');
+    if (!root) return;
+    const pin = $('.vca__pin', root), t = $('.vca__t', pin), veil = $('.vca__veil', pin);
+    const [back, mid, front] = ['back', 'mid', 'front'].map((n) => $(`.vp--${n}`, pin));
+    App.onEnter(root, () => $$('img', pin).forEach((im) => { im.loading = 'eager'; }), 'top 300%');
+    const words = App.titleWords(t);
+    const fs = parseFloat(getComputedStyle(t).fontSize) || 80;
+    gsap.set(words, { opacity: 0, y: Math.round(fs * .39), filter: `blur(${Math.min(18, fs * .21).toFixed(1)}px)`, willChange: 'opacity, filter, transform' });
+    gsap.set(veil, { opacity: 0 });
+    // descente possible dans la photo : ce qui dépasse de l'écran, entre le cadrage de départ et celui d'arrivée
+    const pan = () => Math.max(0, front.offsetHeight - innerHeight * 1.04) * .43;
+    const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: root, start: 'top top', end: 'bottom bottom', scrub: .5, invalidateOnRefresh: true } })
+      .fromTo([back, mid, front], { y: 0 }, { y: () => -pan(), duration: 1, ease: 'power1.inOut' }, 0)
+      .fromTo(front, { scale: 1 }, { scale: 1.42, duration: 1, ease: 'power1.in' }, 0)
+      .fromTo(mid, { scale: 1 }, { scale: 1.08, duration: 1 }, 0)
+      .fromTo(back, { scale: 1 }, { scale: 1.03, duration: 1 }, 0)
+      .to(veil, { opacity: 1, duration: .3 }, .22);
+    words.forEach((w, i) => tl.to(w, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .22 }, .26 + i * .07));
+  }
+
   /* ——— 04 : le registre ———
      Le filet se trace, le chiffre monte en se mettant au point et compte jusqu'à sa valeur ; l'année
      de fondation ne compte pas, elle apparaît seulement. */
@@ -215,7 +241,7 @@
   document.addEventListener('DOMContentLoaded', () => { views(); film(); if (!App.motion) gallery(); });
   document.addEventListener('app:ready', () => {
     if (!App.motion) return;
-    story(); progs(); stats(); filmScroll(); gallery();
+    story(); vca(); progs(); stats(); filmScroll(); gallery();
     ScrollTrigger.refresh();
   });
 })();
