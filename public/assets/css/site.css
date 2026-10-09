@@ -17,7 +17,8 @@
 
 :root {
   --ivoire: #F6F0E8; --lin: #EFE6DC; --brume: #ECE3E8;
-  --papier: radial-gradient(140% 100% at 0% 0%, #F9F5EF 0%, #F6F0E8 45%, #EFE6DC 100%);
+  /* papier éclairé par la gauche : même profil à chaque hauteur, donc aucune couture entre sections */
+  --papier: linear-gradient(90deg, #F9F5EF 0%, #F6F0E8 42%, #F1E9DF 100%);
   --nuit: #160B13;
   --nuit-72: rgb(22 11 19 / .72);
   --nuit-58: rgb(22 11 19 / .58);
@@ -107,7 +108,9 @@ br.m { display: none; }
 p { text-wrap: pretty; }
 
 /* lignes masquées (titres découpés) */
-.ln { display: block; overflow: clip; padding-bottom: .06em; margin-bottom: -.06em; }
+.ln { display: block; overflow: clip; padding: 0 .1em .06em; margin: 0 -.1em -.06em; }
+/* masques de ligne élargis : l'italique et le guillemet suspendu ne sont jamais rognés */
+.split-line-mask { padding-inline: .5em; margin-inline: -.5em; }
 .ln__i { display: block; padding-right: .12em; margin-right: -.12em; }
 .split-line { padding-right: .12em; margin-right: -.12em; }
 

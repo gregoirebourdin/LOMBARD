@@ -12,20 +12,28 @@ Usage : python tools/retouch/trait.py          (écrit le SVG)
                                                  superposition rouge 2 px sur la photo, dessin seul
                                                  sur ivoire #F6F0E8, recadrages 100 %)
 
-Méthode : rien n'est deviné à main levée. Chaque trait est d'abord placé grossièrement (à ±12 px,
+Méthode : rien n'est tracé à main levée. Chaque trait est d'abord placé grossièrement (à ±10 px,
 lu sur des recadrages quadrillés), puis recalé sur la photo :
-  - trait droit : chaque segment est recalé seul — on décale ses deux extrémités le long de sa normale
-    (±R px, pas de 0,25 px) pour maximiser la moyenne du gradient SIGNÉ perpendiculaire au segment
-    (une vraie arête droite est cohérente sur toute sa longueur, la texture du bois s'annule) ;
-    les sommets d'une polyligne sont les intersections des segments recalés, les bouts sont projetés.
-  - courbe (jambes de force cintrées, branches, tronc) : 60 points échantillonnés, chacun recalé le
-    long de sa normale (sur l'arête la plus forte, ou au creux sombre pour l'axe d'une branche sur
-    le ciel), puis une seule cubique de Bézier ajustée aux moindres carrés (bouts fixés).
-Les longs traits ont été comparés aux segments du détecteur LSD d'OpenCV (même arêtes à ±1-2 px).
+  - trait droit : chaque segment est recalé seul — ses deux extrémités glissent le long de sa normale
+    (±R px, pas de 0,25 px) pour maximiser la moyenne, sur toute sa longueur, du gradient
+    perpendiculaire (sens imposé si besoin : +1/-1), ou pour 'dark' l'obscurité d'un filet fin
+    (rive gauche : le larmier sombre sous la neige). Une vraie arête droite est cohérente sur toute sa
+    longueur, la texture du bois s'annule. Les sommets d'une polyligne sont les intersections des
+    segments recalés ; les bouts sont projetés, ou posés sur un autre trait (end_on / start_on :
+    montants du vitrage sur la main courante ou la sablière, chéneau sur l'about de rive).
+  - courbe (jambes de force légèrement cintrées, tronc) : 60 points recalés chacun sur l'arête la
+    plus forte le long de sa normale (médiane glissante contre les sauts), puis une cubique de Bézier
+    aux moindres carrés, bouts fixés.
+  - branche d'épicéa : axe ligneux = creux sombre moyenné le long de la tangente sur ±14 px (la tige
+    est continue, les aiguilles obliques s'annulent), deux passes, puis 1 à 4 cubiques raccordées en
+    tangence (écart ≤ 3 px aux points recalés) ; la branche part exactement du bord du tronc.
+Contrôle (v2/tools/trait/check.py dans le scratchpad) : sur chaque segment droit, 9 stations ; à
+chacune, l'arête nette la plus proche est à ±1,5 px en général, ±3 px partout où l'arête est
+visible (les écarts restants sont des croisements : poteau devant, neige posée sur la main courante).
 
 Ordre de tracé (DrawSVG, stagger 0,04 s) : ligne de sol, poteaux, rives et faîtage, égouts, pannes,
-pignon vitré (sablière, montants, rampants du vitrage), jambes de force, balcon, madriers, cheminée,
-épicéa (tronc puis 4 branches maîtresses).
+pignon vitré (sablière, contours des quatre vitrages), jambes de force, balcon (main courante, lisse
+basse, poteau d'angle, plancher), madriers, cheminée, épicéa (tronc puis 4 branches maîtresses).
 
 Sources : LOMBARD_SOURCES (défaut : le scratchpad de la session de conception).
 """

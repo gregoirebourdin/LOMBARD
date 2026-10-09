@@ -47,8 +47,21 @@
   /* ——— S3 : la phrase entendue pendant la visite se recompose ——— */
   function pivot() {
     const q = $('.pivot__quote'), rule = $('.pivot__rule');
-    const s = SplitText.create(q, { type: 'words', aria: 'auto' });
-    const rest = s.words.filter((w) => !w.closest('.heard'));
+    // mots en ligne (pas en bloc) : aucune coupure là où le texte n'a pas d'espace (« pierre. »)
+    const words = [];
+    const walk = (node) => [...node.childNodes].forEach((n) => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach((t) => {
+          if (!t) return;
+          if (/^\s+$/.test(t)) { frag.append(t); return; }
+          const w = document.createElement('span'); w.className = 'w'; w.textContent = t; frag.append(w); words.push(w);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1) walk(n);
+    });
+    walk(q);
+    const rest = words.filter((w) => !w.closest('.heard'));
     gsap.fromTo(rest, { opacity: .14 }, { opacity: 1, ease: 'none', stagger: .1, scrollTrigger: { trigger: q, start: 'top 75%', end: 'bottom 45%', scrub: true } });
     gsap.set(rule, { scaleX: 0 });
     App.onEnter(rule, () => gsap.to(rule, { scaleX: 1, duration: .9, ease: 'inOut' }), 'top 80%');
