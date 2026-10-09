@@ -58,20 +58,20 @@ Chaque titre fait 8 mots au plus et chaque phrase 25 mots au plus ; le script v�
 
 | Scène | Plans (ordinateur / mobile) | Ordinateur 1 920 px | Ordinateur 2 560 px (Retina) | Mobile 1 080 px |
 |---|---|---|---|---|
-| Ouverture | 5 / 3 | 409 Ko | 370 Ko | 160 Ko |
-| Le Serre d'Orchis | 4 / 3 | 323 Ko | 306 Ko | 206 Ko |
-| Le Sabot de Vénus | 3 / 2 | 306 Ko | — | 167 Ko |
-| La Rouya | 4 / 3 | 332 Ko | — | 179 Ko |
-| Rocher Blanc | 4 / 3 | 353 Ko | 349 Ko | 165 Ko |
-| L'Étoile des Glaciers | 4 / 3 | 414 Ko | 381 Ko | 246 Ko |
-| Panorama | 4 / 3 | 140 Ko (2 560 px affichés) | 254 Ko (3 840 px) | 121 Ko |
-| Puy-Saint-Vincent, octobre | 4 / 3 | 370 Ko | 361 Ko | 191 Ko |
-| Montgenèvre | 4 / 3 | 287 Ko | 302 Ko | 171 Ko |
+| Ouverture | 5 / 3 | 383 Ko | 357 Ko | 155 Ko |
+| Le Serre d'Orchis | 4 / 3 | 340 Ko | 334 Ko | 219 Ko |
+| Le Sabot de Vénus | 3 / 2 | 376 Ko | — | 184 Ko |
+| La Rouya | 4 / 3 | 395 Ko | — | 218 Ko |
+| Rocher Blanc | 4 / 3 | 362 Ko | 356 Ko | 163 Ko |
+| L'Étoile des Glaciers | 4 / 3 | 314 Ko | 304 Ko | 198 Ko |
+| Panorama | 4 / 3 | 145 Ko (2 560 px affichés) | 286 Ko (3 840 px) | 123 Ko |
+| Puy-Saint-Vincent, octobre | 4 / 3 | 402 Ko | 396 Ko | 206 Ko |
+| Montgenèvre | 4 / 3 | 302 Ko | 317 Ko | 172 Ko |
 | Rideau : branche | 1 / 1 | 37 Ko | 34 Ko | 19 Ko |
 | Rideau : poteau | 1 / 1 | 67 Ko | — | 46 Ko |
 
-Toutes les scènes tiennent le budget. Trois corrections ont été nécessaires pour y arriver :
-- la qualité AVIF est un peu plus basse pour les fichiers de 2 560 px (pixels deux fois plus petits) ;
+Toutes les scènes tiennent le budget. Plusieurs corrections ont été nécessaires pour y arriver :
+- la qualité AVIF est un peu plus basse pour les fichiers de 2 560 px (pixels deux fois plus petits), et pour quatre scènes au feuillage ou au relief très détaillé ;
 - la largeur mobile maximale est de 1 080 px, suffisante pour un écran de 390 px en ×3 ;
 - chaque plan est rogné à sa zone utile, ce qui réduit aussi la mémoire graphique.
 
@@ -85,10 +85,10 @@ Mesuré avec Chromium (Playwright), réseau limité par le protocole DevTools, c
 
 | Cas | Plus grand élément affiché (LCP) | Élément | Décalage (CLS) |
 |---|---|---|---|
-| Accueil, ordinateur, 4G (9 Mb/s) | **0,64 s** | premier plan de l'ouverture | 0 |
-| Accueil, mobile, 4G (9 Mb/s), processeur ×4 plus lent | **0,81 s** | premier plan mobile | 0 |
-| Accueil, mobile, 4G lente (1,6 Mb/s), processeur ×4 plus lent | **1,78 s** | premier plan mobile | 0 |
-| Fiche La Rouya, mobile, 4G | **0,72 s** | scène de La Rouya | 0 |
+| Accueil, ordinateur, 4G (9 Mb/s) | **0,58 s** | premier plan de l'ouverture | 0 |
+| Accueil, mobile, 4G (9 Mb/s), processeur ×4 plus lent | **0,78 s** | premier plan mobile | 0 |
+| Accueil, mobile, 4G lente (1,6 Mb/s), processeur ×4 plus lent | **1,99 s** | premier plan mobile | 0 |
+| Fiche La Rouya, mobile, 4G | **0,70 s** | scène de La Rouya | 0 |
 
 L'objectif de 2,5 s est tenu, même en 4G lente. L'ouverture est préchargée (balises `preload` séparées pour l'ordinateur et le mobile). Les autres scènes sont en chargement différé natif : le navigateur les télécharge juste avant qu'elles n'entrent à l'écran.
 
@@ -98,11 +98,13 @@ Le conteneur de travail n'a **pas de carte graphique** : Chromium y composite le
 
 | Passage (défilement à la molette, 1 440 × 900) | Médiane | 95ᵉ centile | Images au-delà de 33 ms |
 |---|---|---|---|
-| Ouverture, la fenêtre s'ouvre | 16,7 ms (60 i/s) | 33,4 ms | 11 / 264 |
-| Ouverture, travelling à cinq plans | 33,3 ms (30 i/s) | 50 ms | 122 / 398 |
-| Vitrine des chalets | 16,7 ms (60 i/s) | 33,3 ms | 4 / 322 |
-| Panorama | 16,7 ms (60 i/s) | 33,3 ms | 5 / 305 |
-| Construire, réalisations | 16,7 ms (60 i/s) | 33,4 ms | 24 / 398 |
+| Ouverture, la fenêtre s'ouvre | 16,8 ms (60 i/s) | 33,5 ms | 23 / 244 |
+| Ouverture, travelling à cinq plans | 33,3 ms (30 i/s) | 66,7 ms | 156 / 398 |
+| Vitrine des chalets | 16,7 ms (60 i/s) | 33,4 ms | 32 / 316 |
+| Panorama | 16,7 ms (60 i/s) | 33,4 ms | 38 / 398 |
+| Construire, réalisations | 16,7 ms (60 i/s) | 33,3 ms | 12 / 341 |
+
+Ces chiffres varient d'une mesure à l'autre dans ce conteneur (jusqu'à deux fois plus d'images lentes d'un passage au suivant) : seules les médianes sont stables.
 
 Le test a été poussé jusqu'à masquer un à un les calques de l'ouverture : 1 plan donne 16,7 ms au 95ᵉ centile, 3 plans 16,7 ms de médiane, 5 plans 33 ms. Le coût est uniquement celui du compositing logiciel, proportionnel au nombre de calques plein écran ; aucun recalcul de mise en page ni de peinture n'a lieu pendant le défilement. Sur un portable doté d'un processeur graphique, composer cinq calques déplacés par `translate3d` et `scale` est une charge ordinaire. Je ne peux pas le prouver d'ici, et je ne réduis pas la signature pour un environnement non représentatif.
 
@@ -111,6 +113,7 @@ Ce qui a été fait pour la fluidité :
 - `will-change` posé seulement sur les scènes à l'écran (IntersectionObserver) ;
 - `contain: layout paint` sur chaque scène ;
 - plans rognés à leur zone utile : au fil des mesures successives, la vitrine est passée de 64 à 4 images lentes et le panorama de 29 à 5 ;
+- marges de mouvement calculées en rejouant le défilement : un plan ne s'étend derrière ceux de devant que là où il peut réellement se découvrir. Le plan des sommets de l'ouverture est passé de 58 % à 32 % du cadre ;
 - une seule boucle d'animation (le ticker de GSAP pilote Lenis).
 
 **Pour vérifier sur vos portables** : ouvrir le site avec `?fps` à la fin de l'adresse (par exemple `/?fps`). Un compteur discret affiche la médiane et le 95ᵉ centile des temps d'image. Les deux doivent rester sous 16,7 ms pendant le travelling de l'ouverture.
@@ -156,7 +159,9 @@ La limite : les chalets à vendre sont montrés par **la vue depuis leur terrain
 Pour en arriver là, il a fallu corriger plusieurs défauts que seul le contrôle image par image a révélés :
 - un voile gris derrière le toit ;
 - un sommet fantôme et un ciel brumeux mal détouré dans le panorama ;
-- des branches fantômes au Sabot de Vénus ;
+- des branches fantômes et des halos blancs autour du pin du Sabot de Vénus ;
+- des faces de roche bleuies prises pour du ciel dans les Écrins de l'ouverture : en mouvement, le massif se trouait ;
+- un voile bleuté dans les fondus du Serre d'Orchis, et une crête dédoublée à l'Étoile des Glaciers ;
 - des remplissages flous dans les sols de neige.
 
 Le dernier point n'a pas de solution parfaite avec des photos à plat ; il a été résolu par des transitions plus larges et des amplitudes plus mesurées dans les fiches.
@@ -185,8 +190,24 @@ Dans l'ordre où ils ont été trouvés :
 13. **Ferme de charpente** : contrefiches qui ne rejoignaient pas les arbalétriers. Géométrie recalculée.
 14. **Carte décalée de 2 px** de la grille. Placée sur les colonnes 4 à 12.
 15. **Image d'ouverture au-dessus du titre** en mode sans mouvement. Ordre rétabli.
-16. **Bande voilée au repos** sur les pentes (Serre d'Orchis, La Rouya) : la décontamination des couleurs, faite pour les bords nets, floutait les transitions larges, et le remplissage transparaissait sous les zones presque opaques. Les deux sont corrigés : au repos, l'écart moyen avec la photo passe de 1,15 à 0,19 sur 255.
-17. **Formulations** : « unique » (×2), code de langue en capitales, tournures anglaises (« 4 and 4 bedrooms », « 1 300 m² »).
+16. **Bande voilée au repos** sur les pentes (Serre d'Orchis, La Rouya). Trois causes, trouvées en comparant pixel par pixel la scène recomposée et la photo :
+    - la décontamination des couleurs, faite pour les bords nets, floutait les transitions larges ;
+    - le remplissage transparaissait sous les zones presque opaques ;
+    - dans les fondus larges, le ciel du fond transparaissait en voile bleuté.
+
+    Chaque plan a maintenant une opacité exacte : il couvre sa part de ce qui reste visible derrière les plans de devant.
+17. **Massif troué** dans l'ouverture : des faces de roche bleuies passaient le test du ciel. Le ciel doit maintenant avoir aussi la couleur du grand ciel voisin.
+18. **Halos blancs et branches fantômes** autour du pin du Sabot de Vénus. Trois corrections :
+    - le ciel pâle entre les aiguilles est reconnu à sa couleur ;
+    - le pin emporte ses aiguilles ;
+    - un plan ne se prolonge derrière un bord que s'il est bien ce qui continue derrière.
+19. **Crêtes dédoublées en mouvement** (Étoile des Glaciers, Serre d'Orchis) : le ciel gardait une copie du bord de la crête. Il est maintenant extrapolé près de chaque bord.
+20. **Plans trop grands** : la marge de mouvement était la même dans toutes les directions. Elle est maintenant calculée en rejouant le défilement. L'ouverture passe de 432 à 383 Ko, et l'ouverture de la fenêtre repasse à 60 images par seconde dans ce conteneur.
+
+Écart moyen au repos entre la scène recomposée et la photo, sur 255 niveaux, avant et après ces corrections : ouverture 0,38 → 0,27 ; Serre d'Orchis 1,15 → 0,15 ; La Rouya 0,19 → 0,11 ; Étoile des Glaciers 0,92 → 0,34 ; Rocher Blanc 1,19 → 0,37 ; Puy-Saint-Vincent 1,36 → 0,36 ; Montgenèvre 1,02 → 0,33 ; panorama 0,34 → 0,22. Le Sabot de Vénus reste à 2,0 (contre 2,5) : derrière les aiguilles, le ciel est volontairement extrapolé, plus propre en mouvement que le liseré de la photo. L'écart s'y lit sur des pixels isolés, pas à l'œil.
+
+Montgenèvre et le panorama n'ont pas encore bénéficié de la dernière correction (marges calculées en rejouant le défilement). Ils restent sans trou et dans le budget ; une prochaine passe les allégera.
+21. **Formulations** : « unique » (×2), code de langue en capitales, tournures anglaises (« 4 and 4 bedrooms », « 1 300 m² »).
 
 ## 11. Avant la mise en ligne
 

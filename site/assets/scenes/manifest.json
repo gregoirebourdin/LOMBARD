@@ -35,7 +35,13 @@
      "1280": "/assets/scenes/ouverture/d0-1280",
      "1920": "/assets/scenes/ouverture/d0-1920",
      "2560": "/assets/scenes/ouverture/d0-2560"
-    }
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
    },
    {
     "name": "sommets",
@@ -59,7 +65,13 @@
      "1280": "/assets/scenes/ouverture/d1-1280",
      "1920": "/assets/scenes/ouverture/d1-1920",
      "2560": "/assets/scenes/ouverture/d1-2560"
-    }
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     0.6861826697892272
+    ]
    },
    {
     "name": "versant-village",
@@ -83,7 +95,13 @@
      "1280": "/assets/scenes/ouverture/d2-1280",
      "1920": "/assets/scenes/ouverture/d2-1920",
      "2560": "/assets/scenes/ouverture/d2-2560"
-    }
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     0.9113973458235753
+    ]
    },
    {
     "name": "chalet",
@@ -107,7 +125,13 @@
      "1280": "/assets/scenes/ouverture/d3-1280",
      "1920": "/assets/scenes/ouverture/d3-1920",
      "2560": "/assets/scenes/ouverture/d3-2560"
-    }
+    },
+    "bbox": [
+     0.0,
+     0.21428571428571427,
+     1.0,
+     0.7857142857142857
+    ]
    },
    {
     "name": "premier-plan",
@@ -131,7 +155,13 @@
      "1280": "/assets/scenes/ouverture/d4-1280",
      "1920": "/assets/scenes/ouverture/d4-1920",
      "2560": "/assets/scenes/ouverture/d4-2560"
-    }
+    },
+    "bbox": [
+     0.0,
+     0.788056206088993,
+     1.0,
+     0.21194379391100704
+    ]
    }
   ],
   "mobile": [
@@ -154,9 +184,15 @@
     "mouse": 0,
     "alpha": false,
     "src": {
-     "828": "/assets/scenes/ouverture/m0-828",
-     "1280": "/assets/scenes/ouverture/m0-1280"
-    }
+     "720": "/assets/scenes/ouverture/m0-720",
+     "1080": "/assets/scenes/ouverture/m0-1080"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
    },
    {
     "name": "chalet",
@@ -177,9 +213,15 @@
     "mouse": 0,
     "alpha": true,
     "src": {
-     "828": "/assets/scenes/ouverture/m1-828",
-     "1280": "/assets/scenes/ouverture/m1-1280"
-    }
+     "720": "/assets/scenes/ouverture/m1-720",
+     "1080": "/assets/scenes/ouverture/m1-1080"
+    },
+    "bbox": [
+     0.0,
+     0.21428571428571427,
+     1.0,
+     0.7857142857142857
+    ]
    },
    {
     "name": "premier-plan",
@@ -200,9 +242,15 @@
     "mouse": 0,
     "alpha": true,
     "src": {
-     "828": "/assets/scenes/ouverture/m2-828",
-     "1280": "/assets/scenes/ouverture/m2-1280"
-    }
+     "720": "/assets/scenes/ouverture/m2-720",
+     "1080": "/assets/scenes/ouverture/m2-1080"
+    },
+    "bbox": [
+     0.0,
+     0.8368462138953943,
+     1.0,
+     0.16315378610460576
+    ]
    }
   ],
   "flat": {
@@ -213,36 +261,36 @@
   "bytes": {
    "desktop": {
     "1280": {
-     "avif": 290709,
-     "webp": 521168
+     "avif": 203767,
+     "webp": 495378
     },
     "1920": {
-     "avif": 576385,
-     "webp": 1031378
+     "avif": 392223,
+     "webp": 953844
     },
     "2560": {
-     "avif": 864621,
-     "webp": 1577526
+     "avif": 365894,
+     "webp": 1219256
     }
    },
    "mobile": {
-    "828": {
-     "avif": 173957,
-     "webp": 291428
+    "720": {
+     "avif": 84763,
+     "webp": 188848
     },
-    "1280": {
-     "avif": 321584,
-     "webp": 549614
+    "1080": {
+     "avif": 159265,
+     "webp": 354228
     }
    }
   },
   "mobile_box": [
-   0.2796875,
+   0.24973958333333332,
    0.0,
-   0.4002604166666667,
+   0.5005208333333333,
    1.0
   ],
-  "mobile_aspect": 0.5999219359875098,
+  "mobile_aspect": 0.7501951600312255,
   "og": "/assets/scenes/ouverture/og.jpg",
   "lqip": "data:image/webp;base64,UklGRtAAAABXRUJQVlA4IMQAAADwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdMoMYJnVFsTpX7VQGjhbxu2284xQA/ujt5IA/EEGp6itDvd1AhLTBSe7wuq3eM4PNDYv6zba5BisLIuHqiTJrEMwi/GSQGKJX3SSdBK3DW196wa0mFm5VYtmLTNRaGKdImdA/nycPaDF+dCq85980V3Ej5PNT04gT7kU212nfQz94yi46O/pvd9Wkb/UwsXchJXSX2H53G27/EX5r//GHtbjdrnrUgAAA",
   "aspect": 1.4988290398126465
@@ -278,12 +326,18 @@
     ],
     "travel": 1,
     "mouse": 24.0,
-    "alpha": false,
+    "alpha": true,
     "src": {
      "1280": "/assets/scenes/rideau-branche/d0-1280",
      "1920": "/assets/scenes/rideau-branche/d0-1920",
      "2560": "/assets/scenes/rideau-branche/d0-2560"
-    }
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
    }
   ],
   "mobile": [
@@ -306,35 +360,41 @@
     "mouse": 0,
     "alpha": false,
     "src": {
-     "828": "/assets/scenes/rideau-branche/m0-828",
-     "1280": "/assets/scenes/rideau-branche/m0-1280"
-    }
+     "720": "/assets/scenes/rideau-branche/m0-720",
+     "1080": "/assets/scenes/rideau-branche/m0-1080"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
    }
   ],
   "flat": {},
   "bytes": {
    "desktop": {
     "1280": {
-     "avif": 22043,
-     "webp": 36582
+     "avif": 24297,
+     "webp": 96288
     },
     "1920": {
-     "avif": 36163,
-     "webp": 66530
+     "avif": 38845,
+     "webp": 186072
     },
     "2560": {
-     "avif": 50933,
-     "webp": 95984
+     "avif": 35323,
+     "webp": 269750
     }
    },
    "mobile": {
-    "828": {
-     "avif": 13503,
-     "webp": 21352
+    "720": {
+     "avif": 12711,
+     "webp": 42816
     },
-    "1280": {
-     "avif": 22043,
-     "webp": 36582
+    "1080": {
+     "avif": 20124,
+     "webp": 76522
     }
    }
   },
@@ -378,10 +438,16 @@
     ],
     "travel": 1,
     "mouse": 24.0,
-    "alpha": false,
+    "alpha": true,
     "src": {
      "640": "/assets/scenes/rideau-poteau/d0-640"
-    }
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
    }
   ],
   "mobile": [
@@ -404,27 +470,28 @@
     "mouse": 0,
     "alpha": false,
     "src": {
-     "828": "/assets/scenes/rideau-poteau/m0-828",
-     "1280": "/assets/scenes/rideau-poteau/m0-1280"
-    }
+     "480": "/assets/scenes/rideau-poteau/m0-480"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
    }
   ],
   "flat": {},
   "bytes": {
    "desktop": {
     "640": {
-     "avif": 66901,
-     "webp": 131246
+     "avif": 68931,
+     "webp": 161646
     }
    },
    "mobile": {
-    "828": {
-     "avif": 90566,
-     "webp": 178744
-    },
-    "1280": {
-     "avif": 86601,
-     "webp": 175496
+    "480": {
+     "avif": 48107,
+     "webp": 111736
     }
    }
   },
@@ -436,5 +503,2057 @@
   ],
   "mobile_aspect": 0.22161458333333334,
   "aspect": 0.22161458333333334
+ },
+ "serre-orchis": {
+  "w": 6378,
+  "h": 3588,
+  "motion": "flow",
+  "focus": [
+   0.55,
+   0.5
+  ],
+  "origin": [
+   0.5,
+   0.5
+  ],
+  "overscan": 0.12,
+  "desktop": [
+   {
+    "name": "ciel",
+    "speed": 0.05,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -22.5,
+     22.5
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0.8,
+    "alpha": false,
+    "src": {
+     "1280": "/assets/scenes/serre-orchis/d0-1280",
+     "1920": "/assets/scenes/serre-orchis/d0-1920",
+     "2560": "/assets/scenes/serre-orchis/d0-2560"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "sommets",
+    "speed": 0.12,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -14.6,
+     14.6
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 1.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/serre-orchis/d1-1280",
+     "1920": "/assets/scenes/serre-orchis/d1-1920",
+     "2560": "/assets/scenes/serre-orchis/d1-2560"
+    },
+    "bbox": [
+     0.0,
+     0.10562987736900781,
+     1.0,
+     0.5585284280936454
+    ]
+   },
+   {
+    "name": "montagnes",
+    "speed": 0.25,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 3.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/serre-orchis/d2-1280",
+     "1920": "/assets/scenes/serre-orchis/d2-1920",
+     "2560": "/assets/scenes/serre-orchis/d2-2560"
+    },
+    "bbox": [
+     0.0,
+     0.10590858416945373,
+     1.0,
+     0.7954292084726867
+    ]
+   },
+   {
+    "name": "vallee",
+    "speed": 0.45,
+    "s": [
+     1.0,
+     1.024
+    ],
+    "y": [
+     22.5,
+     -22.5
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 6.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/serre-orchis/d3-1280",
+     "1920": "/assets/scenes/serre-orchis/d3-1920",
+     "2560": "/assets/scenes/serre-orchis/d3-2560"
+    },
+    "bbox": [
+     0.0,
+     0.10618729096989966,
+     1.0,
+     0.8938127090301003
+    ]
+   }
+  ],
+  "mobile": [
+   {
+    "name": "ciel+sommets",
+    "speed": 0.12,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -14.6,
+     14.6
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": false,
+    "src": {
+     "720": "/assets/scenes/serre-orchis/m0-720",
+     "1080": "/assets/scenes/serre-orchis/m0-1080"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "montagnes",
+    "speed": 0.25,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/serre-orchis/m1-720",
+     "1080": "/assets/scenes/serre-orchis/m1-1080"
+    },
+    "bbox": [
+     0.0,
+     0.26755852842809363,
+     1.0,
+     0.6262541806020067
+    ]
+   },
+   {
+    "name": "vallee",
+    "speed": 0.45,
+    "s": [
+     1.0,
+     1.024
+    ],
+    "y": [
+     22.5,
+     -22.5
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/serre-orchis/m2-720",
+     "1080": "/assets/scenes/serre-orchis/m2-1080"
+    },
+    "bbox": [
+     0.0,
+     0.2725752508361204,
+     1.0,
+     0.7274247491638796
+    ]
+   }
+  ],
+  "flat": {
+   "1280": "/assets/scenes/serre-orchis/flat-1280",
+   "1920": "/assets/scenes/serre-orchis/flat-1920",
+   "2560": "/assets/scenes/serre-orchis/flat-2560"
+  },
+  "bytes": {
+   "desktop": {
+    "1280": {
+     "avif": 169952,
+     "webp": 472428
+    },
+    "1920": {
+     "avif": 348255,
+     "webp": 984876
+    },
+    "2560": {
+     "avif": 342297,
+     "webp": 1389384
+    }
+   },
+   "mobile": {
+    "720": {
+     "avif": 106379,
+     "webp": 295904
+    },
+    "1080": {
+     "avif": 224273,
+     "webp": 632558
+    }
+   }
+  },
+  "mobile_box": [
+   0.33490122295390407,
+   0.0,
+   0.44998432110379427,
+   1.0
+  ],
+  "mobile_aspect": 0.7998885172798216,
+  "og": "/assets/scenes/serre-orchis/og.jpg",
+  "lqip": "data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAABwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JbACdEf/gO6+CaD/uRtkqX62a+ADeYuaNj0KBrx1NpCwb0PNoIpwoOqJzWuWFZqhzpOtGgpwzOzRXML2IazDujYRxsUaowNyAkgrGaCzh6o9SeAP6VJbE4qo82TLV8m3IpxkCL0uGmq+xs1Im7DVUgAA=",
+  "aspect": 1.7775919732441472
+ },
+ "la-rouya": {
+  "w": 2400,
+  "h": 1350,
+  "motion": "flow",
+  "focus": [
+   0.5,
+   0.42
+  ],
+  "origin": [
+   0.5,
+   0.5
+  ],
+  "overscan": 0.16,
+  "desktop": [
+   {
+    "name": "ciel",
+    "speed": 0.05,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -35.0,
+     35.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0.8,
+    "alpha": false,
+    "src": {
+     "1280": "/assets/scenes/la-rouya/d0-1280",
+     "1920": "/assets/scenes/la-rouya/d0-1920"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "massif",
+    "speed": 0.12,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -22.7,
+     22.7
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 1.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/la-rouya/d1-1280",
+     "1920": "/assets/scenes/la-rouya/d1-1920"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     0.42592592592592593
+    ]
+   },
+   {
+    "name": "versants-hameau",
+    "speed": 0.25,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 3.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/la-rouya/d2-1280",
+     "1920": "/assets/scenes/la-rouya/d2-1920"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "neige-premier-plan",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.066
+    ],
+    "y": [
+     96.2,
+     -96.2
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 12.0,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/la-rouya/d3-1280",
+     "1920": "/assets/scenes/la-rouya/d3-1920"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
+  ],
+  "mobile": [
+   {
+    "name": "ciel+massif",
+    "speed": 0.12,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -22.7,
+     22.7
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": false,
+    "src": {
+     "720": "/assets/scenes/la-rouya/m0-720",
+     "1080": "/assets/scenes/la-rouya/m0-1080"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "versants-hameau",
+    "speed": 0.25,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/la-rouya/m1-720",
+     "1080": "/assets/scenes/la-rouya/m1-1080"
+    },
+    "bbox": [
+     0.0,
+     0.08,
+     1.0,
+     0.92
+    ]
+   },
+   {
+    "name": "neige-premier-plan",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.066
+    ],
+    "y": [
+     96.2,
+     -96.2
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/la-rouya/m2-720",
+     "1080": "/assets/scenes/la-rouya/m2-1080"
+    },
+    "bbox": [
+     0.0,
+     0.27185185185185184,
+     1.0,
+     0.7281481481481481
+    ]
+   }
+  ],
+  "flat": {
+   "1280": "/assets/scenes/la-rouya/flat-1280",
+   "1920": "/assets/scenes/la-rouya/flat-1920"
+  },
+  "bytes": {
+   "desktop": {
+    "1280": {
+     "avif": 221185,
+     "webp": 546384
+    },
+    "1920": {
+     "avif": 405190,
+     "webp": 1041424
+    }
+   },
+   "mobile": {
+    "720": {
+     "avif": 127349,
+     "webp": 311702
+    },
+    "1080": {
+     "avif": 223691,
+     "webp": 550416
+    }
+   }
+  },
+  "mobile_box": [
+   0.395,
+   0.0,
+   0.45,
+   1.0
+  ],
+  "mobile_aspect": 0.8,
+  "og": "/assets/scenes/la-rouya/og.jpg",
+  "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAACwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JagCdMoR3JoM39A6dETd3Sf93Mw0AAP6p55wDaW5NCHrQfyZj18tnK+ajUvr6Ww/peXLsrCFFLwvDxusTqn4EadAoCbDXQ8PFG5nioNTzdOrPexOe2vDxeuCq1kAPo6Kq1KoSiE6JkBiqSkNixj/Ypa48NZweRHbw2aeLvTWIyjOx1sAAAA==",
+  "aspect": 1.7777777777777777
+ },
+ "sabot-venus": {
+  "w": 2400,
+  "h": 1080,
+  "motion": "flow",
+  "focus": [
+   0.42,
+   0.5
+  ],
+  "origin": [
+   0.5,
+   0.5
+  ],
+  "overscan": 0.1,
+  "desktop": [
+   {
+    "name": "ciel",
+    "speed": 0.05,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -25.0,
+     25.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0.8,
+    "alpha": false,
+    "src": {
+     "1280": "/assets/scenes/sabot-venus/d0-1280",
+     "1920": "/assets/scenes/sabot-venus/d0-1920"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "chalets-foret",
+    "speed": 0.25,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 3.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/sabot-venus/d1-1280",
+     "1920": "/assets/scenes/sabot-venus/d1-1920"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     0.8712962962962963
+    ]
+   },
+   {
+    "name": "pin-premier-plan",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.066
+    ],
+    "y": [
+     68.8,
+     -68.8
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 12.0,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/sabot-venus/d2-1280",
+     "1920": "/assets/scenes/sabot-venus/d2-1920"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
+  ],
+  "mobile": [
+   {
+    "name": "ciel+chalets-foret",
+    "speed": 0.25,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": false,
+    "src": {
+     "720": "/assets/scenes/sabot-venus/m0-720",
+     "1080": "/assets/scenes/sabot-venus/m0-1080"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "pin-premier-plan",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.066
+    ],
+    "y": [
+     68.8,
+     -68.8
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/sabot-venus/m1-720",
+     "1080": "/assets/scenes/sabot-venus/m1-1080"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   }
+  ],
+  "flat": {
+   "1280": "/assets/scenes/sabot-venus/flat-1280",
+   "1920": "/assets/scenes/sabot-venus/flat-1920"
+  },
+  "bytes": {
+   "desktop": {
+    "1280": {
+     "avif": 210564,
+     "webp": 484686
+    },
+    "1920": {
+     "avif": 385171,
+     "webp": 939716
+    }
+   },
+   "mobile": {
+    "720": {
+     "avif": 143797,
+     "webp": 332998
+    },
+    "1080": {
+     "avif": 189026,
+     "webp": 435080
+    }
+   }
+  },
+  "mobile_box": [
+   0.18,
+   0.0,
+   0.36,
+   1.0
+  ],
+  "mobile_aspect": 0.8,
+  "og": "/assets/scenes/sabot-venus/og.jpg",
+  "lqip": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAACQBACdASoYAAsAPu1iqU2ppaOiMAgBMB2JZACdMoAluBIUC5/Zjdul99c9WeAA/kkArsYPqNj9n91rEvwzf3PMf7YC5+RFFC4DujfPuDnHk4HwWAXdjvXQyXi1LPGKrtOt1ahQYBDH7TiXkZ29zJ4BCl+ro2R4ykpP9TGVHWY+g8GLLocXodqtY5OtwqCo1izxpzGgJ37zw1hmEAA=",
+  "aspect": 2.2222222222222223
+ },
+ "real-psv-automne": {
+  "w": 3840,
+  "h": 2562,
+  "motion": "flow",
+  "focus": [
+   0.5,
+   0.45
+  ],
+  "origin": [
+   0.5,
+   0.5
+  ],
+  "overscan": 0.14,
+  "desktop": [
+   {
+    "name": "ciel",
+    "speed": 0.05,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -80.0,
+     80.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0.8,
+    "alpha": false,
+    "src": {
+     "1280": "/assets/scenes/real-psv-automne/d0-1280",
+     "1920": "/assets/scenes/real-psv-automne/d0-1920",
+     "2560": "/assets/scenes/real-psv-automne/d0-2560"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "sommets-versants",
+    "speed": 0.12,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -66.0,
+     66.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 1.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/real-psv-automne/d1-1280",
+     "1920": "/assets/scenes/real-psv-automne/d1-1920",
+     "2560": "/assets/scenes/real-psv-automne/d1-2560"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     0.7357533177205309
+    ]
+   },
+   {
+    "name": "chalet",
+    "speed": 0.45,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 6.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/real-psv-automne/d2-1280",
+     "1920": "/assets/scenes/real-psv-automne/d2-1920",
+     "2560": "/assets/scenes/real-psv-automne/d2-2560"
+    },
+    "bbox": [
+     0.0,
+     0.10616705698672912,
+     1.0,
+     0.8938329430132709
+    ]
+   },
+   {
+    "name": "arbustes-automne",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.042
+    ],
+    "y": [
+     70.0,
+     -70.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 12.0,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/real-psv-automne/d3-1280",
+     "1920": "/assets/scenes/real-psv-automne/d3-1920",
+     "2560": "/assets/scenes/real-psv-automne/d3-2560"
+    },
+    "bbox": [
+     0.0,
+     0.48711943793911006,
+     1.0,
+     0.5128805620608899
+    ]
+   }
+  ],
+  "mobile": [
+   {
+    "name": "ciel+sommets-versants",
+    "speed": 0.12,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -66.0,
+     66.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": false,
+    "src": {
+     "720": "/assets/scenes/real-psv-automne/m0-720",
+     "1080": "/assets/scenes/real-psv-automne/m0-1080"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "chalet",
+    "speed": 0.45,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/real-psv-automne/m1-720",
+     "1080": "/assets/scenes/real-psv-automne/m1-1080"
+    },
+    "bbox": [
+     0.0,
+     0.10616705698672912,
+     1.0,
+     0.8938329430132709
+    ]
+   },
+   {
+    "name": "arbustes-automne",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.042
+    ],
+    "y": [
+     70.0,
+     -70.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/real-psv-automne/m2-720",
+     "1080": "/assets/scenes/real-psv-automne/m2-1080"
+    },
+    "bbox": [
+     0.0,
+     0.48711943793911006,
+     1.0,
+     0.5128805620608899
+    ]
+   }
+  ],
+  "flat": {
+   "1280": "/assets/scenes/real-psv-automne/flat-1280",
+   "1920": "/assets/scenes/real-psv-automne/flat-1920",
+   "2560": "/assets/scenes/real-psv-automne/flat-2560"
+  },
+  "bytes": {
+   "desktop": {
+    "1280": {
+     "avif": 204517,
+     "webp": 603564
+    },
+    "1920": {
+     "avif": 412293,
+     "webp": 1186398
+    },
+    "2560": {
+     "avif": 406150,
+     "webp": 1652086
+    }
+   },
+   "mobile": {
+    "720": {
+     "avif": 106410,
+     "webp": 312994
+    },
+    "1080": {
+     "avif": 211448,
+     "webp": 605982
+    }
+   }
+  },
+  "mobile_box": [
+   0.19296875,
+   0.0,
+   0.5338541666666666,
+   1.0
+  ],
+  "mobile_aspect": 0.8001561280249805,
+  "og": "/assets/scenes/real-psv-automne/og.jpg",
+  "lqip": "data:image/webp;base64,UklGRtAAAABXRUJQVlA4IMQAAACwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdMoRgC3CQ/xvAC/Jdd/J3dPwAAP5m3Nc3g2qnwnAomVBcFcUr4Ja5PUK0pEuwbeGjjjJMYqd1EZXM8MOUsLQE9oMy1LQG7mrYq8cjBPw2x1GK6fJ3WUadmvyHrEPZ4ubsylD3ak0Tz+ng0BTw4PHFs5tcbudIXEcVzEPVNH++FAb29Bq+Jvp2Zk9n2CRg8ljPn24zY6MPvN2oPezUwNl551LAFJd0EAAA",
+  "aspect": 1.4988290398126465
+ },
+ "real-montgenevre": {
+  "w": 2998,
+  "h": 2000,
+  "motion": "flow",
+  "focus": [
+   0.55,
+   0.42
+  ],
+  "origin": [
+   0.5,
+   0.5
+  ],
+  "overscan": 0.14,
+  "desktop": [
+   {
+    "name": "ciel",
+    "speed": 0.05,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -40.0,
+     40.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0.8,
+    "alpha": false,
+    "src": {
+     "1280": "/assets/scenes/real-montgenevre/d0-1280",
+     "1920": "/assets/scenes/real-montgenevre/d0-1920",
+     "2560": "/assets/scenes/real-montgenevre/d0-2560"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "sommets",
+    "speed": 0.12,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -26.0,
+     26.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 1.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/real-montgenevre/d1-1280",
+     "1920": "/assets/scenes/real-montgenevre/d1-1920",
+     "2560": "/assets/scenes/real-montgenevre/d1-2560"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     0.618
+    ]
+   },
+   {
+    "name": "foret-telesiege",
+    "speed": 0.25,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 3.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/real-montgenevre/d2-1280",
+     "1920": "/assets/scenes/real-montgenevre/d2-1920",
+     "2560": "/assets/scenes/real-montgenevre/d2-2560"
+    },
+    "bbox": [
+     0.0,
+     0.039,
+     1.0,
+     0.961
+    ]
+   },
+   {
+    "name": "toit-enneige",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.066
+    ],
+    "y": [
+     110.0,
+     -110.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 12.0,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/real-montgenevre/d3-1280",
+     "1920": "/assets/scenes/real-montgenevre/d3-1920",
+     "2560": "/assets/scenes/real-montgenevre/d3-2560"
+    },
+    "bbox": [
+     0.0,
+     0.04,
+     0.5653769179452969,
+     0.96
+    ]
+   }
+  ],
+  "mobile": [
+   {
+    "name": "ciel+sommets",
+    "speed": 0.12,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -26.0,
+     26.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": false,
+    "src": {
+     "720": "/assets/scenes/real-montgenevre/m0-720",
+     "1080": "/assets/scenes/real-montgenevre/m0-1080"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "foret-telesiege",
+    "speed": 0.25,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/real-montgenevre/m1-720",
+     "1080": "/assets/scenes/real-montgenevre/m1-1080"
+    },
+    "bbox": [
+     0.0,
+     0.064,
+     1.0,
+     0.936
+    ]
+   },
+   {
+    "name": "toit-enneige",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.066
+    ],
+    "y": [
+     110.0,
+     -110.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/real-montgenevre/m2-720",
+     "1080": "/assets/scenes/real-montgenevre/m2-1080"
+    },
+    "bbox": [
+     0.0,
+     0.0645,
+     0.7725,
+     0.9355
+    ]
+   }
+  ],
+  "flat": {
+   "1280": "/assets/scenes/real-montgenevre/flat-1280",
+   "1920": "/assets/scenes/real-montgenevre/flat-1920",
+   "2560": "/assets/scenes/real-montgenevre/flat-2560"
+  },
+  "bytes": {
+   "desktop": {
+    "1280": {
+     "avif": 164294,
+     "webp": 376678
+    },
+    "1920": {
+     "avif": 309609,
+     "webp": 718524
+    },
+    "2560": {
+     "avif": 325193,
+     "webp": 970256
+    }
+   },
+   "mobile": {
+    "720": {
+     "avif": 94744,
+     "webp": 196336
+    },
+    "1080": {
+     "avif": 176481,
+     "webp": 373994
+    }
+   }
+  },
+  "mobile_box": [
+   0.15310206804536358,
+   0.0,
+   0.533689126084056,
+   1.0
+  ],
+  "mobile_aspect": 0.8,
+  "og": "/assets/scenes/real-montgenevre/og.jpg",
+  "lqip": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAABQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JYwC2yYwSyUsOjOAz7WZjhUJwAP7Xf7lS6GKO58jRohKwRYon3onPkD89lUPRASJGss1gxH+u6jJejcf1c5OvU0VRIg2WwQaj/G0dwlFaXGOF0Q+ztwxlvi4QN/zcSUAlHmrNJTHYXov2OajH80v3IrQv/JDfXP31S0H6WAAAAA==",
+  "aspect": 1.499
+ },
+ "etoile-glaciers": {
+  "w": 3000,
+  "h": 2000,
+  "motion": "flow",
+  "focus": [
+   0.5,
+   0.45
+  ],
+  "origin": [
+   0.5,
+   0.5
+  ],
+  "overscan": 0.14,
+  "desktop": [
+   {
+    "name": "ciel",
+    "speed": 0.05,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -75.0,
+     75.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0.8,
+    "alpha": false,
+    "src": {
+     "1280": "/assets/scenes/etoile-glaciers/d0-1280",
+     "1920": "/assets/scenes/etoile-glaciers/d0-1920",
+     "2560": "/assets/scenes/etoile-glaciers/d0-2560"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "montagnes",
+    "speed": 0.15,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -56.3,
+     56.3
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 2.2,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/etoile-glaciers/d1-1280",
+     "1920": "/assets/scenes/etoile-glaciers/d1-1920",
+     "2560": "/assets/scenes/etoile-glaciers/d1-2560"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     0.9225
+    ]
+   },
+   {
+    "name": "arbres",
+    "speed": 0.45,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 6.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/etoile-glaciers/d2-1280",
+     "1920": "/assets/scenes/etoile-glaciers/d2-1920",
+     "2560": "/assets/scenes/etoile-glaciers/d2-2560"
+    },
+    "bbox": [
+     0.0,
+     0.172,
+     1.0,
+     0.828
+    ]
+   },
+   {
+    "name": "feuillages-dores",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.042
+    ],
+    "y": [
+     65.6,
+     -65.6
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 12.0,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/etoile-glaciers/d3-1280",
+     "1920": "/assets/scenes/etoile-glaciers/d3-1920",
+     "2560": "/assets/scenes/etoile-glaciers/d3-2560"
+    },
+    "bbox": [
+     0.0,
+     0.4465,
+     1.0,
+     0.5535
+    ]
+   }
+  ],
+  "mobile": [
+   {
+    "name": "ciel+montagnes",
+    "speed": 0.15,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -56.3,
+     56.3
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": false,
+    "src": {
+     "720": "/assets/scenes/etoile-glaciers/m0-720",
+     "1080": "/assets/scenes/etoile-glaciers/m0-1080"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "arbres",
+    "speed": 0.45,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/etoile-glaciers/m1-720",
+     "1080": "/assets/scenes/etoile-glaciers/m1-1080"
+    },
+    "bbox": [
+     0.0,
+     0.181,
+     1.0,
+     0.819
+    ]
+   },
+   {
+    "name": "feuillages-dores",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.042
+    ],
+    "y": [
+     65.6,
+     -65.6
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/etoile-glaciers/m2-720",
+     "1080": "/assets/scenes/etoile-glaciers/m2-1080"
+    },
+    "bbox": [
+     0.0,
+     0.4465,
+     1.0,
+     0.5535
+    ]
+   }
+  ],
+  "flat": {
+   "1280": "/assets/scenes/etoile-glaciers/flat-1280",
+   "1920": "/assets/scenes/etoile-glaciers/flat-1920",
+   "2560": "/assets/scenes/etoile-glaciers/flat-2560"
+  },
+  "bytes": {
+   "desktop": {
+    "1280": {
+     "avif": 170107,
+     "webp": 507106
+    },
+    "1920": {
+     "avif": 322114,
+     "webp": 961038
+    },
+    "2560": {
+     "avif": 311629,
+     "webp": 1371174
+    }
+   },
+   "mobile": {
+    "720": {
+     "avif": 108032,
+     "webp": 304864
+    },
+    "1080": {
+     "avif": 203257,
+     "webp": 584768
+    }
+   }
+  },
+  "mobile_box": [
+   0.23333333333333334,
+   0.0,
+   0.5333333333333333,
+   1.0
+  ],
+  "mobile_aspect": 0.8,
+  "og": "/assets/scenes/etoile-glaciers/og.jpg",
+  "lqip": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JagC06Yw6yV3TLVl4MybpIxl0gAD+8Gvr9QwQRAQEHd3EzidRmSJSbO4D/ZpEQkU9/T91Pop+4WmxkadcLjRVXTMPNJIFy+HiZfZXIS4+vD0vgGw6LW4V4a3oq4Md9TEAtn9alMaZXisOJcf2F5Ws4cvyxxmbJZNj3Wdu+RJnPz8QoBzETsgA",
+  "aspect": 1.5
+ },
+ "rocher-blanc": {
+  "w": 4032,
+  "h": 3024,
+  "motion": "flow",
+  "focus": [
+   0.5,
+   0.45
+  ],
+  "origin": [
+   0.5,
+   0.5
+  ],
+  "overscan": 0.14,
+  "desktop": [
+   {
+    "name": "ciel-nuages",
+    "speed": 0.05,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -75.0,
+     75.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0.8,
+    "alpha": false,
+    "src": {
+     "1280": "/assets/scenes/rocher-blanc/d0-1280",
+     "1920": "/assets/scenes/rocher-blanc/d0-1920",
+     "2560": "/assets/scenes/rocher-blanc/d0-2560"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "versant-pistes",
+    "speed": 0.15,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -56.3,
+     56.3
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 2.2,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/rocher-blanc/d1-1280",
+     "1920": "/assets/scenes/rocher-blanc/d1-1920",
+     "2560": "/assets/scenes/rocher-blanc/d1-2560"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     0.9408068783068783
+    ]
+   },
+   {
+    "name": "arbres",
+    "speed": 0.45,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 6.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/rocher-blanc/d2-1280",
+     "1920": "/assets/scenes/rocher-blanc/d2-1920",
+     "2560": "/assets/scenes/rocher-blanc/d2-2560"
+    },
+    "bbox": [
+     0.0,
+     0.44312169312169314,
+     1.0,
+     0.5568783068783069
+    ]
+   },
+   {
+    "name": "premier-plan",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.042
+    ],
+    "y": [
+     65.6,
+     -65.6
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 12.0,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/rocher-blanc/d3-1280",
+     "1920": "/assets/scenes/rocher-blanc/d3-1920",
+     "2560": "/assets/scenes/rocher-blanc/d3-2560"
+    },
+    "bbox": [
+     0.0,
+     0.48578042328042326,
+     1.0,
+     0.5142195767195767
+    ]
+   }
+  ],
+  "mobile": [
+   {
+    "name": "ciel-nuages+versant-pistes",
+    "speed": 0.15,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     -56.3,
+     56.3
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": false,
+    "src": {
+     "720": "/assets/scenes/rocher-blanc/m0-720",
+     "1080": "/assets/scenes/rocher-blanc/m0-1080"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "arbres",
+    "speed": 0.45,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/rocher-blanc/m1-720",
+     "1080": "/assets/scenes/rocher-blanc/m1-1080"
+    },
+    "bbox": [
+     0.0,
+     0.542989417989418,
+     1.0,
+     0.45701058201058203
+    ]
+   },
+   {
+    "name": "premier-plan",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.042
+    ],
+    "y": [
+     65.6,
+     -65.6
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "720": "/assets/scenes/rocher-blanc/m2-720",
+     "1080": "/assets/scenes/rocher-blanc/m2-1080"
+    },
+    "bbox": [
+     0.0,
+     0.7291666666666666,
+     1.0,
+     0.2708333333333333
+    ]
+   }
+  ],
+  "flat": {
+   "1280": "/assets/scenes/rocher-blanc/flat-1280",
+   "1920": "/assets/scenes/rocher-blanc/flat-1920",
+   "2560": "/assets/scenes/rocher-blanc/flat-2560"
+  },
+  "bytes": {
+   "desktop": {
+    "1280": {
+     "avif": 186092,
+     "webp": 528144
+    },
+    "1920": {
+     "avif": 370689,
+     "webp": 1055052
+    },
+    "2560": {
+     "avif": 364739,
+     "webp": 1495120
+    }
+   },
+   "mobile": {
+    "720": {
+     "avif": 80179,
+     "webp": 202578
+    },
+    "1080": {
+     "avif": 167449,
+     "webp": 416684
+    }
+   }
+  },
+  "mobile_box": [
+   0.19990079365079366,
+   0.0,
+   0.5999503968253969,
+   1.0
+  ],
+  "mobile_aspect": 0.7999338624338624,
+  "og": "/assets/scenes/rocher-blanc/og.jpg",
+  "lqip": "data:image/webp;base64,UklGRsoAAABXRUJQVlA4IL4AAAAQBQCdASoYABIAPu1mq08ppaOiKA1RMB2JQBajarg4q0UdjcT4vt5s/F7oad8yMQBAAP7fJoAbvgY5z+bt3XnjK7XbwniQB4el/rpwGHFQHeYGwwAUXMsGUBFmot0tLfMLGAUWq9NNMjoClxlx1CwOk31ynBV+Dc4MLduw4N/mXUdd2UZv5YN8Ffpj+PAwjnAGELDYgZ39HCdNxdk0A3t6aEW7bDFFkDoaTnp0/EhE07/ALLIBqu5ZuTaTgAAA",
+  "aspect": 1.3333333333333333
+ },
+ "panorama": {
+  "w": 6834,
+  "h": 1817,
+  "motion": "pan",
+  "focus": [
+   0.5,
+   0.5
+  ],
+  "origin": [
+   0.5,
+   0.5
+  ],
+  "overscan": 0,
+  "desktop": [
+   {
+    "name": "ciel",
+    "speed": 0.05,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 0.35,
+    "mouse": 0.8,
+    "alpha": false,
+    "src": {
+     "1920": "/assets/scenes/panorama/d0-1920",
+     "2560": "/assets/scenes/panorama/d0-2560",
+     "3840": "/assets/scenes/panorama/d0-3840"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "sommets-lointains",
+    "speed": 0.12,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 0.55,
+    "mouse": 1.8,
+    "alpha": true,
+    "src": {
+     "1920": "/assets/scenes/panorama/d1-1920",
+     "2560": "/assets/scenes/panorama/d1-2560",
+     "3840": "/assets/scenes/panorama/d1-3840"
+    },
+    "bbox": [
+     0.0,
+     0.09521188772702256,
+     0.4909277143693298,
+     0.6829939460649422
+    ]
+   },
+   {
+    "name": "versants-vallee",
+    "speed": 0.25,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 0.8,
+    "mouse": 3.8,
+    "alpha": true,
+    "src": {
+     "1920": "/assets/scenes/panorama/d2-1920",
+     "2560": "/assets/scenes/panorama/d2-2560",
+     "3840": "/assets/scenes/panorama/d2-3840"
+    },
+    "bbox": [
+     0.0,
+     0.006604292790313704,
+     1.0,
+     0.9933957072096863
+    ]
+   },
+   {
+    "name": "premier-plan",
+    "speed": 0.45,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1.0,
+    "mouse": 6.8,
+    "alpha": true,
+    "src": {
+     "1920": "/assets/scenes/panorama/d3-1920",
+     "2560": "/assets/scenes/panorama/d3-2560",
+     "3840": "/assets/scenes/panorama/d3-3840"
+    },
+    "bbox": [
+     0.0,
+     0.35663181067694,
+     1.0,
+     0.64336818932306
+    ]
+   }
+  ],
+  "mobile": [
+   {
+    "name": "ciel+sommets-lointains",
+    "speed": 0.12,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 0.55,
+    "mouse": 0,
+    "alpha": false,
+    "src": {
+     "1920": "/assets/scenes/panorama/m0-1920",
+     "2560": "/assets/scenes/panorama/m0-2560"
+    },
+    "bbox": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "name": "versants-vallee",
+    "speed": 0.25,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 0.8,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "1920": "/assets/scenes/panorama/m1-1920",
+     "2560": "/assets/scenes/panorama/m1-2560"
+    },
+    "bbox": [
+     0.0,
+     0.006604292790313704,
+     1.0,
+     0.9933957072096863
+    ]
+   },
+   {
+    "name": "premier-plan",
+    "speed": 0.45,
+    "s": [
+     1.0,
+     1.0
+    ],
+    "y": [
+     0.0,
+     0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1.0,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "1920": "/assets/scenes/panorama/m2-1920",
+     "2560": "/assets/scenes/panorama/m2-2560"
+    },
+    "bbox": [
+     0.0,
+     0.35663181067694,
+     1.0,
+     0.64336818932306
+    ]
+   }
+  ],
+  "flat": {
+   "1920": "/assets/scenes/panorama/flat-1920",
+   "2560": "/assets/scenes/panorama/flat-2560",
+   "3840": "/assets/scenes/panorama/flat-3840"
+  },
+  "bytes": {
+   "desktop": {
+    "1920": {
+     "avif": 147083,
+     "webp": 322658
+    },
+    "2560": {
+     "avif": 148607,
+     "webp": 432264
+    },
+    "3840": {
+     "avif": 293060,
+     "webp": 833016
+    }
+   },
+   "mobile": {
+    "1920": {
+     "avif": 138204,
+     "webp": 292074
+    },
+    "2560": {
+     "avif": 126950,
+     "webp": 379238
+    }
+   }
+  },
+  "mobile_box": [
+   0.0,
+   0.0,
+   1.0,
+   1.0
+  ],
+  "mobile_aspect": 3.7611447440836545,
+  "og": "/assets/scenes/panorama/og.jpg",
+  "lqip": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAwCdASoYAAYAPu1iqk4ppaQiMAgBMB2JYwCdIIjDA/I/06U87OAA9kYgDR7yrhfo9cDQD3m81EWlwXIQp9SWJNqX4LM39z79HsZvq3YHc8VhdkScZAAA",
+  "aspect": 3.7611447440836545
  }
 }

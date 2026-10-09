@@ -2,7 +2,7 @@
 
 Neuf scènes et deux rideaux. Les amplitudes sont données pour un cadre de 1 920 px de large ; elles sont divisées par deux sur mobile, où chaque scène passe à 2 ou 3 plans, sans effet de souris. Les vitesses relatives suivent le brief : 0,05 / 0,12 / 0,25 / 0,45 / 0,8. Il n'y a qu'une seule courbe, `cubic-bezier(0.16, 1, 0.3, 1)`. Les scènes liées au défilement ont un *scrub* de 0,8 (0,6 pour les rideaux et le trait). La configuration exacte est dans [`tools/scenes/scenes.json`](../tools/scenes/scenes.json).
 
-**Pourquoi des amplitudes de 120 à 160 px hors de l'ouverture.** Le brief permet jusqu'à 400 px au premier plan. Dans une photo réelle, tout déplacement relatif découvre une zone que l'appareil n'a jamais vue ; elle doit être comblée. Sur un sol continu (neige, herbe), le contrôle image par image a montré qu'au-delà de la largeur de la transition, la zone comblée se voit, en flou ou en reflet. Les amplitudes sont donc réglées pour rester sous la moitié de cette transition tant que la scène est visible au moins au tiers. L'ouverture garde 300 px et l'échelle 1,15, parce que le sol découvert y est de la neige lisse, qui se comble sans trace. Avec les rendus 3D en calques demandés à l'entreprise, rien n'est à combler, et les fiches pourront monter à 300 ou 400 px.
+**Pourquoi des amplitudes de 90 à 160 px hors de l'ouverture.** Le brief permet jusqu'à 400 px au premier plan. Dans une photo réelle, tout déplacement relatif découvre une zone que l'appareil n'a jamais vue ; elle doit être comblée. Sur un sol continu (neige, herbe), le contrôle image par image a montré qu'au-delà de la largeur de la transition, la zone comblée se voit, en flou ou en reflet. Les amplitudes sont donc réglées pour rester sous la moitié de cette transition tant que la scène est visible au moins au tiers. L'ouverture garde 320 px et l'échelle 1,15, parce que le sol découvert y est de la neige lisse, qui se comble sans trace. Avec les rendus 3D en calques demandés à l'entreprise, rien n'est à combler, et les fiches pourront monter à 300 ou 400 px.
 
 **Trois types de mouvement** (modèle commun aux outils et au site, voir `tools/scenes/motion.py` et `src/js/main.js`) :
 - **travelling** (scène épinglée) : chaque plan grandit autour du point de fuite, le premier plan sort par le bas ;
@@ -21,7 +21,7 @@ Neuf scènes et deux rideaux. Les amplitudes sont données pour un cadre de 1 92
 | Sommets (massif des Écrins) | non-ciel, profondeur < 0,035 | **1,08 → 1** | 0 → −24 px |
 | Versant et village | SAM 2 sur le versant gauche, puis profondeur 0,035 à 0,2 | 1 → 1,025 | — |
 | Le chalet | SAM 2 (boîte + points) et sol devant lui | 1 → 1,06 | — |
-| Premier plan (congère) | profondeur > 0,6, transition large sur la neige | **1 → 1,15** | **0 → +300 px** |
+| Premier plan (congère) | profondeur > 0,6, transition large sur la neige | **1 → 1,15** | **0 → +320 px** |
 
 Point de fuite : 50 % / 36 % (l'horizon). Souris : ±12 px au premier plan, au prorata des vitesses pour les autres plans.
 
@@ -40,7 +40,7 @@ Point de fuite : 50 % / 36 % (l'horizon). Souris : ±12 px au premier plan, au p
 | Montagnes | 0,25 | profondeur 0,08 à 0,24 |
 | Fond de vallée, hameaux, route | 0,45 | profondeur > 0,24, transition large (sol continu) |
 
-Mouvement en flux, amplitude 120 px (vue aérienne : peu de parallaxe, comme en vrai) : les plans lointains glissent plus lentement que la page, le fond de vallée plus vite.
+Mouvement en flux, amplitude 90 px (vue aérienne : peu de parallaxe, comme en vrai) : les plans lointains glissent plus lentement que la page, le fond de vallée plus vite.
 - **Entrée** : le nom en italique, puis le cadre 21:9 qui monte.
 - **Sortie** : la ligne de cote (« Vue de drone sur la vallée… »), puis la fiche : surfaces, terrains, chambres, état.
 
@@ -52,9 +52,9 @@ Mouvement en flux, amplitude 120 px (vue aérienne : peu de parallaxe, comme en 
 |---|---|---|
 | Ciel | 0,05 | couleur + profondeur |
 | Chalets du secteur et forêt | 0,25 | profondeur |
-| Pin au premier plan | 0,8 | profondeur, reliée aux bords |
+| Pin au premier plan | 0,8 | profondeur, reliée aux bords ; les aiguilles se détachent sur le ciel par leur couleur |
 
-Mouvement en flux, amplitude 140 px. Il n'y a pas de vue 3D publiée tant que leur provenance n'est pas confirmée (voir l'inventaire).
+Mouvement en flux, amplitude 100 px. Il n'y a pas de vue 3D publiée tant que leur provenance n'est pas confirmée (voir l'inventaire).
 
 ## 4. La Rouya
 

@@ -2,6 +2,13 @@
  "_doc": "Configuration des scènes, plans du fond vers l'avant. depth = seuil de disparité (0 loin, 1 près), w = largeur de transition. speed = vitesse relative (0,05 / 0,12 / 0,25 / 0,45 / 0,8). motion = 'dolly' (scène épinglée : travelling avant, échelle autour de origin) ou 'flow' (scène dans le flux : parallaxe au défilement). amplitude = déplacement du premier plan en px pour un cadre de 1920 px. scale = [début, fin] ; y = [début, fin] en px (cadre 1920). mobile = regroupement des plans (2 à 3 plans), amplitudes divisées par deux.",
  "scenes": {
   "ouverture": {
+   "sky": {
+    "match": {
+     "erode": 0.02,
+     "t": [0.08, 0.2]
+    },
+    "hard": 0.1
+   },
    "snow_shadow": {
     "min_disp": 0.06,
     "strength": 0.55
@@ -418,7 +425,11 @@
    "sky": {
     "far": 0.035,
     "connect": false,
-    "blue": 0.08
+    "blue": 0.02,
+    "key": {
+     "ymax": 0.5,
+     "t": [0.06, 0.18]
+    }
    },
    "planes": [
     {
@@ -435,7 +446,8 @@
      "speed": 0.8,
      "depth": 0.3,
      "w": 0.05,
-     "edge_connected": true
+     "edge_connected": true,
+     "absorb_px": 8
     }
    ],
    "mobile": [
@@ -451,8 +463,7 @@
     "aspect": 0.8,
     "cx": 0.36,
     "cy": 0.5
-   },
-   "hole_th": 0.15
+   }
   },
   "real-psv-automne": {
    "motion": "flow",
@@ -574,6 +585,11 @@
   },
   "serre-orchis": {
    "motion": "flow",
+   "quality": {
+    "avif": 48,
+    "avif_alpha": 46,
+    "webp": 78
+   },
    "amplitude": 90,
    "anchor_speed": 0.25,
    "mouse": 8,
@@ -628,6 +644,11 @@
   },
   "etoile-glaciers": {
    "motion": "flow",
+   "quality": {
+    "avif": 42,
+    "avif_alpha": 40,
+    "webp": 72
+   },
    "amplitude": 150,
    "anchor_speed": 0.45,
    "mouse": 12,

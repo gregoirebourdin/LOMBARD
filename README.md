@@ -57,10 +57,10 @@ Les outils de `tools/scenes` reproduisent le processus du brief (section 5.5). I
 | Débruitage, agrandissement ×2 | `upscale.py` | Real-ESRGAN x2 |
 | Étalonnage commun | `grade.py` | — |
 | Carte de profondeur | `analyze.py` | Depth Anything V2 Large |
-| Masques | `planes.py` | SAM 2.1 (hiera base+) et seuils de profondeur |
-| Bords | `planes.py` | filtre guidé, décontamination (pymatting) |
+| Masques | `planes.py` | SAM 2.1 (hiera base+), seuils de profondeur, couleur du ciel |
+| Bords | `planes.py` | filtre guidé ; matting (pymatting) sur les bords nets : couleurs du plan et fond du plan de derrière |
 | Remplissage derrière les plans | `planes.py` | LaMa (ONNX), poussée-tirée pour le ciel |
-| Contrôle image par image | `simulate.py` | — |
+| Contrôle image par image | `simulate.py` (en mouvement), `planes.py` (écart au repos avec la photo) | — |
 | Export | `export.py` | AVIF et WebP, 1 280 / 1 920 / 2 560 px, mobile en 2 ou 3 plans |
 
 Une scène se fabrique de bout en bout avec `tools/scenes/run.sh <dossier_travail> <scène> <image_source>`. Chaque scène est décrite dans `tools/scenes/scenes.json` : seuils de découpe, vitesses et amplitudes. Le site lit ensuite `site/assets/scenes/manifest.json`.
