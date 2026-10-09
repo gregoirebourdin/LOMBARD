@@ -1,5 +1,5 @@
-/* Sections S3 à S9 : mots qui s'allument, du trait au chalet, odomètres, pignon qui s'ouvre,
-   carrousel, le chalet qui s'allume, horizons, toit du logo gaufré. */
+/* Sections 03 à 06 et pied de page : du trait au chalet, odomètres, carrousel des témoignages,
+   le chalet qui s'allume, toit du logo gaufré. L'odomètre est partagé avec page.js (App.odometer). */
 (() => {
   const App = window.App;
   if (!App || !App.ok) return;
@@ -23,6 +23,8 @@
     return () => cols.forEach((d, i) => gsap.to($('.odo__col', d), { yPercent: -10 * +d.dataset.to, duration: 1.6, ease: 'out', delay: i * .06 }));
   }
 
+  App.odometer = odometer;
+
   /* ——— pignon qui s'ouvre (révélation d'image sur papier) ——— */
   function gableIn(frame) {
     const img = $('img', frame);
@@ -42,63 +44,6 @@
         .to(g, { e: 0, duration: .55, ease: 'out' });
       if (img) gsap.to(img, { scale: 1, duration: 2, ease: 'out' });
     }, 'top 82%');
-  }
-
-  /* ——— S3 : la phrase entendue pendant la visite se recompose ——— */
-  function pivot() {
-    const q = $('.pivot__quote'), rule = $('.pivot__rule');
-    // mots en ligne (pas en bloc) : aucune coupure là où le texte n'a pas d'espace (« pierre. »)
-    const words = [];
-    const walk = (node) => [...node.childNodes].forEach((n) => {
-      if (n.nodeType === 3) {
-        const frag = document.createDocumentFragment();
-        n.textContent.split(/(\s+)/).forEach((t) => {
-          if (!t) return;
-          if (/^\s+$/.test(t)) { frag.append(t); return; }
-          const w = document.createElement('span'); w.className = 'w'; w.textContent = t; frag.append(w); words.push(w);
-        });
-        n.replaceWith(frag);
-      } else if (n.nodeType === 1) walk(n);
-    });
-    walk(q);
-    const rest = words.filter((w) => !w.closest('.heard'));
-    gsap.fromTo(rest, { opacity: .14 }, { opacity: 1, ease: 'none', stagger: .1, scrollTrigger: { trigger: q, start: 'top 75%', end: 'bottom 45%', scrub: true } });
-    gsap.set(rule, { scaleX: 0 });
-    App.onEnter(rule, () => gsap.to(rule, { scaleX: 1, duration: .9, ease: 'inOut' }), 'top 80%');
-  }
-
-  /* ——— S4 : en-tête de la vitrine ——— */
-  function venteHead() {
-    const rules = $$('.som__rule');
-    gsap.set(rules, { scaleX: 0, transformOrigin: 'left center' });
-    App.onEnter($('.som'), () => gsap.to(rules, { scaleX: 1, duration: 1.2, ease: 'inOut', stagger: .1 }));
-    const carte = $('.carte');
-    if (carte) {
-      const hz = $('.carte__horizon', carte), pts = $$('.carte__pt', carte);
-      gsap.set(hz, { drawSVG: '0%' });
-      gsap.set(pts, { scale: 0, transformOrigin: 'center', transformBox: 'fill-box' });
-      gsap.set($$('.carte__pt text', carte), { opacity: 0 });
-      App.onEnter(carte, () => {
-        gsap.timeline()
-          .to(hz, { drawSVG: '100%', duration: 1.6, ease: 'inOut' })
-          .to(pts, { scale: 1, duration: .4, ease: 'out', stagger: .12 }, 1)
-          .to($$('.carte__pt text', carte), { opacity: 1, duration: .6, stagger: .12 }, 1.1);
-      });
-    }
-    $$('.som__row').forEach((row) => row.addEventListener('pointerenter', () => {
-      const p = $(`.carte__pt[data-point="${row.dataset.point}"]`);
-      if (!p) return;
-      p.classList.remove('is-ping'); void p.getBoundingClientRect(); p.classList.add('is-ping');
-    }));
-  }
-
-  /* ——— horizons : la ligne des montagnes se trace au passage ——— */
-  function horizons() {
-    $$('.horizon').forEach((h) => {
-      const p = $('path', h);
-      gsap.fromTo(p, { drawSVG: '0%' }, { drawSVG: '100%', ease: 'none', scrollTrigger: { trigger: h, start: 'top 95%', end: 'top 35%', scrub: .6 } });
-      gsap.fromTo($('svg', h), { x: -10 }, { x: 10, ease: 'none', scrollTrigger: { trigger: h, start: 'top bottom', end: 'bottom top', scrub: .6 } });
-    });
   }
 
   /* ——— S5 : du trait au chalet ——— */
@@ -132,23 +77,6 @@
     });
   }
 
-  /* ——— S6 : la maison ——— */
-  function maison() {
-    const frame = $('.maison__frame');
-    gableIn(frame);
-    gsap.fromTo($('.pic', frame), { yPercent: 6 }, { yPercent: -6, ease: 'none', scrollTrigger: { trigger: frame, start: 'top bottom', end: 'bottom top', scrub: .5 } });
-    $$('.counter').forEach((c, i) => {
-      const roll = odometer($('.odo', c));
-      const units = $$('.counter__u', c);
-      if (units.length) gsap.set(units, { autoAlpha: 0 });
-      App.onEnter(c, () => {
-        c.classList.add('is-in');
-        gsap.delayedCall(i % 2 * .12, roll);
-        if (units.length) gsap.to(units, { autoAlpha: 1, duration: .6, delay: 1.2 });
-      });
-    });
-  }
-
   /* ——— S7 : carrousel des témoignages (sans lecture automatique) ——— */
   function carousel() {
     const root = $('.carousel');
@@ -167,7 +95,7 @@
         .fromTo(lines[n], { yPercent: 110, autoAlpha: 1 }, { yPercent: 0, duration: 1, ease: 'out', stagger: .07 })
         .fromTo($('figcaption', b), { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, yPercent: 0, duration: .8 }, '-=.7')
         .to(count, { yPercent: dir > 0 ? -100 : 100, duration: .3, ease: 'in' }, 0)
-        .add(() => { count.textContent = String(n + 1).padStart(2, '0'); }, .3)
+        .add(() => { count.textContent = String(n + 1); }, .3)
         .fromTo(count, { yPercent: dir > 0 ? 100 : -100 }, { yPercent: 0, duration: .5, ease: 'out' }, .3);
       i = n;
     }
@@ -219,7 +147,7 @@
 
   document.addEventListener('app:ready', () => {
     if (!motion) return;
-    pivot(); venteHead(); horizons(); mesure(); maison(); carousel(); finale(); footer();
+    mesure(); carousel(); finale(); footer();
     ScrollTrigger.refresh();
   });
   // sans mouvement : le carrousel reste pilotable au clavier, sans animation
@@ -229,7 +157,7 @@
     if (!root) return;
     const quotes = $$('.quote', root), count = $('.carousel__i span', root);
     let i = 0;
-    const go = (d) => { quotes[i].classList.remove('is-active'); i = (i + d + quotes.length) % quotes.length; quotes[i].classList.add('is-active'); count.textContent = String(i + 1).padStart(2, '0'); };
+    const go = (d) => { quotes[i].classList.remove('is-active'); i = (i + d + quotes.length) % quotes.length; quotes[i].classList.add('is-active'); count.textContent = String(i + 1); };
     $$('.carousel__b', root).forEach((b) => b.addEventListener('click', () => go(+b.dataset.dir)));
     root.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') go(1); if (e.key === 'ArrowLeft') go(-1); });
   });

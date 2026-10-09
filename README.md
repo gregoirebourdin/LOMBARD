@@ -1,28 +1,29 @@
-# Chalets Lombard Vasina — page d’accueil « Entrez. »
+# Chalets Lombard Vasina — page d’accueil
 
 Page d’accueil seule, statique (HTML, CSS, JavaScript sans framework), publiée sur Vercel depuis `public/`.
 
-Le concept : un plan-séquence au crépuscule, sur papier ivoire.
+Le parcours :
 
-1. Le logo officiel se compose, puis le mot CHALETS laisse place à une fenêtre en pignon.
-2. On plonge dans un vrai ciel violet et on traverse la vitre éclairée.
-3. On passe du feu à la table, puis au matin.
-4. La page dit honnêtement « Ces chalets sont livrés. Le vôtre attend. » et présente les trois programmes en vente sur plan, ou la construction sur votre terrain.
+1. **Intro.** Le logo officiel se compose sur le papier ivoire, puis rejoint sa place dans l’en-tête pendant que la feuille se lève.
+2. **Hero.** La photo du chalet au crépuscule, découpée en trois plans (ciel, montagne et forêt, chalet). Au défilement, « Le soir tombe. » se couche derrière la montagne et le chalet, et le ciel s’assombrit. Le titre « Chalets bois d’exception dans les Hautes-Alpes » est en bas à gauche, en blanc sur un voile sombre.
+3. **01 — Du soir au matin.** Trois chalets réalisés, en photos fixes, et une phrase honnête : « Ces chalets sont livrés. Le vôtre attend. »
+4. **02 — En vente sur plan.** Les trois programmes : vue 3D extérieure ou intérieure, tableau des chalets, demande de plans et de prix.
+5. **03 — Sur votre terrain**, **04 — La maison**, **05 — Ils y vivent**, **06 — Rencontrons-nous** (le chalet s’allume, puis le formulaire).
 
-Le violet Lombard n’est qu’une touche : il apparaît seulement dans le logo, le bouton principal, trois mots, le point « à vendre » et quelques filets d’un pixel. Aucune section n’a un fond violet.
+Le violet Lombard n’est qu’une touche : il apparaît seulement dans le logo, le bouton principal, deux mots, le point « en vente » et quelques filets d’un pixel. Aucune section n’a un fond violet.
 
 ## Arborescence
 
 | Chemin | Rôle |
 |---|---|
-| `src/index.html` | Gabarit de la page (sections S1 à S9, intro, tiroir). |
+| `src/index.html` | Gabarit de la page (hero, sections 01 à 06, pied de page, intro, tiroir). |
 | `src/_intro_logo.svg`, `src/_trait.svg`, `src/_form.html` | Fragments inclus au build. |
 | `data/programmes.json` | **Source unique des programmes en vente** : textes verbatim, lots, surfaces, vues 3D, date de vérification. |
-| `data/carte.json` | Coordonnées de la carte au trait, issues de la Base Adresse Nationale. |
-| `tools/build.mjs` | Assemble `public/index.html` : images, logo inline, programmes, carte, JSON-LD, typographie française, empreintes de cache. |
+| `tools/build.mjs` | Assemble `public/index.html` : images, plans du hero, logo inline, programmes, JSON-LD, typographie française, empreintes de cache. |
 | `tools/images.py`, `tools/images.json`, `tools/images.d/*.json` | Export des photos en AVIF et WebP, avec couleur d’attente et aperçu flou. |
 | `tools/grade.py` | Étalonnage commun des photos et des vues 3D. |
-| `tools/scenes.py` | Convertit les plans de parallaxe des vues 3D en fichiers web (`public/assets/scenes/<ID>/`). |
+| `tools/hero_planes.py` | Découpe la photo du hero en trois plans de parallaxe (`public/assets/hero/<d|m>/`) : profondeur, segmentation, fond reconstitué derrière le chalet. |
+| `tools/layers.py` | Outils de découpe en plans (profondeur, segmentation, remplissage LaMa), modèles chargés hors ligne. |
 | `tools/retouch/*.py` | Retouches documentées et rejouables (objets retirés, recadrages, image « éteinte » de la finale). |
 | `tools/favicon.py` | Favicon et icône Apple (le pignon du logo). |
 | `brand/logo/` | Logo redessiné en vectoriel : couleur, blanc, violet, emblème seul, PNG 4×. |
@@ -34,7 +35,7 @@ Le violet Lombard n’est qu’une touche : il apparaît seulement dans le logo,
 ```bash
 node tools/build.mjs                       # public/index.html
 python tools/images.py [nom …]             # exporte les photos (Pillow avec AVIF)
-python tools/scenes.py <calques> [ID …]    # plans de parallaxe → public/assets/scenes
+python tools/hero_planes.py [d|m]          # plans du hero → public/assets/hero (modèles hors ligne)
 ```
 
 Il n’y a pas de dépendance npm. Vercel publie `public/` tel quel, et la fonction `api/lead.js` est déployée automatiquement.
@@ -75,8 +76,8 @@ La licence FFL interdit de modifier ou de sous-ensembler les fichiers. **Le clie
 
 - Tous les textes entre « » sont repris mot pour mot du site actuel. Seules quelques coquilles ont été corrigées : « m2 » devient « m² », « A l’étage » devient « À l’étage », et les coupes sont signalées par « […] ».
 - Aucun prix, aucune date de livraison, aucune note, aucun avis inventé.
-- Chaque vue 3D porte la mention « Vue 3D · illustration non contractuelle ».
-- Les photos de la visite sont des chalets réalisés. Elles ne sont jamais présentées comme à vendre, et la page le dit explicitement.
+- Chaque programme porte la mention « Vues 3D non contractuelles » sous ses vues 3D.
+- Les photos de la section 01 sont des chalets réalisés. Elles ne sont jamais présentées comme à vendre, et la page le dit explicitement.
 
 ## Questions à valider avec le client avant la mise en ligne
 

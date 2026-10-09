@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#F6F0E8">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:title" content="Chalets Lombard Vasina — Le soir tombe. Entrez.">
+<meta property="og:title" content="Chalets Lombard Vasina — Chalets bois d’exception dans les Hautes-Alpes">
 <meta property="og:description" content="Chalets bois dans les Hautes-Alpes depuis 1979. Cinq chalets en vente sur plan, en trois programmes à Serre Chevalier et Puy-Saint-Vincent, ou le vôtre, sur votre terrain.">
 <meta property="og:url" content="{{site}}/">
 <meta property="og:image" content="{{site}}/og.jpg">
@@ -33,8 +33,8 @@
 <link rel="preload" href="/assets/fonts/Boska-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/Boska-LightItalic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-{{preload hero "(min-aspect-ratio: 1/1)"}}
-{{preload hero-portrait "(max-aspect-ratio: 1/1)"}}
+{{hero:preload}}
+{{hero:css}}
 <link rel="stylesheet" href="/assets/css/site.css">
 <script defer src="/assets/js/vendor/gsap.min.js"></script>
 <script defer src="/assets/js/vendor/ScrollTrigger.min.js"></script>
@@ -43,8 +43,8 @@
 <script defer src="/assets/js/vendor/DrawSVGPlugin.min.js"></script>
 <script defer src="/assets/js/vendor/lenis.min.js"></script>
 <script defer src="/assets/js/app.js"></script>
-<script defer src="/assets/js/sequence.js"></script>
-<script defer src="/assets/js/vitrine.js"></script>
+<script defer src="/assets/js/hero.js"></script>
+<script defer src="/assets/js/page.js"></script>
 <script defer src="/assets/js/sections.js"></script>
 <script defer src="/assets/js/intro.js"></script>
 {{jsonld}}
@@ -87,11 +87,11 @@
   <div class="menu__in">
     <nav aria-label="Menu principal">
       <ol class="menu__list">
-        <li><a href="#en-vente" data-menu-link><span class="mono">01</span><span class="menu__w">Chalets en vente<span class="dot" aria-hidden="true"></span></span></a></li>
-        <li><a href="#sur-mesure" data-menu-link><span class="mono">02</span><span class="menu__w">Sur votre terrain</span></a></li>
-        <li><a href="https://www.chalets-lombard.fr/realisations/"><span class="mono">03</span><span class="menu__w">Réalisations</span></a></li>
-        <li><a href="#la-maison" data-menu-link><span class="mono">04</span><span class="menu__w">La maison</span></a></li>
-        <li><a href="#contact" data-menu-link><span class="mono">05</span><span class="menu__w">Contact</span></a></li>
+        <li><a href="#en-vente" data-menu-link><span class="menu__w">Chalets en vente<span class="dot" aria-hidden="true"></span></span></a></li>
+        <li><a href="#sur-mesure" data-menu-link><span class="menu__w">Sur votre terrain</span></a></li>
+        <li><a href="https://www.chalets-lombard.fr/realisations/"><span class="menu__w">Réalisations</span></a></li>
+        <li><a href="#la-maison" data-menu-link><span class="menu__w">La maison</span></a></li>
+        <li><a href="#contact" data-menu-link><span class="menu__w">Contact</span></a></li>
       </ol>
     </nav>
     <div class="menu__foot">
@@ -102,151 +102,63 @@
   </div>
 </div>
 
+
 <main id="contenu">
 
-  <!-- S1 + S2 : un seul plan-séquence épinglé -->
-  <div class="seq" id="seq">
-    <section class="hero" id="accueil" aria-labelledby="hero-t" data-header="sky">
-      <div class="hero__stage">
-        <div class="hero__zoom">
-          <div class="hero__pan" data-cursor="Entrer">
-            {{pic name="hero" mobile="hero-portrait" eager class="hero__pic" imgclass="hero__img" alt="Chalet en mélèze et pierre au crépuscule, fenêtres éclairées, sommet enneigé derrière"}}
-            <div class="hero__sky">
-              <h1 class="hero__title" id="hero-t"><span class="sr-only">Chalets Lombard Vasina, constructeur de chalets bois dans les Hautes-Alpes. </span><span class="ln"><span class="ln__i">Le soir tombe.</span></span> <span class="ln"><span class="ln__i"><em class="v">Entrez.</em></span></span></h1>
-            </div>
-          </div>
-        </div>
+  <!-- Hero : la photo en trois plans (ciel, montagne, chalet) ; « Le soir tombe. » se couche derrière la montagne -->
+  <section class="hero" id="accueil" aria-labelledby="hero-t" data-header="sky">
+    <div class="hero__stage">
+      {{hero:back}}
+      <span class="hero__night" aria-hidden="true"></span>
+      <p class="hero__giant" aria-hidden="true"><span class="hero__g1"><span class="hero__le">Le</span> soir</span> <em>tombe.</em></p>
+      {{hero:mid}}
+      {{hero:front}}
+    </div>
+    <div class="hero__veil" aria-hidden="true"></div>
+    <div class="hero__content">
+      <p class="hero__kicker">Lombard Vasina · depuis 1979</p>
+      <h1 class="hero__title" id="hero-t"><span class="ln"><span class="ln__i">Chalets bois d’exception</span></span> <span class="ln"><span class="ln__i">dans les <em>Hautes-Alpes</em></span></span></h1>
+      <div class="hero__cta">
+        <a class="btn" href="#en-vente" data-magnetic><span class="btn__label" data-roll>Voir les chalets en vente</span><svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="link link--light" href="#sur-mesure">Construire sur votre terrain</a>
       </div>
+    </div>
+    <p class="hero__credit">Photographie · chalet réalisé par Lombard Vasina</p>
+    <a class="hero__scroll" href="#realisations" aria-label="Faire défiler vers la suite"><span>Défiler</span><i aria-hidden="true"></i></a>
+  </section>
 
-      <p class="hero__credit-m micro">PHOTOGRAPHIE · CHALET RÉALISÉ</p>
-      <div class="hero__plinth paper">
-        <div class="plinth">
-          <div class="plinth__main">
-            <p class="kicker">CHALETS BOIS · HAUTES-ALPES · DEPUIS 1979</p>
-            <p class="plinth__lead">Depuis 1979, plus de 800 familles nous ont confié la construction de leur chalet.</p>
-            <div class="plinth__cta">
-              <a class="btn" href="#en-vente" data-magnetic data-cta="hero"><span class="btn__label" data-roll>Voir les chalets en vente</span><svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-              <a class="link" href="#sur-mesure">Construire sur votre terrain</a>
-            </div>
-          </div>
-          <a class="enter" href="#visite" aria-label="Entrer dans la visite">
-            <svg class="enter__chev" viewBox="0 0 24 12" aria-hidden="true"><path d="M1 11 12 1l11 10"/></svg>
-            <span class="enter__t">ENTRER</span>
-            <span class="enter__line" aria-hidden="true"><i></i></span>
-          </a>
-          <p class="plinth__credit micro">PHOTOGRAPHIE · CHALET RÉALISÉ PAR LOMBARD VASINA</p>
-          <div class="encart">
-            <p class="encart__h">EN VENTE SUR PLAN<span class="dot dot--pulse" aria-hidden="true"></span></p>
-            <ul class="encart__list">{{programmes:encart}}</ul>
-            <p class="encart__note micro">Vues 3D · illustrations non contractuelles</p>
-          </div>
-          <a class="encart-m" href="#en-vente">
-            <span class="encart-m__thumbs" aria-hidden="true">{{programmes:thumbs}}</span>
-            <span class="encart-m__t"><span class="encart-m__l"><span class="dot dot--pulse" aria-hidden="true"></span>5 chalets en vente sur plan · 145 à 229 m²</span><span class="micro">3 programmes · vues 3D non contractuelles</span></span>
-            <svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-        </div>
+  <!-- 01 : trois chalets réalisés, du soir au matin -->
+  <section class="real paper" id="realisations" aria-labelledby="real-t" data-header="paper">
+    <div class="real__head">
+      <p class="kicker" data-reveal="lines">01 — Du soir au matin</p>
+      <p class="real__quote">« Imaginez-vous <em class="heard">réveillé par le soleil sur les sommets</em>, <em class="heard">le feu qui crépite</em>, <em class="heard">le retour du ski dans la douceur du bois et de la pierre</em>. »</p>
+    </div>
+    <div class="real__grid">
+      <figure class="real__fig real__fig--a">{{pic name="piece-feu" class="real__pic" sizes="(min-width: 1024px) 50vw, 100vw"}}<figcaption>Le feu</figcaption></figure>
+      <figure class="real__fig real__fig--b">{{pic name="piece-table" class="real__pic" sizes="(min-width: 1024px) 42vw, 100vw"}}<figcaption>La table</figcaption></figure>
+      <figure class="real__fig real__fig--c">{{pic name="piece-matin" class="real__pic" sizes="(min-width: 1024px) 66vw, 100vw"}}<figcaption>Le matin</figcaption></figure>
+    </div>
+    <div class="real__end">
+      <h2 class="d1 real__h" id="real-t" data-reveal="lines">Ces chalets sont livrés. <br class="d">Le <em class="v">vôtre</em> attend.</h2>
+      <div class="real__aside">
+        <p class="real__note" data-reveal="fade">Photographies de trois chalets réalisés par Lombard Vasina, non disponibles à la vente.</p>
+        <a class="link" href="https://www.chalets-lombard.fr/visites-360/">Entrer en 360° dans dix chalets réalisés<svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
-    </section>
-
-    <section class="visite" id="visite" aria-labelledby="visite-t" data-header="photo">
-      <h2 class="sr-only" id="visite-t">La visite, du soir au matin, dans trois chalets réalisés</h2>
-      <figure class="room" data-room="0">
-        <div class="room__media">{{pic name="piece-feu" mobile="piece-feu-portrait" class="room__pic" priority="low"}}</div>
-        <div class="room__veil" aria-hidden="true"></div>
-        <figcaption class="room__cap">
-          <span class="room__chap">01 · LE FEU</span>
-          <span class="room__line"><span class="ln"><span class="ln__i">« … le feu qui crépite … »</span></span></span>
-        </figcaption>
-        <p class="room__credit micro">PHOTOGRAPHIE · CHALET RÉALISÉ PAR LOMBARD VASINA</p>
-      </figure>
-      <figure class="room" data-room="1">
-        <div class="room__media">{{pic name="piece-table" mobile="piece-table-portrait" class="room__pic" priority="low"}}</div>
-        <div class="room__veil" aria-hidden="true"></div>
-        <figcaption class="room__cap">
-          <span class="room__chap">02 · LA TABLE</span>
-          <span class="room__line"><span class="ln"><span class="ln__i">« … le retour du ski dans la douceur</span></span> <span class="ln"><span class="ln__i">du bois et de la pierre. »</span></span></span>
-        </figcaption>
-        <p class="room__credit micro">PHOTOGRAPHIE · CHALET RÉALISÉ PAR LOMBARD VASINA</p>
-      </figure>
-      <figure class="room" data-room="2">
-        <div class="room__media">{{pic name="piece-matin" class="room__pic" priority="low"}}</div>
-        <div class="room__veil" aria-hidden="true"></div>
-        <figcaption class="room__cap">
-          <span class="room__chap">03 · LE MATIN</span>
-          <span class="room__line"><span class="ln"><span class="ln__i">« Imaginez-vous réveillé par le soleil</span></span> <span class="ln"><span class="ln__i">sur les sommets … »</span></span></span>
-        </figcaption>
-        <p class="room__credit micro">PHOTOGRAPHIE · CHALET RÉALISÉ PAR LOMBARD VASINA</p>
-      </figure>
-      <div class="visite__ui">
-        <div class="visite__index">
-          <p class="micro">01 — DU SOIR AU MATIN · TROIS CHALETS RÉALISÉS</p>
-          <ol>
-            <li class="is-active"><span class="dot" aria-hidden="true"></span>01 Le feu</li>
-            <li><span class="dot" aria-hidden="true"></span>02 La table</li>
-            <li><span class="dot" aria-hidden="true"></span>03 Le matin</li>
-          </ol>
-        </div>
-        <a class="visite__skip" href="#en-vente">Passer la visite<svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </div>
-      <p class="visite__cartel micro" aria-hidden="true">PHOTOGRAPHIE · CHALET RÉALISÉ PAR LOMBARD VASINA</p>
-    </section>
-    <div class="seq__bloom" aria-hidden="true"></div>
-  </div>
-
-  <!-- S3 : le pivot -->
-  <section class="pivot paper" id="pivot" aria-labelledby="pivot-t" data-header="paper">
-    <div class="pivot__in">
-      <p class="pivot__quote"><span class="hang">«&#8239;</span>Imaginez-vous <em class="heard">réveillé par le soleil sur les sommets</em>, <em class="heard">le feu qui crépite</em>, <em class="heard">le retour du ski dans la douceur du bois et de la pierre</em>. »</p>
-      <span class="pivot__rule" aria-hidden="true"></span>
-      <h2 class="d1 pivot__h" id="pivot-t" data-reveal="lines">Ces chalets sont livrés. <br class="d">Le <em class="v">vôtre</em> attend.</h2>
-      <p class="pivot__note mono" data-reveal="fade">LES INTÉRIEURS CI-DESSUS : PHOTOGRAPHIES DE TROIS CHALETS RÉALISÉS PAR LOMBARD VASINA, NON DISPONIBLES À LA VENTE.</p>
-      <a class="link" href="https://www.chalets-lombard.fr/visites-360/" data-reveal="fade">Entrer en 360° dans dix chalets réalisés<svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </section>
 
-  <!-- S4 : en vente sur plan -->
+  <!-- 02 : en vente sur plan -->
   <section class="vente paper" id="en-vente" aria-labelledby="vente-t" data-header="paper">
-    <div class="vente__head grid">
+    <div class="vente__head">
       <div class="vente__title">
-        <p class="kicker" data-reveal="lines">02 — EN VENTE SUR PLAN (VEFA)</p>
+        <p class="kicker" data-reveal="lines">02 — En vente sur plan</p>
         <h2 class="d1" id="vente-t" data-reveal="lines">Trois adresses <br class="d">à <em class="v">habiter</em>.</h2>
       </div>
-      <div class="vente__lead">
-        <p class="lead" data-reveal="fade">Tout est personnalisable, vous choisissez les matériaux, les finitions intérieures et les aménagements, avec l’accompagnement complet de notre équipe.</p>
-        <p class="vente__vefa" data-reveal="fade">Choisir un chalet à vendre sur plan (VEFA), c’est bénéficier de la sécurité d’un achat encadré et de la liberté d’un projet personnalisé […].</p>
-      </div>
-      <ol class="som">{{programmes:sommaire}}</ol>
-      <div class="vente__carte">{{carte}}</div>
+      <p class="vente__lead" data-reveal="fade">Tout est personnalisable, vous choisissez les matériaux, les finitions intérieures et les aménagements, avec l’accompagnement complet de notre équipe.</p>
     </div>
-
-    <div class="vitrine grid">
-      <div class="stage" aria-hidden="false">
-        <div class="stage__top">
-          <p class="stage__count mono"><span class="roll-box"><span class="stage__label">01 / 03 — LE SERRE D’ORCHIS</span></span></p>
-          <div class="toggle" role="group" aria-label="Vue de la scène">
-            <button type="button" class="toggle__b" aria-pressed="true" data-view="ext"><span class="dot" aria-hidden="true"></span>Extérieur</button>
-            <button type="button" class="toggle__b" aria-pressed="false" data-view="int"><span class="dot" aria-hidden="true"></span>Intérieur</button>
-          </div>
-        </div>
-        <figure class="scene crop-marks" data-cursor="Entrer">
-          <div class="scene__frame" role="img" aria-label="Vue 3D, illustration non contractuelle"></div>
-          <svg class="scene__muntins" aria-hidden="true"></svg>
-          <div class="scene__load" aria-hidden="true"><svg viewBox="0 0 24 12"><path d="M1 11 12 1l11 10"/></svg></div>
-          <figcaption class="scene__cap micro" aria-live="polite">VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SERRE D’ORCHIS, CHALET B, EXTÉRIEUR</figcaption>
-        </figure>
-        <div class="stage__progress" aria-hidden="true"><i class="is-on"></i><i></i><i></i></div>
-      </div>
-      <div class="progs">{{programmes:vitrine}}</div>
-    </div>
-
-    <div class="vente__after wrap">
-      <p class="vendus mono"><span class="vendus__h">DÉJÀ VENDUS SUR PLAN</span><span class="sep" aria-hidden="true">·</span>{{programmes:vendus}}</p>
-      <p class="micro vente__note">PRIX ET DISPONIBILITÉS SUR DEMANDE · VUES 3D, ILLUSTRATIONS NON CONTRACTUELLES</p>
-    </div>
+    <div class="progs">{{programmes:cards}}</div>
+    <p class="vendus"><span>Déjà vendus sur plan</span>{{programmes:vendus}}</p>
   </section>
-
-  <div class="horizon" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0 44 L96 40 L150 30 L178 34 L232 18 L262 26 L300 22 L330 30 L372 34 L520 40 L640 40 L720 12 L800 40 L920 40 L1060 34 L1098 22 L1126 28 L1170 10 L1208 24 L1236 20 L1270 30 L1330 36 L1440 42"/></svg></div>
 
   <!-- S5 : sur votre terrain -->
   <section class="mesure paper" id="sur-mesure" aria-labelledby="mesure-t" data-header="paper">
@@ -284,84 +196,52 @@
     </div>
   </section>
 
-  <!-- S6 : la maison -->
+  <!-- 04 : la maison -->
   <section class="maison paper" id="la-maison" aria-labelledby="maison-t" data-header="paper">
-    <div class="maison__grid grid">
-      <figure class="maison__poteau">
-        <div class="maison__frame crop-marks gable-in">{{pic name="poteau" class="maison__pic" sizes="(min-width: 1024px) 38vw, 100vw"}}</div>
-        <figcaption class="micro">DOUGLAS — « NOTRE ESSENCE DE PRÉDILECTION »</figcaption>
-      </figure>
+    <div class="maison__grid">
+      <figure class="maison__fig">{{pic name="poteau" class="maison__pic" sizes="(min-width: 1024px) 34vw, 100vw"}}<figcaption>Douglas, notre essence de prédilection</figcaption></figure>
       <div class="maison__body">
-        <p class="kicker" data-reveal="lines">04 — LA MAISON LOMBARD VASINA</p>
+        <p class="kicker" data-reveal="lines">04 — La maison Lombard Vasina</p>
         <h2 class="d1" id="maison-t" data-reveal="lines">Une famille, <br class="d">deux <em>ateliers</em>.</h2>
-        <ul class="counters">
-          <li class="counter"><p class="counter__n"><span class="odo" data-odo="1979" data-from="1900">1979</span></p><p class="counter__l">MAURICE LOMBARD ET JEAN-CLAUDE VASINA S’ASSOCIENT</p></li>
-          <li class="counter"><p class="counter__n"><span class="odo" data-odo="800" data-from="000">800</span><span class="counter__u">+</span></p><p class="counter__l">CHALETS RÉALISÉS DEPUIS 1979</p></li>
-          <li class="counter"><p class="counter__n"><span class="odo" data-odo="40" data-from="00">40</span></p><p class="counter__l">PERSONNES PASSIONNÉES, DU BUREAU D’ÉTUDES À LA POSE</p></li>
-          <li class="counter"><p class="counter__n"><span class="odo" data-odo="1300" data-from="0000">1 300</span><span class="counter__u counter__u--m">m²</span></p><p class="counter__l">D’ATELIER CHARPENTE, CONSTRUIT EN 2020</p></li>
-        </ul>
         <p class="maison__txt" data-reveal="fade">Une entreprise familiale créée il y a plus de 45 ans. Depuis une dizaine d’années, Marielle et Mathieu ont rejoint leur père Maurice dans l’aventure. En 2021, ils ont officiellement repris le flambeau.</p>
-        <ul class="famille" data-reveal="stagger">
-          <li><p class="famille__n">Marielle</p><p class="famille__p">« Ingénieure en génie civil, j’ai toujours eu besoin de liberté pour donner vie à mes idées. »</p></li>
-          <li><p class="famille__n">Mathieu</p><p class="famille__p">« À l’écoute et patient, j’aime accompagner chaque client pas à pas, répondre à leurs questions et donner forme à leurs envies. »</p></li>
-          <li><p class="famille__n">Maurice</p><p class="famille__p">« Passionné depuis toujours par le dessin et le bois, c’est naturellement que je me suis tourné vers la construction. »</p></li>
+        <ul class="nums">
+          <li class="num"><p class="num__n"><span class="odo" data-odo="1979" data-from="1900">1979</span></p><p class="num__l">Fondation de l’entreprise</p></li>
+          <li class="num"><p class="num__n"><span class="odo" data-odo="800" data-from="000">800</span><span class="num__u">+</span></p><p class="num__l">Chalets réalisés</p></li>
+          <li class="num"><p class="num__n"><span class="odo" data-odo="40" data-from="00">40</span></p><p class="num__l">Passionnés, du bureau d’études à la pose</p></li>
+          <li class="num"><p class="num__n"><span class="odo" data-odo="1300" data-from="0000">1 300</span><span class="num__u num__u--m">m²</span></p><p class="num__l">D’atelier charpente</p></li>
         </ul>
-        <p class="maison__links"><a class="link" href="https://www.chalets-lombard.fr/lombard-vasina/">Notre histoire</a><a class="link" href="https://www.chalets-lombard.fr/qui-sommes-nous/">Qui sommes-nous ?</a><a class="link" href="#contact" data-drawer>Recevoir les plans et les prix<svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
-      </div>
-    </div>
-
-    <div class="bois grid">
-      <div class="bois__txt">
-        <p class="bois__h" data-reveal="lines">Le poteau-poutre est le mode constructif que nous avons choisi pour réaliser nos chalets.</p>
-        <p class="bois__p" data-reveal="fade">Nous réalisons notamment des tenons-mortaises, des queues d’aronde ou encore des traits de Jupiter, adaptés aux contraintes de chaque projet.</p>
-        <ul class="essences">
-          <li><button class="essence" type="button" aria-expanded="false"><svg class="essence__ring" aria-hidden="true"><use href="#i-ring-douglas"/></svg><span class="essence__n">Douglas</span></button><p class="essence__q">Notre essence de prédilection. Naturellement durable, très stable et chaleureuse</p></li>
-          <li><button class="essence" type="button" aria-expanded="false"><svg class="essence__ring" aria-hidden="true"><use href="#i-ring-meleze"/></svg><span class="essence__n">Mélèze naturel</span></button><p class="essence__q">Bois apprécié pour son caractère, le mélèze est un bois qui travaille beaucoup dans le temps, ce qui en fait à la fois son charme et son principal défaut.</p></li>
-          <li><button class="essence" type="button" aria-expanded="false"><svg class="essence__ring" aria-hidden="true"><use href="#i-ring-vapo"/></svg><span class="essence__n">Mélèze vapotraité</span></button><p class="essence__q">Son coloris brun caramel évoque le charme des vieux chalets de montagne.</p></li>
-          <li><button class="essence" type="button" aria-expanded="false"><svg class="essence__ring" aria-hidden="true"><use href="#i-ring-epicea"/></svg><span class="essence__n">Épicéa</span></button><p class="essence__q">Clair, lumineux et économique, l’épicéa offre une excellente durabilité et un très bon rapport qualité-prix.</p></li>
-        </ul>
-        <p class="mono bois__pefc">CERTIFIÉS PEFC ET BOIS DES ALPES™</p>
-      </div>
-      <div class="bois__pics">
-        <figure class="bois__a"><div class="bois__frame crop-marks" data-parallax="6">{{pic name="bois" sizes="(min-width: 1024px) 24vw, 50vw"}}</div><figcaption class="micro">LE BOIS, AVANT LE CHALET</figcaption></figure>
-        <figure class="bois__b"><div class="bois__frame crop-marks" data-parallax="6">{{pic name="enseigne" sizes="(min-width: 1024px) 24vw, 50vw"}}</div><figcaption class="micro">L’ENSEIGNE LOMBARD VASINA</figcaption></figure>
+        <p class="maison__links"><a class="link" href="https://www.chalets-lombard.fr/lombard-vasina/">Notre histoire</a><a class="link" href="https://www.chalets-lombard.fr/qui-sommes-nous/">Qui sommes-nous ?</a></p>
       </div>
     </div>
   </section>
 
-  <div class="horizon" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0 40 L120 36 L180 24 L214 30 L252 14 L290 26 L318 22 L360 34 L560 40 L680 40 L720 14 L760 40 L900 40 L1010 36 L1050 26 L1080 30 L1120 12 L1150 22 L1190 18 L1230 30 L1300 36 L1440 40"/></svg></div>
-
-  <!-- S7 : ils y vivent -->
+  <!-- 05 : ils y vivent -->
   <section class="temo paper" id="temoignages" aria-labelledby="temo-t" data-header="paper">
-    <div class="temo__grid grid">
-      <figure class="temo__fig">
-        <div class="temo__frame crop-marks" data-parallax="8">{{pic name="terrasse" sizes="(min-width: 1024px) 30vw, 60vw"}}</div>
-        <figcaption class="micro">PHOTOGRAPHIE · CHALET RÉALISÉ PAR LOMBARD VASINA</figcaption>
-      </figure>
+    <div class="temo__grid">
       <div class="temo__body">
-        <p class="kicker" data-reveal="lines">05 — ILS Y VIVENT</p>
-        <h2 class="d2" id="temo-t" data-reveal="lines">Ce qu’ils en <em>disent</em>.</h2>
+        <p class="kicker" data-reveal="lines">05 — Ils y vivent</p>
+        <h2 class="sr-only" id="temo-t">Témoignages de clients</h2>
         <blockquote class="andre">
           <p class="andre__q" data-reveal="lines">Non seulement vous avez réalisé mes envies, mais vous êtes allés plus loin, vous avez réalisé ce que je n’avais pas osé imaginer et qui pourtant me correspond. »</p>
-          <footer class="mono">ANDRÉ, CLIENT</footer>
+          <footer>André, client</footer>
         </blockquote>
-        <div class="carousel" role="region" aria-roledescription="carrousel" aria-label="Témoignages de clients" tabindex="0">
+        <div class="carousel" role="region" aria-roledescription="carrousel" aria-label="Autres témoignages de clients" tabindex="0">
           <div class="carousel__view" aria-live="polite">
-            <figure class="quote is-active"><blockquote><p>« Entreprise très compétente et sérieuse. […] Aucun problème depuis. »</p></blockquote><figcaption><span class="quote__n">Monsieur Dufour</span><span class="mono">CHALET CONSTRUIT EN 1982</span></figcaption></figure>
-            <figure class="quote"><blockquote><p>« 16 ans maintenant que nous avons pris possession de notre Chalet Lombard et chaque jour qui passe nous conforte dans notre choix ! »</p></blockquote><figcaption><span class="quote__n">Mr &amp; Mme Erbetta</span><span class="mono">CHALET CONSTRUIT EN 2009</span></figcaption></figure>
-            <figure class="quote"><blockquote><p>« Le professionnalisme, la disponibilité et l’écoute de tous nous ont permis de vivre une formidable expérience riche de découvertes à chaque étape du projet. »</p></blockquote><figcaption><span class="quote__n">Didier &amp; Sylvie</span><span class="mono">LIVRAISON EN 2023</span></figcaption></figure>
-            <figure class="quote"><blockquote><p>« […] c’est vraiment réconfortant d’être accompagné par une équipe professionnelle et bienveillante. »</p></blockquote><figcaption><span class="quote__n">Alain</span><span class="mono">LIVRAISON EN 2025</span></figcaption></figure>
-            <figure class="quote"><blockquote><p>« Merci immensément pour la réalisation de ce rêve d’une vie. »</p></blockquote><figcaption><span class="quote__n">Christophe &amp; Virginie</span><span class="mono">LIVRAISON EN 2025</span></figcaption></figure>
+            <figure class="quote is-active"><blockquote><p>« Entreprise très compétente et sérieuse. […] Aucun problème depuis. »</p></blockquote><figcaption><span class="quote__n">Monsieur Dufour</span><span class="quote__y">Chalet construit en 1982</span></figcaption></figure>
+            <figure class="quote"><blockquote><p>« 16 ans maintenant que nous avons pris possession de notre Chalet Lombard et chaque jour qui passe nous conforte dans notre choix ! »</p></blockquote><figcaption><span class="quote__n">Mr &amp; Mme Erbetta</span><span class="quote__y">Chalet construit en 2009</span></figcaption></figure>
+            <figure class="quote"><blockquote><p>« Le professionnalisme, la disponibilité et l’écoute de tous nous ont permis de vivre une formidable expérience riche de découvertes à chaque étape du projet. »</p></blockquote><figcaption><span class="quote__n">Didier &amp; Sylvie</span><span class="quote__y">Livraison en 2023</span></figcaption></figure>
+            <figure class="quote"><blockquote><p>« […] c’est vraiment réconfortant d’être accompagné par une équipe professionnelle et bienveillante. »</p></blockquote><figcaption><span class="quote__n">Alain</span><span class="quote__y">Livraison en 2025</span></figcaption></figure>
+            <figure class="quote"><blockquote><p>« Merci immensément pour la réalisation de ce rêve d’une vie. »</p></blockquote><figcaption><span class="quote__n">Christophe &amp; Virginie</span><span class="quote__y">Livraison en 2025</span></figcaption></figure>
           </div>
           <div class="carousel__ctrl">
             <button class="carousel__b" type="button" data-dir="-1" aria-label="Témoignage précédent"><svg aria-hidden="true"><use href="#i-prev"/></svg></button>
-            <span class="carousel__count mono"><span class="carousel__i roll-box"><span>01</span></span> / 05</span>
+            <span class="carousel__count"><span class="carousel__i roll-box"><span>1</span></span> / 5</span>
             <button class="carousel__b" type="button" data-dir="1" aria-label="Témoignage suivant"><svg aria-hidden="true"><use href="#i-next"/></svg></button>
           </div>
         </div>
       </div>
+      <figure class="temo__fig">{{pic name="terrasse" class="temo__pic" sizes="(min-width: 1024px) 34vw, 70vw"}}<figcaption>Photographie · chalet réalisé par Lombard Vasina</figcaption></figure>
     </div>
-    <p class="presse mono wrap" data-reveal="fade">ILS EN PARLENT — ARCHITECTURE BOIS · COSY MOUNTAIN · ÉCO MAISON BOIS · ALTUS · MAISONS CÔTÉ EST · LE DAUPHINÉ · MAISON BOIS INTERNATIONAL <a class="link" href="https://www.chalets-lombard.fr/on-parle-de-nous/">On parle de nous</a><a class="link" href="#contact" data-drawer>Recevoir les plans et les prix<svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
   </section>
 
   <!-- S8 : le chalet s'allume, puis la feuille du formulaire -->
@@ -434,31 +314,23 @@
   </div>
 </footer>
 
-<!-- intro « Le Pignon » : décor pur, sans focus -->
+<!-- intro : le logo officiel se compose sur le papier, rejoint l'en-tête, et la feuille se lève sur le hero -->
 <div class="intro" aria-hidden="true">
-  <div class="intro__cam">
-    <div class="intro__montage">
-      <picture data-m="1"><source media="(max-width: 767px)" type="image/avif" srcset="/assets/img/intro/m1-m.avif"><source media="(max-width: 767px)" type="image/webp" srcset="/assets/img/intro/m1-m.webp"><source type="image/avif" srcset="/assets/img/intro/m1-d.avif"><img src="/assets/img/intro/m1-d.webp" alt="" fetchpriority="low" decoding="async"></picture>
-      <picture data-m="2"><source media="(max-width: 767px)" type="image/avif" srcset="/assets/img/intro/m2-m.avif"><source media="(max-width: 767px)" type="image/webp" srcset="/assets/img/intro/m2-m.webp"><source type="image/avif" srcset="/assets/img/intro/m2-d.avif"><img src="/assets/img/intro/m2-d.webp" alt="" fetchpriority="low" decoding="async"></picture>
-      <picture data-m="3"><source media="(max-width: 767px)" type="image/avif" srcset="/assets/img/intro/m3-m.avif"><source media="(max-width: 767px)" type="image/webp" srcset="/assets/img/intro/m3-m.webp"><source type="image/avif" srcset="/assets/img/intro/m3-d.avif"><img src="/assets/img/intro/m3-d.webp" alt="" fetchpriority="low" decoding="async"></picture>
-      <picture data-m="4"><source media="(max-width: 767px)" type="image/avif" srcset="/assets/img/intro/m4-m.avif"><source media="(max-width: 767px)" type="image/webp" srcset="/assets/img/intro/m4-m.webp"><source type="image/avif" srcset="/assets/img/intro/m4-d.avif"><img src="/assets/img/intro/m4-d.webp" alt="" fetchpriority="low" decoding="async"></picture>
-    </div>
-    <svg class="intro__paper" aria-hidden="true" focusable="false" preserveAspectRatio="none">
-      <defs>
-        <radialGradient id="ip-g" cx="0" cy="0" r="1" gradientUnits="objectBoundingBox" gradientTransform="scale(1.4 1)">
-          <stop offset="0" stop-color="#F9F5EF"/><stop offset=".45" stop-color="#F6F0E8"/><stop offset="1" stop-color="#EFE6DC"/>
-        </radialGradient>
-        <mask id="ip-hole" maskUnits="userSpaceOnUse" x="-10" y="-10" width="100000" height="100000">
-          <rect x="-10" y="-10" width="100000" height="100000" fill="#fff"/>
-          <polygon class="intro__win" points="0,0 0,0 0,0" fill="#000"/>
-        </mask>
-      </defs>
-      <rect class="intro__sheet" width="100%" height="100%" fill="url(#ip-g)" mask="url(#ip-hole)"/>
-      {{include _intro_logo.svg}}
-    </svg>
-    <p class="intro__coords">44°51′48″ N — 6°35′41″ E — ALT. 1 174 M</p>
-    <span class="intro__rule"></span>
-  </div>
+  <svg class="intro__paper" aria-hidden="true" focusable="false" preserveAspectRatio="none">
+    <defs>
+      <radialGradient id="ip-g" cx="0" cy="0" r="1" gradientUnits="objectBoundingBox" gradientTransform="scale(1.4 1)">
+        <stop offset="0" stop-color="#F9F5EF"/><stop offset=".45" stop-color="#F6F0E8"/><stop offset="1" stop-color="#EFE6DC"/>
+      </radialGradient>
+      <linearGradient id="ip-e" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#160B13" stop-opacity=".22"/><stop offset="1" stop-color="#160B13" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <rect class="intro__edge" width="100%" height="56" y="100%" fill="url(#ip-e)"/>
+    <rect class="intro__sheet" width="100%" height="100%" fill="url(#ip-g)"/>
+    {{include _intro_logo.svg}}
+  </svg>
+  <p class="intro__coords">44°51′48″ N — 6°35′41″ E — ALT. 1 174 M</p>
+  <span class="intro__rule"></span>
 </div>
 
 <button class="pill" type="button" data-drawer aria-label="Recevoir les plans et les prix"><span class="dot" aria-hidden="true"></span>Plans &amp; prix</button>
@@ -475,6 +347,5 @@
 
 <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__pill"><span class="cursor__label"></span></span></div>
 <div class="grain" aria-hidden="true"></div>
-<script type="application/json" id="vitrine-data">{{vitrine-data}}</script>
 </body>
 </html>

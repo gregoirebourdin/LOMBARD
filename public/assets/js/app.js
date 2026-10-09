@@ -1,6 +1,6 @@
 /* Chalets Lombard Vasina — socle de la page : jetons de mouvement, défilement, révélations,
    en-tête, menu, pastille, tiroir et formulaires, curseur, horloge.
-   Les modules sequence.js (hero + visite), vitrine.js, sections.js et intro.js s'y branchent via window.App. */
+   Les modules hero.js, page.js, sections.js et intro.js s'y branchent via window.App. */
 (() => {
   const html = document.documentElement;
   const $ = (s, r = document) => r.querySelector(s);
@@ -46,8 +46,7 @@
     const el = $(id);
     if (!el) return;
     e.preventDefault();
-    const offset = el.matches('.prog') && desktop() && motion ? -innerHeight * 0.18 : 0;
-    App.scrollTo(el, { offset });
+    App.scrollTo(el, { offset: el.matches('.prog') ? -(header.offsetHeight + 24) : 0 });
     history.replaceState(null, '', id);
   });
 
@@ -297,7 +296,7 @@
       const on = heroOut && !seen.size && !App.menuOpen && !App.drawerOpen;
       pill.classList.toggle('is-on', on);
     }
-    ScrollTrigger.create({ trigger: '#pivot', start: 'top bottom', onEnter: () => { heroOut = true; update(); }, onLeaveBack: () => { heroOut = false; update(); } });
+    ScrollTrigger.create({ trigger: '.hero', start: 'bottom 60%', onEnter: () => { heroOut = true; update(); }, onLeaveBack: () => { heroOut = false; update(); } });
     App.pill = { update };
   }
 
