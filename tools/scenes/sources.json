@@ -1,0 +1,17 @@
+{
+  "_doc": "Sources des scènes de parallaxe. Toutes les images proviennent du site actuel www.chalets-lombard.fr (fichiers d'origine, suffixes WordPress retirés).",
+  "base": "https://www.chalets-lombard.fr/wp-content/uploads/",
+  "sources": {
+    "ouverture":        "2025/12/Exterieur-chalet-Puy-Saint-Vincent-Construction-Lombard-Vasina-6.jpg",
+    "panorama":         "2025/08/DJI_0009.jpg",
+    "serre-orchis":     "2025/08/DJI_0010.jpg",
+    "sabot-venus":      "2025/08/20250228_114115.jpg",
+    "la-rouya":         "2024/11/La-Rouya-Vue-Sud-Ouest-1.jpg",
+    "rocher-blanc":     "2025/12/Terrain-avec-chalet-a-vendre-a-sarre-Chevalier-chalet-du-Rocher-Blanc-270m2-avec-piscine-interieure-signe-Lombard-Vasina-1.jpg",
+    "etoile-glaciers":  "2024/09/ETOILE-DES-GLACIERS-Vue-Sud.jpg",
+    "real-psv-automne": "2025/12/Exterieur-chalet-Puy-Saint-Vincent-Construction-Lombard-Vasina-8.jpg",
+    "real-montgenevre": "2025/12/Terrasse-bois-ensoleillee-chalet-montgenevre-hautes-alpes-Lombard-Vasina-2.jpg",
+    "rideau-branche":   "2024/09/Chalets_Lombard_hiver_exterieure_chlaets-100me.jpg",
+    "rideau-poteau":    "2024/09/Chalets_Lombard_detail_interieur.jpg"
+  }
+}

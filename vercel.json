@@ -1,0 +1,73 @@
+{
+  "outputDirectory": "site",
+  "cleanUrls": false,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/www-chalets-lombard-fr-renovation-chalet/",
+      "destination": "/renovation-extension-chalet/",
+      "permanent": true
+    },
+    {
+      "source": "/en/www-chalets-lombard-fr-renovation-chalet/",
+      "destination": "/en/renovation-extension-chalet/",
+      "permanent": true
+    },
+    {
+      "source": "/projets/",
+      "destination": "/realisations/",
+      "permanent": true
+    },
+    {
+      "source": "/en/projets/",
+      "destination": "/en/realisations/",
+      "permanent": true
+    },
+    {
+      "source": "/qui-sommes-nous/",
+      "destination": "/lombard-vasina/",
+      "permanent": true
+    },
+    {
+      "source": "/en/qui-sommes-nous/",
+      "destination": "/en/lombard-vasina/",
+      "permanent": true
+    },
+    {
+      "source": "/constructeur-bois/",
+      "destination": "/savoir-faire/",
+      "permanent": true
+    },
+    {
+      "source": "/en/constructeur-bois/",
+      "destination": "/en/savoir-faire/",
+      "permanent": true
+    },
+    {
+      "source": "/chalets-de-toutes-les-tailles/",
+      "destination": "/realisations/",
+      "permanent": true
+    },
+    {
+      "source": "/en/chalets-de-toutes-les-tailles/",
+      "destination": "/en/realisations/",
+      "permanent": true
+    },
+    {
+      "source": "/home/",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}

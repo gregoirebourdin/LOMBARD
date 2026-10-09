@@ -1,0 +1,440 @@
+{
+ "ouverture": {
+  "w": 3840,
+  "h": 2562,
+  "motion": "dolly",
+  "focus": [
+   0.5,
+   0.5
+  ],
+  "origin": [
+   0.5,
+   0.36
+  ],
+  "overscan": 0.1,
+  "desktop": [
+   {
+    "name": "ciel",
+    "speed": 0.05,
+    "s": [
+     1.0,
+     1.02
+    ],
+    "y": [
+     0,
+     -12
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0.8,
+    "alpha": false,
+    "src": {
+     "1280": "/assets/scenes/ouverture/d0-1280",
+     "1920": "/assets/scenes/ouverture/d0-1920",
+     "2560": "/assets/scenes/ouverture/d0-2560"
+    }
+   },
+   {
+    "name": "sommets",
+    "speed": 0.12,
+    "s": [
+     1.08,
+     1.0
+    ],
+    "y": [
+     0,
+     -24
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 1.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/ouverture/d1-1280",
+     "1920": "/assets/scenes/ouverture/d1-1920",
+     "2560": "/assets/scenes/ouverture/d1-2560"
+    }
+   },
+   {
+    "name": "versant-village",
+    "speed": 0.25,
+    "s": [
+     1.0,
+     1.025
+    ],
+    "y": [
+     0,
+     0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 3.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/ouverture/d2-1280",
+     "1920": "/assets/scenes/ouverture/d2-1920",
+     "2560": "/assets/scenes/ouverture/d2-2560"
+    }
+   },
+   {
+    "name": "chalet",
+    "speed": 0.45,
+    "s": [
+     1.0,
+     1.06
+    ],
+    "y": [
+     0,
+     0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 6.8,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/ouverture/d3-1280",
+     "1920": "/assets/scenes/ouverture/d3-1920",
+     "2560": "/assets/scenes/ouverture/d3-2560"
+    }
+   },
+   {
+    "name": "premier-plan",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.15
+    ],
+    "y": [
+     0,
+     300
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 12.0,
+    "alpha": true,
+    "src": {
+     "1280": "/assets/scenes/ouverture/d4-1280",
+     "1920": "/assets/scenes/ouverture/d4-1920",
+     "2560": "/assets/scenes/ouverture/d4-2560"
+    }
+   }
+  ],
+  "mobile": [
+   {
+    "name": "ciel+sommets+versant-village",
+    "speed": 0.25,
+    "s": [
+     1.0,
+     1.025
+    ],
+    "y": [
+     0,
+     0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": false,
+    "src": {
+     "828": "/assets/scenes/ouverture/m0-828",
+     "1280": "/assets/scenes/ouverture/m0-1280"
+    }
+   },
+   {
+    "name": "chalet",
+    "speed": 0.45,
+    "s": [
+     1.0,
+     1.06
+    ],
+    "y": [
+     0,
+     0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "828": "/assets/scenes/ouverture/m1-828",
+     "1280": "/assets/scenes/ouverture/m1-1280"
+    }
+   },
+   {
+    "name": "premier-plan",
+    "speed": 0.8,
+    "s": [
+     1.0,
+     1.15
+    ],
+    "y": [
+     0,
+     300
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": true,
+    "src": {
+     "828": "/assets/scenes/ouverture/m2-828",
+     "1280": "/assets/scenes/ouverture/m2-1280"
+    }
+   }
+  ],
+  "flat": {
+   "1280": "/assets/scenes/ouverture/flat-1280",
+   "1920": "/assets/scenes/ouverture/flat-1920",
+   "2560": "/assets/scenes/ouverture/flat-2560"
+  },
+  "bytes": {
+   "desktop": {
+    "1280": {
+     "avif": 290709,
+     "webp": 521168
+    },
+    "1920": {
+     "avif": 576385,
+     "webp": 1031378
+    },
+    "2560": {
+     "avif": 864621,
+     "webp": 1577526
+    }
+   },
+   "mobile": {
+    "828": {
+     "avif": 173957,
+     "webp": 291428
+    },
+    "1280": {
+     "avif": 321584,
+     "webp": 549614
+    }
+   }
+  },
+  "mobile_box": [
+   0.2796875,
+   0.0,
+   0.4002604166666667,
+   1.0
+  ],
+  "mobile_aspect": 0.5999219359875098,
+  "og": "/assets/scenes/ouverture/og.jpg",
+  "lqip": "data:image/webp;base64,UklGRtAAAABXRUJQVlA4IMQAAADwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdMoMYJnVFsTpX7VQGjhbxu2284xQA/ujt5IA/EEGp6itDvd1AhLTBSe7wuq3eM4PNDYv6zba5BisLIuHqiTJrEMwi/GSQGKJX3SSdBK3DW196wa0mFm5VYtmLTNRaGKdImdA/nycPaDF+dCq85980V3Ej5PNT04gT7kU212nfQz94yi46O/pvd9Wkb/UwsXchJXSX2H53G27/EX5r//GHtbjdrnrUgAAA",
+  "aspect": 1.4988290398126465
+ },
+ "rideau-branche": {
+  "w": 2562,
+  "h": 3840,
+  "motion": "curtain",
+  "focus": [
+   0.5,
+   0.5
+  ],
+  "origin": [
+   0.5,
+   0.5
+  ],
+  "overscan": 0.1,
+  "desktop": [
+   {
+    "name": "branche",
+    "speed": 1.6,
+    "s": [
+     1.0,
+     1.138
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 24.0,
+    "alpha": false,
+    "src": {
+     "1280": "/assets/scenes/rideau-branche/d0-1280",
+     "1920": "/assets/scenes/rideau-branche/d0-1920",
+     "2560": "/assets/scenes/rideau-branche/d0-2560"
+    }
+   }
+  ],
+  "mobile": [
+   {
+    "name": "branche",
+    "speed": 1.6,
+    "s": [
+     1.0,
+     1.138
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": false,
+    "src": {
+     "828": "/assets/scenes/rideau-branche/m0-828",
+     "1280": "/assets/scenes/rideau-branche/m0-1280"
+    }
+   }
+  ],
+  "flat": {},
+  "bytes": {
+   "desktop": {
+    "1280": {
+     "avif": 22043,
+     "webp": 36582
+    },
+    "1920": {
+     "avif": 36163,
+     "webp": 66530
+    },
+    "2560": {
+     "avif": 50933,
+     "webp": 95984
+    }
+   },
+   "mobile": {
+    "828": {
+     "avif": 13503,
+     "webp": 21352
+    },
+    "1280": {
+     "avif": 22043,
+     "webp": 36582
+    }
+   }
+  },
+  "mobile_box": [
+   0.0,
+   0.0,
+   1.0,
+   1.0
+  ],
+  "mobile_aspect": 0.6671875,
+  "aspect": 0.6671875
+ },
+ "rideau-poteau": {
+  "w": 851,
+  "h": 3840,
+  "motion": "curtain",
+  "focus": [
+   0.5,
+   0.5
+  ],
+  "origin": [
+   0.5,
+   0.5
+  ],
+  "overscan": 0.1,
+  "desktop": [
+   {
+    "name": "poteau",
+    "speed": 1.6,
+    "s": [
+     1.0,
+     1.138
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 24.0,
+    "alpha": false,
+    "src": {
+     "640": "/assets/scenes/rideau-poteau/d0-640"
+    }
+   }
+  ],
+  "mobile": [
+   {
+    "name": "poteau",
+    "speed": 1.6,
+    "s": [
+     1.0,
+     1.138
+    ],
+    "y": [
+     0.0,
+     -0.0
+    ],
+    "x": [
+     0,
+     0
+    ],
+    "travel": 1,
+    "mouse": 0,
+    "alpha": false,
+    "src": {
+     "828": "/assets/scenes/rideau-poteau/m0-828",
+     "1280": "/assets/scenes/rideau-poteau/m0-1280"
+    }
+   }
+  ],
+  "flat": {},
+  "bytes": {
+   "desktop": {
+    "640": {
+     "avif": 66901,
+     "webp": 131246
+    }
+   },
+   "mobile": {
+    "828": {
+     "avif": 90566,
+     "webp": 178744
+    },
+    "1280": {
+     "avif": 86601,
+     "webp": 175496
+    }
+   }
+  },
+  "mobile_box": [
+   0.0,
+   0.0,
+   1.0,
+   1.0
+  ],
+  "mobile_aspect": 0.22161458333333334,
+  "aspect": 0.22161458333333334
+ }
+}

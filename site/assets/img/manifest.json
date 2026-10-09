@@ -1,0 +1,1126 @@
+{
+ "so-terrain-1": {
+  "base": "/assets/img/so-terrain-1",
+  "widths": [
+   640,
+   1280,
+   1694
+  ],
+  "w": 1694,
+  "h": 773,
+  "alt": {
+   "fr": "Le terrain du Serre d'Orchis au printemps, hameau du Serre Barbin, Le Monêtier-les-Bains",
+   "en": "The Serre d'Orchis plot in spring, Serre Barbin hamlet, Le Monêtier-les-Bains"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/08/20250410_134605.jpg"
+ },
+ "so-terrain-2": {
+  "base": "/assets/img/so-terrain-2",
+  "widths": [
+   640,
+   1280,
+   1643
+  ],
+  "w": 1643,
+  "h": 670,
+  "alt": {
+   "fr": "Prairie et sommets enneigés depuis le terrain du Serre d'Orchis",
+   "en": "Meadow and snow-capped peaks from the Serre d'Orchis plot"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/08/20250410_135640.jpg"
+ },
+ "sv-site-1": {
+  "base": "/assets/img/sv-site-1",
+  "widths": [
+   640,
+   1200
+  ],
+  "w": 1200,
+  "h": 579,
+  "alt": {
+   "fr": "Le secteur du Sabot de Vénus à La Salle-les-Alpes, pins et chalets voisins en février",
+   "en": "The Sabot de Vénus area in La Salle-les-Alpes, pines and neighbouring chalets in February"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/08/20250228_114130.jpg"
+ },
+ "lr-est": {
+  "base": "/assets/img/lr-est",
+  "widths": [
+   640,
+   1200
+  ],
+  "w": 1200,
+  "h": 675,
+  "alt": {
+   "fr": "Vue est depuis le terrain de La Rouya : mélèzes dorés et première neige, Puy-Saint-Vincent",
+   "en": "East view from the La Rouya plot: golden larches and first snow, Puy-Saint-Vincent"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/11/La-Rouya-Vue-Est.jpg"
+ },
+ "lr-sud": {
+  "base": "/assets/img/lr-sud",
+  "widths": [
+   640,
+   1200
+  ],
+  "w": 1200,
+  "h": 675,
+  "alt": {
+   "fr": "Vue sud depuis le terrain de La Rouya, secteur des Alberts à Puy-Saint-Vincent",
+   "en": "South view from the La Rouya plot, Les Alberts, Puy-Saint-Vincent"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/11/La-Rouya-Vue-Sud.jpg"
+ },
+ "lr-ouest": {
+  "base": "/assets/img/lr-ouest",
+  "widths": [
+   640,
+   1200
+  ],
+  "w": 1200,
+  "h": 675,
+  "alt": {
+   "fr": "Accès et vue ouest du terrain de La Rouya, face aux sommets enneigés",
+   "en": "Access and west view of the La Rouya plot, facing snowy peaks"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/11/La-Rouya-Acces-vue-Ouest.jpg"
+ },
+ "lr-so": {
+  "base": "/assets/img/lr-so",
+  "widths": [
+   640,
+   1200
+  ],
+  "w": 1200,
+  "h": 675,
+  "alt": {
+   "fr": "Vue sud-ouest depuis La Rouya : chalets du hameau et sommets à l'automne",
+   "en": "South-west view from La Rouya: hamlet chalets and peaks in autumn"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/11/La-Rouya-Vue-Sud-Ouest.jpg"
+ },
+ "rb-vue": {
+  "base": "/assets/img/rb-vue",
+  "widths": [
+   640,
+   1280,
+   1920,
+   2560
+  ],
+  "w": 6000,
+  "h": 3680,
+  "alt": {
+   "fr": "Le terrain du Chalet du Rocher Blanc au-dessus de Villard-Laté, face aux pistes de Serre Chevalier",
+   "en": "The Chalet du Rocher Blanc plot above Villard-Laté, facing the Serre Chevalier slopes"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/12/Terrain-avec-chalet-a-vendre-a-sarre-Chevalier-chalet-du-Rocher-Blanc-270m2-avec-piscine-interieure-signe-Lombard-Vasina-2.jpg"
+ },
+ "rb-pistes": {
+  "base": "/assets/img/rb-pistes",
+  "widths": [
+   640,
+   1280,
+   1600
+  ],
+  "w": 1600,
+  "h": 1066,
+  "alt": {
+   "fr": "Vue sur les pistes de Serre Chevalier depuis le terrain du Rocher Blanc",
+   "en": "View of the Serre Chevalier slopes from the Rocher Blanc plot"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/12/Terrain-avec-chalet-a-vendre-a-sarre-Chevalier-chalet-du-Rocher-Blanc-270m2-avec-piscine-interieure-signe-Lombard-Vasina-3.jpg"
+ },
+ "rb-3d-sud": {
+  "base": "/assets/img/rb-3d-sud",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1080,
+  "alt": {
+   "fr": "Vue 3D de la façade sud du Chalet du Rocher Blanc",
+   "en": "3D view of the south façade of the Chalet du Rocher Blanc"
+  },
+  "kind": "3d",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/12/CHALET-DU-ROCHER-BLANC-Facade-Sud-3D.jpg"
+ },
+ "eg-ouest": {
+  "base": "/assets/img/eg-ouest",
+  "widths": [
+   640,
+   1200
+  ],
+  "w": 1200,
+  "h": 800,
+  "alt": {
+   "fr": "Vue ouest depuis le terrain de l'Étoile des Glaciers au Monêtier-les-Bains, mélèzes en automne",
+   "en": "West view from the Étoile des Glaciers plot in Le Monêtier-les-Bains, larches in autumn"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/10/ETOILE-DES-GLACIERS-Vue-Ouest.jpg"
+ },
+ "eg-sud2": {
+  "base": "/assets/img/eg-sud2",
+  "widths": [
+   640,
+   1200
+  ],
+  "w": 1200,
+  "h": 800,
+  "alt": {
+   "fr": "Vue sud depuis l'Étoile des Glaciers vers les sommets des Écrins",
+   "en": "South view from the Étoile des Glaciers towards the Écrins peaks"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/10/ETOILE-DES-GLACIERS-Vue-Sud-2.jpg"
+ },
+ "eg-terrain": {
+  "base": "/assets/img/eg-terrain",
+  "widths": [
+   640,
+   1200
+  ],
+  "w": 1200,
+  "h": 800,
+  "alt": {
+   "fr": "Le terrain de l'Étoile des Glaciers et les sommets du Monêtier-les-Bains",
+   "en": "The Étoile des Glaciers plot and the peaks above Le Monêtier-les-Bains"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/10/ETOILE-DES-GLACIERS-Terrain.jpg"
+ },
+ "bureau-3d": {
+  "base": "/assets/img/bureau-3d",
+  "widths": [
+   640,
+   960
+  ],
+  "w": 960,
+  "h": 675,
+  "alt": {
+   "fr": "Un chalet dessiné en 3D sur l'écran du bureau d'études",
+   "en": "A chalet drawn in 3D on a design office screen"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/11/Design-chalet-05.jpg"
+ },
+ "encre": {
+  "base": "/assets/img/encre",
+  "widths": [
+   640,
+   1280,
+   1920,
+   2002
+  ],
+  "w": 2002,
+  "h": 1531,
+  "alt": {
+   "fr": "Dessin à l'encre de Chine d'un chalet Lombard & Vasina",
+   "en": "Indian ink drawing of a Lombard & Vasina chalet"
+  },
+  "kind": "dessin",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/10/Plans-encre-de-chine.jpg"
+ },
+ "levage": {
+  "base": "/assets/img/levage",
+  "widths": [
+   640,
+   1280
+  ],
+  "w": 1280,
+  "h": 1920,
+  "alt": {
+   "fr": "Charpente poteau-poutre levée sur le chantier, bois massif empilé au pied",
+   "en": "Post-and-beam frame raised on site, solid timber stacked below"
+  },
+  "kind": "photo",
+  "credit": "Alpesphotographies.com",
+  "focus": "50% 50%",
+  "source": "2024/09/Chalet-LOMBARD-�-Alpesphotographies.com-53.jpg"
+ },
+ "charpente": {
+  "base": "/assets/img/charpente",
+  "widths": [
+   640,
+   1280,
+   1281
+  ],
+  "w": 1281,
+  "h": 1920,
+  "alt": {
+   "fr": "Assemblage de charpente en bois massif sous le faîtage",
+   "en": "Solid timber roof frame joinery under the ridge"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_charpente.jpg"
+ },
+ "charpente-meleze": {
+  "base": "/assets/img/charpente-meleze",
+  "widths": [
+   640,
+   1280,
+   1281
+  ],
+  "w": 1281,
+  "h": 1920,
+  "alt": {
+   "fr": "Charpente apparente en mélèze et luminaire suspendu",
+   "en": "Exposed larch roof frame and pendant light"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_melezes_charpente.jpg"
+ },
+ "comble": {
+  "base": "/assets/img/comble",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Combles aménagés sous une charpente en mélèze",
+   "en": "Converted attic under a larch roof frame"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_interieurs_melezes.jpg"
+ },
+ "poteau": {
+  "base": "/assets/img/poteau",
+  "widths": [
+   640,
+   1280,
+   1281
+  ],
+  "w": 1281,
+  "h": 1920,
+  "alt": {
+   "fr": "Poteau en bois massif taillé à l'atelier, détail d'assemblage",
+   "en": "Solid timber post cut in the workshop, joinery detail"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_detail_interieur.jpg"
+ },
+ "int-meleze": {
+  "base": "/assets/img/int-meleze",
+  "widths": [
+   640,
+   1280,
+   1920,
+   2560
+  ],
+  "w": 7321,
+  "h": 4886,
+  "alt": {
+   "fr": "Séjour cathédrale d'un chalet de 300 m² tout en mélèze",
+   "en": "Cathedral living room of a 300 m² chalet in larch"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_interieur_chalets300m2_meleze.jpg"
+ },
+ "int-meleze-2": {
+  "base": "/assets/img/int-meleze-2",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Séjour en mélèze baigné de lumière, cheminée suspendue",
+   "en": "Light-filled larch living room with a suspended fireplace"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_interieur-en-melezes_sejour.jpg"
+ },
+ "int-thermo": {
+  "base": "/assets/img/int-thermo",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Intérieur en épicéa thermotraité, cheminée centrale",
+   "en": "Thermo-treated spruce interior with a central fireplace"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalet_Lombard_interieur_thermo-trate.jpg"
+ },
+ "int-thermo-2": {
+  "base": "/assets/img/int-thermo-2",
+  "widths": [
+   640,
+   1280,
+   1500
+  ],
+  "w": 1500,
+  "h": 1001,
+  "alt": {
+   "fr": "Cheminée et habillage en épicéa thermotraité",
+   "en": "Fireplace and thermo-treated spruce cladding"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_cheminee_-interieur_epicea-thermo-traite.jpg"
+ },
+ "int-vieux": {
+  "base": "/assets/img/int-vieux",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Dortoir sous charpente en mélèze thermotraité",
+   "en": "Bunk room under a thermo-treated larch roof"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_dortoire_melezes-thermo-traite.jpg"
+ },
+ "int-cuisine": {
+  "base": "/assets/img/int-cuisine",
+  "widths": [
+   640,
+   1280,
+   1920,
+   2560
+  ],
+  "w": 7360,
+  "h": 4520,
+  "alt": {
+   "fr": "Cuisine ouverte sur la neige, plafond à solives en mélèze",
+   "en": "Kitchen opening onto the snow, larch joist ceiling"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_interieur_cuisine.jpg"
+ },
+ "int-escalier": {
+  "base": "/assets/img/int-escalier",
+  "widths": [
+   640,
+   1280,
+   1920,
+   2560
+  ],
+  "w": 7316,
+  "h": 4883,
+  "alt": {
+   "fr": "Escalier en bois massif et mur de pierre dans un chalet de 300 m²",
+   "en": "Solid timber staircase and stone wall in a 300 m² chalet"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_interieur_chalets300m2_meleze_escalier.jpg"
+ },
+ "int-sdb": {
+  "base": "/assets/img/int-sdb",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Salle de bain en mélèze thermotraité et pierre",
+   "en": "Bathroom in thermo-treated larch and stone"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_salle-de-bain_meleze-thermo-traite-7.jpg"
+ },
+ "int-mezz": {
+  "base": "/assets/img/int-mezz",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Chambre en mezzanine sous la charpente en mélèze",
+   "en": "Mezzanine bedroom under the larch roof frame"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_chambre_mezzanine_melezes.jpg"
+ },
+ "int-chambre": {
+  "base": "/assets/img/int-chambre",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Chambre ouverte sur les mélèzes, bois clair et lin",
+   "en": "Bedroom opening onto the larches, pale timber and linen"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_chambre.jpg"
+ },
+ "int-sejour-vue": {
+  "base": "/assets/img/int-sejour-vue",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Séjour et table face aux sommets enneigés",
+   "en": "Living and dining area facing snowy peaks"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_interieurs_sejour_cuisine_melezes.jpg"
+ },
+ "ext-nuit-300": {
+  "base": "/assets/img/ext-nuit-300",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Chalet contemporain de 300 m² éclairé à la tombée de la nuit",
+   "en": "Contemporary 300 m² chalet lit at nightfall"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_chalets300m2_exterieur_nuit-2.jpg"
+ },
+ "ext-300-contemp": {
+  "base": "/assets/img/ext-300-contemp",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Chalet de 300 m² aux lignes contemporaines, terrasses en mélèze",
+   "en": "300 m² chalet with contemporary lines and larch terraces"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_chalets300m2_exterieur_contemporain.jpg"
+ },
+ "ext-300-neige": {
+  "base": "/assets/img/ext-300-neige",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Chalet de 300 m² sous la neige, balcons en mélèze",
+   "en": "300 m² chalet under snow, larch balconies"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_chalets300m2_exterieur.jpg"
+ },
+ "ext-220": {
+  "base": "/assets/img/ext-220",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Chalet de 220 m² dans la neige au soleil, garde-corps en bois",
+   "en": "220 m² chalet in the snow and sun, timber railing"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_exterieure-220m2.jpg"
+ },
+ "ext-220-automne": {
+  "base": "/assets/img/ext-220-automne",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Chalet de 220 m² en mélèze et pierre, fleurs d'automne",
+   "en": "220 m² larch and stone chalet, autumn flowers"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_exterieure_chalets-220m2.jpg"
+ },
+ "ext-220-nuit": {
+  "base": "/assets/img/ext-220-nuit",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Terrasse d'un chalet de 220 m² à l'heure bleue",
+   "en": "Terrace of a 220 m² chalet at blue hour"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_exterieure_nuit_chalets-220m2.jpg"
+ },
+ "ext-neige": {
+  "base": "/assets/img/ext-neige",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Chalet en mélèze sous une épaisse couche de neige",
+   "en": "Larch chalet under a thick layer of snow"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_exterieure_neige.jpg"
+ },
+ "ext-terrasse": {
+  "base": "/assets/img/ext-terrasse",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Terrasse en mélèze face aux montagnes au soleil levant",
+   "en": "Larch terrace facing the mountains at sunrise"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_exterieure_terrasse.jpg"
+ },
+ "ext-180-nuit": {
+  "base": "/assets/img/ext-180-nuit",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Chalet de 180 m² éclairé dans la neige au crépuscule",
+   "en": "180 m² chalet lit in the snow at dusk"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_exterieur_180m2.jpg"
+ },
+ "ext-reine": {
+  "base": "/assets/img/ext-reine",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Chalet Reine : façade en mélèze, neige sur les débords de toit",
+   "en": "Chalet Reine: larch façade, snow on the roof overhangs"
+  },
+  "kind": "photo",
+  "credit": "Alpesphotographies.com",
+  "focus": "50% 50%",
+  "source": "2024/09/Chalet-Reine-Web-�-alpesphotographies.com-62.jpg"
+ },
+ "ext-100": {
+  "base": "/assets/img/ext-100",
+  "widths": [
+   640,
+   1280,
+   1920,
+   2560
+  ],
+  "w": 4896,
+  "h": 3068,
+  "alt": {
+   "fr": "Chalet de 100 m² en bois massif au printemps",
+   "en": "100 m² solid timber chalet in spring"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2024/09/Chalets_Lombard_exterieurecchalets-de-100m2.jpg"
+ },
+ "ext-vallouise": {
+  "base": "/assets/img/ext-vallouise",
+  "widths": [
+   640,
+   1280,
+   1920,
+   2160
+  ],
+  "w": 2160,
+  "h": 1441,
+  "alt": {
+   "fr": "Chalet bois sur mesure à Vallouise, au milieu des arbres",
+   "en": "Bespoke timber chalet in Vallouise, among the trees"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/12/exterieur-chalet-bois-vallouise-Chalets-lombard-Vasina-hautes-alpes-7.jpg"
+ },
+ "ext-tomasi": {
+  "base": "/assets/img/ext-tomasi",
+  "widths": [
+   640,
+   1280,
+   1920,
+   2160
+  ],
+  "w": 2160,
+  "h": 1440,
+  "alt": {
+   "fr": "Chalet en bois et pelouse en été, Vallouise-Pelvoux",
+   "en": "Timber chalet and lawn in summer, Vallouise-Pelvoux"
+  },
+  "kind": "photo",
+  "credit": "Alpesphotographies.com",
+  "focus": "50% 50%",
+  "source": "2025/10/Chalet-TOMASI-�-Alpesphotographies.com-81.jpg"
+ },
+ "ext-pelvoux": {
+  "base": "/assets/img/ext-pelvoux",
+  "widths": [
+   640,
+   1280,
+   1500
+  ],
+  "w": 1500,
+  "h": 1001,
+  "alt": {
+   "fr": "Chalet bois face au mont Pelvoux à l'automne",
+   "en": "Timber chalet facing Mont Pelvoux in autumn"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/12/Constructeur-chalet-pelvoux-hautes-alpes-2.jpg"
+ },
+ "psv-terrasse": {
+  "base": "/assets/img/psv-terrasse",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Terrasse panoramique d'un chalet à Puy-Saint-Vincent",
+   "en": "Panoramic terrace of a chalet in Puy-Saint-Vincent"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/12/Terrasse-panoramique-a-puy-saint-vincent-construction-chalet-sur-mesure-par-Lombard-Vasina.jpg"
+ },
+ "psv-interieur": {
+  "base": "/assets/img/psv-interieur",
+  "widths": [
+   640,
+   1280,
+   1281
+  ],
+  "w": 1281,
+  "h": 1920,
+  "alt": {
+   "fr": "Séjour ouvert sur les sommets, Puy-Saint-Vincent",
+   "en": "Living room opening onto the peaks, Puy-Saint-Vincent"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/12/Interieur-chalet-avec-vue-sur-sommets-puy-saint-vincent-COnstruction-Lombard-Vasina-2.jpg"
+ },
+ "mg-aerien": {
+  "base": "/assets/img/mg-aerien",
+  "widths": [
+   640,
+   1280,
+   1920,
+   2560
+  ],
+  "w": 2667,
+  "h": 2000,
+  "alt": {
+   "fr": "Chalet en mélèze dans la neige à Montgenèvre, vue aérienne sur le village",
+   "en": "Larch chalet in the snow in Montgenèvre, aerial view over the village"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/12/Exterieur-Chalet-Montgenevre-Construction-Lombard-Vasina-2.jpg"
+ },
+ "mg-interieur": {
+  "base": "/assets/img/mg-interieur",
+  "widths": [
+   640,
+   1280,
+   1920,
+   2560
+  ],
+  "w": 3000,
+  "h": 2000,
+  "alt": {
+   "fr": "Séjour en vieux bois et cheminée centrale, agencement sur mesure, Montgenèvre",
+   "en": "Reclaimed-wood living room with a central fireplace, bespoke joinery, Montgenèvre"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/12/Interieur-chalet-bois-montgenevre-Hautes-alpes-sejour-agencement-sur-mesure-Lombard-Vasina-5.jpg"
+ },
+ "mg-chambre": {
+  "base": "/assets/img/mg-chambre",
+  "widths": [
+   640,
+   1280,
+   1920,
+   2560
+  ],
+  "w": 3000,
+  "h": 2000,
+  "alt": {
+   "fr": "Chambre avec vue sur les pistes de Montgenèvre",
+   "en": "Bedroom overlooking the Montgenèvre ski slopes"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/12/Vue-sur-les-pistes-de-ski-de-Montgenevre-chalet-sur-mesure-par-Lombard-Vasina-5.jpg"
+ },
+ "briancon-refuge": {
+  "base": "/assets/img/briancon-refuge",
+  "widths": [
+   640,
+   1280,
+   1920
+  ],
+  "w": 1920,
+  "h": 1281,
+  "alt": {
+   "fr": "Terrasse en bois et vue sur la vallée, réalisation dans le Briançonnais",
+   "en": "Timber terrace and valley view, a project in the Briançonnais"
+  },
+  "kind": "photo",
+  "credit": "Alpesphotographies.com",
+  "focus": "50% 50%",
+  "source": "2026/01/Refuge-82-4000�-alpesphotographies.com-208.jpg"
+ },
+ "bureau": {
+  "base": "/assets/img/bureau",
+  "widths": [
+   640,
+   1280,
+   1920,
+   2560
+  ],
+  "w": 5172,
+  "h": 3342,
+  "alt": {
+   "fr": "Les bureaux de Lombard & Vasina à Saint-Martin-de-Queyrières, bois et cour en gravier",
+   "en": "The Lombard & Vasina offices in Saint-Martin-de-Queyrières, timber and gravel courtyard"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2025/07/PHOTO-01-166.jpg"
+ },
+ "ren-ndn-avant": {
+  "base": "/assets/img/ren-ndn-avant",
+  "widths": [
+   640,
+   800
+  ],
+  "w": 800,
+  "h": 600,
+  "alt": {
+   "fr": "Avant : chalet des années 1990 avant isolation par l'extérieur",
+   "en": "Before: 1990s chalet before external insulation"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2026/08/Chalets_Lombard_NotreDamesdesNeiges_avant.webp"
+ },
+ "ren-ndn-apres": {
+  "base": "/assets/img/ren-ndn-apres",
+  "widths": [
+   640,
+   800
+  ],
+  "w": 800,
+  "h": 600,
+  "alt": {
+   "fr": "Après : le même chalet isolé par l'extérieur, nouveau bardage",
+   "en": "After: the same chalet insulated from outside, new cladding"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2026/08/Chalets_Lombard_NotreDamesdesNeiges_apres.webp"
+ },
+ "ren-ndn-int-avant": {
+  "base": "/assets/img/ren-ndn-int-avant",
+  "widths": [
+   640,
+   800
+  ],
+  "w": 800,
+  "h": 600,
+  "alt": {
+   "fr": "Avant : l'intérieur d'origine",
+   "en": "Before: the original interior"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2026/08/notredamedesneiges-avant.webp"
+ },
+ "ren-ndn-int-apres": {
+  "base": "/assets/img/ren-ndn-int-apres",
+  "widths": [
+   640,
+   800
+  ],
+  "w": 800,
+  "h": 600,
+  "alt": {
+   "fr": "Après : intérieur réaménagé, plus lumineux",
+   "en": "After: a refitted, brighter interior"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2026/08/notredamedesneigess-apres.webp"
+ },
+ "ren-ext-avant": {
+  "base": "/assets/img/ren-ext-avant",
+  "widths": [
+   640,
+   800
+  ],
+  "w": 800,
+  "h": 600,
+  "alt": {
+   "fr": "Avant : l'ancien chalet avant extension",
+   "en": "Before: the old chalet before the extension"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2026/08/Chalets_Lombard_agrandissement_avant.webp"
+ },
+ "ren-ext-apres": {
+  "base": "/assets/img/ren-ext-apres",
+  "widths": [
+   640,
+   800
+  ],
+  "w": 800,
+  "h": 600,
+  "alt": {
+   "fr": "Après : le séjour doublé par une extension en bois",
+   "en": "After: the living room doubled by a timber extension"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2026/08/Chalets_Lombard_agrandissement_apres.webp"
+ },
+ "ren-toit-avant": {
+  "base": "/assets/img/ren-toit-avant",
+  "widths": [
+   640,
+   800
+  ],
+  "w": 800,
+  "h": 600,
+  "alt": {
+   "fr": "Avant : toiture et charpente d'origine",
+   "en": "Before: the original roof and frame"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2026/08/Chalets_Lombard_Agrandissement2_avant.webp"
+ },
+ "ren-toit-apres": {
+  "base": "/assets/img/ren-toit-apres",
+  "widths": [
+   640,
+   800
+  ],
+  "w": 800,
+  "h": 600,
+  "alt": {
+   "fr": "Après : toiture et charpente refaites, architecture modernisée",
+   "en": "After: roof and frame rebuilt, updated architecture"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2026/08/Chalets_Lombard_Agrandissement2_apres.webp"
+ },
+ "ren-rec-avant": {
+  "base": "/assets/img/ren-rec-avant",
+  "widths": [
+   640,
+   800
+  ],
+  "w": 800,
+  "h": 600,
+  "alt": {
+   "fr": "Avant : le chalet avant démolition, seul le rez-de-chaussée est conservé",
+   "en": "Before: the chalet before demolition, only the ground floor is kept"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2026/08/Chalets_Lombard_reconstrucion_avant.webp"
+ },
+ "ren-rec-apres": {
+  "base": "/assets/img/ren-rec-apres",
+  "widths": [
+   640,
+   800
+  ],
+  "w": 800,
+  "h": 600,
+  "alt": {
+   "fr": "Après : nouvelle structure bois sur les bases maçonnées existantes",
+   "en": "After: new timber structure on the existing masonry base"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2026/08/Chalets_Lombard_reconstruction.webp"
+ },
+ "presse-archibois": {
+  "base": "/assets/img/presse-archibois",
+  "widths": [
+   630
+  ],
+  "w": 630,
+  "h": 894,
+  "alt": {
+   "fr": "Couverture du magazine Architecture Bois",
+   "en": "Architecture Bois magazine cover"
+  },
+  "kind": "photo",
+  "credit": null,
+  "focus": "50% 50%",
+  "source": "2026/03/architecture-bois-magazine-numero-8-online-janvier-2023-1-1.webp"
+ }
+}
