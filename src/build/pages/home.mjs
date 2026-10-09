@@ -71,7 +71,7 @@ export function home(lang, ctx) {
   </div>
   <div class="pano__track">
     <div class="pano__sticky">
-      <div class="pano__band">${scene('panorama', lang, { flow: false, alt: L('La vallée de Serre Chevalier vue de drone : sommets enneigés, pistes et villages au printemps', 'The Serre Chevalier valley from a drone: snowy peaks, ski runs and villages in spring') })}
+      <div class="pano__band">${scene('panorama', lang, { flow: false, sizes: 'calc(min(68vh, 760px) * 3.761)', alt: L('La vallée de Serre Chevalier vue de drone : sommets enneigés, pistes et villages au printemps', 'The Serre Chevalier valley from a drone: snowy peaks, ski runs and villages in spring') })}
       </div>
       <div class="wrap"><p class="cote caption">${L('La vallée de Serre Chevalier, au printemps', 'The Serre Chevalier valley, in spring')}</p></div>
     </div>

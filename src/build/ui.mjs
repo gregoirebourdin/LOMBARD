@@ -43,13 +43,19 @@ export function credit(id, lang) {
 }
 
 /* ---------- Scènes en profondeur ---------- */
-function planeHTML(name, p, i, lang, { mobile, lazy, priority, sizes, aspectWH }) {
+function planeHTML(name, p, i, lang, { mobile, lazy, priority, sizes, aspectWH, origin }) {
   const media = mobile ? '(min-width: 768px), (prefers-reduced-motion: reduce)' : '(max-width: 767px), (prefers-reduced-motion: reduce)';
   const ws = Object.keys(p.src).map(Number).sort((a, b) => a - b);
   const set = (ext) => ws.map((w) => `${p.src[w]}.${ext} ${w}w`).join(', ');
   const fb = `${p.src[ws[Math.min(1, ws.length - 1)]]}.webp`;
   const data = `data-s="${p.s.join(',')}" data-y="${p.y.join(',')}" data-x="${(p.x || [0, 0]).join(',')}" data-speed="${p.speed}" data-travel="${p.travel ?? 1}" data-mouse="${p.mouse || 0}"`;
-  return `<div class="scene__plane" ${data}><picture><source media="${media}" srcset="${BLANK}"><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${fb}" alt="" width="${aspectWH[0]}" height="${aspectWH[1]}" loading="${lazy ? 'lazy' : 'eager'}" decoding="async"${priority && i === 0 ? ' fetchpriority="high"' : ''}></picture></div>`;
+  // Le plan est rogné à sa zone utile : on le replace dans le cadre de l'image entière,
+  // et l'origine des transformations reste celle de la scène.
+  const [bx, by, bw, bh] = p.bbox || [0, 0, 1, 1];
+  const pc = (v) => `${(v * 100).toFixed(3)}%`;
+  const imgStyle = `left:${pc(bx)};top:${pc(by)};width:${pc(bw)};height:${pc(bh)};transform-origin:${pc((origin[0] - bx) / bw)} ${pc((origin[1] - by) / bh)}`;
+  const cw = Math.round(aspectWH[0] * bw), ch = Math.round(aspectWH[1] * bh);
+  return `<div class="scene__plane" ${data}><picture><source media="${media}" srcset="${BLANK}"><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${fb}" alt="" width="${cw}" height="${ch}" style="${imgStyle}" loading="${lazy ? 'lazy' : 'eager'}" decoding="async"${priority && i === 0 ? ' fetchpriority="high"' : ''}></picture></div>`;
 }
 
 export function scene(name, lang, { alt, flow = true, lazy = true, priority = false, sizes = '100vw', light = false, cls = '' } = {}) {
@@ -59,17 +65,18 @@ export function scene(name, lang, { alt, flow = true, lazy = true, priority = fa
   const origin = `${(m.origin[0] * 100).toFixed(1)}% ${(m.origin[1] * 100).toFixed(1)}%`;
   const mb = m.mobile_box || [0, 0, 1, 1];
   const mfocus = `50% 50%`;
-  const dPlanes = m.desktop.map((p, i) => planeHTML(name, p, i, lang, { mobile: false, lazy, priority, sizes, aspectWH: [m.w, m.h] })).join('');
+  const dPlanes = m.desktop.map((p, i) => planeHTML(name, p, i, lang, { mobile: false, lazy, priority, sizes, aspectWH: [m.w, m.h], origin: m.origin })).join('');
   const mw = Math.round(m.w * mb[2]), mh = Math.round(m.h * mb[3]);
-  const mPlanes = m.mobile.map((p, i) => planeHTML(name, p, i, lang, { mobile: true, lazy, priority, sizes: m.motion === 'pan' ? 'calc(62vh * ' + (m.aspect).toFixed(3) + ')' : '100vw', aspectWH: [mw, mh] })).join('');
+  const mo = [(m.origin[0] - mb[0]) / mb[2], (m.origin[1] - mb[1]) / mb[3]];
+  const mPlanes = m.mobile.map((p, i) => planeHTML(name, p, i, lang, { mobile: true, lazy, priority, sizes: m.motion === 'pan' ? 'calc(62vh * ' + (m.aspect).toFixed(3) + ')' : '100vw', aspectWH: [mw, mh], origin: mo })).join('');
   const fws = Object.keys(m.flat).map(Number).sort((a, b) => a - b);
   const fset = (ext) => fws.map((w) => `${m.flat[w]}.${ext} ${w}w`).join(', ');
   const flat = `<picture><source media="(prefers-reduced-motion: no-preference)" srcset="${BLANK}"><source type="image/avif" srcset="${fset('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${fset('webp')}" sizes="${sizes}"><img class="scene__flat" src="${m.flat[fws[Math.min(1, fws.length - 1)]]}.webp" width="${m.w}" height="${m.h}" alt="${esc(alt)}" loading="${lazy ? 'lazy' : 'eager'}" decoding="async"></picture>`;
   const style = `--focus:${focus};--origin:${origin};--overscan:${m.overscan};background-image:url(${m.lqip});background-size:cover;background-position:${focus}`;
   const mstyle = `--focus:${mfocus}`;
   return `<div class="scene${cls ? ' ' + cls : ''}"${flow ? ' data-flow' : ''}${light ? ' data-light' : ''} style="${style}">`
-    + `<div class="scene__stage scene__stage--d" role="img" aria-label="${esc(alt)}" data-aspect="${m.aspect.toFixed(4)}">${dPlanes}</div>`
-    + `<div class="scene__stage scene__stage--m" role="img" aria-label="${esc(alt)}" data-aspect="${(m.motion === 'pan' ? m.aspect : m.mobile_aspect).toFixed(4)}" style="${mstyle}">${mPlanes}</div>`
+    + `<div class="scene__stage scene__stage--d" role="img" aria-label="${esc(alt)}" data-aspect="${m.aspect.toFixed(4)}" style="--a:${m.aspect.toFixed(5)};--fx:${m.focus[0]};--fy:${m.focus[1]}">${dPlanes}</div>`
+    + `<div class="scene__stage scene__stage--m" role="img" aria-label="${esc(alt)}" data-aspect="${(m.motion === 'pan' ? m.aspect : m.mobile_aspect).toFixed(4)}" style="${mstyle};--a:${(m.motion === 'pan' ? m.aspect : m.mobile_aspect).toFixed(5)};--fx:0.5;--fy:0.5">${mPlanes}</div>`
     + flat + (light ? '<div class="scene__light" aria-hidden="true"></div>' : '') + '</div>';
 }
 

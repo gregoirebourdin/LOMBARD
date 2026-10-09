@@ -249,8 +249,10 @@
     ]
    ],
    "widths": [
-    640,
-    1280
+    640
+   ],
+   "mobile_widths": [
+    480
    ]
   },
   "panorama": {
@@ -263,7 +265,8 @@
    ],
    "overscan": 0,
    "sky": {
-    "far": 0.012
+    "far": 0.012,
+    "blue": 0.035
    },
    "planes": [
     {
@@ -282,7 +285,39 @@
      "speed": 0.25,
      "travel": 0.8,
      "depth": 0.05,
-     "w": 0.004
+     "w": 0.004,
+     "add_poly": [
+      [
+       [
+        3005,
+        0
+       ],
+       [
+        6834,
+        0
+       ],
+       [
+        6834,
+        1817
+       ],
+       [
+        2400,
+        1817
+       ],
+       [
+        2400,
+        705
+       ],
+       [
+        2700,
+        695
+       ],
+       [
+        3005,
+        655
+       ]
+      ]
+     ]
     },
     {
      "name": "premier-plan",
@@ -313,11 +348,12 @@
    "mobile_widths": [
     1920,
     2560
-   ]
+   ],
+   "ref_width": 6834
   },
   "la-rouya": {
    "motion": "flow",
-   "amplitude": 180,
+   "amplitude": 140,
    "anchor_speed": 0.25,
    "mouse": 12,
    "focus": [
@@ -348,7 +384,7 @@
      "name": "neige-premier-plan",
      "speed": 0.8,
      "depth": 0.4,
-     "w": 0.06
+     "w": 0.22
     }
    ],
    "mobile": [
@@ -371,7 +407,7 @@
   },
   "sabot-venus": {
    "motion": "flow",
-   "amplitude": 160,
+   "amplitude": 100,
    "anchor_speed": 0.25,
    "mouse": 12,
    "focus": [
@@ -415,11 +451,12 @@
     "aspect": 0.8,
     "cx": 0.36,
     "cy": 0.5
-   }
+   },
+   "hole_th": 0.15
   },
   "real-psv-automne": {
    "motion": "flow",
-   "amplitude": 200,
+   "amplitude": 160,
    "anchor_speed": 0.45,
    "mouse": 12,
    "focus": [
@@ -452,7 +489,7 @@
      "name": "arbustes-automne",
      "speed": 0.8,
      "depth": 0.62,
-     "w": 0.04
+     "w": 0.1
     }
    ],
    "mobile": [
@@ -471,11 +508,16 @@
     "aspect": 0.8,
     "cx": 0.46,
     "cy": 0.5
+   },
+   "quality": {
+    "avif": 44,
+    "avif_alpha": 42,
+    "webp": 74
    }
   },
   "real-montgenevre": {
    "motion": "flow",
-   "amplitude": 200,
+   "amplitude": 160,
    "anchor_speed": 0.25,
    "mouse": 12,
    "focus": [
@@ -532,7 +574,7 @@
   },
   "serre-orchis": {
    "motion": "flow",
-   "amplitude": 140,
+   "amplitude": 90,
    "anchor_speed": 0.25,
    "mouse": 8,
    "focus": [
@@ -556,14 +598,14 @@
     {
      "name": "montagnes",
      "speed": 0.25,
-     "depth": 0.02,
-     "w": 0.004
+     "depth": 0.08,
+     "w": 0.04
     },
     {
      "name": "vallee",
      "speed": 0.45,
-     "depth": 0.12,
-     "w": 0.05
+     "depth": 0.24,
+     "w": 0.12
     }
    ],
    "mobile": [
@@ -586,7 +628,7 @@
   },
   "etoile-glaciers": {
    "motion": "flow",
-   "amplitude": 180,
+   "amplitude": 150,
    "anchor_speed": 0.45,
    "mouse": 12,
    "focus": [
@@ -619,7 +661,7 @@
      "name": "feuillages-dores",
      "speed": 0.8,
      "depth": 0.62,
-     "w": 0.04
+     "w": 0.1
     }
    ],
    "mobile": [
@@ -642,7 +684,7 @@
   },
   "rocher-blanc": {
    "motion": "flow",
-   "amplitude": 180,
+   "amplitude": 150,
    "anchor_speed": 0.45,
    "mouse": 12,
    "focus": [
@@ -675,7 +717,7 @@
      "name": "premier-plan",
      "speed": 0.8,
      "depth": 0.62,
-     "w": 0.04,
+     "w": 0.12,
      "edge_connected": true
     }
    ],
@@ -695,6 +737,11 @@
     "aspect": 0.8,
     "cx": 0.5,
     "cy": 0.5
+   },
+   "quality": {
+    "avif": 46,
+    "avif_alpha": 44,
+    "webp": 76
    }
   }
  }

@@ -10,6 +10,8 @@ Site de Chalets Lombard Vasina, constructeur et vendeur de chalets neufs dans le
 4. Le site codé : dossier [`site/`](site/), prêt à déployer
 5. [Relecture critique](docs/04-relecture-critique.md)
 
+Quelques [captures](docs/captures/) du site généré (ordinateur 1 440 × 900, mobile 390 × 844).
+
 ## Voir le site en local
 
 ```bash
@@ -37,9 +39,18 @@ site/             le site généré (HTML, CSS, JS, images AVIF/WebP)
 docs/             livrables écrits
 ```
 
+## Vérifier
+
+```bash
+npm run check          # texte de l'accueil, liens, hreflang, JSON-LD, interdits
+node tools/qa.mjs qa   # captures, temps d'affichage en 4G, poids, fluidité, grille au pixel
+```
+
+Pour mesurer la fluidité sur un vrai portable, ajouter `?fps` à l'adresse : un compteur affiche la médiane et le 95ᵉ centile des temps d'image.
+
 ## Fabriquer les scènes
 
-Les outils de `tools/scenes` reproduisent le processus du brief (section 5.5). Ils tournent sur processeur, sans GPU. Il faut Python 3.11 ou plus récent, ainsi que torch, transformers, onnxruntime, spandrel, pymatting et opencv.
+Les outils de `tools/scenes` reproduisent le processus du brief (section 5.5). Ils tournent sur processeur, sans GPU. Il faut Python 3.11 ou plus récent et les paquets de `tools/scenes/requirements.txt` (torch en version CPU). Les poids des modèles se téléchargent depuis Hugging Face : Depth Anything V2 Large, SAM 2.1 hiera base+, Real-ESRGAN x2 (ai-forever) et LaMa ONNX (Carve).
 
 | Étape | Outil | Modèle |
 |---|---|---|
@@ -52,7 +63,7 @@ Les outils de `tools/scenes` reproduisent le processus du brief (section 5.5). I
 | Contrôle image par image | `simulate.py` | — |
 | Export | `export.py` | AVIF et WebP, 1 280 / 1 920 / 2 560 px, mobile en 2 ou 3 plans |
 
-Chaque scène est décrite dans `tools/scenes/scenes.json` : seuils de découpe, vitesses et amplitudes. Le site lit ensuite `site/assets/scenes/manifest.json`.
+Une scène se fabrique de bout en bout avec `tools/scenes/run.sh <dossier_travail> <scène> <image_source>`. Chaque scène est décrite dans `tools/scenes/scenes.json` : seuils de découpe, vitesses et amplitudes. Le site lit ensuite `site/assets/scenes/manifest.json`.
 
 ## Déploiement
 

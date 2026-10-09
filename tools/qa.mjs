@@ -17,26 +17,27 @@ const BASE = `http://localhost:${PORT}`;
 const browser = await pw.chromium.launch({ args: ['--enable-gpu-rasterization', '--ignore-gpu-blocklist'] });
 const report = {};
 
-async function measureLoad(path, viewport, mobile) {
+async function measureLoad(path, viewport, mobile, mbps = 9) {
   const ctx = await browser.newContext({ viewport, deviceScaleFactor: mobile ? 3 : 1, isMobile: mobile, hasTouch: mobile });
   const page = await ctx.newPage();
   const cdp = await ctx.newCDPSession(page);
   await cdp.send('Network.enable');
-  await cdp.send('Network.emulateNetworkConditions', { offline: false, latency: 150, downloadThroughput: 9e6 / 8, uploadThroughput: 1.5e6 / 8 });
+  await cdp.send('Network.emulateNetworkConditions', { offline: false, latency: 150, downloadThroughput: mbps * 1e6 / 8, uploadThroughput: 0.75e6 / 8 });
   const bytes = {};
   page.on('response', async (r) => {
     const t = (r.headers()['content-type'] || 'other').split(';')[0];
     const b = Number(r.headers()['content-length']) || (await r.body().catch(() => Buffer.alloc(0))).length;
     bytes[t] = (bytes[t] || 0) + b;
   });
+  if (mobile) await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
   await page.addInitScript(() => {
-    window.__lcp = 0; window.__cls = 0;
-    new PerformanceObserver((l) => { for (const e of l.getEntries()) window.__lcp = e.startTime; }).observe({ type: 'largest-contentful-paint', buffered: true });
+    window.__lcp = 0; window.__cls = 0; window.__lcpEl = '';
+    new PerformanceObserver((l) => { for (const e of l.getEntries()) { window.__lcp = e.startTime; window.__lcpEl = e.element ? e.element.tagName + '.' + e.element.className + ' ' + (e.url || '').split('/').slice(-2).join('/') : ''; } }).observe({ type: 'largest-contentful-paint', buffered: true });
     new PerformanceObserver((l) => { for (const e of l.getEntries()) if (!e.hadRecentInput) window.__cls += e.value; }).observe({ type: 'layout-shift', buffered: true });
   });
   await page.goto(BASE + path, { waitUntil: 'load' });
   await page.waitForTimeout(2500);
-  const m = await page.evaluate(() => ({ lcp: Math.round(window.__lcp), cls: +window.__cls.toFixed(4) }));
+  const m = await page.evaluate(() => ({ lcp: Math.round(window.__lcp), lcpEl: window.__lcpEl, cls: +window.__cls.toFixed(4) }));
   await ctx.close();
   return { ...m, kb: Object.fromEntries(Object.entries(bytes).map(([k, v]) => [k, Math.round(v / 1024)])) };
 }
@@ -76,10 +77,43 @@ async function smoothness(path) {
   return { frames: f.length, median_ms: p(0.5), p95_ms: p(0.95), over_33ms: f.filter((x) => x > 33.4).length };
 }
 
+// Alignements : chaque bloc de texte ou d'image commence sur une colonne de la grille (au pixel près).
+async function gridCheck(path, viewport) {
+  const ctx = await browser.newContext({ viewport, reducedMotion: 'reduce' });
+  const page = await ctx.newPage();
+  await page.goto(BASE + path, { waitUntil: 'networkidle' });
+  const r = await page.evaluate(() => {
+    const cs = getComputedStyle(document.documentElement);
+    const W = document.documentElement.clientWidth;
+    const margin = parseFloat(cs.getPropertyValue('--margin')), gap = parseFloat(cs.getPropertyValue('--gap')), cols = parseInt(cs.getPropertyValue('--cols'));
+    const max = 1600, inner = Math.min(W - 2 * margin, max), x0 = (W - inner) / 2;
+    const cw = (inner - (cols - 1) * gap) / cols;
+    const starts = [0, ...Array.from({ length: cols }, (_, k) => x0 + k * (cw + gap))];
+    const sel = 'main h1, main h2, main h3, main p, main dl, main ol, main ul, main figure, main .frame, main .still, main .listing__title, main blockquote, main form, main .map svg, main .ferme__draw svg';
+    const bad = [];
+    let n = 0;
+    for (const el of document.querySelectorAll(sel)) {
+      const b = el.getBoundingClientRect(); if (!b.width || b.height < 2) continue;
+      if (el.closest('dl.facts > div, dl.figures > div, .timeline li, .list-rule li, .crumbs, .card__meta, .sold__meta, .listing__head, .after, .hero__entries, figcaption, .map, .ferme__steps li, svg')) { if (!el.matches('.map svg, .ferme__draw svg')) continue; }
+      n++;
+      const d = Math.min(...starts.map((s) => Math.abs(b.left - s)));
+      if (d > 0.5) bad.push(`${el.tagName.toLowerCase()}.${(el.className.baseVal ?? el.className).toString().split(' ')[0]} x=${b.left.toFixed(1)} (écart ${d.toFixed(1)} px)`);
+    }
+    return { checked: n, misaligned: bad.slice(0, 20), count: bad.length };
+  });
+  await ctx.close();
+  return r;
+}
+
 const D = { width: 1440, height: 900 }, M = { width: 390, height: 844 };
-report.load_home_desktop = await measureLoad('/', D, false);
-report.load_home_mobile = await measureLoad('/', M, true);
-report.load_chalet_mobile = await measureLoad('/vefa-la-rouya/', M, true);
+report.grid = {};
+for (const path of ['/', '/vente-sur-plan/', '/vefa-la-rouya/', '/savoir-faire/', '/renovation-extension-chalet/', '/realisations/', '/lombard-vasina/', '/contact/']) {
+  report.grid[path] = { desktop: await gridCheck(path, D), mobile: await gridCheck(path, M) };
+}
+report.load_home_desktop_4g = await measureLoad('/', D, false, 9);
+report.load_home_mobile_4g = await measureLoad('/', M, true, 9);
+report.load_home_mobile_slow4g = await measureLoad('/', M, true, 1.6);
+report.load_chalet_mobile_4g = await measureLoad('/vefa-la-rouya/', M, true, 9);
 report.home_desktop = await shots('home-d', '/', D, { positions: [0, 450, 900, 1600, 2600, '#a-vendre', '.listing:nth-of-type(1)', '.listing:nth-of-type(2)', '.sold', '.pano__track', 0.62, '.map', '#construire', '.ferme', '.works', '.figures', '.quote', 1] });
 report.home_mobile = await shots('home-m', '/', M, { mobile: true, positions: [0, 400, 900, 1700, '#a-vendre', '.listing', '.pano__track', '.map', '#construire', '.ferme', '.figures', 1] });
 report.home_reduced = await shots('home-r', '/', D, { reduced: true, positions: [0, '#a-vendre', 1] });

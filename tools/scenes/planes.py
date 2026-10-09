@@ -8,11 +8,14 @@ Principe (brief §5.5)
   Une transition douce sur la profondeur donne naturellement des bords nets aux
   ruptures d'occlusion (la profondeur saute) et un fondu large sur un sol continu
   (la profondeur varie lentement) : pas de « marche » visible dans le terrain.
-- Bords affinés par filtre guidé sur l'image (contour adouci de 1 à 3 px),
-  puis décontamination des couleurs (estimation du premier plan, pymatting).
-- Chaque plan sauf le premier est comblé derrière les plans du dessus, au-delà du
-  déplacement maximal (marge en px source) : poussée-tirée pour le ciel, LaMa ailleurs.
-  L'IA ne sert qu'à combler ciel, neige, forêt ou versant derrière un plan découpé.
+- Bords affinés par filtre guidé sur l'image (contour adouci de 1 à 3 px), puis
+  décontamination des couleurs (pymatting) sur les bords nets seulement : dans une
+  transition large (sol, pente), les deux plans gardent les vrais pixels et se
+  recomposent exactement en la photo au repos.
+- Chaque plan sauf le premier est comblé derrière les zones opaques des plans du dessus,
+  au-delà du déplacement relatif maximal calculé pixel par pixel (motion.py) :
+  poussée-tirée pour le ciel, LaMa ailleurs. L'IA ne sert qu'à combler ciel, neige,
+  forêt ou versant derrière un plan découpé, jamais à inventer de l'architecture.
 """
 import json, os, sys, glob, numpy as np, cv2
 from PIL import Image
@@ -52,6 +55,27 @@ def push_pull(img, known):
         w = np.clip(m_l * 3.0, 0, 1)[..., None]
         fill = cur * w + up * (1 - w)
     return fill
+
+
+def mirror_fill(img, hole, max_run=None):
+    """Remplit chaque colonne d'un trou par le miroir des vrais pixels situés juste au-dessus
+    de son bord haut (le sol continue derrière le premier plan). Sans couture au bord, et net.
+    Retourne l'image et le masque des pixels qu'on n'a pas pu remplir ainsi."""
+    H, W = hole.shape
+    ys = np.arange(H)[:, None].repeat(W, 1)
+    start = hole & ~np.vstack([np.zeros((1, W), bool), hole[:-1]])
+    top = np.maximum.accumulate(np.where(start, ys, 0), axis=0)
+    d = ys - top
+    src = top - 1 - d
+    xs = np.arange(W)[None, :].repeat(H, 0)
+    ok = hole & (src >= 0) & (top > 0)
+    if max_run is not None:
+        ok &= d < max_run
+    srcc = np.clip(src, 0, H - 1)
+    ok &= ~hole[srcc, xs]
+    out = img.copy()
+    out[ok] = img[srcc[ok], xs[ok]]
+    return out, hole & ~ok
 
 
 _lama = None
@@ -262,10 +286,18 @@ def main(work, scene):
             behind = np.clip(cov[k] * ext, 0, 1)  # là où un plan de devant couvre, dans la marge
             alpha = np.maximum(own, np.minimum(behind, cov[k]))
             # pixels connus = pas (ou peu) couverts par les plans de devant
-            hole = cv2.dilate((front > 0.25).astype(np.uint8), np.ones((7, 7), np.uint8)).astype(bool) & (alpha > 0.01)
+            # On ne comble que derrière les zones vraiment opaques des plans de devant (+ 7 px pour
+            # les bords nets). Dans une transition douce (un sol continu), on garde les vrais
+            # pixels : un léger dédoublement de texture se voit moins qu'un remplissage flou.
+            hth = planes[k].get('hole_th', c.get('hole_th', 0.98))  # 0,15 pour des branches fines devant le ciel
+            hole = cv2.dilate((front > hth).astype(np.uint8), np.ones((7, 7), np.uint8)).astype(bool) & (alpha > 0.01)
             hole &= ~((own > 0.9) & (front < 0.05))
-            # décontamination des couleurs sur la bande de bord
-            band = (own > 0.01) & (own < 0.99)
+            # décontamination des couleurs sur les bords nets seulement (transition de quelques px) ;
+            # dans une transition large (sol, pente), on garde les vrais pixels : au repos,
+            # plan avant et plan arrière se recomposent alors exactement en la photo.
+            gy_, gx_ = np.gradient(cv2.GaussianBlur(own, (0, 0), 1.0))
+            sharp = cv2.dilate((np.hypot(gx_, gy_) > 0.06).astype(np.uint8), np.ones((5, 5), np.uint8)).astype(bool)
+            band = (own > 0.01) & (own < 0.99) & sharp
             if band.any():
                 ys, xs = np.where(band)
                 y0, y1, x0, x1 = max(ys.min() - 8, 0), min(ys.max() + 9, H), max(xs.min() - 8, 0), min(xs.max() + 9, W)
@@ -277,6 +309,11 @@ def main(work, scene):
                 method = planes[k].get('fill', 'lama')
                 if method == 'pushpull':
                     rgb = np.where(hole[..., None], push_pull(rgb, (~hole).astype(np.float32)), rgb)
+                elif method == 'mirror':
+                    # le sol ou le versant continue : miroir net, puis LaMa pour le reste
+                    rgb, rest = mirror_fill(rgb, hole)
+                    if rest.any():
+                        rgb = lama_fill(rgb, rest)
                 else:
                     rgb = lama_fill(rgb, hole)
         a8 = (np.clip(alpha, 0, 1) * 255 + 0.5).astype(np.uint8)

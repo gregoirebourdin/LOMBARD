@@ -2,6 +2,8 @@
 
 Neuf scènes et deux rideaux. Les amplitudes sont données pour un cadre de 1 920 px de large ; elles sont divisées par deux sur mobile, où chaque scène passe à 2 ou 3 plans, sans effet de souris. Les vitesses relatives suivent le brief : 0,05 / 0,12 / 0,25 / 0,45 / 0,8. Il n'y a qu'une seule courbe, `cubic-bezier(0.16, 1, 0.3, 1)`. Les scènes liées au défilement ont un *scrub* de 0,8 (0,6 pour les rideaux et le trait). La configuration exacte est dans [`tools/scenes/scenes.json`](../tools/scenes/scenes.json).
 
+**Pourquoi des amplitudes de 120 à 160 px hors de l'ouverture.** Le brief permet jusqu'à 400 px au premier plan. Dans une photo réelle, tout déplacement relatif découvre une zone que l'appareil n'a jamais vue ; elle doit être comblée. Sur un sol continu (neige, herbe), le contrôle image par image a montré qu'au-delà de la largeur de la transition, la zone comblée se voit, en flou ou en reflet. Les amplitudes sont donc réglées pour rester sous la moitié de cette transition tant que la scène est visible au moins au tiers. L'ouverture garde 300 px et l'échelle 1,15, parce que le sol découvert y est de la neige lisse, qui se comble sans trace. Avec les rendus 3D en calques demandés à l'entreprise, rien n'est à combler, et les fiches pourront monter à 300 ou 400 px.
+
 **Trois types de mouvement** (modèle commun aux outils et au site, voir `tools/scenes/motion.py` et `src/js/main.js`) :
 - **travelling** (scène épinglée) : chaque plan grandit autour du point de fuite, le premier plan sort par le bas ;
 - **flux** (scène qui passe) : les plans proches défilent plus vite que la page, les plans lointains plus lentement ;
@@ -34,11 +36,11 @@ Point de fuite : 50 % / 36 % (l'horizon). Souris : ±12 px au premier plan, au p
 | Plan | Vitesse | Découpe |
 |---|---|---|
 | Ciel | 0,05 | couleur + profondeur |
-| Sommets enneigés | 0,12 | profondeur |
-| Vallée et villages | 0,25 | profondeur |
-| Versant boisé au premier plan | 0,45 | profondeur, transition large |
+| Sommets enneigés | 0,12 | profondeur < 0,08 |
+| Montagnes | 0,25 | profondeur 0,08 à 0,24 |
+| Fond de vallée, hameaux, route | 0,45 | profondeur > 0,24, transition large (sol continu) |
 
-Mouvement en flux, amplitude 260 px : les plans lointains glissent plus lentement que la page, le premier plan plus vite.
+Mouvement en flux, amplitude 120 px (vue aérienne : peu de parallaxe, comme en vrai) : les plans lointains glissent plus lentement que la page, le fond de vallée plus vite.
 - **Entrée** : le nom en italique, puis le cadre 21:9 qui monte.
 - **Sortie** : la ligne de cote (« Vue de drone sur la vallée… »), puis la fiche : surfaces, terrains, chambres, état.
 
@@ -52,7 +54,7 @@ Mouvement en flux, amplitude 260 px : les plans lointains glissent plus lentemen
 | Chalets du secteur et forêt | 0,25 | profondeur |
 | Pin au premier plan | 0,8 | profondeur, reliée aux bords |
 
-Mouvement en flux, amplitude 220 px. Il n'y a pas de vue 3D publiée tant que leur provenance n'est pas confirmée (voir l'inventaire).
+Mouvement en flux, amplitude 140 px. Il n'y a pas de vue 3D publiée tant que leur provenance n'est pas confirmée (voir l'inventaire).
 
 ## 4. La Rouya
 
@@ -63,21 +65,21 @@ Mouvement en flux, amplitude 220 px. Il n'y a pas de vue 3D publiée tant que le
 | Ciel | 0,05 | couleur + profondeur |
 | Massif enneigé | 0,12 | profondeur |
 | Chalets du hameau, mélèzes | 0,25 | profondeur |
-| Première neige au premier plan | 0,8 | profondeur, transition large |
+| Première neige au premier plan | 0,8 | profondeur, transition très large (sol continu) |
 
-Mouvement en flux, amplitude 240 px.
+Mouvement en flux, amplitude 140 px.
 
 ## 5. Chalet du Rocher Blanc (vendu, sur sa fiche)
 
 **Source** : terrain face aux pistes (`2025/12/Terrain-…-Rocher-Blanc-…-1.jpg`), 4 032 px. Débruitage seulement.
 
-Plans : ciel et nuages / versant des pistes (Prorel) / arbres et toits au premier plan. Mouvement en flux, amplitude 220 px. La vue 3D de la façade sud est montrée à part, avec la mention « Vue 3D, image non contractuelle ».
+Plans : ciel et nuages (0,05) / versant des pistes et Prorel (0,15) / arbres (0,45) / herbes au premier plan (0,8). Mouvement en flux, amplitude 150 px. La vue 3D de la façade sud est montrée à part, avec la mention « Vue 3D, image non contractuelle ».
 
 ## 6. L'Étoile des Glaciers (vendu, sur sa fiche)
 
 **Source** : vue sud depuis le terrain en octobre (`2024/09/ETOILE-DES-GLACIERS-Vue-Sud.jpg`), 1 500 px. Agrandissement ×2, soit 3 000 px.
 
-Plans : ciel / sommets (Cibouit, Yret) / chalets et forêt / mélèzes et bouleaux dorés au premier plan. Mouvement en flux, amplitude 240 px.
+Plans : ciel (0,05) / montagnes (0,15) / sapins et peupliers (0,45) / feuillages dorés au premier plan (0,8). Mouvement en flux, amplitude 150 px.
 
 ## 7. Le panorama : la vallée vue d'un télésiège
 
@@ -90,7 +92,7 @@ Plans : ciel / sommets (Cibouit, Yret) / chalets et forêt / mélèzes et boulea
 | Versants, pistes, villages | 0,8 | profondeur |
 | Versants proches | 1 | profondeur > 0,52, masses reliées aux bords |
 
-La scène fait 1,6 fois la largeur du cadre. Elle est épinglée sur 260 vh et défile vers la gauche sur 0,6 cadre. Les plans sont alignés à mi-course : aucun bord ne se découvre jamais. Les coupes suivent des arêtes réelles, pour que rien ne se déchire au défilement latéral.
+La scène fait 1,6 fois la largeur du cadre. Elle est épinglée sur 260 vh et défile vers la gauche sur 0,6 cadre. Les plans sont alignés à mi-course : aucun bord ne se découvre jamais. Sur mobile, la bande fait 62 % de la hauteur de l'écran et les écarts de vitesse entre plans sont divisés par deux. Les coupes suivent des arêtes réelles, pour que rien ne se déchire au défilement latéral.
 - **Entrée** : après « Une vallée, et pas une autre ».
 - **Sortie** : la carte des vallées, tracée d'un seul trait (le trait n° 2).
 
@@ -98,13 +100,13 @@ La scène fait 1,6 fois la largeur du cadre. Elle est épinglée sur 260 vh et d
 
 **Source** : `2025/12/Exterieur-chalet-Puy-Saint-Vincent-…-8.jpg`, 1 920 px. Agrandissement ×2, soit 3 840 px. Les mélèzes dorés en font l'or du site.
 
-Plans : ciel / sommets / chalet et arbres / arbustes d'automne au premier plan. Mouvement en flux, amplitude 260 px. On la retrouve aussi en ouverture de la page « Construire ».
+Plans : ciel (0,05) / sommets et versants (0,12) / le chalet (0,45) / arbustes d'automne au premier plan (0,8). Mouvement en flux, amplitude 160 px. On la retrouve aussi en ouverture de la page « Construire ».
 
 ## 9. Réalisation, Montgenèvre face aux pistes
 
 **Source** : `2025/12/Terrasse-bois-ensoleillee-chalet-montgenevre-…-2.jpg`, 2 998 px. Débruitage seulement.
 
-Plans : ciel / sommets / forêt de mélèzes et télésiège / toit enneigé et balcon au premier plan. Mouvement en flux, amplitude 240 px.
+Plans : ciel (0,05) / sommets (0,12) / forêt de mélèzes et télésiège (0,25) / le chalet entier, toit enneigé et balcon, au premier plan (0,8). Mouvement en flux, amplitude 160 px.
 
 ---
 

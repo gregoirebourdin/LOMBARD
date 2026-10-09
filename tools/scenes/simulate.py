@@ -9,6 +9,8 @@ sys.path.insert(0, HERE)
 from motion import plane_transform
 work, scene = sys.argv[1], sys.argv[2]
 progs = [float(x) for x in sys.argv[3:]] or [0, 0.5, 1]
+# scène dans le flux : p=0 et p=1 correspondent à une scène hors écran ; on contrôle la plage
+# où elle est visible au moins au tiers (environ 0,2 à 0,8).
 c = json.load(open(os.path.join(HERE, 'scenes.json')))['scenes'][scene]
 files = sorted(glob.glob(os.path.join(work, scene, 'planes', '*.png')), key=lambda f: int(os.path.basename(f).split('-')[0]))
 planes = [Image.open(f) for f in files]

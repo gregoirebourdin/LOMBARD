@@ -76,7 +76,7 @@ function header(page, lang, altPath) {
 <nav class="nav" aria-label="${T(lang, 'Navigation principale', 'Main navigation')}">
 ${NAV.map(link).join('\n')}
 <a class="tel" href="tel:${company.phoneHref}">${company.phone.replace(/ /g, '\u00a0')}</a>
-<a class="lang" href="${altPath}" hreflang="${lang === 'fr' ? 'en' : 'fr'}" lang="${lang === 'fr' ? 'en' : 'fr'}">${lang === 'fr' ? 'EN' : 'FR'}<span class="sr-only">${lang === 'fr' ? ' — English version' : ' — version française'}</span></a>
+<a class="lang" href="${altPath}" hreflang="${lang === 'fr' ? 'en' : 'fr'}" lang="${lang === 'fr' ? 'en' : 'fr'}">${lang === 'fr' ? 'English' : 'Français'}</a>
 </nav>
 <button class="menu-btn" type="button" data-menu="open" aria-expanded="false" aria-controls="menu">${T(lang, 'Menu', 'Menu')}</button>
 </div>

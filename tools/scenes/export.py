@@ -30,11 +30,15 @@ def clean_rgba(im):
     return Image.fromarray(a, im.mode)
 
 
-def save_pair(im, base, alpha):
+def save_pair(im, base, alpha, q=None):
     out = {}
+    Qs = {**Q, **(q or {})}
     im = clean_rgba(im) if alpha else im.convert('RGB')
-    im.save(base + '.webp', 'WEBP', quality=Q['webp'], method=6, exact=False)
-    im.save(base + '.avif', 'AVIF', quality=Q['avif_alpha'] if alpha else Q['avif'], speed=5)
+    # Écrans haute densité (2 560 px) : pixels deux fois plus petits, compression plus forte
+    # sans perte visible, pour tenir le budget de 450 Ko par scène.
+    hi = im.width > 2000
+    im.save(base + '.webp', 'WEBP', quality=Qs['webp'] - (12 if hi else 0), method=6, exact=False)
+    im.save(base + '.avif', 'AVIF', quality=(Qs['avif_alpha'] if alpha else Qs['avif']) - (12 if hi else 0), speed=5)
     for ext in ('avif', 'webp'):
         out[ext] = os.path.getsize(base + '.' + ext)
     return out
@@ -49,6 +53,27 @@ def lqip(im):
     s = im.convert('RGB').resize((24, max(1, round(24 * im.height / im.width))), Image.LANCZOS)
     b = io.BytesIO(); s.save(b, 'WEBP', quality=40)
     return 'data:image/webp;base64,' + base64.b64encode(b.getvalue()).decode()
+
+
+def bbox_of(im, pad=6):
+    """Zone utile d'un plan (alpha > 0), avec une petite marge ; tout le cadre si le plan est opaque."""
+    a = np.asarray(im)[..., 3] if im.mode == 'RGBA' else None
+    if a is None or a.min() >= 250:
+        return (0, 0, im.width, im.height)
+    ys, xs = np.where(a > 2)
+    if len(xs) == 0:
+        return (0, 0, 2, 2)
+    x0, y0 = max(int(xs.min()) - pad, 0), max(int(ys.min()) - pad, 0)
+    x1, y1 = min(int(xs.max()) + 1 + pad, im.width), min(int(ys.max()) + 1 + pad, im.height)
+    return (x0, y0, x1, y1)
+
+
+def save_cropped(full, box, w, base, alpha, q):
+    """Exporte la zone utile à la résolution qu'aurait le plan entier à la largeur w."""
+    k = w / full.width
+    crop = full.crop(box)
+    cw, ch = max(2, round(crop.width * k)), max(2, round(crop.height * k))
+    return save_pair(crop.resize((cw, ch), Image.LANCZOS), base, alpha, q)
 
 
 def composite(planes):
@@ -80,10 +105,12 @@ def export_scene(work, site, name):
         (s0, y0, _), (s1, y1, _) = plane_transform(c, k, 0), plane_transform(c, k, 1)
         entry = {'name': pc['name'], 'speed': pc['speed'], 's': [round(s0, 4), round(s1, 4)], 'y': [round(y0, 1), round(y1, 1)],
                  'x': pc.get('x', [0, 0]), 'travel': pc.get('travel', 1), 'mouse': round(12 * pc['speed'] / 0.8, 1),
-                 'alpha': k > 0, 'src': {}}
+                 'alpha': k > 0 or kind == 'curtain', 'src': {}}
+        bb = bbox_of(pl) if kind != 'curtain' else (0, 0, W, H)
+        entry['bbox'] = [bb[0] / W, bb[1] / H, (bb[2] - bb[0]) / W, (bb[3] - bb[1]) / H]
         for w in widths:
             base = os.path.join(out, f'd{k}-{w}')
-            sz = save_pair(resize(pl, w), base, k > 0)
+            sz = save_cropped(pl, bb, w, base, k > 0 or kind == 'curtain', c.get('quality'))
             entry['src'][w] = rel + f'd{k}-{w}'
             for e in sz: tot[w][e] += sz[e]
         man['desktop'].append(entry)
@@ -100,7 +127,7 @@ def export_scene(work, site, name):
         cw = min(W, round(H * aspect)); ch = min(H, round(cw / aspect))
         x0 = int(min(max(cx * W - cw / 2, 0), W - cw)); y0 = int(min(max((mc or {}).get('cy', 0.5) * H - ch / 2, 0), H - ch))
         box = (x0, y0, x0 + cw, y0 + ch)
-    mwidths = c.get('mobile_widths', [1920, 2560] if kind == 'pan' else [828, 1280])
+    mwidths = c.get('mobile_widths', [1920, 2560] if kind == 'pan' else [720, 1080])
     mtot = {w: {'avif': 0, 'webp': 0} for w in mwidths}
     for gi, g in enumerate(groups):
         img = composite([planes[i] for i in g]).crop(box)
@@ -109,10 +136,12 @@ def export_scene(work, site, name):
         entry = {'name': '+'.join(c['planes'][i]['name'] for i in g), 'speed': front['speed'],
                  's': [round(s0, 4), round(s1, 4)], 'y': [round(y0, 1), round(y1, 1)], 'x': front.get('x', [0, 0]),
                  'travel': front.get('travel', 1), 'mouse': 0, 'alpha': gi > 0, 'src': {}}
+        bb = bbox_of(img) if kind != 'curtain' else (0, 0, img.width, img.height)
+        entry['bbox'] = [bb[0] / img.width, bb[1] / img.height, (bb[2] - bb[0]) / img.width, (bb[3] - bb[1]) / img.height]
         for w in mwidths:
             ww = min(w, img.width)
             base = os.path.join(out, f'm{gi}-{w}')
-            sz = save_pair(resize(img, ww), base, gi > 0)
+            sz = save_cropped(img, bb, ww, base, gi > 0 or kind == 'curtain', c.get('quality'))
             entry['src'][w] = rel + f'm{gi}-{w}'
             for e in sz: mtot[w][e] += sz[e]
         man['mobile'].append(entry)

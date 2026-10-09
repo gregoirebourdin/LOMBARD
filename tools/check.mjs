@@ -60,7 +60,7 @@ for (const f of files) {
   }
   const body = text(h.slice(h.indexOf('<body'), h.indexOf('</body>')));
   for (const re of forbidden) if (re.test(body)) err(`${f} : formulation à éviter ${re}`);
-  if (/unique/i.test(body) && lang === 'fr') console.log(`  · ${f} : « unique » présent (vérifier le sens)`);
+  if (/\bunique\b/i.test(body) && lang === 'fr') console.log(`  · ${f} : « unique » présent (vérifier le sens)`);
   draws += (h.match(/data-draw/g) || []).length;
   curtains += (h.match(/class="curtain /g) || []).length;
 }

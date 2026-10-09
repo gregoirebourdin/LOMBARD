@@ -193,6 +193,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   transition: background-size var(--t-short) var(--ease), color var(--t-short) var(--ease);
 }
 .link:hover { background-size: 0% 1px; background-position: 100% 100%; }
+/* Écrans tactiles : zone utile de 44 px minimum pour chaque lien */
+@media (pointer: coarse) {
+  .link, .crumbs a, .footer__col a, .menu__foot a { min-height: 44px; display: inline-flex; align-items: center; }
+  .link { background-position: 0 calc(100% - 10px); }
+}
 .link .arrow { display: inline-block; transition: transform var(--t-short) var(--ease); }
 .link:hover .arrow { transform: translateX(4px); }
 
@@ -272,6 +277,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* --- Ouverture ---------------------------------------------------------- */
 /* Sans JavaScript : mise en page statique (titre, puis l'image). Avec : la fenêtre s'ouvre. */
 .hero { position: relative; }
+.hero__sticky { display: flex; flex-direction: column; }
+.hero__intro { order: -1; }
 .hero__intro { padding-top: calc(var(--header) + var(--s4)); padding-bottom: var(--s4); }
 .hero__intro .grid { row-gap: var(--s3); align-items: end; }
 .hero__title { grid-column: 1 / -1; }
@@ -291,17 +298,23 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .js .hero__intro { position: absolute; inset: 0 0 auto 0; z-index: 2; padding-bottom: 0; }
 .js .hero__frame { position: absolute; inset: 0; height: auto; z-index: 1; transform-origin: 50% 100%; }
 .js .hero__frame > .scene { transform-origin: 50% 100%; }
+.js .hero__frame, .js .hero__frame > .scene, .js .hero__intro { will-change: transform; }
+.js .curtain__el { will-change: transform; }
 
 /* --- Scènes en profondeur ----------------------------------------------- */
-.scene { position: relative; overflow: hidden; background: var(--meleze); }
-.scene__stage { position: absolute; inset: calc(var(--overscan, 0.1) * -50%); }
-.scene__plane { position: absolute; inset: 0; will-change: auto; }
-.scene__plane > picture, .scene__plane > img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.scene__plane img {
-  width: 100%; height: 100%; object-fit: cover; object-position: var(--focus, 50% 50%);
-  transform-origin: var(--origin, 50% 50%);
-  backface-visibility: hidden;
+.scene { position: relative; overflow: hidden; background: var(--meleze); contain: layout paint; }
+.scene__stage { position: absolute; inset: calc(var(--overscan, 0.1) * -50%); container-type: size; }
+/* Chaque plan occupe le cadre de l'image entière, cadré « cover » dans la scène (point d'intérêt --fx/--fy).
+   Son image, rognée à la zone utile, y est replacée au pixel par des positions en %. */
+.scene__plane {
+  position: absolute;
+  width: max(100cqw, 100cqh * var(--a, 1.5));
+  height: max(100cqh, 100cqw / var(--a, 1.5));
+  left: calc((100cqw - max(100cqw, 100cqh * var(--a, 1.5))) * var(--fx, 0.5));
+  top: calc((100cqh - max(100cqh, 100cqw / var(--a, 1.5))) * var(--fy, 0.5));
 }
+.scene__plane > picture { position: absolute; inset: 0; }
+.scene__plane img { position: absolute; max-width: none; object-fit: fill; backface-visibility: hidden; }
 .scene.is-active .scene__plane img { will-change: transform; }
 .scene__stage--m { display: none; }
 @media (max-width: 767px) {
@@ -319,7 +332,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .reveal-ready .scene__light { display: block; transition: transform var(--t-long) var(--ease); }
 .is-lit > .scene__light, .is-lit .still > .scene__light { transform: translateX(76%); }
 
-.frame { position: relative; }
+.frame { position: relative; display: block; }
 .frame--wide { aspect-ratio: 16 / 9; }
 .frame--pano { aspect-ratio: 21 / 9; }
 .frame--tall { aspect-ratio: 4 / 5; }
@@ -403,7 +416,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .after { margin-top: var(--s6); display: flex; flex-wrap: wrap; gap: var(--s3) var(--s4); align-items: center; }
 
 /* --- Rideau de premier plan --------------------------------------------- */
-.curtain { position: relative; height: 0; z-index: 20; pointer-events: none; }
+.curtain { position: relative; height: 0; z-index: 20; pointer-events: none; overflow-x: clip; overflow-y: visible; }
 .curtain__el {
   position: absolute; left: 0; right: 0; top: 0;
   height: 150vh; transform: translate3d(0, 0, 0);
@@ -424,8 +437,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 @media (max-width: 767px) { .pano__band { height: 62vh; } }
 
 /* --- Carte des vallées (un seul trait) ----------------------------------- */
-.map { position: relative; margin-top: var(--s5); }
-.map svg { width: 100%; max-width: 980px; height: auto; overflow: visible; margin-left: auto; }
+.map { position: relative; margin-top: var(--s5); display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); column-gap: var(--gap); row-gap: var(--s3); }
+.map svg { grid-column: 1 / -1; width: 100%; height: auto; overflow: visible; }
+@media (min-width: 1024px) { .map svg { grid-column: 4 / -1; grid-row: 1; } .map .map__legend { grid-column: 1 / span 3; grid-row: 1; align-self: end; flex-direction: column; } }
 .map .river { fill: none; stroke: var(--ciel); stroke-width: 1; vector-effect: non-scaling-stroke; stroke-linecap: round; stroke-linejoin: round; }
 .map .place { fill: var(--ciel); }
 .map .place--sale { fill: var(--or); }
@@ -433,7 +447,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .map text { font-family: var(--f-sans); font-size: 13px; font-weight: 400; fill: var(--ciel); letter-spacing: 0.01em; }
 .map text.region { font-family: var(--f-serif); font-style: italic; font-size: 19px; font-weight: 300; fill: var(--granite); }
 .map text.sale { fill: var(--ciel); }
-.map__legend { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); margin-top: var(--s3); color: var(--granite); }
+.map__legend { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); color: var(--granite); }
 .map__legend span { display: inline-flex; align-items: center; gap: var(--s1); }
 .map__legend i { width: 7px; height: 7px; border-radius: 50%; background: var(--ciel); display: inline-block; }
 .map__legend i.sale { background: var(--or); }

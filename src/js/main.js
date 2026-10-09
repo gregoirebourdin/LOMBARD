@@ -97,7 +97,9 @@
   }
 
   var lenis = null;
-  if (reduce.matches || !window.gsap || !window.ScrollTrigger) {
+  // Statique si le mouvement est réduit, si une bibliothèque manque, ou si le délai de secours
+  // (2,5 s, script en tête de page) a déjà basculé la page en mode statique.
+  if (reduce.matches || !window.gsap || !window.ScrollTrigger || root.classList.contains('is-static')) {
     root.classList.add('is-static');
     showAll();
     addEventListener('scroll', function () { onScrollHeader(scrollY); }, { passive: true });
@@ -204,7 +206,7 @@
       { scaleX: 1, scaleY: 1, y: 0, duration: 0.32 }, 0)
       .fromTo(scene, { transformOrigin: '0 0', x: function () { return geom().tx; }, y: function () { return geom().ty; }, scaleX: function () { return geom().kx; }, scaleY: function () { return geom().ky; } },
       { x: 0, y: 0, scaleX: 1, scaleY: 1, duration: 0.32 }, 0)
-      .to(intro, { y: function () { return -innerHeight * 0.35; }, opacity: 0, duration: 0.26 }, 0)
+      .to(intro, { y: function () { return -innerHeight * 0.1; }, opacity: 0, duration: 0.11 }, 0)
       .fromTo(cap, { opacity: 0 }, { opacity: 1, duration: 0.1 }, 0.3);
     hero.classList.add('is-live');
     var hs = buildScene(scene, track, { start: 'top top', end: 'bottom bottom' });
@@ -223,6 +225,7 @@
     var band = p.querySelector('.pano__band');
     var sc = p.querySelector('.scene');
     var stage = function () { return sc.querySelector(small.matches ? '.scene__stage--m' : '.scene__stage--d'); };
+    if (!stage()) return;
     var aspect = function () { return num(stage().dataset.aspect, 3); };
     var size = function () {
       var h = band.getBoundingClientRect().height; var w = h * aspect();
@@ -236,6 +239,7 @@
     });
     planesOf(sc).forEach(function (pl) {
       var f = num(pl.dataset.travel, 1);
+      if (small.matches) f = 1 - (1 - f) * 0.5; // mobile : écarts entre plans divisés par deux
       // déplacement symétrique : les plans sont alignés à mi-course, aucun bord ne se découvre (f <= 1)
       tlp.fromTo(pl.querySelector('img'), { x: function () { var s = size(); return -(s.w - s.bw) * 0.5 * (1 - f); } },
         { x: function () { var s = size(); return -(s.w - s.bw) * 0.5 * (1 + f); }, duration: 1 }, 0);
@@ -284,6 +288,22 @@
         });
       });
     }, { passive: true });
+  }
+
+  /* ---------- Contrôle de fluidité : ajouter ?fps à l'adresse pour afficher les temps d'image ---------- */
+  if (/[?&]fps\b/.test(location.search)) {
+    var meter = d.createElement('div');
+    meter.style.cssText = 'position:fixed;right:8px;bottom:8px;z-index:99;padding:4px 8px;background:#1f3b57;color:#f8f6f1;font:12px/1.4 monospace';
+    d.body.appendChild(meter);
+    var fr = [], lastT = performance.now();
+    (function loop(t) {
+      fr.push(t - lastT); lastT = t; if (fr.length > 120) fr.shift();
+      if (fr.length % 15 === 0) {
+        var srt = fr.slice().sort(function (a, b) { return a - b; });
+        meter.textContent = 'médiane ' + srt[srt.length >> 1].toFixed(1) + ' ms · p95 ' + srt[Math.floor(srt.length * 0.95)].toFixed(1) + ' ms';
+      }
+      requestAnimationFrame(loop);
+    })(lastT);
   }
 
   /* ---------- Mise à jour au redimensionnement / changement de mise en page ---------- */
