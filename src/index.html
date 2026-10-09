@@ -144,16 +144,20 @@
     <a class="hero__scroll" href="#realisations" aria-label="Faire défiler vers la suite"><span>Défiler</span><i aria-hidden="true"></i></a>
   </section>
 
-  <!-- 01 : trois chalets réalisés, du soir au matin -->
+  <!-- 01 : la phrase se met au point mot à mot ; chaque image qu'elle évoque vient se poser sur la précédente -->
   <section class="real paper" id="realisations" aria-labelledby="real-t" data-header="paper">
-    <div class="real__head">
-      <p class="kicker" data-reveal="lines">01 — Du soir au matin</p>
-      <p class="real__quote">« Imaginez-vous <em class="heard">réveillé par le soleil sur les sommets</em>, <em class="heard">le feu qui crépite</em>, <em class="heard">le retour du ski dans la douceur du bois et de la pierre</em>. »</p>
-    </div>
-    <div class="real__grid">
-      <figure class="real__fig real__fig--a">{{pic name="piece-feu" class="real__pic" sizes="(min-width: 1024px) 50vw, 100vw"}}<figcaption>Le feu</figcaption></figure>
-      <figure class="real__fig real__fig--b">{{pic name="piece-table" class="real__pic" sizes="(min-width: 1024px) 42vw, 100vw"}}<figcaption>La table</figcaption></figure>
-      <figure class="real__fig real__fig--c">{{pic name="piece-matin" class="real__pic" sizes="(min-width: 1024px) 66vw, 100vw"}}<figcaption>Le matin</figcaption></figure>
+    <div class="real__story">
+      <div class="real__pin">
+        <div class="real__text">
+          <p class="kicker" data-reveal="lines">01 — Du soir au matin</p>
+          <p class="real__quote">« Imaginez-vous <em data-shot="0">réveillé par le soleil sur les sommets</em>, <em data-shot="1">le feu qui crépite</em>, le retour du ski <em data-shot="2">dans la douceur du bois et de la pierre</em>. »</p>
+        </div>
+        <div class="real__stack">
+          <figure class="real__card" data-shot="0">{{pic name="piece-matin" class="real__pic" sizes="(min-width: 1024px) 50vw, 100vw"}}<figcaption>Le matin</figcaption></figure>
+          <figure class="real__card" data-shot="1">{{pic name="piece-feu" class="real__pic" sizes="(min-width: 1024px) 50vw, 100vw"}}<figcaption>Le feu</figcaption></figure>
+          <figure class="real__card" data-shot="2">{{pic name="piece-table" class="real__pic" sizes="(min-width: 1024px) 50vw, 100vw"}}<figcaption>La table</figcaption></figure>
+        </div>
+      </div>
     </div>
     <div class="real__end">
       <h2 class="d1 real__h" id="real-t" data-reveal="lines">Ces chalets sont livrés. <br class="d">Le <em class="v">vôtre</em> attend.</h2>
@@ -213,22 +217,44 @@
     </div>
   </section>
 
-  <!-- 04 : la maison -->
+  <!-- 04 : la maison — une famille, deux ateliers, et quatre chiffres qu'on voit -->
   <section class="maison paper" id="la-maison" aria-labelledby="maison-t" data-header="paper">
     <div class="maison__grid">
-      <figure class="maison__fig">{{pic name="poteau" class="maison__pic" sizes="(min-width: 1024px) 34vw, 100vw"}}<figcaption>Douglas, notre essence de prédilection</figcaption></figure>
+      <figure class="maison__fig">{{pic name="poteau" class="maison__pic" sizes="(min-width: 1024px) 30vw, 50vw"}}<figcaption>Douglas, notre essence de prédilection</figcaption></figure>
       <div class="maison__body">
         <p class="kicker" data-reveal="lines">04 — La maison Lombard Vasina</p>
         <h2 class="d1" id="maison-t" data-reveal="lines">Une famille, <br class="d">deux <em>ateliers</em>.</h2>
         <p class="maison__txt" data-reveal="fade">Une entreprise familiale créée il y a plus de 45 ans. Depuis une dizaine d’années, Marielle et Mathieu ont rejoint leur père Maurice dans l’aventure. En 2021, ils ont officiellement repris le flambeau.</p>
-        <ul class="nums">
-          <li class="num"><p class="num__n"><span class="odo" data-odo="1979" data-from="1900">1979</span></p><p class="num__l">Fondation de l’entreprise</p></li>
-          <li class="num"><p class="num__n"><span class="odo" data-odo="800" data-from="000">800</span><span class="num__u">+</span></p><p class="num__l">Chalets réalisés</p></li>
-          <li class="num"><p class="num__n"><span class="odo" data-odo="40" data-from="00">40</span></p><p class="num__l">Passionnés, du bureau d’études à la pose</p></li>
-          <li class="num"><p class="num__n"><span class="odo" data-odo="1300" data-from="0000">1 300</span><span class="num__u num__u--m">m²</span></p><p class="num__l">D’atelier charpente</p></li>
-        </ul>
         <p class="maison__links"><a class="link" href="https://www.chalets-lombard.fr/lombard-vasina/">Notre histoire</a><a class="link" href="https://www.chalets-lombard.fr/qui-sommes-nous/">Qui sommes-nous ?</a></p>
       </div>
+    </div>
+    <div class="stats">
+      <div class="stat stat--roofs">
+        <div class="stat__txt">
+          <p class="stat__n"><span class="stat__count" data-count="800" aria-label="800">800</span><span class="stat__u">+</span></p>
+          <p class="stat__l" data-reveal="lines">Chalets réalisés</p>
+          <p class="stat__key"><svg viewBox="0 0 10 11" aria-hidden="true"><path d="M5 0 10 4.2V11H0V4.2z"/></svg>Une maison pour chaque chalet</p>
+        </div>
+        <canvas class="roofs" aria-hidden="true"></canvas>
+      </div>
+      <ul class="stats__row">
+        <li class="stat stat--years">
+          <p class="stat__n"><span class="odo" data-odo="1979" data-from="1900">1979</span></p>
+          <p class="stat__l" data-reveal="lines">Fondation de l’entreprise</p>
+          <svg class="ruler" aria-hidden="true"></svg>
+        </li>
+        <li class="stat stat--team">
+          <p class="stat__n"><span class="odo" data-odo="40" data-from="00">40</span></p>
+          <p class="stat__l" data-reveal="lines">Passionnés, du bureau d’études à la pose</p>
+          <svg class="tally" viewBox="0 0 400 96" aria-hidden="true"></svg>
+        </li>
+        <li class="stat stat--floor">
+          <p class="stat__n"><span class="odo" data-odo="1300" data-from="0000">1 300</span><span class="stat__u stat__u--m">m²</span></p>
+          <p class="stat__l" data-reveal="lines">D’atelier charpente</p>
+          <canvas class="floor" aria-hidden="true"></canvas>
+          <p class="stat__key"><i aria-hidden="true"></i>Un point pour chaque mètre carré</p>
+        </li>
+      </ul>
     </div>
   </section>
 

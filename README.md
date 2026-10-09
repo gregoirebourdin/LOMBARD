@@ -4,11 +4,13 @@ Page d’accueil seule, statique (HTML, CSS, JavaScript sans framework), publié
 
 Le parcours :
 
-1. **Intro.** Le logo officiel se compose sur le papier ivoire, puis rejoint sa place dans l’en-tête pendant que la feuille se lève.
+1. **Intro.** On traverse un nuage : une brume ivoire, des nappes qui s’écartent, puis la photo du hero, d’abord floue, se met au point.
 2. **Hero.** La photo du chalet au crépuscule, découpée en trois plans (ciel, montagne et forêt, chalet). Au défilement, « Le soir tombe. » se couche derrière la montagne et le chalet, et le ciel s’assombrit. Le titre « Chalets bois d’exception dans les Hautes-Alpes » est en bas à gauche, en blanc sur un voile sombre.
-3. **01 — Du soir au matin.** Trois chalets réalisés, en photos fixes, et une phrase honnête : « Ces chalets sont livrés. Le vôtre attend. »
+3. **01 — Du soir au matin.** La phrase se met au point mot à mot au défilement ; chaque image qu’elle évoque (le matin, le feu, la table) vient se poser sur la précédente. Puis : « Ces chalets sont livrés. Le vôtre attend. »
 4. **02 — En vente sur plan.** Les trois programmes : vue 3D extérieure ou intérieure, tableau des chalets, demande de plans et de prix.
-5. **03 — Sur votre terrain**, **04 — La maison**, **05 — Ils y vivent**, **06 — Rencontrons-nous** (le chalet s’allume, puis le formulaire).
+5. **03 — Sur votre terrain**, **04 — La maison** (800 maisons pour 800 chalets réalisés, une règle de 1979 à aujourd’hui, 40 traits, 1 300 points pour 1 300 m² d’atelier), **le film** (il grandit jusqu’à remplir l’écran ; seul le son se règle, un clic met en pause), **05 — Ils y vivent**, **06 — Rencontrons-nous**.
+
+Tous les titres et les textes apparaissent en « faux flou » : chaque mot porte un double flouté figé, et seules l’opacité et la position s’animent (aucun filtre animé, donc aucune perte de fluidité).
 
 Le violet Lombard n’est qu’une touche : il apparaît seulement dans le logo, le bouton principal, deux mots, le point « en vente » et quelques filets d’un pixel. Aucune section n’a un fond violet.
 
@@ -24,6 +26,8 @@ Le violet Lombard n’est qu’une touche : il apparaît seulement dans le logo,
 | `tools/grade.py` | Étalonnage commun des photos et des vues 3D. |
 | `tools/hero_planes.py` | Découpe la photo du hero en trois plans de parallaxe (`public/assets/hero/<d|m>/`) : profondeur, segmentation, fond reconstitué derrière le chalet. |
 | `tools/layers.py` | Outils de découpe en plans (profondeur, segmentation, remplissage LaMa), modèles chargés hors ligne. |
+| `tools/hero_fog.py`, `tools/paper.py` | Photo floue du hero pour l’intro (2 Ko, insérée dans la page) ; texture de papier du fond des sections. |
+| `public/assets/video/` | Le film : extrait de 1:18 à la fin, encodé en H.264 (1920 et 1280 px) avec son image d’attente. |
 | `tools/retouch/*.py` | Retouches documentées et rejouables (objets retirés, recadrages, image « éteinte » de la finale). |
 | `tools/favicon.py` | Favicon et icône Apple (le pignon du logo). |
 | `brand/logo/` | Logo redessiné en vectoriel : couleur, blanc, violet, emblème seul, PNG 4×. |

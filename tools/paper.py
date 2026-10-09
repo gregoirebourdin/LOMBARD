@@ -21,7 +21,7 @@ for _ in range(780):
     L = rng.uniform(6, 26)
     bend = rng.uniform(-.25, .25)
     pts = [(x + np.cos(a + bend * t) * L * t, y + np.sin(a + bend * t) * L * t) for t in np.linspace(-.5, .5, 6)]
-    v = int(rng.uniform(241, 250))
+    v = int(rng.uniform(243, 251))
     for ox in (-N, 0, N):
         for oy in (-N, 0, N):
             d.line([(px + ox, py + oy) for px, py in pts], fill=v, width=1)
