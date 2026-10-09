@@ -252,12 +252,27 @@ def finale():
     save(im, 'finale')
 
 
-# finale-dim : réglages (voir docstring)
+# finale-dim : réglages (voir docstring de dim())
 DIM_EV = -0.6          # partout
-DIM_KNEE = 0.12        # plafond (luminance encodée) du niveau de base des surfaces éclairées
-DIM_DETAIL = 0.85      # part du grain (bois, pierre) gardée sur les surfaces éteintes
-DIM_DESAT = 0.45       # chroma gardée (Lab) sur les surfaces éteintes
-DIM_DUSK = 0.12        # teinte du crépuscule (mesurée sur la neige à l'ombre), +0,3 sur les vitres
+DIM_KNEE = 0.12        # plafond (luminance encodée) du niveau de base du chalet éteint
+DIM_DETAIL = 0.85      # part du grain (bois, pierre) gardée sur le chalet éteint
+DIM_DESAT = 0.45       # chroma gardée (Lab) sur le chalet éteint
+DIM_DUSK = 0.12        # poussée vers le bleu du crépuscule (neige à l'ombre), +0,3 sur les vitres
+DIM_TMAX = 0.9         # part maximale de la lumière des lampes retirée hors du chalet
+DIM_LAMP = (0.52, 0.33, 0.15)   # chromaticité (linéaire, somme 1) de la lumière des lampes, ≈ 2 700 K
+
+# Silhouette du chalet, en px du master (1920 x 1281), relevée sur la photo : rive gauche du pignon,
+# sous-face et jambe de force gauches, mur en bois x 300 puis soubassement en pierre x 279, pied du
+# mur (y 1145 à gauche, 1163 au milieu, bas de la porte de garage 1157), talus de neige devant le
+# garage, pilier en pierre x 1440, dessous de la terrasse jusqu'à x 1720, poteaux et jambes de force
+# de droite jusqu'au bord, égout du toit (y 552 -> 605), rive droite (sous la planche de rive).
+# Le dessus du toit (neige, couverture, cheminée) est dehors, comme la neige, le gravier et la terre.
+HOUSE = [(603, 84), (88, 628), (95, 656), (212, 664), (300, 745), (300, 925), (279, 925), (279, 1145),
+         (400, 1149), (500, 1153), (600, 1157), (700, 1160), (800, 1162), (950, 1163), (1100, 1157),
+         (1250, 1158), (1330, 1135), (1400, 1102), (1440, 1092), (1700, 1085), (1720, 905), (1785, 905),
+         (1785, 700), (1920, 700), (1920, 605), (1620, 590), (1220, 552), (1180, 522), (1060, 436),
+         (900, 318), (700, 163)]
+HOUSE_WING = [(1728, 466), (1920, 466), (1920, 530), (1728, 530)]   # sous-face éclairée, aile de droite
 
 
 def _s2l(x):
@@ -280,48 +295,74 @@ def _feather(m, grow=4, soft=10):
     return np.clip(cv2.GaussianBlur(m, (0, 0), soft / 3), 0, 1)
 
 
+def _nconv(v, wt, sigma):
+    """Moyenne locale de v pondérée par wt (convolution normalisée, gaussienne)."""
+    if v.ndim == 3:
+        wt = wt[..., None]
+    n = cv2.GaussianBlur((v * wt).astype(np.float32), (0, 0), sigma)
+    d = cv2.GaussianBlur(np.broadcast_to(wt, v.shape).astype(np.float32), (0, 0), sigma)
+    return n, d
+
+
+def house_mask(hsv):
+    """Silhouette du chalet (polygones HOUSE + HOUSE_WING, bords antialiasés), moins la neige bleue
+    qui déborde dedans (bord du toit, neige vue entre les poteaux) ; bord adouci d'un pixel."""
+    h, s, v = hsv[..., 0], hsv[..., 1], hsv[..., 2]
+    m = np.zeros(h.shape, np.uint8)
+    for poly in (HOUSE, HOUSE_WING):
+        cv2.fillPoly(m, [np.round(np.float32(poly) * 8).astype(np.int32)], 255, cv2.LINE_AA, 3)
+    snow = _sstep(0.45, 0.6, s) * _sstep(0.40, 0.5, v) * _sstep(185, 195, h) * (1 - _sstep(245, 255, h))
+    return cv2.GaussianBlur(m.astype(np.float32) / 255 * (1 - snow), (0, 0), 1.0)
+
+
 def dim(rgb):
     """État « éteint » de la photo (spec S8, assets de l'allumage). Ne fait qu'enlever de la lumière.
 
-    1. Partout : -0,6 IL (en lumière linéaire).
-    2. Pixels chauds = recette de la spec (teinte 15-55°, S > 0,35, V > 0,45) aux seuils adoucis ;
-       le seuil V est prolongé en rampe douce jusqu'à 0,05, sinon un bois un peu moins éclairé
-       (V 0,40) resterait plus clair que le bois éclairé une fois éteint (inversion visible).
-       Masque dilaté de 4 px, adouci de 10 px. S'y ajoutent, dans la silhouette du chalet (fermeture
-       de 60 px du masque chaud), les pixels non bleus (volets rouge-brun, poteaux), et les
-       « flaques » blanches des appliques (cœurs brûlés et pierre surexposée, S faible, près d'une
-       zone chaude). Le ciel, la neige, la forêt et la vitre qui reflète déjà le ciel ne sont pas
-       dans le masque : seulement -0,6 IL.
-    3. Dans le masque, la luminance est décomposée en niveau de base (filtre bilatéral, log) et
-       grain. Le niveau de base passe par une courbe monotone (pente -0,6 IL dans les ombres,
-       plafond DIM_KNEE = 0,12) : une vitre blanche finit vers 12-18 % de sa luminance encodée
-       (grain compris) — les 18 % de la spec appliqués tels quels laissaient les vitres orangées
-       (en lumière linéaire) ou rendaient le bois éclairé plus sombre que le bois à l'ombre (en
-       valeurs encodées) ; la courbe est monotone : aucune zone éclairée ne devient plus sombre
-       qu'une zone voisine qui l'était moins. Sous les
-       flaques des appliques, le niveau de base est celui des alentours (convolution normalisée) :
-       la lampe éteinte ne laisse ni tache ni anneau. Le grain est remis (85 %, 50 % dans les vitres).
-    4. Couleur (Lab) : chroma ramenée à 45 % et poussée de 12 % (30 % dans les vitres) vers le bleu de
-       la neige à l'ombre, mesuré sur la photo : une vitre éteinte reflète un peu le crépuscule.
+    1. Partout : -0,6 IL (en lumière linéaire). Le ciel, la forêt, le toit enneigé n'ont que ça.
+    2. Le chalet (silhouette HOUSE relevée sur la photo, moins la neige bleue qui y déborde) est
+       traité d'un seul tenant, sans tri par couleur : bois, pierre (piliers bleutés compris),
+       vitres, volets, poteaux reçoivent le même traitement, donc un même matériau garde un même ton.
+       La luminance est décomposée en niveau de base (filtre bilatéral, log) et grain. Le niveau
+       de base passe par une courbe monotone (pente -0,6 IL dans les ombres, plafond DIM_KNEE =
+       0,12 encodé) : une surface éclairée finit sombre, et aucune zone ne devient plus sombre
+       qu'une voisine qui l'était moins (les 18 % de la spec, appliqués tels quels, laissaient les
+       vitres orangées ou rendaient le bois éclairé plus sombre que le bois à l'ombre). Sous les
+       « flaques » blanches des appliques (S faible, V > 0,6, près d'une zone chaude, dans le
+       chalet), le niveau de base est celui du mur autour (convolution normalisée sur le chalet
+       seul) : la lampe éteinte ne laisse ni tache ni anneau. Le grain est remis (85 %).
+       Vitres : pixels très clairs (luminance encodée > 0,8) ou clairs et peu saturés (V > 0,55,
+       S < 0,25 : la porte vitrée blanc bleuté du pignon, les jours blancs entre les balustres,
+       les points blancs des fenêtres) : grain réduit (50 %) et teinte du crépuscule renforcée.
+       Couleur (Lab) : chroma ramenée à 45 % et poussée de 12 % (42 % dans les vitres) vers le
+       bleu de la neige à l'ombre, mesuré sur la photo.
+    3. Hors du chalet, la neige, le gravier et la terre éclairés par les appliques : la lumière des
+       lampes est retirée par canal. Chaque pixel de neige est un mélange de lumière du ciel (la
+       chromaticité S de la neige à l'ombre voisine, moyenne locale sur 60 px) et de lumière des
+       lampes (DIM_LAMP) ; la part t des lampes est la projection de sa chromaticité sur le segment
+       S -> lampe (t <= DIM_TMAX). Gain par canal (1-t)S / ((1-t)S + t.lampe) <= 1 : la neige
+       éclairée prend la teinte et à peu près la luminance de la neige à l'ombre voisine, la
+       texture (traces de pas) est gardée. Sur ce qui n'est pas de la neige (brindilles, terre,
+       gravier sombres), t est celui de la neige voisine (convolution normalisée).
     Rien n'est ajouté : la luminance de chaque pixel est égale ou plus faible qu'à l'origine.
+    Renvoie (image, poids) : poids = part du traitement « éteint » au-delà des -0,6 IL.
     """
     a = rgb.astype(np.float32) / 255
-    lin = _s2l(a)
+    lin = _s2l(a).astype(np.float32)
     G = 2.0 ** DIM_EV
     LUM = np.array([0.2126, 0.7152, 0.0722], np.float32)
     hsv = cv2.cvtColor(a, cv2.COLOR_RGB2HSV)
     h, s, v = hsv[..., 0], hsv[..., 1], hsv[..., 2]
     rb = a[..., 0] - a[..., 2]
+    H = house_mask(hsv)
+    hh = (H > 0.5).astype(np.float32)
+
+    # --- le chalet
     warm = _sstep(10, 15, h) * (1 - _sstep(55, 60, h)) * _sstep(0.30, 0.40, s)
     lit = warm * _sstep(0.40, 0.50, v)
-    wv = warm * _sstep(0.05, 0.45, v)
-    house = cv2.morphologyEx((wv > 0.3).astype(np.uint8), cv2.MORPH_CLOSE, disk(60)).astype(np.float32)
-    w_house = cv2.GaussianBlur(house, (0, 0), 4) * _sstep(-0.02, 0.06, rb)
     near = cv2.dilate((lit > 0.5).astype(np.uint8), disk(30)) > 0
-    pool = _sstep(0.6, 0.8, v) * (1 - _sstep(0.30, 0.45, s)) * _sstep(-0.03, 0.01, rb) * near
-    glow = _sstep(0.85, 0.95, v) * (cv2.dilate((pool > 0.5).astype(np.uint8), disk(40)) > 0)
-    P = np.maximum(_feather(pool, 10, 10), _feather(glow, 4, 10))
-    w = np.maximum.reduce([_feather(wv), w_house, P])
+    pool = _sstep(0.6, 0.8, v) * (1 - _sstep(0.30, 0.45, s)) * _sstep(-0.03, 0.01, rb) * near * hh
+    glow = _sstep(0.85, 0.95, v) * (cv2.dilate((pool > 0.5).astype(np.uint8), disk(40)) > 0) * hh
+    P = np.maximum(_feather(pool, 10, 10), _feather(glow, 4, 10)) * H
 
     yl = lin @ LUM
     ye = _l2s(yl)
@@ -331,16 +372,17 @@ def dim(rgb):
     be = _l2s(np.exp(base))
     k0 = _l2s(np.float32(G))                       # -0,6 IL en valeurs encodées (≈ 0,83)
     knee = be * k0 / (1 + be * (k0 / DIM_KNEE - 1))
-    B = np.exp(base) * G * (1 - w) + _s2l(knee) * w
-    n1, d1 = cv2.GaussianBlur(B * (1 - P), (0, 0), 20), cv2.GaussianBlur(1 - P, (0, 0), 20)
-    n2, d2 = cv2.GaussianBlur(B * (1 - P), (0, 0), 60), cv2.GaussianBlur(1 - P, (0, 0), 60)
+    B = _s2l(knee)
+    wt = (1 - P) * hh                              # le mur autour, jamais la neige
+    n1, d1 = _nconv(B, wt, 20)
+    n2, d2 = _nconv(B, wt, 60)
     k = _sstep(0.05, 0.3, d1)
     fill = n1 / np.maximum(d1, 1e-4) * k + n2 / np.maximum(d2, 1e-4) * (1 - k)
     B = B * (1 - P) + np.minimum(fill, B) * P
-    glass = _sstep(0.80, 0.95, ye) * (1 - P)
+    white = _sstep(0.50, 0.60, v) * (1 - _sstep(0.22, 0.30, s))
+    glass = np.maximum(_sstep(0.80, 0.95, ye), cv2.GaussianBlur(white, (0, 0), 1.5)) * (1 - P)
     Y = B * np.exp(grain * (DIM_DETAIL - 0.35 * glass))
     Y = np.minimum(np.maximum(Y, 0), yl * G)       # jamais plus clair que -0,6 IL
-    Y = yl * G * (1 - w) + Y * w
 
     lab = cv2.cvtColor(a, cv2.COLOR_RGB2Lab)
     dl = np.median(cv2.cvtColor(a[1180:1270, 40:600], cv2.COLOR_RGB2Lab).reshape(-1, 3), 0)
@@ -351,12 +393,35 @@ def dim(rgb):
     A = (1 - t) * lab[..., 1] * r * DIM_DESAT + t * dl[1] / dl[0] * L
     Bb = (1 - t) * lab[..., 2] * r * DIM_DESAT + t * dl[2] / dl[0] * L
     off = _s2l(np.clip(cv2.cvtColor(np.dstack([L, A, Bb]).astype(np.float32), cv2.COLOR_Lab2RGB), 0, 1))
-    out = lin * G * (1 - w[..., None]) + off * w[..., None]
+
+    # --- dehors : retirer la lumière des lampes de la neige (et de la terre, du gravier)
+    yy = np.arange(a.shape[0], dtype=np.float32)[:, None] * np.ones((1, a.shape[1]), np.float32)
+    ground = _sstep(830, 880, yy)                  # le sol, sous le bas du pignon
+    Ls = cv2.GaussianBlur(lin, (0, 0), 1.5)
+    c = Ls / (Ls.sum(-1, keepdims=True) + 1e-6)
+    Yb = Ls @ LUM
+    cool = ((Ls[..., 2] > 1.5 * Ls[..., 0]) & (Yb > 0.04) & (H < 0.05)).astype(np.float32) * ground
+    n, d = _nconv(c, cool, 60)
+    n2, d2 = _nconv(c, cool, 240)
+    S = np.where(d > 0.02, n / np.maximum(d, 1e-6), n2 / np.maximum(d2, 1e-6)).astype(np.float32)
+    S = S / S.sum(-1, keepdims=True)
+    W = np.float32(DIM_LAMP)
+    dv = W - S
+    tl = np.clip(((c - S) * dv).sum(-1) / np.maximum((dv * dv).sum(-1), 1e-6), 0, 1)
+    sn = _sstep(0.06, 0.10, Yb)                    # la neige (claire) ; le reste prend t de la neige voisine
+    n, d = _nconv(tl, sn, 12)
+    tl = sn * tl + (1 - sn) * n / np.maximum(d, 1e-6) * _sstep(0.02, 0.1, d)
+    tl = np.minimum(tl, DIM_TMAX) * ground
+    g = (1 - tl)[..., None] * S / np.maximum((1 - tl)[..., None] * S + tl[..., None] * W, 1e-6)
+    outside = lin * G * g
+
+    out = outside * (1 - H[..., None]) + off * H[..., None]
     # garde-fou : aucun pixel plus lumineux qu'à l'origine (sur la luminance, pas canal par canal :
     # un bois orangé éteint peut prendre un peu de bleu sans prendre de lumière)
     yo = out @ LUM
     out = out * np.minimum(1, (lin @ LUM) / np.maximum(yo, 1e-6))[..., None]
-    return (_l2s(out) * 255 + 0.5).astype(np.uint8), w
+    w = np.maximum(H, tl * (1 - H))
+    return (_l2s(out) * 255 + 0.5).astype(np.uint8), w, H, tl
 
 
 def finale_dim():
@@ -364,9 +429,11 @@ def finale_dim():
     if not os.path.exists(src):
         finale()
     rgb = np.asarray(Image.open(src).convert('RGB'))
-    out, w = dim(rgb)
+    out, w, house, tl = dim(rgb)
     os.makedirs(MASKS, exist_ok=True)
     Image.fromarray((w * 255 + 0.5).astype(np.uint8)).save(os.path.join(MASKS, 'n037_dim_weight.png'))
+    Image.fromarray((house * 255 + 0.5).astype(np.uint8)).save(os.path.join(MASKS, 'n037_dim_house.png'))
+    Image.fromarray((tl * 255 + 0.5).astype(np.uint8)).save(os.path.join(MASKS, 'n037_dim_lamp_t.png'))
     save(out, 'finale-dim', graded=True)        # dérivé du master déjà étalonné
 
 

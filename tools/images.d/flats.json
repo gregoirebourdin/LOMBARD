@@ -4,68 +4,119 @@
   "v-V56": {
    "id": "V56",
    "src": "/home/user/LOMBARD/tools/.cache/masters/v-V56.png",
-   "widths": [640, 1100, 1448],
+   "widths": [
+    640,
+    1100,
+    1448
+   ],
    "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SERRE D’ORCHIS, CHALET B, EXTÉRIEUR",
    "alt": "Vue 3D, illustration non contractuelle : le chalet B du Serre d’Orchis en hiver, un sapin enneigé au premier plan"
   },
   "v-V57": {
    "id": "V57",
    "src": "/home/user/LOMBARD/tools/.cache/masters/v-V57.png",
-   "widths": [640, 1100, 1448],
+   "widths": [
+    640,
+    1100,
+    1448
+   ],
    "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SERRE D’ORCHIS, CHALET B, INTÉRIEUR",
    "alt": "Vue 3D, illustration non contractuelle : séjour du chalet B du Serre d’Orchis, cheminée suspendue et sommets dans les fenêtres"
   },
   "v-V54": {
    "id": "V54",
    "src": "/home/user/LOMBARD/tools/.cache/masters/v-V54.png",
-   "crop": [0, 0, 1372, 1024],
-   "widths": [640, 1100, 1372],
+   "crop": [
+    0,
+    0,
+    1372,
+    1024
+   ],
+   "widths": [
+    640,
+    1100,
+    1372
+   ],
    "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SERRE D’ORCHIS, CHALET A, EXTÉRIEUR",
    "alt": "Vue 3D, illustration non contractuelle : le chalet A du Serre d’Orchis en hiver, balcons et terrasse en bois entre des sapins enneigés, montagnes au fond"
   },
   "v-V35": {
    "id": "V35",
    "src": "/home/user/LOMBARD/tools/.cache/masters/v-V35.png",
-   "crop": [0, 0, 1276, 1024],
-   "widths": [640, 1100, 1276],
+   "crop": [
+    0,
+    0,
+    1276,
+    1024
+   ],
+   "widths": [
+    640,
+    1100,
+    1276
+   ],
    "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SERRE D’ORCHIS, CHALET A, INTÉRIEUR",
    "alt": "Vue 3D, illustration non contractuelle : séjour du chalet A du Serre d’Orchis, canapés clairs sous la charpente, grandes baies vitrées sur les montagnes enneigées"
   },
   "v-V34": {
    "id": "V34",
    "src": "/home/user/LOMBARD/tools/.cache/masters/v-V34.png",
-   "widths": [640, 1100, 1536],
+   "widths": [
+    640,
+    1100,
+    1536
+   ],
    "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SABOT DE VÉNUS, CHALETS A ET B, EXTÉRIEUR",
    "alt": "Vue 3D, illustration non contractuelle : les chalets A et B du Sabot de Vénus sous la neige, entre de jeunes arbres givrés"
   },
   "v-V30": {
    "id": "V30",
    "src": "/home/user/LOMBARD/tools/.cache/masters/v-V30.png",
-   "crop": [192, 216, 1536, 1024],
-   "widths": [640, 1100, 1344],
+   "crop": [
+    192,
+    216,
+    1536,
+    1024
+   ],
+   "widths": [
+    640,
+    1100,
+    1344
+   ],
    "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SABOT DE VÉNUS, CHALET A, SALON",
    "alt": "Vue 3D, illustration non contractuelle : salon du chalet A du Sabot de Vénus un soir d’hiver, cheminée centrale allumée, canapé et fauteuils autour d’une table basse aux bougies"
   },
   "v-V33": {
    "id": "V33",
    "src": "/home/user/LOMBARD/tools/.cache/masters/v-V33.png",
-   "widths": [640, 1100, 1536],
+   "widths": [
+    640,
+    1100,
+    1536
+   ],
    "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SABOT DE VÉNUS, CHALET B, SÉJOUR",
-   "alt": "Vue 3D, illustration non contractuelle : séjour du chalet B du Sabot de Vénus, canapés autour d’une cheminée suspendue, cuisine et table à manger devant une baie sur la forêt enneigée"
+   "alt": "Vue 3D, illustration non contractuelle : séjour du chalet B du Sabot de Vénus, canapés autour d’une table basse, cheminée suspendue, cuisine et table à manger devant une baie sur la forêt enneigée"
   },
   "v-V26": {
    "id": "V26",
    "src": "/home/user/LOMBARD/tools/.cache/masters/V26-retouche.png",
-   "widths": [640, 1100, 1536],
+   "widths": [
+    640,
+    1100,
+    1536
+   ],
    "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LA ROUYA, FAÇADE SUD",
    "alt": "Vue 3D, illustration non contractuelle : façade sud de La Rouya, chalet en bois au toit bleu dans un pré enneigé, face aux sommets"
   },
   "v-V27": {
    "id": "V27",
    "src": "/home/user/LOMBARD/tools/.cache/masters/v-V27.png",
-   "widths": [640, 1100, 1536],
+   "widths": [
+    640,
+    1100,
+    1536
+   ],
    "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LA ROUYA, SALON",
-   "alt": "Vue 3D, illustration non contractuelle : salon de La Rouya, poêle suspendu allumé, canapés clairs et fenêtres ouvertes sur la montagne enneigée"
+   "alt": "Vue 3D, illustration non contractuelle : salon de La Rouya, poêle suspendu allumé, canapés clairs et baies vitrées sur la montagne enneigée"
   }
  }
 }
