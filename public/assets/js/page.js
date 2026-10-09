@@ -163,10 +163,12 @@
   }
 
   /* ——— votre chalet vous attend : on avance à travers les sapins ———
-     Les trois plans gardent le même cadrage mais avancent à des vitesses différentes : les branches,
-     tout près, grandissent et s'ouvrent ; le chalet approche à peine ; le ciel presque pas. Sur grand
-     écran, la vue descend en même temps le long du pignon. Le titre se met au point mot à mot, entre
-     les branches et le chalet, sur un voile sombre qui le rend lisible. */
+     Les trois plans gardent le même cadrage et grandissent à des vitesses différentes : les branches,
+     tout près, plus vite que le chalet, le ciel à peine. Elles partent un peu resserrées autour du chalet
+     et s'ouvrent jusqu'à la photo exacte en fin de course : on ne voit jamais ce qu'elles cachent
+     (tools/scene_planes.py : MOVE). Sur grand écran, la vue descend en même temps le long du pignon. Le
+     mouvement commence pendant que la section arrive, pour un court passage épinglé ; le titre se met au
+     point mot à mot, entre les branches et le chalet, sur un voile sombre qui le rend lisible. */
   function vca() {
     const root = $('.vca');
     if (!root) return;
@@ -178,14 +180,15 @@
     gsap.set(words, { opacity: 0, y: Math.round(fs * .39), filter: `blur(${Math.min(18, fs * .21).toFixed(1)}px)`, willChange: 'opacity, filter, transform' });
     gsap.set(veil, { opacity: 0 });
     // descente possible dans la photo : ce qui dépasse de l'écran, entre le cadrage de départ et celui d'arrivée
-    const pan = () => Math.max(0, front.offsetHeight - innerHeight * 1.04) * .43;
-    const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: root, start: 'top top', end: 'bottom bottom', scrub: .5, invalidateOnRefresh: true } })
+    const pan = () => Math.max(0, front.offsetHeight - innerHeight * 1.04) * .3;
+    const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: root, start: 'top 65%', end: 'bottom bottom', scrub: .6, invalidateOnRefresh: true } })
       .fromTo([back, mid, front], { y: 0 }, { y: () => -pan(), duration: 1, ease: 'power1.inOut' }, 0)
-      .fromTo(front, { scale: 1 }, { scale: 1.42, duration: 1, ease: 'power1.in' }, 0)
-      .fromTo(mid, { scale: 1 }, { scale: 1.08, duration: 1 }, 0)
-      .fromTo(back, { scale: 1 }, { scale: 1.03, duration: 1 }, 0)
-      .to(veil, { opacity: 1, duration: .3 }, .22);
-    words.forEach((w, i) => tl.to(w, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .22 }, .26 + i * .07));
+      // l'avant ne dépasse jamais l'échelle du chalet (1 + .13t² ≤ 1.1 + .03t) : il ne fait que s'ouvrir
+      .fromTo(front, { scale: 1 }, { scale: 1.13, duration: 1, ease: 'power1.in' }, 0)
+      .fromTo(mid, { scale: 1.1 }, { scale: 1.13, duration: 1 }, 0)
+      .fromTo(back, { scale: 1.05 }, { scale: 1.08, duration: 1 }, 0)
+      .to(veil, { opacity: 1, duration: .3 }, .3);
+    words.forEach((w, i) => tl.to(w, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .2 }, .36 + i * .07));
   }
 
   /* ——— 04 : le registre ———

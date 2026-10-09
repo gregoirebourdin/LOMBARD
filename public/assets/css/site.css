@@ -430,7 +430,7 @@ html.motion .real__end { margin-top: 0; }
 }
 .vca__t em { font-style: italic; }
 .vca__credit { position: absolute; right: var(--gutter); bottom: calc(16px + env(safe-area-inset-bottom)); margin: 0; font-family: var(--ff-mono); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: rgb(251 247 242 / .75); z-index: 2; }
-html.motion .vca { height: 250vh; height: 250svh; }
+html.motion .vca { height: 165vh; height: 165svh; }
 html.motion .vca__pin { position: sticky; top: 0; }
 html.motion .vp { will-change: transform; }
 

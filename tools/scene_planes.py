@@ -4,23 +4,29 @@ milieu : le chalet et la neige ; fond : le ciel.
 
 Usage : python tools/scene_planes.py
 Entrées : la photo du site actuel (tools/.cache/2024_09_Chalets_Lombard_hiver_exterieure_chlaets-100me.jpg,
-téléchargée au besoin), et les modèles hors ligne de tools/layers.py (profondeur Depth Anything V2,
-remplissage LaMa) — variable HF_CACHE : dossier du cache Hugging Face.
+téléchargée au besoin), les modèles hors ligne de tools/layers.py (profondeur Depth Anything V2,
+remplissage LaMa) — variable HF_CACHE : dossier du cache Hugging Face — et pymatting.
 
 Méthode :
-- avant : la profondeur sépare nettement les branches (proches) du chalet ; comme elles sont floues, leur
-  transparence suit la profondeur (rampe douce), recalée sur la photo par un filtre guidé couleur ;
-- au défilement, les branches s'écartent vers les bords : ce qu'elles cachent près de leur bord intérieur
-  est reconstitué (LaMa) dans la bande que le mouvement peut découvrir ;
+- avant : la profondeur donne une zone sûrement « branche » et une zone sûrement « chalet ou ciel » ;
+  entre les deux, la transparence est calculée sur la photo (détourage « closed-form »), si bien que le
+  dégradé suit le flou réel des branches et pas la pente de la carte de profondeur ;
+- dans ce dégradé, couleurs de la branche et de ce qu'il y a derrière séparées (estimation « ML ») : le
+  plan du milieu ne garde aucune trace de branche ;
+- le mouvement de page.js ne découvre jamais ce que les branches cachent : elles partent un peu plus
+  resserrées que sur la photo (plan avant moins agrandi que le chalet) et s'ouvrent jusqu'à la photo
+  exacte en fin de course ; on ne voit donc derrière elles que du vrai chalet. Sous la branche opaque,
+  une reconstitution (LaMa, à partir du fond nettoyé) ne sert qu'aux petits jours entre les aiguilles ;
 - fond : le ciel (très clair, lointain), prolongé en douceur sous le chalet.
-Couleurs « décontaminées » sur les bords : au repos, avant ∘ milieu ∘ fond redonne la photo.
+Au repos, avant ∘ milieu ∘ fond redonne la photo.
 
-Sorties : public/assets/scenes/vca/back, mid, front (AVIF + WebP, avant et milieu recadrés à leur boîte,
-avec transparence) et scene.json ; contrôles dans tools/.cache/vca/.
+Sorties : public/assets/scenes/vca/back, mid, front (AVIF + WebP, avec transparence pour milieu et avant)
+et scene.json ; contrôles dans tools/.cache/vca/ (alpha, plaque, simulation du mouvement).
 """
 import json, os, sys, urllib.request
 import numpy as np, cv2
 from PIL import Image
+from pymatting import estimate_alpha_cf, estimate_foreground_ml
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -33,13 +39,16 @@ URL = 'https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalets_Lombard
 SRC = os.path.join(ROOT, 'tools', '.cache', NAME)
 QA = os.path.join(ROOT, 'tools', '.cache', 'vca')
 OUT = os.path.join(ROOT, 'public', 'assets', 'scenes', 'vca')
-BAND = 260          # px source que l'écartement des branches peut découvrir
+FG_D, BG_D = .52, .30   # profondeur : au-delà, branche sûre ; en deçà, chalet ou ciel sûrs
+BAND = 150              # px source reconstitués sous le bord des branches
 WIDTHS = [828, 1281]
+# mouvement de page.js : échelles de départ et d'arrivée autour de l'origine (fraction de l'image) ;
+# l'avant n'est jamais plus agrandi que le milieu : rien de caché n'apparaît
+MOVE = {'origin': (.5, .46), 'front': (1, 1.13), 'mid': (1.1, 1.13), 'back': (1.05, 1.08)}
 
 
-def smooth(x, a, b):
-    t = np.clip((x - a) / (b - a), 0, 1)
-    return t * t * (3 - 2 * t)
+def disk(r):
+    return cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))
 
 
 def main():
@@ -53,33 +62,55 @@ def main():
     img = img8.astype(F32) / 255
     H, W = img.shape[:2]
     M = L.Models(threads=4)
-    d = M.depth(img8)
+    dp = os.path.join(QA, 'depth.npy')
+    if os.path.exists(dp):
+        d = np.load(dp)
+    else:
+        d = M.depth(img8)
+        np.save(dp, d)
 
-    # ——— avant : les branches (proches) ; rampe douce, car elles sont floues
-    soft = smooth(d, .40, .58)
-    hard = keep_main(soft > .5, 4000)
-    soft = np.where(cv2.dilate(hard.astype(np.uint8), np.ones((41, 41), np.uint8)) > 0, soft, 0).astype(F32)
-    af = np.clip(guided(img, soft, 8, 2e-2), 0, 1).astype(F32)
-    af = np.where(soft > .995, 1, af)
-    af[af < .02] = 0
+    # ——— avant : trimap par la profondeur, puis détourage sur la photo
+    fg = keep_main(d > FG_D, 4000)
+    fg = cv2.erode(fg.astype(np.uint8), disk(10)) > 0
+    near = cv2.dilate(fg.astype(np.uint8), disk(160)) > 0           # le dégradé reste près des branches
+    bg = (cv2.erode((d < BG_D).astype(np.uint8), disk(10)) > 0) | ~near
+    tri = np.full((H, W), .5, np.float64)
+    tri[bg] = 0
+    tri[fg] = 1
+    h2, w2 = H // 2, W // 2
+    i2 = cv2.resize(img, (w2, h2), interpolation=cv2.INTER_AREA).astype(np.float64)
+    t2 = cv2.resize(tri, (w2, h2), interpolation=cv2.INTER_NEAREST)
+    a2 = np.clip(estimate_alpha_cf(i2, t2), 0, 1).astype(F32)
+    a = cv2.resize(a2, (W, H), interpolation=cv2.INTER_CUBIC)
+    a = np.clip(guided(img, a, 3, 1e-4), 0, 1).astype(F32)            # recalé à pleine résolution
+    a[tri == 1] = 1
+    a[tri == 0] = 0
+    a[a < .01] = 0
+    a[a > .99] = 1
+    # couleurs séparées dans le dégradé : branche (F) et ce qu'il y a derrière (B)
+    F, B = estimate_foreground_ml(img.astype(np.float64), a.astype(np.float64), return_background=True)
+    F, B = F.astype(F32), B.astype(F32)
 
-    # ——— fond : le ciel, très clair, peu saturé et lointain
-    hsv = cv2.cvtColor(img8, cv2.COLOR_RGB2HSV).astype(F32) / 255
-    sky = ((d < .03) & (hsv[..., 2] > .78) & (hsv[..., 1] < .18) & (np.arange(H)[:, None] < H * .45)).astype(F32)
-    sky = cv2.morphologyEx(sky, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8))
-    sky = np.clip(guided(img, sky, 4, 1e-3), 0, 1) * (1 - af)
-
-    # ——— milieu : sous les branches, reconstitué dans la bande découvrable
-    hole = af > .02
+    # ——— milieu : sous la branche opaque, reconstitué à partir du fond nettoyé
+    hole = cv2.dilate((a > .55).astype(np.uint8), disk(2)) > 0
+    clean = np.where((a < .01)[..., None], img, B)
     dist = cv2.distanceTransform(hole.astype(np.uint8), cv2.DIST_L2, 5)
     need = hole & (dist <= BAND)
-    filled, done = L.lama_fill(M, img.copy(), hole, need, rings=3, ring_px=40)
-    plate = np.where(hole[..., None], filled, img)
-    # dans ce qui a été reconstitué, le ciel prolonge le ciel voisin (clair et en haut)
-    hsvp = cv2.cvtColor((np.clip(plate, 0, 1) * 255).astype(np.uint8), cv2.COLOR_RGB2HSV).astype(F32) / 255
-    sky_fill = ((hsvp[..., 2] > .8) & (hsvp[..., 1] < .16) & (np.arange(H)[:, None] < H * .4) & hole).astype(F32)
-    sky_all = np.maximum(sky, cv2.GaussianBlur(sky_fill, (0, 0), 3))
+    filled, _ = L.lama_fill(M, clean.copy(), hole, need, rings=3, ring_px=40)
+    plate = np.where(hole[..., None], filled, clean).astype(F32)
 
+    # ——— avant : couleur exacte au repos (là où la plaque est reconstituée, on la recalcule)
+    front = F.copy()
+    e = hole & (a > .02)
+    front[e] = np.clip((img[e] - (1 - a[e])[:, None] * plate[e]) / a[e][:, None], 0, 1)
+
+    # ——— fond : le ciel, très clair, peu saturé, en haut ; prolongé sous le chalet
+    hsv = cv2.cvtColor((np.clip(plate, 0, 1) * 255).astype(np.uint8), cv2.COLOR_RGB2HSV).astype(F32) / 255
+    rows = np.arange(H)[:, None]
+    sky = ((hsv[..., 2] > .78) & (hsv[..., 1] < .18) & (rows < H * .42) & ((d < .03) | hole | (a > 0))).astype(F32)
+    sky = cv2.morphologyEx(sky, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8))
+    sky = keep_main(sky > .5, 3000).astype(F32)
+    sky_all = np.clip(guided(plate, sky, 4, 1e-3), 0, 1).astype(F32)
     known = cv2.erode((sky_all > .98).astype(np.uint8), np.ones((7, 7), np.uint8)).astype(F32)
     base = plate.copy(); base[known < 1] = 0
     back = L.push_pull(base, known)
@@ -90,49 +121,50 @@ def main():
     e = (am > .02) & (am < .98)
     mid[e] = np.clip((plate[e] - (1 - am[e])[:, None] * back[e]) / am[e][:, None], 0, 1)
 
-    # ——— avant : couleurs décontaminées contre ce qu'il y a derrière (milieu sur fond)
     behind = am[..., None] * mid + (1 - am[..., None]) * back
-    front = img.copy()
-    e = (af > .02) & (af < .98)
-    front[e] = np.clip((img[e] - (1 - af[e])[:, None] * behind[e]) / af[e][:, None], 0, 1)
-
-    comp = af[..., None] * front + (1 - af[..., None]) * behind
+    comp = a[..., None] * front + (1 - a[..., None]) * behind
     print(f'écart de recomposition au repos {np.abs(comp - img).mean() * 255:.3f}/255')
 
     # ——— exports
     meta = {'w': W, 'h': H, 'planes': []}
     kb = save_plane(back, os.path.join(OUT, 'back'), False, WIDTHS, 56, 80)
     meta['planes'].append({'name': 'back', 'bbox': [0, 0, W, H], 'files': WIDTHS, 'kb': kb})
-    for name, col, a in (('mid', mid, am), ('front', front, af)):
-        ys, xs = np.where(a > .01)
-        bb = [int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1]
-        rgba = np.dstack([col, a])[bb[1]:bb[3], bb[0]:bb[2]]
-        ws = [round(w * (bb[2] - bb[0]) / W) for w in WIDTHS]
-        kb = save_plane(rgba, os.path.join(OUT, name), True, ws, 58, 84)
-        meta['planes'].append({'name': name, 'bbox': bb, 'files': ws, 'kb': kb})
+    for name, col, al in (('mid', mid, am), ('front', front, a)):
+        kb = save_plane(np.dstack([col, al]), os.path.join(OUT, name), True, WIDTHS, 58, 84)
+        meta['planes'].append({'name': name, 'bbox': [0, 0, W, H], 'files': WIDTHS, 'kb': kb})
     json.dump(meta, open(os.path.join(OUT, 'scene.json'), 'w'), indent=1)
     print(json.dumps(meta))
 
-    # ——— contrôles : alpha, plaque reconstituée, et branches écartées (trous en magenta)
-    Image.fromarray((af * 255).astype(np.uint8)).resize((W // 3, H // 3)).save(os.path.join(QA, 'alpha-front.jpg'))
-    Image.fromarray((sky_all * 255).astype(np.uint8)).resize((W // 3, H // 3)).save(os.path.join(QA, 'alpha-sky.jpg'))
-    Image.fromarray((np.clip(plate, 0, 1) * 255).astype(np.uint8)).resize((W // 3, H // 3)).save(os.path.join(QA, 'plate.jpg'))
-    frames = []
-    for s in (0, .5, 1):
-        n, lab = cv2.connectedComponents((af > .3).astype(np.uint8))
-        out = behind.copy()
-        # chaque branche glisse vers son bord : à gauche vers la gauche, à droite vers la droite
-        for k in range(1, n):
-            m = lab == k
-            cx = np.where(m)[1].mean()
-            dx = (-1 if cx < W / 2 else 1) * s * BAND * .85
-            Mx = np.float32([[1, 0, dx], [0, 1, -s * 40]])
-            fa = cv2.warpAffine(af * cv2.dilate(m.astype(np.uint8), np.ones((61, 61), np.uint8)), Mx, (W, H))
-            fr = cv2.warpAffine(front, Mx, (W, H))
-            out = fa[..., None] * fr + (1 - fa[..., None]) * out
-        frames.append(cv2.resize(out, (W // 3, H // 3)))
-    Image.fromarray((np.clip(np.concatenate(frames, 1), 0, 1) * 255).astype(np.uint8)).save(os.path.join(QA, 'sim.jpg'), quality=86)
+    # ——— contrôles : trimap, alpha, plaque, et le mouvement de page.js (fin de course) simulé
+    sm = lambda x: cv2.resize(x, (W // 3, H // 3), interpolation=cv2.INTER_AREA)
+    to8 = lambda x: (np.clip(x, 0, 1) * 255 + .5).astype(np.uint8)
+    Image.fromarray(to8(sm(tri.astype(F32)))).save(os.path.join(QA, 'trimap.jpg'))
+    Image.fromarray(to8(sm(a))).save(os.path.join(QA, 'alpha-front.jpg'))
+    Image.fromarray(to8(sm(sky_all))).save(os.path.join(QA, 'alpha-sky.jpg'))
+    Image.fromarray(to8(sm(plate))).save(os.path.join(QA, 'plate.jpg'), quality=88)
+    ox, oy = MOVE['origin'][0] * W, MOVE['origin'][1] * H
 
+    def at(x, s):
+        Mx = np.float32([[s, 0, ox * (1 - s)], [0, s, oy * (1 - s)]])
+        return cv2.warpAffine(x, Mx, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
+    scales = lambda t: [MOVE[k][0] + (MOVE[k][1] - MOVE[k][0]) * t for k in ('front', 'mid', 'back')]
+    frames = []
+    for t in (0, .5, 1):
+        sf, smid, sb = scales(t)
+        amt = at(am, smid)[..., None]
+        out = amt * at(mid, smid) + (1 - amt) * at(back, sb)
+        aft = at(a, sf)[..., None]
+        out = aft * at(front, sf) + (1 - aft) * out
+        frames.append(sm(out))
+    Image.fromarray(to8(np.concatenate(frames, 1))).save(os.path.join(QA, 'sim.jpg'), quality=88)
+    # ce que le mouvement laisse voir de reconstitué en plus de la photo (sous une branche plus opaque qu'au repos)
+    rest = (1 - a) * am * hole
+    seen = 0
+    for t in np.linspace(0, 1, 11):
+        sf, smid, _ = scales(t)
+        vis = (1 - at(a, sf)) * at(am, smid) * at(hole.astype(F32), smid)
+        seen = max(seen, int((vis > at(rest, smid) + .15).sum()))
+    print(f'pixels reconstitués visibles en plus de la photo (max sur la course) : {seen}')
 
 if __name__ == '__main__':
     main()
