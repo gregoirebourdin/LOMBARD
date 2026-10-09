@@ -121,12 +121,17 @@ const VCA = existsSync(join(PUB, 'assets/scenes/vca/scene.json')) ? json(join(PU
 function scenePic(name) {
   if (!VCA) { missing.add(`scene ${name}`); return ''; }
   const ws = VCA.planes.find((x) => x.name === name).files;
-  const set = (ext) => ws.map((w) => `/assets/scenes/vca/${name}-${w}.${ext} ${w}w`).join(', ');
+  // versionnés par leur contenu : un plan redécoupé ne se mélange jamais, en cache, avec l'ancien
+  const url = (w, ext) => {
+    const p = `assets/scenes/vca/${name}-${w}.${ext}`;
+    return `/${p}?v=${createHash('sha1').update(readFileSync(join(PUB, p))).digest('hex').slice(0, 8)}`;
+  };
+  const set = (ext) => ws.map((w) => `${url(w, ext)} ${w}w`).join(', ');
   const sizes = '(max-aspect-ratio: 1/1) 72vh, 104vw';
   // le fond porte la description de toute la scène (les trois plans recomposent la photo)
   const alt = name === 'back' ? 'Chalet en bois sous la neige, vu à travers des branches de sapin enneigées' : '';
   return `<picture class="vp vp--${name}"><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}">`
-    + `<img src="/assets/scenes/vca/${name}-${ws[ws.length - 1]}.webp" alt="${alt}" width="${VCA.w}" height="${VCA.h}" loading="lazy" decoding="async"></picture>`;
+    + `<img src="${url(ws[ws.length - 1], 'webp')}" alt="${alt}" width="${VCA.w}" height="${VCA.h}" loading="lazy" decoding="async"></picture>`;
 }
 
 /* ——— logo ——— */
