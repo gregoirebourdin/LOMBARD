@@ -1,0 +1,49 @@
+{
+ "_doc": "S5 sur-mesure, S6 poteau / bois / enseigne, S7 terrasse, S8 finale + finale-dim (spec §3, annexe A). Masters retouchés et étalonnés par tools/retouch/exteriors.py ; les recadrages simples sont ici (celui de la terrasse dépend du redressement : il est dans le master).",
+ "images": {
+  "sur-mesure": {
+   "id": "N036",
+   "src": "/home/user/LOMBARD/tools/.cache/masters/sur-mesure.png",
+   "crop": [0, 0, 2998, 1820],
+   "widths": [800, 1200, 1600],
+   "alt": "Chalet en vieux bois sous la neige, grand pignon vitré, sous un épicéa"
+  },
+  "poteau": {
+   "id": "N052",
+   "src": "/home/user/LOMBARD/tools/.cache/masters/poteau.png",
+   "widths": [800, 1200],
+   "alt": "Poteau en Douglas et ses deux jambes de force"
+  },
+  "bois": {
+   "id": "N024",
+   "src": "/home/user/LOMBARD/tools/.cache/masters/bois.png",
+   "crop": [6, 0, 1446, 1080],
+   "widths": [800, 1200],
+   "alt": "Marteau de charpentier posé sur du bois empilé"
+  },
+  "enseigne": {
+   "id": "I267",
+   "src": "/home/user/LOMBARD/tools/.cache/masters/enseigne.png",
+   "widths": [800, 1200],
+   "alt": "Enseigne Lombard Vasina sur un bardage en mélèze"
+  },
+  "terrasse": {
+   "id": "I065",
+   "src": "/home/user/LOMBARD/tools/.cache/masters/terrasse.png",
+   "widths": [800, 1200],
+   "alt": "Terrasse en mélèze éclairée au crépuscule, ciel rose reflété dans les vitres"
+  },
+  "finale": {
+   "id": "N037",
+   "src": "/home/user/LOMBARD/tools/.cache/masters/finale.png",
+   "widths": [828, 1440, 1920],
+   "alt": "Chalet à l’heure bleue, toutes les fenêtres allumées"
+  },
+  "finale-dim": {
+   "id": "N037",
+   "src": "/home/user/LOMBARD/tools/.cache/masters/finale-dim.png",
+   "widths": [828, 1440, 1920],
+   "alt": ""
+  }
+ }
+}

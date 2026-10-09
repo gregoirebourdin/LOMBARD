@@ -30,8 +30,13 @@
     const draw = () => { frame.style.clipPath = `polygon(50% ${g.a}%, 100% ${g.e}%, 100% 100%, 0% 100%, 0% ${g.e}%)`; };
     draw();
     if (img) gsap.set(img, { scale: 1.15 });
+    // une image masquée par le pignon fermé n'est jamais « visible » : on lance son chargement à l'approche
+    if (img) App.onEnter(frame, () => { img.loading = 'eager'; }, 'top 220%');
     App.onEnter(frame, async () => {
-      if (img && img.decode) await img.decode().catch(() => {});
+      if (img) {
+        img.loading = 'eager';
+        if (img.decode) await Promise.race([img.decode().catch(() => {}), new Promise((r) => setTimeout(r, 1500))]);
+      }
       gsap.timeline({ onUpdate: draw, onComplete: () => { frame.style.clipPath = ''; } })
         .to(g, { a: 0, e: 22, duration: .75, ease: 'in' })
         .to(g, { e: 0, duration: .55, ease: 'out' });
@@ -99,11 +104,14 @@
     const track = $('.steps__track i');
     if (track && desktop()) gsap.fromTo(track, { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.steps', start: 'top 60%', end: 'bottom 60%', scrub: .5 } });
     $$('.step').forEach((st) => {
-      const roll = odometer($('.odo', st));
+      const odo = $('.odo', st);
+      const roll = odometer(odo);
       const t = App.split($('.step__t', st));
       gsap.set(t.lines, { yPercent: 110 });
       gsap.set($('.step__p', st), { autoAlpha: 0, y: 12 });
+      gsap.set(odo, { autoAlpha: 0 });
       App.onEnter(st, () => {
+        gsap.to(odo, { autoAlpha: 1, duration: .4 });
         roll();
         gsap.to(t.lines, { yPercent: 0, duration: 1.1, ease: 'out', stagger: .08 });
         gsap.to($('.step__p', st), { autoAlpha: 1, y: 0, duration: .9, ease: 'out', delay: .15 });
@@ -119,11 +127,11 @@
     $$('.counter').forEach((c, i) => {
       const roll = odometer($('.odo', c));
       const units = $$('.counter__u', c);
-      gsap.set(units, { autoAlpha: 0 });
+      if (units.length) gsap.set(units, { autoAlpha: 0 });
       App.onEnter(c, () => {
         c.classList.add('is-in');
         gsap.delayedCall(i % 2 * .12, roll);
-        gsap.to(units, { autoAlpha: 1, duration: .6, delay: 1.2 });
+        if (units.length) gsap.to(units, { autoAlpha: 1, duration: .6, delay: 1.2 });
       });
     });
   }

@@ -97,10 +97,11 @@ function logo(a) {
   if (a.variant === 'emboss') {
     // pied de page : logo de la couleur du papier, en relief ; seul le toit est violet, tracé au scroll
     return `<svg class="emboss" viewBox="0 0 1286.11 643.35" role="img" aria-label="Chalets Lombard Vasina">`
-      + `<defs><filter id="fx-emb" x="-2%" y="-2%" width="104%" height="104%"><feDropShadow dx="0" dy="1.6" stdDeviation="0.4" flood-color="#FFFFFF" flood-opacity=".85"/><feDropShadow dx="0" dy="-1.6" stdDeviation="0.5" flood-color="#160B13" flood-opacity=".1"/></filter>`
+      + `<defs><filter id="fx-emb" x="-2%" y="-2%" width="104%" height="104%"><feDropShadow dx="0" dy="1.8" stdDeviation="0.4" flood-color="#FFFFFF" flood-opacity=".9"/><feDropShadow dx="0" dy="-1.8" stdDeviation="0.6" flood-color="#160B13" flood-opacity=".13"/></filter>`
+      + `<filter id="fx-emb-m" x="-3%" y="-3%" width="106%" height="106%"><feDropShadow dx="0" dy="4.5" stdDeviation="1" flood-color="#FFFFFF" flood-opacity=".95"/><feDropShadow dx="0" dy="-4.5" stdDeviation="1.4" flood-color="#160B13" flood-opacity=".16"/></filter>`
       + `<mask id="fx-mo" maskUnits="userSpaceOnUse" x="-50" y="-50" width="1400" height="800"><polyline class="emboss__draw" points="354.5,200.6 654.7,12.4 935,187.6" fill="none" stroke="#fff" stroke-width="26"/></mask>`
       + `<mask id="fx-mi" maskUnits="userSpaceOnUse" x="-50" y="-50" width="1400" height="800"><polyline class="emboss__draw" points="423.3,196 654.7,53.5 885,197.3" fill="none" stroke="#fff" stroke-width="12"/></mask></defs>`
-      + `<g class="emboss__paper" filter="url(#fx-emb)">${P(L.ml)}${P(L.mr)}${letters}</g>`
+      + `<g class="emboss__paper">${P(L.ml)}${P(L.mr)}${letters}</g>`
       + `<g class="emboss__roof"><path mask="url(#fx-mo)" d="${L.ro}"/><path mask="url(#fx-mi)" d="${L.ri}"/></g></svg>`;
   }
   const label = a.label ? ` role="img" aria-label="${esc(a.label)}"` : ' aria-hidden="true" focusable="false"';
@@ -119,8 +120,8 @@ const thumb = (p, size = 'sm') => `<span class="gable-thumb gable-thumb--${size}
 
 const partials = {
   encart: () => PR.map((p) => `<li><a class="encart__row" href="#${p.id}" data-cursor="Voir">${thumb(p)}`
-    + `<span class="encart__txt"><span class="encart__name">${p.nom}</span><span class="encart__commune micro">${p.commune}</span></span>`
-    + `<span class="encart__surf">${p.encart}</span>${arrow}</a></li>`).join(''),
+    + `<span class="encart__txt"><span class="encart__name">${p.nom}</span><span class="encart__commune micro">${p.commune}</span>`
+    + `<span class="encart__surf">${p.encart}</span></span>${arrow}</a></li>`).join(''),
   thumbs: () => PR.map((p) => thumb(p, 'xs')).join(''),
   sommaire: () => PR.map((p) => `<li><a class="som__row" href="#${p.id}" data-point="${p.id}" data-cursor="Voir">`
     + `<span class="som__n mono">${p.n}</span><span class="som__name">${p.nom}</span><span class="som__commune micro">${p.commune}</span>`
@@ -232,7 +233,7 @@ function jsonld() {
       '@type': 'ListItem', position: i + 1,
       item: {
         '@type': 'Residence', name: p.nom, url: p.url,
-        address: { '@type': 'PostalAddress', addressLocality: p.commune.replace(/ 1400$/, '').toLowerCase().replace(/(^|[\s-])\p{L}/gu, (m) => m.toUpperCase()), addressRegion: 'Hautes-Alpes', addressCountry: 'FR' },
+        address: { '@type': 'PostalAddress', addressLocality: p.ville, addressRegion: 'Hautes-Alpes', addressCountry: 'FR' },
         floorSize: lotsPub(p).map((l) => ({ '@type': 'QuantitativeValue', value: parseFloat(l.surface.replace(',', '.').replace(/\s/g, '')), unitCode: 'MTK' })),
       },
     })),

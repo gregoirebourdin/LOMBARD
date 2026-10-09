@@ -24,16 +24,18 @@ ici, parce qu'il dépend du redressement.
                     Puis recadrage 4:5 qui respecte x >= 120 de la source sur toute la hauteur
                     (le bord gauche oblique de cette bande est mesuré après redressement) et garde
                     la sous-face en mélèze et le ciel rose reflété dans les vitres, jusqu'aux
-                    chaises longues (en bas : juste au-dessus du dossier de la chaise pliante).
+                    roues des chaises longues (bas à y' = 1360) : x' 161-1241, y' 10-1360, 1080x1350.
+                    Verticales mesurées après coup sur le master : ±0,5° au plus.
   finale      N037  enlève le réverbère (lanterne x 821-874, y 832-915 ; mât x 835-848 jusqu'au bas
                     de l'image, y 1281) : masque SAM 2.1, dilaté de 5 px ; LaMa à 1:1 sur une tuile
                     de 512 px (x 592-1104, y 769-1281) qui contient tout le contexte. Le réverbère est
                     éteint : pas de flaque de lumière à effacer.
   finale-dim        dérivée du master « finale » (déjà étalonné) : l'état « éteint » de l'allumage
                     (spec S8). −0,6 IL partout ; les pixels chauds (teinte 15-55°, S > 0,35,
-                    V > 0,45, seuils adoucis sur ±0,05, masque dilaté de 4 px puis adouci de 10 px)
-                    ramenés à 18 % de leur luminance, vers le gris-bleu de la nuit tombante mesuré
-                    sur la photo elle-même. Aucun éclat, aucun halo ajouté.
+                    V > 0,45, seuils adoucis, masque dilaté de 4 px puis adouci de 10 px) et les
+                    flaques blanches des appliques éteints : vitres sombres qui reflètent un peu le
+                    bleu de la neige à l'ombre (mesuré sur la photo). Détail de la recette dans dim().
+                    Aucun éclat, aucun halo ajouté : chaque pixel est égal ou plus sombre.
 
 Modèles hors ligne : HF_HUB_CACHE (défaut : le cache du scratchpad), HF_HUB_OFFLINE=1.
 Sources : LOMBARD_SOURCES (défaut : le scratchpad de la session de conception).
@@ -217,8 +219,10 @@ def terrasse():
             else:
                 hi = mid
         return pt(xs, lo)[0]
-    xl = int(np.ceil(max(x_at(120, y_bas), x_at(120, top))))
-    xr = int(np.floor(min(x_at(w0 - 1, y_bas), x_at(w0 - 1, top))))
+    # la bande x < 120 penche vers la droite en descendant, le bord droit vers la gauche :
+    # les deux limites les plus strictes sont en bas du recadrage
+    xl = int(np.ceil(x_at(120, y_bas)))
+    xr = int(np.floor(x_at(w0 - 1, y_bas)))
     w = xr - xl
     w -= w % 4
     h = w * 5 // 4
@@ -248,8 +252,122 @@ def finale():
     save(im, 'finale')
 
 
+# finale-dim : réglages (voir docstring)
+DIM_EV = -0.6          # partout
+DIM_KNEE = 0.12        # plafond (luminance encodée) du niveau de base des surfaces éclairées
+DIM_DETAIL = 0.85      # part du grain (bois, pierre) gardée sur les surfaces éteintes
+DIM_DESAT = 0.45       # chroma gardée (Lab) sur les surfaces éteintes
+DIM_DUSK = 0.12        # teinte du crépuscule (mesurée sur la neige à l'ombre), +0,3 sur les vitres
+
+
+def _s2l(x):
+    return np.where(x <= 0.04045, x / 12.92, ((x + 0.055) / 1.055) ** 2.4)
+
+
+def _l2s(x):
+    x = np.clip(x, 0, 1)
+    return np.where(x <= 0.0031308, x * 12.92, 1.055 * x ** (1 / 2.4) - 0.055)
+
+
+def _sstep(e0, e1, x):
+    t = np.clip((x - e0) / (e1 - e0), 0, 1)
+    return t * t * (3 - 2 * t)
+
+
+def _feather(m, grow=4, soft=10):
+    """Masque dilaté de `grow` px puis adouci sur `soft` px (gaussienne de sigma soft/3)."""
+    m = cv2.dilate(m.astype(np.float32), disk(grow))
+    return np.clip(cv2.GaussianBlur(m, (0, 0), soft / 3), 0, 1)
+
+
+def dim(rgb):
+    """État « éteint » de la photo (spec S8, assets de l'allumage). Ne fait qu'enlever de la lumière.
+
+    1. Partout : -0,6 IL (en lumière linéaire).
+    2. Pixels chauds = recette de la spec (teinte 15-55°, S > 0,35, V > 0,45) aux seuils adoucis ;
+       le seuil V est prolongé en rampe douce jusqu'à 0,05, sinon un bois un peu moins éclairé
+       (V 0,40) resterait plus clair que le bois éclairé une fois éteint (inversion visible).
+       Masque dilaté de 4 px, adouci de 10 px. S'y ajoutent, dans la silhouette du chalet (fermeture
+       de 60 px du masque chaud), les pixels non bleus (volets rouge-brun, poteaux), et les
+       « flaques » blanches des appliques (cœurs brûlés et pierre surexposée, S faible, près d'une
+       zone chaude). Le ciel, la neige, la forêt et la vitre qui reflète déjà le ciel ne sont pas
+       dans le masque : seulement -0,6 IL.
+    3. Dans le masque, la luminance est décomposée en niveau de base (filtre bilatéral, log) et
+       grain. Le niveau de base passe par une courbe monotone (pente -0,6 IL dans les ombres,
+       plafond DIM_KNEE = 0,12) : une vitre blanche finit vers 12-18 % de sa luminance encodée
+       (grain compris) — les 18 % de la spec appliqués tels quels laissaient les vitres orangées
+       (en lumière linéaire) ou rendaient le bois éclairé plus sombre que le bois à l'ombre (en
+       valeurs encodées) ; la courbe est monotone : aucune zone éclairée ne devient plus sombre
+       qu'une zone voisine qui l'était moins. Sous les
+       flaques des appliques, le niveau de base est celui des alentours (convolution normalisée) :
+       la lampe éteinte ne laisse ni tache ni anneau. Le grain est remis (85 %, 50 % dans les vitres).
+    4. Couleur (Lab) : chroma ramenée à 45 % et poussée de 12 % (30 % dans les vitres) vers le bleu de
+       la neige à l'ombre, mesuré sur la photo : une vitre éteinte reflète un peu le crépuscule.
+    Rien n'est ajouté : la luminance de chaque pixel est égale ou plus faible qu'à l'origine.
+    """
+    a = rgb.astype(np.float32) / 255
+    lin = _s2l(a)
+    G = 2.0 ** DIM_EV
+    LUM = np.array([0.2126, 0.7152, 0.0722], np.float32)
+    hsv = cv2.cvtColor(a, cv2.COLOR_RGB2HSV)
+    h, s, v = hsv[..., 0], hsv[..., 1], hsv[..., 2]
+    rb = a[..., 0] - a[..., 2]
+    warm = _sstep(10, 15, h) * (1 - _sstep(55, 60, h)) * _sstep(0.30, 0.40, s)
+    lit = warm * _sstep(0.40, 0.50, v)
+    wv = warm * _sstep(0.05, 0.45, v)
+    house = cv2.morphologyEx((wv > 0.3).astype(np.uint8), cv2.MORPH_CLOSE, disk(60)).astype(np.float32)
+    w_house = cv2.GaussianBlur(house, (0, 0), 4) * _sstep(-0.02, 0.06, rb)
+    near = cv2.dilate((lit > 0.5).astype(np.uint8), disk(30)) > 0
+    pool = _sstep(0.6, 0.8, v) * (1 - _sstep(0.30, 0.45, s)) * _sstep(-0.03, 0.01, rb) * near
+    glow = _sstep(0.85, 0.95, v) * (cv2.dilate((pool > 0.5).astype(np.uint8), disk(40)) > 0)
+    P = np.maximum(_feather(pool, 10, 10), _feather(glow, 4, 10))
+    w = np.maximum.reduce([_feather(wv), w_house, P])
+
+    yl = lin @ LUM
+    ye = _l2s(yl)
+    ly = np.log(np.maximum(yl, 1e-4)).astype(np.float32)
+    base = cv2.bilateralFilter(ly, d=0, sigmaColor=0.5, sigmaSpace=6)
+    grain = np.clip(ly - base, -0.4, 0.4)
+    be = _l2s(np.exp(base))
+    k0 = _l2s(np.float32(G))                       # -0,6 IL en valeurs encodées (≈ 0,83)
+    knee = be * k0 / (1 + be * (k0 / DIM_KNEE - 1))
+    B = np.exp(base) * G * (1 - w) + _s2l(knee) * w
+    n1, d1 = cv2.GaussianBlur(B * (1 - P), (0, 0), 20), cv2.GaussianBlur(1 - P, (0, 0), 20)
+    n2, d2 = cv2.GaussianBlur(B * (1 - P), (0, 0), 60), cv2.GaussianBlur(1 - P, (0, 0), 60)
+    k = _sstep(0.05, 0.3, d1)
+    fill = n1 / np.maximum(d1, 1e-4) * k + n2 / np.maximum(d2, 1e-4) * (1 - k)
+    B = B * (1 - P) + np.minimum(fill, B) * P
+    glass = _sstep(0.80, 0.95, ye) * (1 - P)
+    Y = B * np.exp(grain * (DIM_DETAIL - 0.35 * glass))
+    Y = np.minimum(np.maximum(Y, 0), yl * G)       # jamais plus clair que -0,6 IL
+    Y = yl * G * (1 - w) + Y * w
+
+    lab = cv2.cvtColor(a, cv2.COLOR_RGB2Lab)
+    dl = np.median(cv2.cvtColor(a[1180:1270, 40:600], cv2.COLOR_RGB2Lab).reshape(-1, 3), 0)
+    fy = np.where(Y > 0.008856, np.cbrt(Y), 7.787 * Y + 16 / 116)
+    L = 116 * fy - 16
+    r = L / np.maximum(lab[..., 0], 1)
+    t = DIM_DUSK + 0.3 * glass
+    A = (1 - t) * lab[..., 1] * r * DIM_DESAT + t * dl[1] / dl[0] * L
+    Bb = (1 - t) * lab[..., 2] * r * DIM_DESAT + t * dl[2] / dl[0] * L
+    off = _s2l(np.clip(cv2.cvtColor(np.dstack([L, A, Bb]).astype(np.float32), cv2.COLOR_Lab2RGB), 0, 1))
+    out = lin * G * (1 - w[..., None]) + off * w[..., None]
+    # garde-fou : aucun pixel plus lumineux qu'à l'origine (sur la luminance, pas canal par canal :
+    # un bois orangé éteint peut prendre un peu de bleu sans prendre de lumière)
+    yo = out @ LUM
+    out = out * np.minimum(1, (lin @ LUM) / np.maximum(yo, 1e-6))[..., None]
+    return (_l2s(out) * 255 + 0.5).astype(np.uint8), w
+
+
 def finale_dim():
-    raise NotImplementedError
+    src = os.path.join(MASTERS, 'finale.png')
+    if not os.path.exists(src):
+        finale()
+    rgb = np.asarray(Image.open(src).convert('RGB'))
+    out, w = dim(rgb)
+    os.makedirs(MASKS, exist_ok=True)
+    Image.fromarray((w * 255 + 0.5).astype(np.uint8)).save(os.path.join(MASKS, 'n037_dim_weight.png'))
+    save(out, 'finale-dim', graded=True)        # dérivé du master déjà étalonné
 
 
 STEPS = {'sur-mesure': sur_mesure, 'poteau': poteau, 'bois': bois, 'enseigne': enseigne,

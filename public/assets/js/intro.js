@@ -155,7 +155,7 @@
       .add(scramble(coords, .6), 1.20)
       .fromTo(rule, { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 1.2, ease: 'inOut' }, 1.20)
       // CHALETS tombe ; sur mobile, LOMBARD, VASINA et les coordonnées sortent avec lui
-      .to(L(MOB ? '#clv-chalets > path, #clv-lombard > path' : '#clv-chalets > path'), { yPercent: 104, duration: .45, ease: 'in', stagger: { each: .02, from: 'center' } }, 1.45);
+      .to(L(MOB ? '#clv-chalets > path, #clv-lombard > path' : '#clv-chalets > path'), { yPercent: 104, duration: .45, ease: 'in', stagger: { each: .02, from: 'center' }, overwrite: 'auto' }, 1.45);
     if (MOB) tl.to([...vasina, coords, rule], { autoAlpha: 0, y: 10, duration: .45, ease: 'in', overwrite: 'auto' }, 1.45);
     tl.to(G, { open: 1, duration: .8, ease: 'inOut', onUpdate: drawHole }, 1.55)
       .to(cam, { scale: CAM, duration: 1.3, ease: 'inOut' }, 1.55)

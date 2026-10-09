@@ -1,825 +1,4 @@
 {
- "chalet-crepuscule": {
-  "w": 1920,
-  "h": 1281,
-  "ratio": 1.4988,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1600,
-   1920
-  ],
-  "color": "#876a75",
-  "lqip": "data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAACQBACdASoYABAAPt1apkyopSOiMAgBEBuJYgCdMoMljDvGuMGL4i+g2D/GoqAA/oz3WvYY5VXS9JwPtjD89rqI69mMe0S7yau0L4/WpYsbcAHU727gr92aq6TSYmIF8Sh7q636s008BPA0MCVxVQOQoW8CFG+6NGoYf32F2MV7VOGjm49CatoOQk0TWo9XDNuNk4Gr0GP0CPistqvmeqDbAAA=",
-  "bytes": {
-   "640": {
-    "avif": 43859,
-    "webp": 61180
-   },
-   "960": {
-    "avif": 85141,
-    "webp": 121108
-   },
-   "1280": {
-    "avif": 138449,
-    "webp": 199356
-   },
-   "1600": {
-    "avif": 199251,
-    "webp": 285654
-   },
-   "1920": {
-    "avif": 215087,
-    "webp": 315734
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "chalet-crepuscule-portrait": {
-  "w": 1281,
-  "h": 1920,
-  "ratio": 0.6672,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1281
-  ],
-  "color": "#827188",
-  "lqip": "data:image/webp;base64,UklGRkQBAABXRUJQVlA4IDgBAADwBwCdASoYACQAPt1grE+opSQiKrgKARAbiWgAnTKEg9iNcQHcC4bXMNmT1caYDSeuHeC7e9PF/scG/hvOOmUHQnwTOTA6AAAA99Pi1g8qEyoGNPF1rWEwX3DizBbvyamtj+wIJJpZQSyurw2dy/oXDHxtu8YX7aeWxDveCTYd9nk/JmxUR7y2tB9v1X88l3Uo1zpEbVzjuBwE5IIZq0DDU8rWW770irPy6Lq/Q+7DvvL+BAnvettlJQZF4G8232bWkV1b9yJHsPzuf7d4+TjRGgQz7WfgcNLEo1mVLcpEpcuv6Vt9aybunws6tXteV75r1Do7MhhSxm37WeEDwTCVQHwZPu/zWdP7Z3FwBcwQYqvm8eP1jhcqvrHtb3G3NtQaTVhVJARzkYJocbtPpTTkOuH/SR2AAAA=",
-  "bytes": {
-   "640": {
-    "avif": 76208,
-    "webp": 106946
-   },
-   "960": {
-    "avif": 148650,
-    "webp": 214688
-   },
-   "1280": {
-    "avif": 231622,
-    "webp": 330170
-   },
-   "1281": {
-    "avif": 231248,
-    "webp": 323852
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "chalet-nuit": {
-  "w": 1920,
-  "h": 1281,
-  "ratio": 1.4988,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1600,
-   1920
-  ],
-  "color": "#3a353e",
-  "lqip": "data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAABQBQCdASoYABAAPt1apkyopSOiMAgBEBuJbACdMoRgCJAYW3ZOQGPspsqdJ5Yzm9EFmcAA/vQl5+YFRj5fMMRYt2gAIOBUc5ONBJyb+Pi+R3U8miEH/9nu81wcC6P7+iQmmpRKn1QrTUzw5QjCJPfnJKEn3Z6yNf5RdwoBHe+aBK3M9+WLh2Lo1xf4Xrd9qU0VaTjl9FnOY9I/lPiKfHac1Fp6X/3sB4q0wfyibZd2OnccQPBbuPn8cS7+YR21zz6EhmQAAAA=",
-  "bytes": {
-   "640": {
-    "avif": 45728,
-    "webp": 60882
-   },
-   "960": {
-    "avif": 87818,
-    "webp": 122242
-   },
-   "1280": {
-    "avif": 139013,
-    "webp": 196642
-   },
-   "1600": {
-    "avif": 194811,
-    "webp": 274120
-   },
-   "1920": {
-    "avif": 209914,
-    "webp": 295218
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "rive-gauche-sejour": {
-  "w": 1600,
-  "h": 1067,
-  "ratio": 1.4995,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1600
-  ],
-  "color": "#786658",
-  "lqip": "data:image/webp;base64,UklGRsgAAABXRUJQVlA4ILwAAACwBACdASoYABAAPt1apkyopSOiMAgBEBuJagCdH8BcARPQm9p8vE0ltB3MIKCQAP7dERUmWdOH8SbLaohSjMmGv0hSYwMxd4p5bg/SiWRvXXMv66jbITNXigQQFzdL17EBYofcNzGgJJ9aDZsaYbrSZNgaFuIpOQFxAt5eN4SWPs8ijY0r2x/XD+lP2UQc9TD+bub25ZHlmDq7gkyp17qu/t+PFOZsNbDPxBE6y1O+YzYaSzHeVq2bEEAAAA==",
-  "bytes": {
-   "640": {
-    "avif": 42947,
-    "webp": 66462
-   },
-   "960": {
-    "avif": 89677,
-    "webp": 134330
-   },
-   "1280": {
-    "avif": 150468,
-    "webp": 223634
-   },
-   "1600": {
-    "avif": 217319,
-    "webp": 313428
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "montgenevre-hiver": {
-  "w": 2998,
-  "h": 2000,
-  "ratio": 1.499,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1600,
-   1920
-  ],
-  "color": "#6a6361",
-  "lqip": "data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAACwBACdASoYABAAPt1cpkyopSOiMAgBEBuJYgCdMoAlxxikxpjYKoNQKKec0r4AAPZG+CvFMfW+wyhtIKVW3eRKlcQnZEDnfmL4C0HmgTSHBxG10Cp9ibzV6RmWIBggR4IoV7q8T56b186DiPQyTw/OtU+HiHUme6BLXCj/xW7rb7tJz7FABs3ccXyr3jmsexFkhUpbX0IAvVsXZHgToqWJQxzOraI02F6zSiEAAAA=",
-  "bytes": {
-   "640": {
-    "avif": 54964,
-    "webp": 82870
-   },
-   "960": {
-    "avif": 110089,
-    "webp": 164942
-   },
-   "1280": {
-    "avif": 182441,
-    "webp": 269180
-   },
-   "1600": {
-    "avif": 268285,
-    "webp": 396344
-   },
-   "1920": {
-    "avif": 293749,
-    "webp": 455152
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "terrasse-crepuscule": {
-  "w": 1281,
-  "h": 1920,
-  "ratio": 0.6672,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1281
-  ],
-  "color": "#b07251",
-  "lqip": "data:image/webp;base64,UklGRmABAABXRUJQVlA4IFQBAABQBwCdASoYACQAPt1cp04opKOiMBVaqRAbiWwAsR8ABx96qoDPcnrLr9ex65vQSpCuu4YLIJMRtH1Z4OjXBlJK6/gAAPyCjyHChuklGVngX1G9HKSYPNSjy01WEhTIdVCbZ3C4OtIa2kA6VvVgu9i3l/l2qOrhNZnzUJgtSP8WeHrtmddB5TcL1W3+DKBV7+Qbd7J6PJyscqIRQxx/nRz7nQRh4Y50dxFj5zgzKC8y5OMCEf7ZFdKUr46mUa3ZWcv3MGRWFejoAfCtZWfDrmwlcAb72XIRI581m0IvINKdqRnIcide7ZLw15hi22oIg2Vskva4SdXAAJ2FXIOjwSrpWIS8KVQfPobCxRi8doL8sGJwBgwl1D2MaSvLaJgWrleffvhtmDzW8nRO6U02XHmxonutKUaSC74HLs5+AU1Q3XLDyT6whOW4fM7LMfpqVZ2I1oAA",
-  "bytes": {
-   "640": {
-    "avif": 75655,
-    "webp": 110002
-   },
-   "960": {
-    "avif": 136635,
-    "webp": 196982
-   },
-   "1280": {
-    "avif": 208343,
-    "webp": 286394
-   },
-   "1281": {
-    "avif": 222125,
-    "webp": 285268
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "chambre-meleze": {
-  "w": 1281,
-  "h": 1920,
-  "ratio": 0.6672,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1281
-  ],
-  "color": "#906146",
-  "lqip": "data:image/webp;base64,UklGRgIBAABXRUJQVlA4IPYAAADQBgCdASoYACQAPt1gqE0opaQiKqwBEBuJYgC7OUE7AAVPJ3JjblX8LfNUlKcBzR5Ng24GbSbRNbOlkFzTYQAA/s23Co2m3GS713QjpO6H/V1Go1v4qOeFH5uf2cEMBRlEt40T0Ab8gBVh8bqrP6pWoDKEKoTjvbUFsPKU1vXtOxAM8OyzGzH96Y5MfTppD4zu2nyxarerkWMGslaJML7CrnVDXirau7BTWUx3b+poGcPfAoA9zI7+xR6ngpOk3SgFQskXmGG/0kZ5Pqdno7EGDEvcycxjF39rCsc3y9H/QoRr/5/iU8BrC/Ig5wFaYuHLhUAAAAA=",
-  "bytes": {
-   "640": {
-    "avif": 58665,
-    "webp": 79838
-   },
-   "960": {
-    "avif": 111321,
-    "webp": 160500
-   },
-   "1280": {
-    "avif": 176487,
-    "webp": 259060
-   },
-   "1281": {
-    "avif": 177228,
-    "webp": 258710
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "suspensions-verre": {
-  "w": 1080,
-  "h": 1620,
-  "ratio": 0.6667,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1080
-  ],
-  "color": "#734b31",
-  "lqip": "data:image/webp;base64,UklGRlgBAABXRUJQVlA4IEwBAADwBwCdASoYACQAPt1ipE4opaMiKqwBEBuJZACdM1DHIAPwAMYDS4tNBWH/WdQK9jxgDdVHTiXIaP11IekiDnPSs73vEq1DaIAA/ZhwV/s63y7VwLJ+xZDWAhNPNqhz6IWcCqzarHyLddyRhECUz22Bjlh4QSPALe+MXx+rcSh2iuPQTjEGPTCooV9C/mk5Lt9zBHEPWnLcbrRNxD//k+tO6Q+4XrrzFGVnx0NELFhplRM3cC3o8YO9ey+BisunOUOVNf8OMD+EE6TApw4bOwIKXwLL9Pb+WKOZahb4loLY2lI+wktyuavTJdbX5g705UqNR/FQcuV/1EdPIa1e3fNVKOfquIs3uihT5HM2c97ru8iggH2K5qw1TdoQDbCudjjwv5hP/hm6fYsOvjPlNI53xnyO4+xOkM0iOQxij5s0pWZT5iktvwKOmAAAAA==",
-  "bytes": {
-   "640": {
-    "avif": 47920,
-    "webp": 65612
-   },
-   "960": {
-    "avif": 99771,
-    "webp": 127730
-   },
-   "1080": {
-    "avif": 131746,
-    "webp": 163528
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "poteau-douglas": {
-  "w": 2000,
-  "h": 2998,
-  "ratio": 0.6671,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1600,
-   1920
-  ],
-  "color": "#957763",
-  "lqip": "data:image/webp;base64,UklGRgIBAABXRUJQVlA4IPYAAADQBgCdASoYACQAPt1kqlCopSOipWsxEBuJZQCsM6cHGgwxgfoYdN4q4DAwEwIG1roLfZ7DoRTgPfGA+FjpH7AA/jQ4uT4C5S9JNtNCwYlaShCVe6Xfg/qufFekvhk4eUZ/XN+D2vd58EjN00JY8LlRry7P4IkRcZeXmbBgF8184j/FYuvKslmEG3hRSt8yfcErPIvfcqcjDO7njpRhjcBF9Yc2pk76nJM79yPhmUQepFMT7wHewSzE/qaISVpLdq7pTjkEFeNdIVmIuP+g6B9EdMTzMasdCzMsiB//DKYPjOYMS6jjtSiALYey9Yyv4l7TyqYiIAA=",
-  "bytes": {
-   "640": {
-    "avif": 43598,
-    "webp": 59292
-   },
-   "960": {
-    "avif": 83789,
-    "webp": 121142
-   },
-   "1280": {
-    "avif": 144909,
-    "webp": 210576
-   },
-   "1600": {
-    "avif": 226056,
-    "webp": 317464
-   },
-   "1920": {
-    "avif": 245401,
-    "webp": 338438
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "pignon-meleze": {
-  "w": 1281,
-  "h": 1920,
-  "ratio": 0.6672,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1281
-  ],
-  "color": "#866752",
-  "lqip": "data:image/webp;base64,UklGRlIBAABXRUJQVlA4IEYBAACwCACdASoYACQAPt1eqE0opSQiKqwBEBuJbADKILn8Ci/2aUXTjJbQZZtVrIaNDvDYsQL0Fs0ZvxdpSWRaGtSMn5vQpV347vjgzA3tzAAA/sXhRp4EMnN7ZI+FMp7G4lzcL4I0tJQvwKSMSvL2F2B4J7ZH7JfKJZjRCorqGAc1cY3b4kOpdfJlLVIvbdoJZh/8snus4nT2NFZW11XH7nauodobSmQK6sqHYB+2YuT+SOCUSGiENjkof+CFdS+SN27NSSrh+EOex6SxTNvfrooHTYEk2WhjlxmZ8RrX3E6PzGJ1VqWboy3wvDIIpGXqodZ35/+Y4B5aETIAz+ikRRVpM4ml6NVILMLYnlmKDr2aUR8cX6RLSUgisBS+gRGFPmtU1ACC36yWHfjsMJMmR5oLOG34ogAIVBux1JCjaucTWtQJsqgAAA==",
-  "bytes": {
-   "640": {
-    "avif": 100715,
-    "webp": 154380
-   },
-   "960": {
-    "avif": 189375,
-    "webp": 285084
-   },
-   "1280": {
-    "avif": 289331,
-    "webp": 417638
-   },
-   "1281": {
-    "avif": 296172,
-    "webp": 403654
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "bureau-lampe": {
-  "w": 1281,
-  "h": 1920,
-  "ratio": 0.6672,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1281
-  ],
-  "color": "#62442c",
-  "lqip": "data:image/webp;base64,UklGRg4BAABXRUJQVlA4IAIBAACwBgCdASoYACQAPt1cp02opSOiKrgN+RAbiWIArDN2w7AON3ztIOEihxF0hVP+jBHtQAAm2DYWrc7swsMAAAD+qhdCyt7z5H5dg91fB4Um6UpvCLBpezxs0MnEc4NTZ0h/ySnDIaQflxa3mUxZG8h0uV0ouXvXYe40wIGX3kPmcICwcg4f9UN0irTe2hf0R1BnL0O9c0DDjXII6fjAnh24GSvMdxLNt+42/kt5+CuqREDkDq1TyYbFow1/t/VVobE72OI09sERsJIjp9q5qnidAdyTEHU+PyGLTk8FfTDEiwdll3KZ/VjH0rM1dwH2RgatVgMUGJ263rBAWOaUQBGAAAA=",
-  "bytes": {
-   "640": {
-    "avif": 41881,
-    "webp": 57128
-   },
-   "960": {
-    "avif": 75324,
-    "webp": 107534
-   },
-   "1280": {
-    "avif": 113943,
-    "webp": 166336
-   },
-   "1281": {
-    "avif": 111576,
-    "webp": 165030
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "bardage-vieux-bois": {
-  "w": 2000,
-  "h": 2998,
-  "ratio": 0.6671,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1600,
-   1920
-  ],
-  "color": "#745745",
-  "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAADwBQCdASoYACQAPt1aqE2opKQiMBqoARAbiWcAv7ARQeAWSFxk55tJnAkyDG1RGXC1wgpQhkF1AAD+b3ZAsnh2CTyZIkoPindjse4GQs689AKAWudu6bjspIcnsSbo/8NrK9XTtrSOWDiuS2g/jAMKVKDAHgPFcoy98MRbeGcC8ZEd2INJ63+QQp4AAA==",
-  "bytes": {
-   "640": {
-    "avif": 91531,
-    "webp": 156472
-   },
-   "960": {
-    "avif": 209221,
-    "webp": 371296
-   },
-   "1280": {
-    "avif": 364574,
-    "webp": 616046
-   },
-   "1600": {
-    "avif": 531083,
-    "webp": 888920
-   },
-   "1920": {
-    "avif": 575591,
-    "webp": 1001674
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "atelier": {
-  "w": 1920,
-  "h": 1281,
-  "ratio": 1.4988,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1600,
-   1920
-  ],
-  "color": "#856d5c",
-  "lqip": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAAAQBACdASoYABAAPt1apkyopSOiMAgBEBuJQBOmUI7gBTCnKItEgNoT0AD+zeWXQlqnQH2LyKOtVYf/XI+yLi4re12u/lUDJ1+yTXvbK4QZfJQ7Oz2CnlMUZ2JE0q5x3DqZ7QVWqVdpAIl8EtEIUQy7dWbZTAYbuFFdttumvZiaYVfUPjJ+X2BUvtIVJ+IA",
-  "bytes": {
-   "640": {
-    "avif": 13032,
-    "webp": 12888
-   },
-   "960": {
-    "avif": 19709,
-    "webp": 22114
-   },
-   "1280": {
-    "avif": 28035,
-    "webp": 33950
-   },
-   "1600": {
-    "avif": 37839,
-    "webp": 46660
-   },
-   "1920": {
-    "avif": 40754,
-    "webp": 50270
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "mezzanine-reveil": {
-  "w": 1618,
-  "h": 1080,
-  "ratio": 1.4981,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1600,
-   1618
-  ],
-  "color": "#765d3d",
-  "lqip": "data:image/webp;base64,UklGRsIAAABXRUJQVlA4ILYAAACwBACdASoYABAAPt1apkyopSOiMAgBEBuJbACdMoRwAdCUwBbMxlK7dQ/NgSgAAP7qBrSj5TfnAPKkEQcKP+LW64rb2UkcwNFSwRqInaFbO5wluGKC2JHKg1BVrEJanjOAFKm/ZS8Uu9BXEk8HjhtoEkDTFRu+rvA2TnMjaPFmK/MXUm8Hfg6wwBzAepss+96dtvKTVl3n7xwdfRBvV/1QV4J4x7GgiZnCvYR6b8xu5vQ72AAAAA==",
-  "bytes": {
-   "640": {
-    "avif": 34432,
-    "webp": 47528
-   },
-   "960": {
-    "avif": 64569,
-    "webp": 93330
-   },
-   "1280": {
-    "avif": 108271,
-    "webp": 156072
-   },
-   "1600": {
-    "avif": 164932,
-    "webp": 227156
-   },
-   "1618": {
-    "avif": 143209,
-    "webp": 186120
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "sejour-clair": {
-  "w": 1920,
-  "h": 1080,
-  "ratio": 1.7778,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1600,
-   1920
-  ],
-  "color": "#91796a",
-  "lqip": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABwBACdASoYAA4APt1apkyopSOiMAgBEBuJaACdEf/i2VDGFhj8X2O0VmSqAAD9THJMKeOLbMqlJwEcFpUKeo9VVQTgRdo7Ov9SQBpiyOCDAfCaassVbS3r70A8cjpWrOMTOTyHHK0TjDEUOtz84IUqHkYrQTSo9SMu21PYso6PtTRlyTuwZT852WXtV5lwgu+HoFJ36JU5nYS6t1ZhAAAA",
-  "bytes": {
-   "640": {
-    "avif": 29096,
-    "webp": 40814
-   },
-   "960": {
-    "avif": 62268,
-    "webp": 84140
-   },
-   "1280": {
-    "avif": 103930,
-    "webp": 140248
-   },
-   "1600": {
-    "avif": 153047,
-    "webp": 196818
-   },
-   "1920": {
-    "avif": 171229,
-    "webp": 229866
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "pignon-nuit": {
-  "w": 1920,
-  "h": 1571,
-  "ratio": 1.2222,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1600,
-   1920
-  ],
-  "color": "#67422b",
-  "lqip": "data:image/webp;base64,UklGRhwBAABXRUJQVlA4IBABAAAQBgCdASoYABQAPt1iqk+opaOiKAqpEBuJbACdMoMnuBij8wy+6aGXIRPnPTzTUDU2QAjyN1UFu3AA/u7b2UUGODRiruPLcYhIFsc1RxWv8Qb+g80SZnD++ZYxk0IPDNyQTiB/r2DnKG07kfT3jXCEbiti1NlnUo7iWnRu0Ks7YIwsostw+pRE2yHEIN6nk7PVOlEcuvS9e0MaqRIbx8VttbvR4l+pkEtoc4mbW61ZFuQ5C2m2ZpbVv5uOVigU6wtua/B97LsP+Jxv6icOokHQsL56uqUe5RW0XICzlYvY11hKKeC9PeS7eLP2DgVI50cieL8ssD6Q2QZTPTgS0Pksi3GIBaeOVStq40bsZhgAAA==",
-  "bytes": {
-   "640": {
-    "avif": 40832,
-    "webp": 57720
-   },
-   "960": {
-    "avif": 77175,
-    "webp": 110290
-   },
-   "1280": {
-    "avif": 123904,
-    "webp": 168444
-   },
-   "1600": {
-    "avif": 177563,
-    "webp": 236450
-   },
-   "1920": {
-    "avif": 198423,
-    "webp": 251120
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "chalet-ete": {
-  "w": 1600,
-  "h": 1067,
-  "ratio": 1.4995,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1600
-  ],
-  "color": "#757566",
-  "lqip": "data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAADwBACdASoYABAAPt1apkyopSOiMAgBEBuJbACdMoMjiYZjlCH35i4r2OtfvOtgw4AAzjbC6tXo4fpy+eB3Q+OFCKxsqHyrRaaDmmi1pSMLSDUHkYkuRZVb1bl0315MMa9YP8Wh7eg6azHY7K6hlyuQ0cz4bo28KHBoK2sUqAyPvm1NmOxTfy/rqn4312g+/HPRMbQ1Oun47GiRDGo0uUqVpY769Q9MyGLiZKyBhNDCQs89DNhAzdz2XHZuL4wfRmX0BhnGKVyTd37PsGPqLc4iYn0au7SCS5lgAA==",
-  "bytes": {
-   "640": {
-    "avif": 43901,
-    "webp": 64968
-   },
-   "960": {
-    "avif": 84833,
-    "webp": 123396
-   },
-   "1280": {
-    "avif": 133956,
-    "webp": 188254
-   },
-   "1600": {
-    "avif": 180252,
-    "webp": 250940
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "pignon-neige": {
-  "w": 1920,
-  "h": 1281,
-  "ratio": 1.4988,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1600,
-   1920
-  ],
-  "color": "#8c848a",
-  "lqip": "data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAABwBQCdASoYABAAPt1apkyopSOiMAgBEBuJZgCdMoMYJn/8/8dIA+Y/J73m3+ZN3ofsNWiYAP7g13gRpY3tXiUp5LpHayicGeOS+aamGAlNosGXEria7PniaXVPMrvwjlkikbFSSrRBtjW1Jb9LL/FeBOiAAJVOsT59y7nvwjIV4VJEHhdjrciZ4XreRCLm/AXRd2ELx/zEXYRcImn0L9hUUek/JgV9XlrDA1C/1BiViVMXDegPvbjXwXWRV4GVBIGIe4bAAAA=",
-  "bytes": {
-   "640": {
-    "avif": 59710,
-    "webp": 79626
-   },
-   "960": {
-    "avif": 120931,
-    "webp": 167500
-   },
-   "1280": {
-    "avif": 197909,
-    "webp": 277794
-   },
-   "1600": {
-    "avif": 281673,
-    "webp": 396836
-   },
-   "1920": {
-    "avif": 307401,
-    "webp": 441208
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "facade-hiver": {
-  "w": 1281,
-  "h": 1920,
-  "ratio": 0.6672,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1281
-  ],
-  "color": "#59595e",
-  "lqip": "data:image/webp;base64,UklGRmoBAABXRUJQVlA4IF4BAAAQCACdASoYACQAPt1kq1CopSOipWsxEBuJbACxHsI7WMjqv57M8GMZomXA03MFAYqK+H4cKC3Mkkn0pLcMtQufqF7Elfc7ZNoAAP7YwaNlufrZPD+wKis2ej1TNoyDUGehEUAVMK+m4cgpXa53tyS6BxOTzDuJFdBxf/Vd238uT7bJpEpk/+Fa5Gj92YxrCm0Tx5x9fhYt8HMz2TclZgMOIIa2KiMrQ6voOKCVXkAfxwW8MA5f9VxuyzzliJhEBIJITYj+tWTrqL4XuQ6QjTBWo8o5cVz3f556TwYAGLaKVeJJGi9VW3q7cbwcgfcQmpmuo+gk+U+aVq2SA5uyfzjOt2JT3FvBFPCuXGRdLiWSb+CwhKw4SCFUvbHmthByFDB3LvXDcdM985osm9KxWX3iRt+bvSt1LqcFpte8efiVWheYdjjAUebVCKHpgtZhFlnBb2yio00YuHNlUTpAAA==",
-  "bytes": {
-   "640": {
-    "avif": 84124,
-    "webp": 119980
-   },
-   "960": {
-    "avif": 165776,
-    "webp": 235496
-   },
-   "1280": {
-    "avif": 262493,
-    "webp": 372862
-   },
-   "1281": {
-    "avif": 267513,
-    "webp": 363420
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "chalet-hiver": {
-  "w": 1281,
-  "h": 1920,
-  "ratio": 0.6672,
-  "alpha": false,
-  "widths": [
-   640,
-   960,
-   1280,
-   1281
-  ],
-  "color": "#746567",
-  "lqip": "data:image/webp;base64,UklGRlQBAABXRUJQVlA4IEgBAADQBwCdASoYACQAPt1opk+opiMiKrgKARAbiWwAnTK4xSLAcX+pZvfnQa7W7hVXyzx+X+U/AMprV6nhUy4TFAfh34qw5pxw4AD97mk+Btqt76feeS8tXQUGnyNjUkHqZOv0UNDdfIS49sEMdM2s2zr5Bzb3ihR18Sn97KDNTnYC3Pi2y3mKrDqJ7aGjnElX0Te9bLcmxBpIUyfyZdlEL+dWzBXX8xohQIip88d0pna2kw5FPc/+4aCKtPpGo7/J+Ws4+L51pMtydC6VyMjs83ZW+CbZUwLOOzZ0seEXUUz3SA5q1CJqN3j1DyHERrLvp7TM9KYze8PZ3VrCePsscHJvu/twG23QmPoJp4lI1Ef0CoyhSiwziLMLDZirzWHAf1ZTBAf2cFEpWXr1odHsqH2Oqgsf+60CT6Hnx8qMzib42GgEz5ZIW5wA",
-  "bytes": {
-   "640": {
-    "avif": 66367,
-    "webp": 85792
-   },
-   "960": {
-    "avif": 129907,
-    "webp": 169770
-   },
-   "1280": {
-    "avif": 205282,
-    "webp": 267980
-   },
-   "1281": {
-    "avif": 205766,
-    "webp": 268450
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "montage-atelier": {
-  "w": 1260,
-  "h": 680,
-  "ratio": 1.8529,
-  "alpha": false,
-  "widths": [
-   480,
-   720
-  ],
-  "color": "#a68672",
-  "lqip": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAADQAwCdASoYAA0APt1apkyopSOiMAgBEBuJQBOgA8S20nxZizEJHTAAyzzSXldodO3GSBx8w17todUlCP+E4ZxJFnRHZMsMmPTsowClNpEPofI5acOwuPGueD0oxqE1tY2yys50sa1O+cS02tYsIm47/9rvAj+nMfutAjU5hTAjMviiAAA=",
-  "bytes": {
-   "480": {
-    "avif": 9129,
-    "webp": 7440
-   },
-   "720": {
-    "avif": 14073,
-    "webp": 13270
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "montage-poteau": {
-  "w": 2000,
-  "h": 1075,
-  "ratio": 1.8605,
-  "alpha": false,
-  "widths": [
-   480,
-   720
-  ],
-  "color": "#a98972",
-  "lqip": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAADQAwCdASoYAA0APt1apkyopSOiMAgBEBuJQBOgMX1LOKKJV0h1MwAA/o8OpnO6ri+MSLSOznwvqv4lbb17RkFaFr78+2gfZrqOmZ4T8wrKWpiZNaq4DVdgpQsNk/thdnOeQ3fTdnze4+OSLpzhgkI5wyDAUhabevT6/xO3TgQ73ZlFMynkk6dwrEJciGlHx2TmmcK8dQAAAA==",
-  "bytes": {
-   "480": {
-    "avif": 13744,
-    "webp": 14922
-   },
-   "720": {
-    "avif": 23435,
-    "webp": 28192
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "montage-pignon": {
-  "w": 1281,
-  "h": 690,
-  "ratio": 1.8565,
-  "alpha": false,
-  "widths": [
-   480,
-   720
-  ],
-  "color": "#9c714e",
-  "lqip": "data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAAAQBACdASoYAA0APt1apkyopSOiMAgBEBuJbACdAYxYupty2gnXaf8QAAD9TCnZzW8rNvgT0B9XryPPzg0snubXVrIzXPyiDOrRlgFHSlREDW7IJDUqCsBAzl1wv/+yJ7I293gMMqjTpvdZ9XHLc3Cr5PkAAELgF0Og4ja4k/qxA9imMWitedDKaML5Z9/rxkKrCz0X+ko3BKY2zPvkfrhhjlAoKXujh3Nmi/+gAAA=",
-  "bytes": {
-   "480": {
-    "avif": 22301,
-    "webp": 32488
-   },
-   "720": {
-    "avif": 42217,
-    "webp": 64856
-   }
-  },
-  "alt": "",
-  "label": ""
- },
- "montage-lumiere": {
-  "w": 1080,
-  "h": 580,
-  "ratio": 1.8621,
-  "alpha": false,
-  "widths": [
-   480,
-   720
-  ],
-  "color": "#7e573f",
-  "lqip": "data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAACwBACdASoYAA0APt1apkyopSOiMAgBEBuJagCdMoR3JoACsETLJyBVrwuJJYAAAP7Sn+DnlqNBCFleVSzkVdu5MfJqa2HfGof41eteHgKs2yl1XdaMKFvRcubtpsArHRedC41xmcTqdLV1Pvyv3XFpe25aRJP9pTeItAtVXKPImumY3q6wn8qhVJvRxxbhYwO/FgwfkcX8lnHiuFfn3Uf9KIMAAA==",
-  "bytes": {
-   "480": {
-    "avif": 14392,
-    "webp": 16854
-   },
-   "720": {
-    "avif": 24202,
-    "webp": 30122
-   }
-  },
-  "alt": "",
-  "label": ""
- },
  "piece-feu": {
   "w": 1920,
   "h": 1281,
@@ -954,5 +133,507 @@
   },
   "alt": "Mur vitré double hauteur face aux sommets enneigés, foyer vitré et canapé de velours",
   "label": ""
+ },
+ "hero": {
+  "w": 1920,
+  "h": 1281,
+  "ratio": 1.4988,
+  "alpha": false,
+  "widths": [
+   1080,
+   1440,
+   1920
+  ],
+  "color": "#876a75",
+  "lqip": "data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAACwBACdASoYABAAPt1apkyopSOiMAgBEBuJYgCdMoMljDvGuMGL4i+g2D/GnlIAAP6M91r2GOVV0vScD7Yw/Pa6iOvZjHtEu8mrtC+P1qWLG3AB1O9u4K/dmquk0mJiC50x71TPWbUN5OZFkKRxuO10IJr+BCjfdGjUMP77C7GK9qnDRzcehNW0HISaJrUerhm3GycDWVUc82mNtSjtsMz5hAAAAA==",
+  "bytes": {
+   "1080": {
+    "avif": 86680,
+    "webp": 149942
+   },
+   "1440": {
+    "avif": 142268,
+    "webp": 242414
+   },
+   "1920": {
+    "avif": 177427,
+    "webp": 314916
+   }
+  },
+  "alt": "Chalet en mélèze et pierre au crépuscule, fenêtres éclairées, sommet enneigé derrière",
+  "label": ""
+ },
+ "hero-portrait": {
+  "w": 1281,
+  "h": 1920,
+  "ratio": 0.6672,
+  "alpha": false,
+  "widths": [
+   640,
+   828,
+   1080
+  ],
+  "color": "#827188",
+  "lqip": "data:image/webp;base64,UklGRkQBAABXRUJQVlA4IDgBAAAQCACdASoYACQAPt1grE+opSQiKrgKARAbiWgAnTKEgsyA8Y6sCwA96qH1qnj1XdjqGBvWPwUI/H+x+7bWDw2bfSKVs/w972bQAPfT4tYPKguq9TTxdTc5MF1391UypyHy91eJU9g+V8nxH7CJw7qW4zF7jZ9Cfz9goIDXu6Iw1rW4MBMmVe2JM2ykBTP7vEIQuPdtGsvivOBFowDTYWQEtzem8CtRN9i2zV1QAddVFIUr1N/8H6TZDrAaHs2dr60TP2OF1+1jxo1sdmoGuwDGSpAIrKbSIJGuQjCmM5HcJMwvf6krKcb9ctpxTZzO/fYuZ7h05y14EkKqHyQqro+Wk45BkRTbObHtG6SOhFOaPO+i84Xcq2TFkJhIw6yJweaAI+/VcLjoH1c0XbpZLhrVnmaSXPcAAAA=",
+  "bytes": {
+   "640": {
+    "avif": 48092,
+    "webp": 106924
+   },
+   "828": {
+    "avif": 74715,
+    "webp": 167346
+   },
+   "1080": {
+    "avif": 115248,
+    "webp": 259438
+   }
+  },
+  "alt": "Chalet en mélèze et pierre au crépuscule, fenêtres éclairées, sommet enneigé derrière",
+  "label": ""
+ },
+ "sur-mesure": {
+  "w": 2998,
+  "h": 1820,
+  "ratio": 1.6473,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#6b6464",
+  "lqip": "data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAACQBACdASoYAA8APt1apkyopSOiMAgBEBuJZACdMoAlvxCp9nHs8vi3wLyJegAA9kcJVPR0JMNz1eH6AuggwS3qp4Crdj3/+AmLeqf58AD9EoZqzEwB+5i+KhZk4QOn9TfT5h/Yj2CYoAP/VP2zifRPn+B0ggqXH71+EGbaQRG++QOVqfeYw3/O9oR51tbR2KNv83KWAm4B2/Zd8/fokgmYzZ0AdYAA",
+  "bytes": {
+   "800": {
+    "avif": 73824,
+    "webp": 110518
+   },
+   "1200": {
+    "avif": 147496,
+    "webp": 217282
+   },
+   "1600": {
+    "avif": 241873,
+    "webp": 354120
+   }
+  },
+  "alt": "Chalet en vieux bois sous la neige, grand pignon vitré, sous un épicéa",
+  "label": ""
+ },
+ "poteau": {
+  "w": 2000,
+  "h": 2998,
+  "ratio": 0.6671,
+  "alpha": false,
+  "widths": [
+   800,
+   1200
+  ],
+  "color": "#957763",
+  "lqip": "data:image/webp;base64,UklGRvoAAABXRUJQVlA4IO4AAABwBgCdASoYACQAPt1kqU+opSOiJWzJEBuJZQC7M7AlxwfmUVA/8Rw2N0JG295mbIvUngMgO9dCyqLHVAAA/jQ4uMUgIl0IuCVKUuz/1NXBD0BuJQWdgHVvqgVAIWdZHs1QGvd57PYWiEfVx2q/yI2CMoRJ3GXl5lPxm/r0pZHtC1tPr8aPFm8klmUae3J/a6a/UfZPL3AZK3V5AY3l9A/I8WAUucD522LLYd5KfRVEDGNsUYF0TAh2ypUlNrqFYSkaHnYH+HvgdDt0JxJnRBcUOSww9e8EdR8oyrub5Zw2kTIlxveKmLEqpG+OmjAA",
+  "bytes": {
+   "800": {
+    "avif": 58317,
+    "webp": 86598
+   },
+   "1200": {
+    "avif": 126518,
+    "webp": 186648
+   }
+  },
+  "alt": "Poteau en Douglas et ses deux jambes de force",
+  "label": ""
+ },
+ "bois": {
+  "w": 1440,
+  "h": 1080,
+  "ratio": 1.3333,
+  "alpha": false,
+  "widths": [
+   800,
+   1200
+  ],
+  "color": "#907766",
+  "lqip": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAABQBQCdASoYABIAPt1eqU6opKOiMBgIARAbiWUAsOwNypocBVgmImYaa3QY4lgLZvDSZQAA/uQhrZ5QQ0kVmIcp014BMeNSBOFRxhrGldy6WXt17pznf7jU3b2Std+Rh94u2z+GryccOAzP6XE15YPZO9VZSABIJJRfqq3EBf0Y9EOoIE+FNuiuqJjRDsSG40MAAA==",
+  "bytes": {
+   "800": {
+    "avif": 15003,
+    "webp": 19676
+   },
+   "1200": {
+    "avif": 27622,
+    "webp": 36122
+   }
+  },
+  "alt": "Marteau de charpentier posé sur du bois empilé",
+  "label": ""
+ },
+ "enseigne": {
+  "w": 1200,
+  "h": 800,
+  "ratio": 1.5,
+  "alpha": false,
+  "widths": [
+   800,
+   1200
+  ],
+  "color": "#766250",
+  "lqip": "data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAACwBACdASoYABAAPt1apkyopSOiMAgBEBuJZACdMoFWAHYANlrWfFPeQO7OlWQAAM41fN287EZdv2Rh5ImuHJJOA2V6OUHBHQGqANnQoZWuhalHiAkhdt3CcQKHbwINZkqHPjs3U6UY/zfcsdsGU6t3GergE+kLwTSkmUo5I5z71rinxia1BpWyHOpUJHVRo8arT+5rmuvcH6Z2vHFqvlfgFRSMZZwNMg3TiRxfOyJOIkEf+Kv16AAA",
+  "bytes": {
+   "800": {
+    "avif": 71742,
+    "webp": 119980
+   },
+   "1200": {
+    "avif": 134184,
+    "webp": 213240
+   }
+  },
+  "alt": "Enseigne Lombard Vasina sur un bardage en mélèze",
+  "label": ""
+ },
+ "terrasse": {
+  "w": 1080,
+  "h": 1350,
+  "ratio": 0.8,
+  "alpha": false,
+  "widths": [
+   800,
+   1080
+  ],
+  "color": "#b77044",
+  "lqip": "data:image/webp;base64,UklGRmYBAABXRUJQVlA4IFoBAADwBgCdASoYAB4APt1apUyopSOiMAgBEBuJbACdMoMsqcBFgBOpO945YYfDS6+e9+T29JI8jlsTI9mS1gpzQxaEAM4u7vU7iquB+Lv6L4xtaY1A3A6ucaa36uHvWKb+cyWRx5bZQeDWvRDvF7LXNIY79R2KY2R2shQx4+/VVerm7H5o1XLbzoe5Vr43dKoc8ZFBA0qbkOI6gNOCt6xHYOrT/MMf+6zJ2kV9SsJKpEFw8glVv2C3jrArkh/qP+R9Sx7csij0OM70+hriTeZ0vsaPhAjpPR3/fk08vBOjR9XoyRCpTT3H1lZDlSjer+JmPLuJ1cDqHEd1pRNAqWvLIXr1W2fu+SxWvRdkUlO/26sy+Sb4VDmIGgv1zpZ2BuxkM1v3cPNv/AkNGEKGnRM89B89V6zrZM5EeiPcnqVQWodZj5furMGpHn8b8q2ZMPIAoZnI4aVdCf8GoRAA",
+  "bytes": {
+   "800": {
+    "avif": 79466,
+    "webp": 114366
+   },
+   "1080": {
+    "avif": 118060,
+    "webp": 162906
+   }
+  },
+  "alt": "Terrasse en mélèze éclairée au crépuscule, ciel rose reflété dans les vitres",
+  "label": ""
+ },
+ "finale": {
+  "w": 1920,
+  "h": 1281,
+  "ratio": 1.4988,
+  "alpha": false,
+  "widths": [
+   828,
+   1440,
+   1920
+  ],
+  "color": "#3b353e",
+  "lqip": "data:image/webp;base64,UklGRtAAAABXRUJQVlA4IMQAAADQBACdASoYABAAPt1apkyopSOiMAgBEBuJbACdMoRgCJASwA1gA4oo0KD2yoDPgAD+9CXfwMY3/6OUPSe9UMd/lpxCGATDZ4Y+VZylW6+vNZOto+gj/JH5XVFTg84Exvqmja9jJlm0rjwOtWvVUp+3FUaMX+JvRgpmLJxmznHFR+/0ZHsJ2WPlqDo1rNVBMXUHjFnX2hzKcbZ5k3Vezs2gl/F/7napQJ8Y/k2PO7HCrCEfXt//wc1scRdOfW5u6pBtEAAA",
+  "bytes": {
+   "828": {
+    "avif": 66001,
+    "webp": 96538
+   },
+   "1440": {
+    "avif": 163424,
+    "webp": 234966
+   },
+   "1920": {
+    "avif": 204218,
+    "webp": 292354
+   }
+  },
+  "alt": "Chalet à l’heure bleue, toutes les fenêtres allumées",
+  "label": ""
+ },
+ "finale-dim": {
+  "w": 1920,
+  "h": 1281,
+  "ratio": 1.4988,
+  "alpha": false,
+  "widths": [
+   828,
+   1440,
+   1920
+  ],
+  "color": "#111b30",
+  "lqip": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAABwBACdASoYABAAPt1cpkyopSOiMAgBEBuJZAC7MoGv/gPNEY8DdX9TOUTcyAD+9CKvXguG1NaLE4FXkft7fOc7xbqM8lJtqmTV1jDhVQ8242zeGRFctHGVrx+SXrTS12W53xZ3Zv5HmjwJWLbLkkwtL7CyWM4A",
+  "bytes": {
+   "828": {
+    "avif": 40325,
+    "webp": 50814
+   },
+   "1440": {
+    "avif": 100796,
+    "webp": 128346
+   },
+   "1920": {
+    "avif": 127135,
+    "webp": 154106
+   }
+  },
+  "alt": "",
+  "label": ""
+ },
+ "v-V56": {
+  "w": 1448,
+  "h": 1086,
+  "ratio": 1.3333,
+  "alpha": false,
+  "widths": [
+   640,
+   1100,
+   1448
+  ],
+  "color": "#898c92",
+  "lqip": "data:image/webp;base64,UklGRtgAAABXRUJQVlA4IMwAAABwBQCdASoYABIAPt1irU8opaSiKAqpEBuJQBfnMYxOHRD/bsCsWOz62b34gp81baglRiAAAN1NvQZIpidupU7CwGnrvzl/A8TndoCxFHen93K9ZSSSXr0SHCMfnq+eNdzDYx0zhk0dz6R/TOQgXg/yswYOWMIflLiIQFV5alC6KphOP3P2LfL2m4k7ZnWH4iU0lWT1kXp1xEMU4hvgDLIRf01g036o6F397ofs3dKvvszav/RV/zmhDYdX1BhVdAaNDEPY1rkdVDAgAAA=",
+  "bytes": {
+   "640": {
+    "avif": 50792,
+    "webp": 72430
+   },
+   "1100": {
+    "avif": 125276,
+    "webp": 179262
+   },
+   "1448": {
+    "avif": 174518,
+    "webp": 261808
+   }
+  },
+  "alt": "Vue 3D, illustration non contractuelle : le chalet B du Serre d’Orchis en hiver, un sapin enneigé au premier plan",
+  "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SERRE D’ORCHIS, CHALET B, EXTÉRIEUR"
+ },
+ "v-V57": {
+  "w": 1448,
+  "h": 1086,
+  "ratio": 1.3333,
+  "alpha": false,
+  "widths": [
+   640,
+   1100,
+   1448
+  ],
+  "color": "#735d50",
+  "lqip": "data:image/webp;base64,UklGRuQAAABXRUJQVlA4INgAAABwBQCdASoYABIAPt1kqU+opaOiKAqpEBuJQBOmUAS34UCf27e8+PSaNp16NB2pNdPedMAAAP7jvx5klZSYrGMm/iKIcxq9t6SwacAiSSaDEa8cI/qO6lHHkrkBWhrB38THNS11PCegIhE+kzxIz5pZ8WQbjF0xvithNWYBo73Z8XMBX59Qp+cFkKjh0h/iZ0An/OuDIrtHGmAEsdx0FxPaNzjwOABJ1YGOmBTX3uQbP8uMarRgUSP2uS/H/psd0c5Fp0ByYE7RPpMrSSrDBq/jyOhzLo2QAAA=",
+  "bytes": {
+   "640": {
+    "avif": 36896,
+    "webp": 52588
+   },
+   "1100": {
+    "avif": 93731,
+    "webp": 124656
+   },
+   "1448": {
+    "avif": 134041,
+    "webp": 183102
+   }
+  },
+  "alt": "Vue 3D, illustration non contractuelle : séjour du chalet B du Serre d’Orchis, cheminée suspendue et sommets dans les fenêtres",
+  "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SERRE D’ORCHIS, CHALET B, INTÉRIEUR"
+ },
+ "v-V54": {
+  "w": 1372,
+  "h": 1024,
+  "ratio": 1.3398,
+  "alpha": false,
+  "widths": [
+   640,
+   1100,
+   1372
+  ],
+  "color": "#94949f",
+  "lqip": "data:image/webp;base64,UklGRswAAABXRUJQVlA4IMAAAACwBQCdASoYABIAPt1kqE+opSOiKAqpEBuJZACdMzL8JsABtviHtW3BJ3TXxFVJ/SMuXQqCMgAA/IyHcIGYzYRBvIhL/gMzEYvKvNzTwdDKV8ihgiRpBkgf/D4Ifyrh0vf0Az2x/35Kc4Du7zpsqgY7SbKfNb51/Vf387yh41Lr27WOnL07G3gY0Xgteb2ByDplKhQaYGSpq5LObMWHWxN0c7hHkTJQUdbgn1wB0IYv5u7EYJqJ1N+rLHadT6i8AAA=",
+  "bytes": {
+   "640": {
+    "avif": 44789,
+    "webp": 63822
+   },
+   "1100": {
+    "avif": 101125,
+    "webp": 142728
+   },
+   "1372": {
+    "avif": 133172,
+    "webp": 189054
+   }
+  },
+  "alt": "Vue 3D, illustration non contractuelle : le chalet A du Serre d’Orchis en hiver, balcons et terrasse en bois entre des sapins enneigés, montagnes au fond",
+  "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SERRE D’ORCHIS, CHALET A, EXTÉRIEUR"
+ },
+ "v-V35": {
+  "w": 1276,
+  "h": 1024,
+  "ratio": 1.2461,
+  "alpha": false,
+  "widths": [
+   640,
+   1100,
+   1276
+  ],
+  "color": "#998880",
+  "lqip": "data:image/webp;base64,UklGRvQAAABXRUJQVlA4IOgAAACQBQCdASoYABMAPt1orFEopaQiqAgBEBuJQBUk7LX1RbMZSgVpAz+4MzpHxO/DxZlTJNhQsAD5ZXRMcRyr852W05WLISBzEQxC9XarBayq+WwGatlM6V/3EeBtvYbYLD9MA2Jb4udGB4hoL1lMrqcBv/R43csu4Abb/8Ctm/DLEuq50RvPoJfmYCWKAEo9loW87f3r4JMith/dtXBtRLwqPBzQmLKsh5VxLo0lUC+WO69LJYgCERbjX9F4+d9Lax5/etndsHOkpeoBOC0PImUmMkV6EP/U2FvxlpYDREN012a/s/bTZOAA",
+  "bytes": {
+   "640": {
+    "avif": 39982,
+    "webp": 60560
+   },
+   "1100": {
+    "avif": 98907,
+    "webp": 143408
+   },
+   "1276": {
+    "avif": 120216,
+    "webp": 170850
+   }
+  },
+  "alt": "Vue 3D, illustration non contractuelle : séjour du chalet A du Serre d’Orchis, canapés clairs sous la charpente, grandes baies vitrées sur les montagnes enneigées",
+  "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SERRE D’ORCHIS, CHALET A, INTÉRIEUR"
+ },
+ "v-V34": {
+  "w": 1536,
+  "h": 1024,
+  "ratio": 1.5,
+  "alpha": false,
+  "widths": [
+   640,
+   1100,
+   1536
+  ],
+  "color": "#aca5a3",
+  "lqip": "data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAACQBACdASoYABAAPt1apkyopSOiMAgBEBuJQBOkC8k/wGSRS+ywm8BZSm95fgAA/uEkhzM/NgFhcnbNTcs6TZhTm5OMvv/D82UxxPKu0qgGI5jaMA1vlIyOG7kqo538VzPi7gL9uT4amSNCu2fznyq/8Ly/5KqkMhbw3bX8F1twQTsGkEcFR9vFNCbzNclJ/2VuFzb1cGoz9WZ6aT9N/WfzAl1mgnOEMITqTaZwAAA=",
+  "bytes": {
+   "640": {
+    "avif": 43027,
+    "webp": 61592
+   },
+   "1100": {
+    "avif": 118326,
+    "webp": 168566
+   },
+   "1536": {
+    "avif": 193707,
+    "webp": 278614
+   }
+  },
+  "alt": "Vue 3D, illustration non contractuelle : les chalets A et B du Sabot de Vénus sous la neige, entre de jeunes arbres givrés",
+  "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SABOT DE VÉNUS, CHALETS A ET B, EXTÉRIEUR"
+ },
+ "v-V30": {
+  "w": 1344,
+  "h": 808,
+  "ratio": 1.6634,
+  "alpha": false,
+  "widths": [
+   640,
+   1100,
+   1344
+  ],
+  "color": "#8a6950",
+  "lqip": "data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAAAwBACdASoYAA4APt1apkyopSOiMAgBEBuJYgCdMoACjQ/9NgaoIyq53AAA/ZoSyE1ieT6+Ajx+0u7Gh7JopyBgWa7o9UqNM0xzOejz89NZSs+If18IlNfQT0kbt7Cgyjff88F0x781TLN1O2CbTY7S9uoc2jj4/pM+61fJhNtiCVu+VFSIUrRnKG3iM6Njd93SObQNVTjGfeAA",
+  "bytes": {
+   "640": {
+    "avif": 32475,
+    "webp": 42746
+   },
+   "1100": {
+    "avif": 75688,
+    "webp": 94572
+   },
+   "1344": {
+    "avif": 95288,
+    "webp": 121686
+   }
+  },
+  "alt": "Vue 3D, illustration non contractuelle : salon du chalet A du Sabot de Vénus un soir d’hiver, cheminée centrale allumée, canapé et fauteuils autour d’une table basse aux bougies",
+  "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SABOT DE VÉNUS, CHALET A, SALON"
+ },
+ "v-V33": {
+  "w": 1536,
+  "h": 1024,
+  "ratio": 1.5,
+  "alpha": false,
+  "widths": [
+   640,
+   1100,
+   1536
+  ],
+  "color": "#664d44",
+  "lqip": "data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAACwBACdASoYABAAPt1apkyopSOiMAgBEBuJQBOg7wDZLIujnRDmuBCCXPWb2jAAAP7AbDX/82PrWO9fTq1osTGBIH4B8hvdSZFa1c/7iC8W6nr1gyk8BydB9MOxHyhvJRndjX3dG9JeHxe/APp54PB5d53+Js1mzQweOAM4iUmRcPEk6/tt17YSm8Pv4VjBtVjGxox2qmIFoyES2l8KQVaNqnEo76brV/W0/yVCP+8LHgXAqgA=",
+  "bytes": {
+   "640": {
+    "avif": 37533,
+    "webp": 52920
+   },
+   "1100": {
+    "avif": 91822,
+    "webp": 124306
+   },
+   "1536": {
+    "avif": 145578,
+    "webp": 196704
+   }
+  },
+  "alt": "Vue 3D, illustration non contractuelle : séjour du chalet B du Sabot de Vénus, canapés autour d’une cheminée suspendue, cuisine et table à manger devant une baie sur la forêt enneigée",
+  "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LE SABOT DE VÉNUS, CHALET B, SÉJOUR"
+ },
+ "v-V26": {
+  "w": 1536,
+  "h": 1024,
+  "ratio": 1.5,
+  "alpha": false,
+  "widths": [
+   640,
+   1100,
+   1536
+  ],
+  "color": "#778388",
+  "lqip": "data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAACQBACdASoYABAAPt1apkyopSOiMAgBEBuJZgCdLwG4Fb/gNnx5C9f3ZUyR8EAA/ggPNHcFY6E8EQrpNJONnCEIMs4JU4iZP1F4uUslJjVIpUvM8CfSeDtiAHwNzzzK2vIhZlfX2Rfy3rZDHFBxJgdO6VsPne6rpxyU6wmxXYugjHCidRr2sDyZT1mw8vl+WUtoNN09iKd7ga3C+MVtgVfgkeGdAAAA",
+  "bytes": {
+   "640": {
+    "avif": 41436,
+    "webp": 60234
+   },
+   "1100": {
+    "avif": 123566,
+    "webp": 179854
+   },
+   "1536": {
+    "avif": 225605,
+    "webp": 331022
+   }
+  },
+  "alt": "Vue 3D, illustration non contractuelle : façade sud de La Rouya, chalet en bois au toit bleu dans un pré enneigé, face aux sommets",
+  "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LA ROUYA, FAÇADE SUD"
+ },
+ "v-V27": {
+  "w": 1536,
+  "h": 1024,
+  "ratio": 1.5,
+  "alpha": false,
+  "widths": [
+   640,
+   1100,
+   1536
+  ],
+  "color": "#7b6147",
+  "lqip": "data:image/webp;base64,UklGRr4AAABXRUJQVlA4ILIAAADwBACdASoYABAAPt1apkyopSOiMAgBEBuJZgCdMoR4PoHhti2QG/urINI4o8YbmkAA/tD52OhSqmAm9XGny380WazBbWUIAWOJKjzSAWxWpyF5eyjAEp5eKPoA6eW5ktDSEzOFW/D9oxsd4ufcVs9oqp7V5f8/Og8rZFf1alkkKMeGeGrDlV1t8WdV47IPjB0Ztg3YTHIoOIjrVhI5xTmsHdmq7+G0ZtA2j5elf14W07gA",
+  "bytes": {
+   "640": {
+    "avif": 40183,
+    "webp": 56546
+   },
+   "1100": {
+    "avif": 119845,
+    "webp": 170766
+   },
+   "1536": {
+    "avif": 221260,
+    "webp": 318340
+   }
+  },
+  "alt": "Vue 3D, illustration non contractuelle : salon de La Rouya, poêle suspendu allumé, canapés clairs et fenêtres ouvertes sur la montagne enneigée",
+  "label": "VUE 3D · ILLUSTRATION NON CONTRACTUELLE · LA ROUYA, SALON"
  }
 }

@@ -45,7 +45,7 @@
   function img(src, alt = '') {
     const im = new Image();
     im.decoding = 'async'; im.alt = alt; im.draggable = false;
-    if (src.srcset) { im.sizes = src.sizes || '(min-width: 1024px) 760px, 100vw'; im.srcset = src.srcset; } else im.src = src;
+    if (typeof src === 'object') { im.sizes = src.sizes || '(min-width: 1024px) 760px, 100vw'; if (src.srcset) im.srcset = src.srcset; } else im.src = src;
     return im;
   }
   function buildView(id, { ratio = 4 / 3, mobile = false, fx = .5 } = {}) {
@@ -150,12 +150,17 @@
     clearTimeout(t); scene.classList.remove('is-loading');
   }
 
+  let token = 0;
   async function show(id, how, opts = {}) {
     finishRunning();
-    const prev = cur, next = getView(id);
-    if (prev && prev.id === id) return;
+    const mine = ++token;
+    const next = getView(id);
+    if (cur && cur.id === id) return;
     await ready(next);
+    if (mine !== token) return; // une demande plus récente l'emporte (scroll rapide)
     finishRunning();
+    const prev = cur;
+    if (prev && prev.id === id) return;
     cur = next;
     attach(next);
     if (prev) prev.el.style.zIndex = '1';
@@ -432,6 +437,8 @@
         gsap.fromTo(pic, { yPercent: -3, scale: 1.08 }, { yPercent: 3, ease: 'none', scrollTrigger: { trigger: fig, start: 'top bottom', end: 'bottom top', scrub: .5 } });
       }
       if (fig.classList.contains('diorama--int')) {
+        const im = pic && $('img', pic);
+        if (im) App.onEnter(fig, () => { im.loading = 'eager'; }, 'top 220%');
         const g = { a: 100, e: 100 };
         const draw = () => { frameEl.style.clipPath = `polygon(50% ${g.a}%, 100% ${g.e}%, 100% 100%, 0% 100%, 0% ${g.e}%)`; };
         draw();

@@ -178,7 +178,8 @@
     if (focusBack) (menuReturn || menuBtn).focus({ preventScroll: true });
   }
   menuBtn.addEventListener('click', () => (App.menuOpen ? closeMenu() : openMenu()));
-  menu.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); trap(menu, e); });
+  menu.addEventListener('keydown', (e) => trap(menu, e));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && App.menuOpen) closeMenu(); });
   menu.addEventListener('click', (e) => { if (e.target.closest('[data-menu-link]')) closeMenu(false); });
 
   /* ——— tiroir et formulaires ——— */
@@ -360,10 +361,20 @@
 
   /* ——— pied de page révélé par-dessous ——— */
   function initFooter() {
-    const f = $('.footer');
-    const set = () => html.style.setProperty('--footer-h', `${f.offsetHeight}px`);
+    const f = $('.footer'), logo = $('.footer__logo', f);
+    // le pied de page n'est glissé sous la page que s'il tient dans l'écran ; le logo gaufré s'ajuste
+    const set = () => {
+      if (!desktop() || !motion) { f.classList.remove('is-under'); html.style.setProperty('--footer-under', '0px'); return; }
+      const rest = f.offsetHeight - logo.offsetHeight;
+      const w = Math.min(innerWidth * .92, Math.max(0, innerHeight - header.offsetHeight - rest - 8) * (1286.11 / 643.35));
+      html.style.setProperty('--emboss-w', `${Math.round(w)}px`);
+      const fits = w > innerWidth * .45;
+      f.classList.toggle('is-under', fits);
+      html.style.setProperty('--footer-under', fits ? `${f.offsetHeight}px` : '0px');
+    };
     set();
-    new ResizeObserver(set).observe(f);
+    addEventListener('resize', set);
+    new ResizeObserver(() => { const h = f.offsetHeight; if (h !== f._h) { f._h = h; set(); } }).observe(f);
     $('[data-top]', f)?.addEventListener('click', () => App.scrollTo(0, { duration: 2.2 }));
     if (desktop()) $$('.fcol', f).forEach((d) => { d.open = true; });
     else $$('.fcol', f).forEach((d) => { d.open = false; });
@@ -381,9 +392,9 @@
   App.init = () => {
     if (App.ready) return;
     App.ready = true;
-    initButtons(); initCursor(); initForms(); initPill(); initFooter(); initEssences();
+    initButtons(); initCursor(); initForms(); initFooter(); initEssences();
     fontsReady.then(() => {
-      initReveals(); initParallax();
+      initPill(); initReveals(); initParallax();
       document.dispatchEvent(new CustomEvent('app:ready'));
       ScrollTrigger.refresh();
       onScroll();

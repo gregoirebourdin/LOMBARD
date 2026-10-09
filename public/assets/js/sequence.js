@@ -97,6 +97,15 @@
       px(-nx * .8); py(-ny * .8); tx(nx * .4 * 2); ty(ny * .4 * 2);
     }, { passive: true });
     hero.addEventListener('pointerleave', () => { px(0); py(0); tx(0); ty(0); });
+    // dans la visite, chaque pièce suit légèrement le pointeur : on « tourne la tête »
+    const pics = rooms.map((r) => $('.room__pic', r));
+    const rx = pics.map((pc) => gsap.quickTo(pc, 'xPercent', { duration: 1.4, ease: 'power3.out' }));
+    const ry = pics.map((pc) => gsap.quickTo(pc, 'yPercent', { duration: 1.4, ease: 'power3.out' }));
+    seq.addEventListener('pointermove', (e) => {
+      if (Seq.y < Seq.S[0]) return;
+      const nx = e.clientX / innerWidth * 2 - 1, ny = e.clientY / innerHeight * 2 - 1;
+      rx.forEach((q) => q(-nx * 1.2)); ry.forEach((q) => q(-ny * 1.2));
+    }, { passive: true });
     pan.addEventListener('click', () => { if (Seq.y < Seq.S[0] * .5) App.scrollTo('#visite'); });
   }
 
@@ -109,7 +118,7 @@
   const clamp01 = (v) => Math.max(0, Math.min(1, v));
   const seg = (y, a, b) => clamp01((y - a) / (b - a));
   const lerp = (a, b, t) => a + (b - a) * t;
-  let geo = null;
+  let geo = null, lastA = 0;
 
   function layout() {
     const mob = innerWidth < 768;
@@ -152,10 +161,13 @@
 
     // segment 0 : le titre se couche derrière le toit, le socle descend
     const a = App.ease.inOut(seg(y, 0, s0));
-    const drop = a * .34 * innerHeight;
-    titleLines.forEach((l) => { l.style.transform = drop ? `translate3d(0,${drop}px,0)` : ''; });
-    plinth.style.transform = a ? `translate3d(0,${a * 100}%,0)` : '';
-    plinth.style.opacity = String(1 - a);
+    if (a !== lastA) { // on n'écrit qu'au changement : l'intro anime le socle tant que l'on n'a pas défilé
+      lastA = a;
+      const drop = a * .34 * innerHeight;
+      titleLines.forEach((l) => { l.style.transform = drop ? `translate3d(0,${drop}px,0)` : ''; });
+      plinth.style.transform = a ? `translate3d(0,${a * 100}%,0)` : '';
+      plinth.style.opacity = String(1 - a);
+    }
     App.header.lock('seq', y > s0 * .35 && y < s5 - 8);
     seq.dataset.header = y < s0 * .9 ? 'sky' : (y < s5 - 10 ? 'photo' : 'paper');
 

@@ -1,0 +1,33 @@
+{
+ "_doc": "Groupe hero (spec §3 S1, annexe A). Masters étalonnés produits par tools/retouch/hero.py masters. Qualité AVIF abaissée pour tenir ≤ 180 Ko à 1920 (hero : 58, soit 52 au-delà de 1600 px) et ≤ 120 Ko à 1080 (portrait : 51) ; vérifié à 100 % contre le master, sans perte visible.",
+ "images": {
+  "hero": {
+   "id": "I056",
+   "src": "/home/user/LOMBARD/tools/.cache/masters/hero-I056.png",
+   "widths": [
+    1080,
+    1440,
+    1920
+   ],
+   "alt": "Chalet en mélèze et pierre au crépuscule, fenêtres éclairées, sommet enneigé derrière",
+   "quality": {
+    "avif": 58,
+    "webp": 82
+   }
+  },
+  "hero-portrait": {
+   "id": "I064",
+   "src": "/home/user/LOMBARD/tools/.cache/masters/hero-I064.png",
+   "widths": [
+    640,
+    828,
+    1080
+   ],
+   "alt": "Chalet en mélèze et pierre au crépuscule, fenêtres éclairées, sommet enneigé derrière",
+   "quality": {
+    "avif": 51,
+    "webp": 82
+   }
+  }
+ }
+}

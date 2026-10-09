@@ -2,7 +2,7 @@
  "_doc": "Source unique des programmes en vente, rendue en HTML statique au build (tools/build.mjs). Textes entre « » : verbatim du site chalets-lombard.fr. Le build échoue si un programme en vente n'a pas été vérifié depuis plus de 60 jours (verifie_le).",
  "programmes": [
   { "id": "serre-orchis", "n": "01", "nom": "Le Serre d’Orchis", "statut": "en-vente", "verifie_le": "2026-10-09",
-    "commune": "LE MONÊTIER-LES-BAINS", "encart": "221,5 et 229 m²",
+    "commune": "LE MONÊTIER-LES-BAINS", "ville": "Le Monêtier-les-Bains", "encart": "221,5 et 229 m²",
     "lieu": "HAMEAU DU SERRE BARBIN · LE MONÊTIER-LES-BAINS · SERRE CHEVALIER",
     "chapeau": "« Deux chalets individuels à vendre. 221 et 229 m² au calme, au cœur du hameau du Serre Barbin, commune de Monêtier-les-Bains. »",
     "prestations": [
@@ -20,7 +20,7 @@
         "ext": "V56", "int": "V57", "entree": "vitrage", "leg_ext": "LE SERRE D’ORCHIS, CHALET B, EXTÉRIEUR", "leg_int": "LE SERRE D’ORCHIS, CHALET B, INTÉRIEUR" }
     ] },
   { "id": "sabot-venus", "n": "02", "nom": "Le Sabot de Vénus", "statut": "en-vente", "verifie_le": "2026-10-09",
-    "commune": "LA SALLE-LES-ALPES", "encart": "145 et 198 m²",
+    "commune": "LA SALLE-LES-ALPES", "ville": "La Salle-les-Alpes", "encart": "145 et 198 m²",
     "lieu": "LA SALLE-LES-ALPES · SERRE CHEVALIER",
     "chapeau": "« Deux chalets d’exception voient le jour sur un emplacement idéal, alliant le calme de la nature au dynamisme du village. Ces projets sont disponibles à la vente séparément. »",
     "prestations": [
@@ -38,7 +38,7 @@
         "ext": "V34", "int": "V33", "leg_ext": "LE SABOT DE VÉNUS, CHALETS A ET B, EXTÉRIEUR", "leg_int": "LE SABOT DE VÉNUS, CHALET B, SÉJOUR" }
     ] },
   { "id": "la-rouya", "n": "03", "nom": "La Rouya", "statut": "en-vente", "verifie_le": "2026-10-09",
-    "commune": "PUY-SAINT-VINCENT 1400", "encart": "167 m²",
+    "commune": "PUY-SAINT-VINCENT 1400", "ville": "Puy-Saint-Vincent", "encart": "167 m²",
     "lieu": "PUY-SAINT-VINCENT 1400",
     "chapeau": "« Découvrez votre havre de paix à Puy Saint Vincent 1400. Ce chalet de 167 m², idéalement situé à deux pas des pistes, vous offre un cadre de vie exceptionnel. »",
     "pastilles": ["« À 300 m des pistes de ski »", "« Grand jardin privatif pouvant accueillir un spa extérieur »", "Permis de construire purgé de tous recours"],
