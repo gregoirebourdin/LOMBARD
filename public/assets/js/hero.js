@@ -2,7 +2,7 @@
    Au défilement, chaque plan glisse à sa vitesse : le ciel le plus lentement, le chalet avec la page.
    « Le soir tombe. » est posé entre le ciel et la montagne : la montagne et le chalet montent devant lui
    et il se couche derrière eux, pendant que le ciel s'assombrit. Le titre (H1) reste en bas à gauche, sur un voile sombre.
-   window.App.hero : états de départ et assemblage, appelés par l'intro. */
+   window.App.hero : états de départ et assemblage, appelés par l'intro (le nuage). */
 (() => {
   const App = window.App;
   if (!App || !App.ok) return;
@@ -15,8 +15,8 @@
     giant: $('.hero__giant', hero), night: $('.hero__night', hero),
   };
   const content = $('.hero__content', hero);
-  const H1 = $$('.hero__title .ln__i', hero);
-  const extras = [$('.hero__kicker', hero), $('.hero__cta', hero), $('.hero__credit', hero), $('.hero__scroll', hero)].filter(Boolean);
+  const title = $('.hero__title', hero), kicker = $('.hero__kicker', hero);
+  const extras = [$('.hero__cta', hero), $('.hero__credit', hero), $('.hero__scroll', hero)].filter(Boolean);
 
   // retard de chaque plan sur la page, en part du défilement du hero : le ciel reste presque immobile,
   // le texte à peine moins, la montagne suit presque la page, le chalet (avant) avance avec elle ;
@@ -25,30 +25,36 @@
   const portrait = () => matchMedia('(max-aspect-ratio: 1/1)').matches;
   const SPEED = () => (portrait() ? { back: .9, giant: .74, mid: .08 } : { back: .9, giant: .74, mid: .14 });
 
-  const api = (App.hero = {
-    /* état de départ, avant que la feuille de l'intro ne se lève */
+  App.hero = {
+    /* état de départ, sous le nuage de l'intro : plans légèrement décalés, textes cachés */
     prepare() {
-      gsap.set(P.back, { scale: 1.1, transformOrigin: '50% 40%' });
-      gsap.set(P.mid, { yPercent: 7 });
-      gsap.set(P.front, { yPercent: 5 });
-      gsap.set(P.giant, { yPercent: 55, autoAlpha: 0 });
-      gsap.set(H1, { yPercent: 110 });
+      gsap.set(P.back, { scale: 1.06, transformOrigin: '50% 40%' });
+      gsap.set(P.mid, { yPercent: 3 });
+      gsap.set(P.front, { yPercent: 2 });
+      gsap.set(P.giant, { yPercent: 28 });
+      App.blurHide(P.giant);
+      App.blurHide(kicker);
+      App.blurHide(title);
       gsap.set(extras, { autoAlpha: 0, y: 14 });
     },
-    /* les plans se posent l'un après l'autre, le texte monte de derrière la montagne */
+    /* les plans se posent, le grand texte monte de derrière la montagne et se met au point, puis le titre */
     assemble(k = 1) {
-      return gsap.timeline()
-        .to(P.back, { scale: 1, duration: 2.4 * k, ease: 'out' }, 0)
-        .to(P.mid, { yPercent: 0, duration: 2 * k, ease: 'out' }, .1 * k)
-        .to(P.front, { yPercent: 0, duration: 1.8 * k, ease: 'out' }, .15 * k)
-        .to(P.giant, { yPercent: 0, autoAlpha: 1, duration: 1.9 * k, ease: 'out' }, .35 * k)
-        .to(H1, { yPercent: 0, duration: 1.2 * k, ease: 'out', stagger: .09 * k }, .6 * k)
-        .to(extras, { autoAlpha: 1, y: 0, duration: .9 * k, ease: 'out', stagger: .08 * k }, .85 * k);
+      const tl = gsap.timeline()
+        .to(P.back, { scale: 1, duration: 2.2 * k, ease: 'out' }, 0)
+        .to(P.mid, { yPercent: 0, duration: 1.9 * k, ease: 'out' }, .05 * k)
+        .to(P.front, { yPercent: 0, duration: 1.7 * k, ease: 'out' }, .1 * k)
+        .to(P.giant, { yPercent: 0, duration: 2 * k, ease: 'out' }, .2 * k)
+        .add(App.blurIn(P.giant, { stagger: .12, speed: 1.2 * k, y: 0 }), .25 * k)
+        .add(App.blurIn(kicker, { stagger: .04, speed: k }), .55 * k)
+        .add(App.blurIn(title, { stagger: .07, speed: k }), .65 * k)
+        .to(extras, { autoAlpha: 1, y: 0, duration: .9 * k, ease: 'out', stagger: .08 * k }, 1.15 * k);
+      return tl;
     },
     revealStatic() {
-      gsap.set([P.back, P.mid, P.front, P.giant, ...H1, ...extras], { clearProps: 'transform,opacity,visibility' });
+      gsap.set([P.back, P.mid, P.front, P.giant, ...extras], { clearProps: 'transform,opacity,visibility' });
+      [P.giant, kicker, title].forEach((el) => { if (el._bw) gsap.set(el._bw.flatMap((x) => [x.w, x.s]), { clearProps: 'all' }); el._bw?.forEach((x) => x.b.remove()); });
     },
-  });
+  };
 
   if (!motion) return;
 

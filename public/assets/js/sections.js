@@ -64,15 +64,15 @@
     $$('.step').forEach((st) => {
       const odo = $('.odo', st);
       const roll = odometer(odo);
-      const t = App.split($('.step__t', st));
-      gsap.set(t.lines, { yPercent: 110 });
-      gsap.set($('.step__p', st), { autoAlpha: 0, y: 12 });
+      const t = $('.step__t', st), sp = $('.step__p', st);
+      App.blurHide(t);
+      App.blurHide(sp, 'block');
       gsap.set(odo, { autoAlpha: 0 });
       App.onEnter(st, () => {
         gsap.to(odo, { autoAlpha: 1, duration: .4 });
         roll();
-        gsap.to(t.lines, { yPercent: 0, duration: 1.1, ease: 'out', stagger: .08 });
-        gsap.to($('.step__p', st), { autoAlpha: 1, y: 0, duration: .9, ease: 'out', delay: .15 });
+        App.blurIn(t);
+        App.blurIn(sp, { mode: 'block', delay: .2 });
       }, 'top 72%');
     });
   }
@@ -83,17 +83,21 @@
     if (!root) return;
     const quotes = $$('.quote', root), count = $('.carousel__i span', root);
     let i = 0, busy = false;
-    const lines = quotes.map((q) => App.split($('blockquote p', q)).lines);
     function go(dir) {
       if (busy) return;
       const n = (i + dir + quotes.length) % quotes.length;
       const a = quotes[i], b = quotes[n];
+      const pb = $('blockquote p', b);
       busy = true;
+      // la citation sortante s'efface, la suivante arrive floue et se met au point
       const tl = gsap.timeline({ onComplete: () => { busy = false; } });
-      tl.to([...lines[i], $('figcaption', a)], { yPercent: -110, autoAlpha: 0, duration: .5, ease: 'in', stagger: .03 })
-        .add(() => { a.classList.remove('is-active'); b.classList.add('is-active'); })
-        .fromTo(lines[n], { yPercent: 110, autoAlpha: 1 }, { yPercent: 0, duration: 1, ease: 'out', stagger: .07 })
-        .fromTo($('figcaption', b), { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, yPercent: 0, duration: .8 }, '-=.7')
+      tl.to([$('blockquote', a), $('figcaption', a)], { autoAlpha: 0, y: -10, duration: .45, ease: 'in', stagger: .05 })
+        .add(() => {
+          a.classList.remove('is-active'); gsap.set([$('blockquote', a), $('figcaption', a)], { clearProps: 'all' });
+          b.classList.add('is-active');
+          App.blurReset(pb); App.blurHide(pb); App.blurIn(pb, { stagger: .025, speed: .8 });
+        })
+        .fromTo($('figcaption', b), { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: .8 }, '+=.35')
         .to(count, { yPercent: dir > 0 ? -100 : 100, duration: .3, ease: 'in' }, 0)
         .add(() => { count.textContent = String(n + 1); }, .3)
         .fromTo(count, { yPercent: dir > 0 ? 100 : -100 }, { yPercent: 0, duration: .5, ease: 'out' }, .3);
@@ -109,15 +113,15 @@
   /* ——— S8 : le chalet s'allume, étage par étage ——— */
   function finale() {
     const photo = $('.finale__photo'), lit = $('.finale__lit'), dim = $('.finale__dim');
-    const h2 = $$('.finale__head .ln__i'), kick = $('.finale__head .kicker');
-    gsap.set(h2, { yPercent: 110 });
-    gsap.set(kick, { autoAlpha: 0 });
+    const h2 = $('.finale__head .d1'), kick = $('.finale__head .kicker');
+    App.blurHide(h2);
+    App.blurHide(kick);
     let shown = false;
     const show = () => {
       if (shown) return;
       shown = true;
-      gsap.to(kick, { autoAlpha: 1, duration: .6 });
-      gsap.to(h2, { yPercent: 0, duration: 1.1, ease: 'out', stagger: .1 });
+      App.blurIn(kick, { stagger: .03 });
+      App.blurIn(h2, { delay: .15 });
     };
     const hasDim = dim && !dim.hasAttribute('data-missing') && lit && !lit.hasAttribute('data-missing');
     if (!hasDim) { if (lit) lit.style.maskImage = lit.style.webkitMaskImage = 'none'; App.onEnter(photo, show, 'top 60%'); return; }

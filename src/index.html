@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Chalets Lombard Vasina — Constructeur de chalets bois, Hautes-Alpes</title>
 <meta name="description" content="Constructeur de chalets bois haut de gamme depuis 1979 à Saint-Martin-de-Queyrières. Chalets en vente sur plan à Serre Chevalier et Puy-Saint-Vincent, ou construits sur votre terrain.">
-<meta name="theme-color" content="#F6F0E8">
+<meta name="theme-color" content="#F3ECE2">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:title" content="Chalets Lombard Vasina — Chalets bois d’exception dans les Hautes-Alpes">
@@ -51,6 +51,22 @@
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
+
+<!-- intro : on traverse un nuage ; la photo floue du hero se met au point -->
+<div class="intro" aria-hidden="true">
+  <div class="intro__puffs">
+    <i class="intro__puff" style="--x:50%;--y:50%;--s:92vmax" data-dx="0" data-dy="0" data-z="2.6"></i>
+    <i class="intro__puff intro__puff--l" style="--x:18%;--y:30%;--s:70vmax" data-dx="-38" data-dy="-18" data-z="1.9"></i>
+    <i class="intro__puff" style="--x:82%;--y:28%;--s:72vmax" data-dx="38" data-dy="-20" data-z="1.9"></i>
+    <i class="intro__puff" style="--x:12%;--y:78%;--s:68vmax" data-dx="-40" data-dy="22" data-z="1.8"></i>
+    <i class="intro__puff intro__puff--l" style="--x:88%;--y:76%;--s:70vmax" data-dx="40" data-dy="22" data-z="1.8"></i>
+    <i class="intro__puff" style="--x:50%;--y:94%;--s:64vmax" data-dx="0" data-dy="34" data-z="1.7"></i>
+    <i class="intro__puff intro__puff--l" style="--x:50%;--y:6%;--s:60vmax" data-dx="0" data-dy="-32" data-z="1.7"></i>
+    <i class="intro__puff" style="--x:33%;--y:57%;--s:50vmax" data-dx="-24" data-dy="8" data-z="2"></i>
+    <i class="intro__puff" style="--x:68%;--y:47%;--s:52vmax" data-dx="26" data-dy="-4" data-z="2"></i>
+  </div>
+  <div class="intro__haze"></div>
+</div>
 
 <svg class="sprite" aria-hidden="true" focusable="false">
   <symbol id="i-arrow" viewBox="0 0 12 12"><path d="M0.5 6h10.6M6.6 1.6 11 6l-4.4 4.4" fill="none" stroke="currentColor" stroke-width="1.25"/></symbol>
@@ -113,11 +129,12 @@
       <p class="hero__giant" aria-hidden="true"><span class="hero__g1"><span class="hero__le">Le</span> soir</span> <em>tombe.</em></p>
       {{hero:mid}}
       {{hero:front}}
+      {{hero:fog}}
     </div>
     <div class="hero__veil" aria-hidden="true"></div>
     <div class="hero__content">
       <p class="hero__kicker">Lombard Vasina · depuis 1979</p>
-      <h1 class="hero__title" id="hero-t"><span class="ln"><span class="ln__i">Chalets bois d’exception</span></span> <span class="ln"><span class="ln__i">dans les <em>Hautes-Alpes</em></span></span></h1>
+      <h1 class="hero__title" id="hero-t"><span class="hero__l">Chalets bois d’exception</span> <span class="hero__l">dans les <em>Hautes-Alpes</em></span></h1>
       <div class="hero__cta">
         <a class="btn" href="#en-vente" data-magnetic><span class="btn__label" data-roll>Voir les chalets en vente</span><svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="link link--light" href="#sur-mesure">Construire sur votre terrain</a>
@@ -212,6 +229,21 @@
         </ul>
         <p class="maison__links"><a class="link" href="https://www.chalets-lombard.fr/lombard-vasina/">Notre histoire</a><a class="link" href="https://www.chalets-lombard.fr/qui-sommes-nous/">Qui sommes-nous ?</a></p>
       </div>
+    </div>
+  </section>
+
+  <!-- le film : la vidéo grandit jusqu'à remplir l'écran ; seul le son se règle -->
+  <section class="film" id="film" aria-label="Le film Chalets Lombard Vasina" data-header="paper">
+    <div class="film__pin">
+      <div class="film__back" aria-hidden="true"></div>
+      <div class="film__frame" tabindex="0" role="button" aria-label="Mettre la vidéo en pause" data-cursor="Pause">
+        <video class="film__v" muted loop playsinline preload="none" poster="/assets/video/film-poster-1280.webp" aria-label="Extrait du film Chalets Lombard Vasina : intérieurs de chalets en bois, un toast entre amis, un chalet sous la neige">
+          <source src="/assets/video/film-1280.mp4" type="video/mp4" media="(max-width: 1100px)">
+          <source src="/assets/video/film-1920.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="film__cap"><span>Le film</span><span>Chalets Lombard Vasina, 2024</span></p>
+      <button class="film__sound" type="button" aria-pressed="false"><span class="film__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="film__sl">Activer le son</span></button>
     </div>
   </section>
 
@@ -313,25 +345,6 @@
     <p class="footer__legal micro">© 2026 SAS Lombard et Vasina · RCS Gap B 316 141 019 · <a href="https://www.chalets-lombard.fr/mentions-legales/">Mentions légales</a> · <a href="https://www.chalets-lombard.fr/politique-de-cookies/">Politique de cookies</a> · Gérer le consentement · Photographies : Alpes Photographies / Jonathan Dupieux · Vues 3D : illustrations non contractuelles</p>
   </div>
 </footer>
-
-<!-- intro : le logo officiel se compose sur le papier, rejoint l'en-tête, et la feuille se lève sur le hero -->
-<div class="intro" aria-hidden="true">
-  <svg class="intro__paper" aria-hidden="true" focusable="false" preserveAspectRatio="none">
-    <defs>
-      <radialGradient id="ip-g" cx="0" cy="0" r="1" gradientUnits="objectBoundingBox" gradientTransform="scale(1.4 1)">
-        <stop offset="0" stop-color="#F9F5EF"/><stop offset=".45" stop-color="#F6F0E8"/><stop offset="1" stop-color="#EFE6DC"/>
-      </radialGradient>
-      <linearGradient id="ip-e" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#160B13" stop-opacity=".22"/><stop offset="1" stop-color="#160B13" stop-opacity="0"/>
-      </linearGradient>
-    </defs>
-    <rect class="intro__edge" width="100%" height="56" y="100%" fill="url(#ip-e)"/>
-    <rect class="intro__sheet" width="100%" height="100%" fill="url(#ip-g)"/>
-    {{include _intro_logo.svg}}
-  </svg>
-  <p class="intro__coords">44°51′48″ N — 6°35′41″ E — ALT. 1 174 M</p>
-  <span class="intro__rule"></span>
-</div>
 
 <button class="pill" type="button" data-drawer aria-label="Recevoir les plans et les prix"><span class="dot" aria-hidden="true"></span>Plans &amp; prix</button>
 

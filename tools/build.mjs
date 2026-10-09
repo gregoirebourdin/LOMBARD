@@ -4,7 +4,7 @@
 //   aux largeurs exportées (public/assets/img/manifest.json), dimensions, couleur d'attente, aperçu flou ;
 // - {{include fichier}} : insère src/<fichier> (SVG du logo animé, relevé au trait…) ;
 // - {{logo …}} : le logo officiel en SVG inline, sans identifiants, prêt à être stylé ;
-// - {{hero:back|mid|front|preload|css}} : les trois plans du hero (public/assets/hero/<d|m>/hero.json) ;
+// - {{hero:back|mid|front|fog|preload|css}} : les trois plans du hero (public/assets/hero/<d|m>/hero.json) et sa photo floue ;
 // - {{programmes:…}}, {{jsonld}} : rendus depuis data/programmes.json ;
 // - typographie française sur le texte (espaces fines, milliers) ; empreinte de version des CSS et JS.
 // Le build échoue si un programme « en vente » n'a pas été vérifié depuis plus de 60 jours.
@@ -96,6 +96,11 @@ function hero(name) {
   const last = heroFiles('d', name).slice(-1)[0];
   return `<picture class="hp hp--${name}">${src('m', 'avif')}${src('m', 'webp')}${src('d', 'avif')}${src('d', 'webp')}`
     + `<img src="/assets/hero/d/${name}-${last}.webp" alt="${alt}" fetchpriority="high" decoding="async"${name === 'back' ? ' class="hero__img"' : ''}></picture>`;
+}
+// photo floue (tools/hero_fog.py), insérée dans la page : l'intro s'ouvre sur elle sans attendre le réseau
+function heroFog() {
+  const uri = (k) => `data:image/webp;base64,${readFileSync(join(PUB, `assets/hero/${k}/fog.webp`)).toString('base64')}`;
+  return `<picture class="hero__fog" aria-hidden="true"><source media="${PORTRAIT}" srcset="${uri('m')}"><img src="${uri('d')}" alt=""></picture>`;
 }
 function heroPreload() {
   return ['back', 'mid', 'front'].map((n) => [['d', LANDSCAPE], ['m', PORTRAIT]].map(([k, media]) =>
@@ -224,6 +229,7 @@ html = html.replace(/\{\{include ([\w.-]+)(?: (\w+))?\}\}/g, (_, f, prefix) => {
 html = html.replace(/\{\{logo([^}]*)\}\}/g, (_, s) => logo(attrs(s)));
 html = html.replace(/\{\{programmes:(\w+)\}\}/g, (_, k) => partials[k]());
 html = html.replace(/\{\{hero:(back|mid|front)\}\}/g, (_, n) => hero(n));
+html = html.replace(/\{\{hero:fog\}\}/g, heroFog);
 html = html.replace(/\{\{hero:preload\}\}/g, heroPreload);
 html = html.replace(/\{\{hero:css\}\}/g, heroCss);
 html = html.replace(/\{\{site\}\}/g, process.env.SITE_URL || 'https://chalets-lombard.vercel.app');

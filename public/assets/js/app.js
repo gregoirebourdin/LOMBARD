@@ -61,18 +61,90 @@
   const onEnter = (el, fn, start = 'top 85%') => ScrollTrigger.create({ trigger: el, start, once: true, onEnter: () => fn(el) });
   App.onEnter = onEnter;
 
+  /* ——— faux blur ———
+     Le flou n'est jamais animé (trop coûteux) : chaque mot reçoit un double flouté, figé, posé sur lui.
+     On ne fait bouger que l'opacité et la position de calques composités : le mot apparaît flou puis
+     se met au point. Les doubles sont retirés une fois la révélation jouée. */
+  const SPACE = /([ \t\n\r]+)/; // jamais l'espace fine insécable : « et » ne se détachent pas
+  App.blurWords = (el) => {
+    if (el._bw) return el._bw;
+    if (el._html == null) el._html = el.innerHTML;
+    const words = [];
+    const walk = (node) => [...node.childNodes].forEach((n) => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(SPACE).forEach((t) => {
+          if (!t) return;
+          if (SPACE.test(t)) { frag.append(t); return; }
+          const w = document.createElement('span'); w.className = 'bw';
+          const a = document.createElement('span'); a.className = 'bw__s'; a.textContent = t;
+          const b = document.createElement('span'); b.className = 'bw__b'; b.textContent = t; b.setAttribute('aria-hidden', 'true');
+          w.append(a, b); frag.append(w); words.push({ w, s: a, b });
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1 && !n.matches('br, svg, .bw')) walk(n);
+    });
+    walk(el);
+    el.classList.add('is-blur');
+    el._bw = words;
+    return words;
+  };
+  // un bloc (paragraphe) : un seul double flouté de tout le bloc
+  App.blurBlock = (el) => {
+    if (el._bb) return el._bb;
+    const s = document.createElement('span'); s.className = 'bb__s';
+    s.append(...el.childNodes);
+    const b = s.cloneNode(true); b.className = 'bb__b'; b.setAttribute('aria-hidden', 'true');
+    b.querySelectorAll('[id]').forEach((x) => x.removeAttribute('id'));
+    b.querySelectorAll('a, button, input').forEach((x) => x.setAttribute('tabindex', '-1'));
+    el.append(s, b);
+    el.classList.add('is-blur', 'bb');
+    el._bb = [{ w: el, s, b }];
+    return el._bb;
+  };
+  // remet le texte d'origine (pour rejouer une révélation)
+  App.blurReset = (el) => { if (el._html != null) el.innerHTML = el._html; el._bw = null; el.classList.remove('is-in'); };
+  const parts = (el, mode) => (mode === 'block' ? App.blurBlock(el) : App.blurWords(el));
+  App.blurHide = (el, mode = 'words') => {
+    const p = parts(el, mode);
+    gsap.set(p.map((x) => x.w), { opacity: 0 });
+    gsap.set(p.map((x) => x.s), { opacity: 0 });
+    gsap.set(p.map((x) => x.b), { opacity: 1 });
+    return p;
+  };
+  // révélation : le mot arrive flou en montant un peu, puis se met au point
+  App.blurIn = (el, o = {}) => {
+    const mode = o.mode || 'words';
+    const p = parts(el, mode);
+    const W = p.map((x) => x.w), S = p.map((x) => x.s), B = p.map((x) => x.b);
+    const st = o.stagger ?? (mode === 'block' ? 0 : .055), k = o.speed || 1;
+    gsap.set([...W, ...S, ...B], { willChange: 'opacity, transform' });
+    el.classList.add('is-in');
+    const tl = gsap.timeline({
+      delay: o.delay || 0,
+      onComplete: () => {
+        B.forEach((b) => b.remove());
+        gsap.set([...W, ...S], { clearProps: 'willChange,opacity,transform' });
+        o.onComplete?.();
+      },
+    });
+    tl.fromTo(W, { opacity: 0, y: o.y ?? (mode === 'block' ? 14 : '.32em') }, { opacity: 1, y: 0, duration: 1.3 * k, ease: 'out', stagger: { each: st } }, 0)
+      .fromTo(B, { opacity: 1, scale: 1.04 }, { opacity: 0, scale: 1, duration: 1.1 * k, ease: 'inOut', stagger: { each: st } }, .25 * k)
+      .fromTo(S, { opacity: 0 }, { opacity: 1, duration: .9 * k, ease: 'inOut', stagger: { each: st } }, .2 * k);
+    return tl;
+  };
+
   function initReveals() {
     if (!motion) return;
     $$('[data-reveal]').forEach((el) => {
       const kind = el.dataset.reveal;
       const delay = parseFloat(el.dataset.delay || 0);
       if (kind === 'lines') {
-        const s = App.split(el);
-        gsap.set(s.lines, { yPercent: 110 });
-        onEnter(el, () => { el.classList.add('is-in'); gsap.to(s.lines, { yPercent: 0, duration: 1.1, ease: 'out', stagger: .08, delay }); });
+        App.blurHide(el, 'words');
+        onEnter(el, () => App.blurIn(el, { delay }));
       } else if (kind === 'fade') {
-        gsap.set(el, { autoAlpha: 0, y: 16 });
-        onEnter(el, () => gsap.to(el, { autoAlpha: 1, y: 0, duration: .9, delay, onComplete: () => el.classList.add('is-in') }));
+        App.blurHide(el, 'block');
+        onEnter(el, () => App.blurIn(el, { mode: 'block', delay }));
       } else if (kind === 'stagger') {
         gsap.set(el.children, { autoAlpha: 0, y: 16 });
         onEnter(el, () => gsap.to(el.children, { autoAlpha: 1, y: 0, duration: .9, stagger: .06, delay }));
