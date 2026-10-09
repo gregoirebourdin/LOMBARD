@@ -70,7 +70,7 @@
       if (kind === 'lines') {
         const s = App.split(el);
         gsap.set(s.lines, { yPercent: 110 });
-        onEnter(el, () => gsap.to(s.lines, { yPercent: 0, duration: 1.1, ease: 'out', stagger: .08, delay }));
+        onEnter(el, () => { el.classList.add('is-in'); gsap.to(s.lines, { yPercent: 0, duration: 1.1, ease: 'out', stagger: .08, delay }); });
       } else if (kind === 'fade') {
         gsap.set(el, { autoAlpha: 0, y: 16 });
         onEnter(el, () => gsap.to(el, { autoAlpha: 1, y: 0, duration: .9, delay, onComplete: () => el.classList.add('is-in') }));
@@ -120,7 +120,7 @@
     const y = App.lenis ? App.lenis.scroll : scrollY;
     const dir = App.lenis ? App.lenis.direction : Math.sign(y - lastY);
     if (Math.abs(y - lastY) > 4) {
-      H.hidden = y > 160 && dir > 0;
+      H.hidden = !desktop() && y > 160 && dir > 0;
       lastY = y;
       H.apply();
     }
@@ -203,8 +203,11 @@
     drawerReturn = origin || document.activeElement;
     const form = $('form', drawer);
     prefill(form, ctx);
-    const ctxEl = $('.drawer__ctx', drawer);
-    ctxEl.textContent = ctx.programme && NOMS[ctx.programme] && ctx.programme !== 'terrain'
+    const ctxEl = $('.drawer__ctx', drawer), title = $('.drawer__main', drawer), kicker = $('.kicker', drawer);
+    const terrain = ctx.programme === 'terrain';
+    title.textContent = terrain ? 'Parlons de votre chalet' : 'Recevoir les plans et les prix';
+    kicker.textContent = terrain ? 'SUR VOTRE TERRAIN' : 'PLANS, PRIX, RENDEZ-VOUS';
+    ctxEl.textContent = ctx.programme && NOMS[ctx.programme] && !terrain
       ? ` — ${NOMS[ctx.programme]}${ctx.lot && LOTS[ctx.programme] ? `, chalet ${ctx.lot}` : ''}` : '';
     if (typeof drawer.showModal === 'function') drawer.showModal(); else drawer.setAttribute('open', '');
     App.drawerOpen = true;
@@ -266,10 +269,17 @@
           if (motion && path) gsap.fromTo(path, { drawSVG: '0%' }, { drawSVG: '100%', duration: .6, ease: 'inOut' });
           msg.textContent = 'Merci. Votre demande a bien été transmise à l’équipe Lombard Vasina.';
           window.dataLayer?.push({ event: 'form_submit', programme: data.programme || null, lot: data.lot || null });
-        } catch {
+        } catch (err) {
           btn.disabled = false;
           const body = encodeURIComponent(`Projet : ${NOMS[data.programme] || '—'}${data.lot ? `, chalet ${data.lot}` : ''}\nJe souhaite : ${data.souhait.join(', ') || '—'}\nNom : ${data.nom}\nE-mail : ${data.email}\nTéléphone : ${data.tel || '—'}\n\n${data.message || ''}`);
-          msg.innerHTML = `L’envoi n’a pas abouti. Écrivez-nous à <a class="link" href="mailto:contact@chalets-lombard.fr?subject=${encodeURIComponent('Plans et prix')}&amp;body=${body}">contact@chalets-lombard.fr</a> ou appelez le <a class="link" href="tel:+33492212919">04&#8239;92&#8239;21&#8239;29&#8239;19</a>.`;
+          const mailto = `mailto:contact@chalets-lombard.fr?subject=${encodeURIComponent(`Plans et prix — ${NOMS[data.programme] || 'demande'}`)}&body=${body}`;
+          if (String(err && err.message) === '503') {
+            // envoi direct pas encore configuré : la messagerie du visiteur s'ouvre, demande déjà rédigée
+            msg.innerHTML = `Votre messagerie s’ouvre avec votre demande déjà rédigée : il ne reste qu’à l’envoyer. Sinon, écrivez à <a class="link" href="${mailto.replace(/&/g, '&amp;')}">contact@chalets-lombard.fr</a> ou appelez le <a class="link" href="tel:+33492212919">04&#8239;92&#8239;21&#8239;29&#8239;19</a>.`;
+            location.href = mailto;
+          } else {
+            msg.innerHTML = `L’envoi n’a pas abouti. Écrivez-nous à <a class="link" href="${mailto.replace(/&/g, '&amp;')}">contact@chalets-lombard.fr</a> ou appelez le <a class="link" href="tel:+33492212919">04&#8239;92&#8239;21&#8239;29&#8239;19</a>.`;
+          }
         }
       });
     });
@@ -337,7 +347,13 @@
     const dot = $('.cursor__dot', c), pill = $('.cursor__pill', c), label = $('.cursor__label', c);
     const qx = [gsap.quickTo(dot, 'x', { duration: .5, ease: 'power3.out' }), gsap.quickTo(pill, 'x', { duration: .5, ease: 'power3.out' })];
     const qy = [gsap.quickTo(dot, 'y', { duration: .5, ease: 'power3.out' }), gsap.quickTo(pill, 'y', { duration: .5, ease: 'power3.out' })];
-    addEventListener('pointermove', (e) => { qx.forEach((q) => q(e.clientX)); qy.forEach((q) => q(e.clientY)); }, { passive: true });
+    // caché jusqu'au premier mouvement : jamais de point orphelin dans le coin de l'écran
+    c.classList.add('is-hidden');
+    let moved = false;
+    addEventListener('pointermove', (e) => {
+      if (!moved) { moved = true; gsap.set([dot, pill], { x: e.clientX, y: e.clientY }); if (!html.classList.contains('intro-running')) c.classList.remove('is-hidden'); }
+      qx.forEach((q) => q(e.clientX)); qy.forEach((q) => q(e.clientY));
+    }, { passive: true });
     document.addEventListener('pointerleave', () => c.classList.add('is-hidden'));
     document.addEventListener('pointerenter', () => c.classList.remove('is-hidden'));
     App.cursorLabel = (t) => { if (t) { label.textContent = t; c.classList.add('is-label'); } else c.classList.remove('is-label'); };

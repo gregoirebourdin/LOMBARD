@@ -124,7 +124,7 @@ const partials = {
     + `<span class="encart__surf">${p.encart}</span></span>${arrow}</a></li>`).join(''),
   thumbs: () => PR.map((p) => thumb(p, 'xs')).join(''),
   sommaire: () => PR.map((p) => `<li><a class="som__row" href="#${p.id}" data-point="${p.id}" data-cursor="Voir">`
-    + `<span class="som__n mono">${p.n}</span><span class="som__name">${p.nom}</span><span class="som__commune micro">${p.commune}</span>`
+    + `<span class="som__n mono">${p.n}</span><span class="som__name">${p.nom}</span><span class="som__commune micro">${p.commune}<br>${lotsPub(p).length} CHALET${lotsPub(p).length > 1 ? 'S' : ''} · ${p.encart.toUpperCase()}</span>`
     + `<span class="som__status micro">${dot}À VENDRE</span><span class="som__rule" aria-hidden="true"></span></a></li>`).join(''),
   menu: () => PR.map((p) => `<li><a href="#${p.id}" class="menu__prog" data-menu-link>${thumb(p, 'md')}<span>${p.nom}</span></a></li>`).join(''),
   footer: () => PR.map((p) => `<li><a href="#${p.id}">${p.nom}</a></li>`).join(''),
@@ -264,6 +264,7 @@ html = html.replace(/\{\{include ([\w.-]+)(?: (\w+))?\}\}/g, (_, f, prefix) => {
 });
 html = html.replace(/\{\{logo([^}]*)\}\}/g, (_, s) => logo(attrs(s)));
 html = html.replace(/\{\{programmes:(\w+)\}\}/g, (_, k) => partials[k]());
+html = html.replace(/\{\{site\}\}/g, process.env.SITE_URL || 'https://chalets-lombard.vercel.app');
 html = html.replace(/\{\{carte\}\}/g, carte);
 html = html.replace(/\{\{vitrine-data\}\}/g, vitrineData);
 html = html.replace(/\{\{jsonld\}\}/g, jsonld);

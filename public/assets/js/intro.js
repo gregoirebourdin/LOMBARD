@@ -121,6 +121,7 @@
     const VDX = vasina.map((p) => { const b = p.getBBox(); return (b.x + b.width / 2 - 657) * .8; });
     const fadeOut = () => [...L('#ix-mountains, #clv-lombard, #clv-vasina'), coords, rule];
     const startDive = () => { diving = true; gsap.set(cam, { willChange: 'transform' }); };
+    const HOLD = .6, T = (t) => (t >= 1.45 ? t + HOLD : t); // temps du cahier des charges + la tenue du logo
 
     tl = App.introTl = gsap.timeline({ onComplete: end });
     if (short) {
@@ -130,7 +131,7 @@
       intro.classList.add('is-ready');
       tl.add(startDive, .1)
         .to(cam, { scale: () => CAM * diveScale(), duration: 1.2, ease: 'dive' }, .15)
-        .to(L('#ix-roof'), { opacity: 0, duration: .5, ease: 'in' }, .15)
+        .to(L('#ix-roof'), { opacity: 0, duration: .25, ease: 'power2.out' }, .15)
         .to(fadeOut(), { opacity: 0, duration: .3 }, .15)
         .add(() => H.dive(1.6), .15)
         .add(H.revealH1, .55).add(H.revealPlinth, .7).add(H.revealHeader, .8).add(() => App.lenis?.start(), .9)
@@ -155,25 +156,25 @@
       .fromTo(vasina, { x: (i) => VDX[i] }, { x: 0, autoAlpha: 1, duration: 1, ease: 'out', stagger: { each: .03, from: 'center' } }, .95)
       .add(scramble(coords, .6), 1.20)
       .fromTo(rule, { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 1.2, ease: 'inOut' }, 1.20)
-      // CHALETS tombe ; sur mobile, LOMBARD, VASINA et les coordonnées sortent avec lui
-      .to(L(MOB ? '#clv-chalets > path, #clv-lombard > path' : '#clv-chalets > path'), { yPercent: 104, duration: .45, ease: 'in', stagger: { each: .02, from: 'center' }, overwrite: 'auto' }, 1.45);
-    if (MOB) tl.to([...vasina, coords, rule], { autoAlpha: 0, y: 10, duration: .45, ease: 'in', overwrite: 'auto' }, 1.45);
-    tl.to(G, { open: 1, duration: .8, ease: 'inOut', onUpdate: drawHole }, 1.55)
-      .to(cam, { scale: CAM, duration: 1.3, ease: 'inOut' }, 1.55)
-      .add(() => cut(0), 1.55).add(() => cut(1), 1.81).add(() => cut(2), 2.07).add(() => cut(3), 2.33)
-      .addPause(2.40, () => { heroReady.then(() => tl.resume()); })
-      .add(() => cut(-1), 2.59)
-      .add(startDive, 2.80)
-      .to(cam, { scale: () => CAM * diveScale(), duration: 1.5, ease: 'dive' }, 2.85)
-      .to(L('#ix-roof'), { opacity: 0, duration: .6, ease: 'in' }, 2.85)
-      .to(fadeOut(), { opacity: 0, duration: .35 }, 2.85)
-      .add(() => H.dive(2), 2.85)
-      .add(H.revealH1, 3.30)
-      .add(() => App.lenis?.start(), 3.45)
-      .add(H.revealPlinth, 3.50)
-      .add(H.revealHeader, 3.60)
-      .add(H.revealEncart, 3.75)
-      .add(() => {}, 4.35);
+      // le logo complet tient un instant ; puis CHALETS tombe (sur mobile, tout le texte sort avec lui)
+      .to(L(MOB ? '#clv-chalets > path, #clv-lombard > path' : '#clv-chalets > path'), { yPercent: 104, autoAlpha: 0, duration: .45, ease: 'in', stagger: { each: .02, from: 'center' }, overwrite: 'auto' }, T(1.45));
+    if (MOB) tl.to([...vasina, coords, rule], { autoAlpha: 0, y: 10, duration: .45, ease: 'in', overwrite: 'auto' }, T(1.45));
+    tl.to(G, { open: 1, duration: .8, ease: 'inOut', onUpdate: drawHole }, T(1.55))
+      .to(cam, { scale: CAM, duration: 1.3, ease: 'inOut' }, T(1.55))
+      .add(() => cut(0), T(1.55)).add(() => cut(1), T(1.81)).add(() => cut(2), T(2.07)).add(() => cut(3), T(2.33))
+      .addPause(T(2.40), () => { heroReady.then(() => tl.resume()); })
+      .add(() => cut(-1), T(2.59))
+      .add(startDive, T(2.80))
+      .to(cam, { scale: () => CAM * diveScale(), duration: 1.5, ease: 'dive' }, T(2.85))
+      .to(L('#ix-roof'), { opacity: 0, duration: .28, ease: 'power2.out' }, T(2.85))
+      .to(fadeOut(), { opacity: 0, duration: .3 }, T(2.85))
+      .add(() => H.dive(2), T(2.85))
+      .add(H.revealH1, T(3.30))
+      .add(() => App.lenis?.start(), T(3.45))
+      .add(H.revealPlinth, T(3.50))
+      .add(H.revealHeader, T(3.60))
+      .add(H.revealEncart, T(3.75))
+      .add(() => {}, T(4.35));
 
     // saut : au premier geste, on accélère jusqu'au chalet
     const evs = ['wheel', 'touchstart', 'keydown', 'pointerdown'];
@@ -181,16 +182,16 @@
     function skip(e) {
       if (e.type === 'keydown' && e.key === 'Tab') return;
       off();
-      if (tl.time() < 2.85) {
+      if (tl.time() < 2.85 + .6) {
         cut(-1);
         G.open = 1; drawHole();
-        tl.seek(2.6, true); tl.resume(); tl.timeScale(2.5);
+        tl.seek(2.6 + .6, true); tl.resume(); tl.timeScale(2.5);
       } else tl.timeScale(3);
     }
     evs.forEach((t) => addEventListener(t, skip, { capture: true, passive: true }));
     tl.eventCallback('onComplete', () => { off(); end(); });
   }
 
-  setTimeout(() => { if (!ended) { if (tl) tl.progress(1); App.hero?.revealStatic?.(); end(); } }, 9000);
+  setTimeout(() => { if (!ended) { if (tl) tl.progress(1); App.hero?.revealStatic?.(); end(); } }, 10000);
   document.addEventListener('DOMContentLoaded', () => requestAnimationFrame(build));
 })();

@@ -4,34 +4,83 @@
   "piece-feu": {
    "id": "I029",
    "src": "/home/user/LOMBARD/tools/.cache/masters/piece-feu.png",
-   "widths": [1080, 1440, 1920],
-   "alt": "Séjour en vieux bois autour d’un foyer central allumé"
+   "widths": [
+    1080,
+    1440,
+    1920
+   ],
+   "alt": "Séjour en vieux bois autour d’un foyer central allumé",
+   "quality": {
+    "avif": 54,
+    "webp": 76
+   }
   },
   "piece-feu-portrait": {
    "id": "I078",
    "src": "/home/user/LOMBARD/tools/.cache/masters/piece-feu-portrait.png",
-   "crop": [140, 0, 1281, 1920],
-   "widths": [828, 1080],
-   "alt": "Foyer suspendu allumé sous de grosses poutres en mélèze"
+   "crop": [
+    140,
+    0,
+    1281,
+    1920
+   ],
+   "widths": [
+    828,
+    1080
+   ],
+   "alt": "Foyer suspendu allumé sous de grosses poutres en mélèze",
+   "quality": {
+    "avif": 54,
+    "webp": 76
+   }
   },
   "piece-table": {
    "id": "N049",
    "src": "/home/user/LOMBARD/tools/.cache/masters/piece-table.png",
-   "crop": [0, 0, 2550, 2000],
-   "widths": [1080, 1440, 1920],
-   "alt": "Grande table dressée sous des suspensions sculptées, glaciers dans la baie vitrée"
+   "crop": [
+    0,
+    0,
+    2550,
+    2000
+   ],
+   "widths": [
+    1080,
+    1440,
+    1920
+   ],
+   "alt": "Grande table dressée sous des suspensions sculptées, glaciers dans la baie vitrée",
+   "quality": {
+    "avif": 54,
+    "webp": 76
+   }
   },
   "piece-table-portrait": {
    "id": "N049",
    "src": "/home/user/LOMBARD/tools/.cache/masters/piece-table.png",
-   "crop": [600, 0, 2000, 2000],
-   "widths": [828, 1080],
-   "alt": "Grande table dressée sous des suspensions sculptées, glaciers dans la baie vitrée"
+   "crop": [
+    600,
+    0,
+    2000,
+    2000
+   ],
+   "widths": [
+    828,
+    1080
+   ],
+   "alt": "Grande table dressée sous des suspensions sculptées, glaciers dans la baie vitrée",
+   "quality": {
+    "avif": 54,
+    "webp": 76
+   }
   },
   "piece-matin": {
    "id": "I141",
    "src": "/home/user/LOMBARD/tools/.cache/masters/piece-matin.png",
-   "widths": [828, 1200, 1600],
+   "widths": [
+    828,
+    1200,
+    1600
+   ],
    "alt": "Mur vitré double hauteur face aux sommets enneigés, foyer vitré et canapé de velours"
   }
  }

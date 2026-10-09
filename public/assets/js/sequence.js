@@ -7,7 +7,7 @@
   if (!App || !App.ok) return;
   const { $, $$, motion } = App;
   const seq = $('#seq'), hero = $('.hero'), stage = $('.hero__stage'), zoom = $('.hero__zoom'), pan = $('.hero__pan');
-  const img = $('.hero__img'), title = $('.hero__title'), plinth = $('.hero__plinth');
+  const img = $('.hero__img'), title = $('.hero__title'), plinth = $('.hero__plinth'), creditM = $('.hero__credit-m');
   const titleLines = $$('.hero__title > .ln');
   const portrait = matchMedia('(max-aspect-ratio: 1/1)');
   const SRC = {
@@ -118,7 +118,8 @@
   const clamp01 = (v) => Math.max(0, Math.min(1, v));
   const seg = (y, a, b) => clamp01((y - a) / (b - a));
   const lerp = (a, b, t) => a + (b - a) * t;
-  let geo = null, lastA = 0;
+  let geo = null, lastA = 0, lastTheme = '';
+  const ZCAP = 3;
 
   function layout() {
     const mob = innerWidth < 768;
@@ -167,9 +168,11 @@
       titleLines.forEach((l) => { l.style.transform = drop ? `translate3d(0,${drop}px,0)` : ''; });
       plinth.style.transform = a ? `translate3d(0,${a * 100}%,0)` : '';
       plinth.style.opacity = String(1 - a);
+      if (creditM) creditM.style.opacity = String(1 - a);
     }
     App.header.lock('seq', y > s0 * .35 && y < s5 - 8);
-    seq.dataset.header = y < s0 * .9 ? 'sky' : (y < s5 - 10 ? 'photo' : 'paper');
+    const theme = y < s0 * .9 ? 'sky' : (y < s5 - 10 ? 'photo' : 'paper');
+    if (theme !== lastTheme) { lastTheme = theme; seq.dataset.header = theme; App.onScroll?.(); }
 
     // segment 1 : le seuil
     const t1 = seg(y, s0, s1);
@@ -180,8 +183,11 @@
       rooms[0].style.opacity = String(e1);
     } else if (t1 > 0) {
       const s = Math.pow(S, e1);
+      // la photo n'est jamais agrandie au-delà de ~3× (au-delà, les pixels se voient) ;
+      // passé ce cap, c'est la vitre qui s'ouvre jusqu'au plein écran
+      const so = Math.min(s, ZCAP);
       zoom.style.transformOrigin = `${O.x}px ${O.y}px`;
-      zoom.style.transform = `scale(${s})`;
+      zoom.style.transform = `scale(${so})`;
       const r = { x: O.x + (r0.x - O.x) * s, y: O.y + (r0.y - O.y) * s, w: r0.w * s, h: r0.h * s };
       rooms[0].style.clipPath = t1 >= 1 ? 'none' : `inset(${Math.max(0, r.y)}px ${Math.max(0, W - r.x - r.w)}px ${Math.max(0, Hh - r.y - r.h)}px ${Math.max(0, r.x)}px)`;
       rooms[0].style.opacity = String(clamp01(t1 / .22));
@@ -189,7 +195,7 @@
       zoom.style.transform = '';
     }
     hero.style.visibility = t1 >= 1 ? 'hidden' : '';
-    bloom.style.opacity = lite ? '0' : String(Math.sin(Math.PI * clamp01((t1 - .35) / .6)) * .28);
+    bloom.style.opacity = lite ? '0' : String(Math.sin(Math.PI * clamp01((t1 - .3) / .65)) * .42);
 
     // salle 1 : contre-zoom à l'entrée, légende qui monte
     const t3 = seg(y, s2, s3), t4 = seg(y, s3, s4), t5 = seg(y, s4, s5);
@@ -199,7 +205,7 @@
     if (t3 < 1) {
       const kb = lerp(1.5, 1, lite ? 1 : e1);
       medias[0].style.transform = `scale(${t3 > 0 ? kb * lerp(1, 1.12, App.ease.inOut(clamp01(t3 / .75))) : kb})`;
-      rooms[0].style.setProperty('--shade', String(lerp(0, .35, clamp01(t3 / .75))));
+      rooms[0].style.setProperty('--shade', String(lerp(0, .2, clamp01(t3 / .75))));
       if (t3 > 0) linesTo(0, clamp01(t3 / .2), -1); else linesTo(0, clamp01((t1 - .72) / .26), 1);
     }
 
@@ -215,7 +221,7 @@
     door(1, t3);
     if (t4 > 0 && t4 < 1) {
       medias[1].style.transform = `scale(${lerp(1, 1.12, App.ease.inOut(clamp01(t4 / .75)))})`;
-      rooms[1].style.setProperty('--shade', String(lerp(0, .35, clamp01(t4 / .75))));
+      rooms[1].style.setProperty('--shade', String(lerp(0, .2, clamp01(t4 / .75))));
       linesTo(1, clamp01(t4 / .2), -1);
     } else if (t4 <= 0) rooms[1].style.setProperty('--shade', '0');
     door(2, t4);
@@ -223,7 +229,7 @@
     // segment 5 : le cadre se referme en épreuve sur le papier
     const e5 = App.ease.inOut(t5);
     if (t5 > 0) {
-      const ins = mob ? [16, 18, 22, 18] : [14, 37, 14, 37];
+      const ins = mob ? [14, 12, 20, 12] : [11, 31, 13, 31];
       const vh = innerHeight / 100, vw = innerWidth / 100;
       rooms[2].style.clipPath = `inset(${ins[0] * vh * e5}px ${ins[1] * vw * e5}px ${ins[2] * vh * e5}px ${ins[3] * vw * e5}px)`;
       caps[2].style.opacity = String(1 - clamp01(t5 / .3));
@@ -239,7 +245,7 @@
 
     // interface de la visite
     ui.classList.toggle('is-on', t1 > .05 && t5 < .05);
-    const cur = t4 > .5 ? 2 : t3 > .5 ? 1 : 0;
+    const cur = t4 > .3 ? 2 : t3 > .3 ? 1 : 0;
     idx.forEach((li, i) => li.classList.toggle('is-active', i === cur));
   }
 
