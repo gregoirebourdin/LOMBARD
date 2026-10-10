@@ -29,7 +29,7 @@ Le violet Lombard n’est qu’une touche : il apparaît seulement dans le logo,
 | `tools/layers.py` | Outils de découpe en plans (profondeur, segmentation, remplissage LaMa), modèles chargés hors ligne. |
 | `tools/scene_planes.py` | Découpe la photo de la scène « Votre chalet vous attend » en trois plans (`public/assets/scenes/vca/`) : profondeur, puis détourage des branches floues (pymatting). Modèles : variable `HF_CACHE` (cache Hugging Face). |
 | `tools/hero_fog.py`, `tools/paper.py`, `tools/images.d/temoignages.json` | Photo floue du hero pour l’intro (2 Ko, insérée dans la page, sans bloc de compression visible) ; texture de papier du fond des sections. Les nuages de l’intro sont dessinés en direct par `intro.js`. Photos de la galerie des témoignages (chalets réalisés). |
-| `public/assets/video/` | Le film : extrait de 1:18 à la fin, encodé en H.264 (1920 et 1280 px) avec son image d’attente. |
+| `public/assets/video/` | Le film en entier (depuis le début, sans la fraction de seconde noire initiale), encodé en H.264 (1920 px CRF 27, 1280 px CRF 28, démarrage rapide) avec son image d’attente (plan aérien et logo, à 3 s). |
 | `tools/retouch/*.py` | Retouches documentées et rejouables (objets retirés, recadrages, image « éteinte » de la finale). |
 | `tools/favicon.py` | Favicon et icône Apple (le pignon du logo). |
 | `brand/logo/` | Logo redessiné en vectoriel : couleur, blanc, violet, emblème seul, PNG 4×. |

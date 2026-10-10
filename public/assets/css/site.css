@@ -623,17 +623,18 @@ html.motion .film__cap { position: absolute; left: 25%; right: 25%; top: calc(75
 @media (min-width: 1024px) {
   .temo__head .d1 { grid-column: 1 / span 8; }
   .temo__note { grid-column: 9 / span 4; justify-self: end; text-align: right; padding-bottom: .6em; }
-  .tcard { width: auto; }
-  .tcard__ph { height: clamp(320px, 54svh, 620px); aspect-ratio: var(--ar, 3 / 2); }
-  .tcard--lead .tcard__ph { height: clamp(360px, 60svh, 700px); }
-  .tcard__q { max-width: min(30em, 100%); }
-  .tcard--lead { display: grid; grid-template-columns: auto minmax(300px, 30vw); align-items: end; column-gap: clamp(28px, 3vw, 56px); }
+  /* chaque carte a exactement la largeur de sa photo (même hauteur pour toutes) : la citation passe à la
+     ligne sous la photo, et l'écart entre deux cartes est partout le même */
+  .tcard { --h: clamp(300px, 50svh, 580px); width: calc(var(--h) * var(--ar, 3 / 2)); }
+  .tcard__ph { height: var(--h); aspect-ratio: auto; }
+  .tcard__q { max-width: none; }
+  .tcard--lead { --h: clamp(340px, 56svh, 660px); width: auto; display: grid; grid-template-columns: calc(var(--h) * var(--ar, 3 / 2)) minmax(300px, 30vw); align-items: end; column-gap: clamp(28px, 3vw, 56px); }
   .tcard--lead .tcard__q { margin: 0 0 .5em .6em; }
   @media (hover: hover) and (pointer: fine) { .tcard:hover .tcard__ph img { transform: scale(1.03); } }
   /* scène collante : la piste défile à l'horizontale (piloté par page.js) */
-  html.motion .temo__pin { position: sticky; top: 0; height: 100vh; height: 100svh; margin-top: 0; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+  html.motion .temo__pin { position: sticky; top: 0; height: 100vh; height: 100svh; margin-top: 0; padding-top: var(--header-h); display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
   html.motion .temo__track { overflow: visible; scroll-snap-type: none; width: max-content; padding-bottom: 0; will-change: transform; }
-  html.motion .temo__bar { position: absolute; left: 0; right: 0; bottom: 6svh; }
+  html.motion .temo__bar { flex: none; margin-top: clamp(24px, 5svh, 56px); }
 }
 
 /* ——— S8 : le chalet s'allume ——— */
