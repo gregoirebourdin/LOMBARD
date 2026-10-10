@@ -162,33 +162,33 @@
     });
   }
 
-  /* ——— votre chalet vous attend : on avance à travers les sapins ———
-     Les trois plans gardent le même cadrage et grandissent à des vitesses différentes : les branches,
-     tout près, plus vite que le chalet, le ciel à peine. Elles partent un peu resserrées autour du chalet
-     et s'ouvrent jusqu'à la photo exacte en fin de course : on ne voit jamais ce qu'elles cachent
-     (tools/scene_planes.py : MOVE). Sur grand écran, la vue descend en même temps le long du pignon. Le
-     mouvement commence pendant que la section arrive, pour un court passage épinglé ; le titre se met au
-     point mot à mot, entre les branches et le chalet, sur un voile sombre qui le rend lisible. */
+  /* ——— votre chalet vous attend : les branches s'écartent ———
+     Les branches de sapin, tout près, arrivent énormes et couvrent l'écran avec la section ; au défilement,
+     chaque masse se rétracte vers son coin ou son bord (son ancre) jusqu'à sa place exacte sur la photo, et
+     découvre le chalet et le titre. Agrandie autour de son ancre, une masse couvre toujours au moins sa
+     place sur la photo : on ne voit jamais ce qu'elle cache (tools/scene_planes.py : PIECES, MID0, BACK0).
+     Le chalet et le ciel reculent à peine ; sur grand écran, la vue descend le long du pignon. Le titre se
+     met au point mot à mot pendant que les branches s'ouvrent, sur un voile sombre qui le rend lisible. */
   function vca() {
     const root = $('.vca');
     if (!root) return;
     const pin = $('.vca__pin', root), t = $('.vca__t', pin), veil = $('.vca__veil', pin);
-    const [back, mid, front] = ['back', 'mid', 'front'].map((n) => $(`.vp--${n}`, pin));
+    const back = $('.vp--back', pin), mid = $('.vp--mid', pin), pieces = $$('.vp--piece', pin);
     App.onEnter(root, () => $$('img', pin).forEach((im) => { im.loading = 'eager'; }), 'top 300%');
     const words = App.titleWords(t);
     const fs = parseFloat(getComputedStyle(t).fontSize) || 80;
     gsap.set(words, { opacity: 0, y: Math.round(fs * .39), filter: `blur(${Math.min(18, fs * .21).toFixed(1)}px)`, willChange: 'opacity, filter, transform' });
     gsap.set(veil, { opacity: 0 });
     // descente possible dans la photo : ce qui dépasse de l'écran, entre le cadrage de départ et celui d'arrivée
-    const pan = () => Math.max(0, front.offsetHeight - innerHeight * 1.04) * .3;
-    const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: root, start: 'top 65%', end: 'bottom bottom', scrub: .6, invalidateOnRefresh: true } })
-      .fromTo([back, mid, front], { y: 0 }, { y: () => -pan(), duration: 1, ease: 'power1.inOut' }, 0)
-      // l'avant ne dépasse jamais l'échelle du chalet (1 + .13t² ≤ 1.1 + .03t) : il ne fait que s'ouvrir
-      .fromTo(front, { scale: 1 }, { scale: 1.13, duration: 1, ease: 'power1.in' }, 0)
-      .fromTo(mid, { scale: 1.1 }, { scale: 1.13, duration: 1 }, 0)
-      .fromTo(back, { scale: 1.05 }, { scale: 1.08, duration: 1 }, 0)
-      .to(veil, { opacity: 1, duration: .3 }, .3);
-    words.forEach((w, i) => tl.to(w, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .2 }, .36 + i * .07));
+    const pan = () => Math.max(0, mid.offsetHeight - innerHeight * 1.04) * .3;
+    const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: root, start: 'top 50%', end: 'bottom bottom', scrub: .6, invalidateOnRefresh: true } })
+      .fromTo([back, mid, ...pieces], { y: 0 }, { y: () => -pan(), duration: 1, ease: 'power1.inOut' }, 0)
+      // les branches couvrent encore l'écran jusque vers 1,6 : la courbe y passe vite et prend son temps ensuite
+      .fromTo(pieces, { scale: (i, el) => +el.dataset.s0 || 2 }, { scale: 1, duration: .88, ease: 'power2.out' }, 0)
+      .fromTo(mid, { scale: 1.08 }, { scale: 1, duration: .88, ease: 'power1.out' }, 0)
+      .fromTo(back, { scale: 1.04 }, { scale: 1, duration: .88, ease: 'power1.out' }, 0)
+      .to(veil, { opacity: 1, duration: .3 }, .25);
+    words.forEach((w, i) => tl.to(w, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .2 }, .3 + i * .06));
   }
 
   /* ——— 04 : le registre ———

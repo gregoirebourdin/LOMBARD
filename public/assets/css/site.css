@@ -409,9 +409,9 @@ html.motion .real__end { margin-top: 0; }
 @media (min-width: 1024px) { .real__aside { grid-column: 9 / span 4; } }
 
 /* ——— votre chalet vous attend ———
-   Une photo en trois plans (ciel, chalet, branches de sapin floues tout près). La scène couvre l'écran
-   comme une image en « cover » ; avec mouvement, elle reste à l'écran pendant qu'on avance à travers les
-   branches (piloté par page.js) et que le titre se met au point entre les branches et le chalet. */
+   Une photo en plans (ciel, chalet, quatre masses de branches de sapin floues tout près). La scène couvre
+   l'écran comme une image en « cover » ; avec mouvement, les branches arrivent énormes puis s'écartent
+   jusqu'à leur place sur la photo (piloté par page.js), en découvrant le titre posé sur le chalet. */
 .vca { position: relative; background: #e8edf2; color: #FBF7F2; }
 .vca__pin {
   --ar: .6672; --by: .32; --bw: 104vw; --bh: 104vh;
@@ -422,6 +422,8 @@ html.motion .real__end { margin-top: 0; }
 @supports (height: 1svh) { .vca__pin { --bh: 104svh; --st: calc(-2svh + (var(--bh) - var(--sh)) * var(--by)); } }
 .vp { position: absolute; left: var(--sl); top: var(--st); width: var(--sw); height: var(--sh); max-width: none; display: block; transform-origin: 50% 46%; }
 .vp img { width: 100%; height: 100%; max-width: none; }
+/* une masse de branches : sa boîte en fraction de la scène, agrandie autour de son ancre (page.js) */
+.vp--piece { left: calc(var(--sl) + var(--sw) * var(--px)); top: calc(var(--st) + var(--sh) * var(--py)); width: calc(var(--sw) * var(--pw)); height: calc(var(--sh) * var(--ph)); transform-origin: var(--ox) var(--oy); }
 .vca__veil { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 55% at 50% 52%, rgb(16 8 14 / .5) 0%, rgb(16 8 14 / .22) 55%, rgb(16 8 14 / 0) 80%); }
 .vca__t {
   position: absolute; left: var(--gutter); right: var(--gutter); top: 50%; translate: 0 -50%; margin: 0; text-align: center;
@@ -430,7 +432,7 @@ html.motion .real__end { margin-top: 0; }
 }
 .vca__t em { font-style: italic; }
 .vca__credit { position: absolute; right: var(--gutter); bottom: calc(16px + env(safe-area-inset-bottom)); margin: 0; font-family: var(--ff-mono); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: rgb(251 247 242 / .75); z-index: 2; }
-html.motion .vca { height: 165vh; height: 165svh; }
+html.motion .vca { height: 125vh; height: 125svh; }
 html.motion .vca__pin { position: sticky; top: 0; }
 html.motion .vp { will-change: transform; }
 

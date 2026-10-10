@@ -116,22 +116,32 @@ function heroCss() {
   return `<style>${rules('d')}@media ${PORTRAIT}{${rules('m')}}</style>`;
 }
 
-/* ——— scène « Votre chalet vous attend » en trois plans (tools/scene_planes.py) ——— */
+/* ——— scène « Votre chalet vous attend » (tools/scene_planes.py) ———
+   fond et milieu plein cadre ; l'avant en masses de branches recadrées à leur boîte, chacune placée en
+   fraction de la scène et agrandie (page.js) autour de son ancre */
 const VCA = existsSync(join(PUB, 'assets/scenes/vca/scene.json')) ? json(join(PUB, 'assets/scenes/vca/scene.json')) : null;
 function scenePic(name) {
   if (!VCA) { missing.add(`scene ${name}`); return ''; }
-  const ws = VCA.planes.find((x) => x.name === name).files;
+  // l'avant : toutes les masses, de celle du dessous à celle du dessus
+  if (name === 'front') return VCA.planes.filter((x) => x.name.startsWith('front-')).reverse().map((x) => scenePic(x.name)).join('');
+  const P = VCA.planes.find((x) => x.name === name);
+  const ws = P.files;
   // versionnés par leur contenu : un plan redécoupé ne se mélange jamais, en cache, avec l'ancien
   const url = (w, ext) => {
     const p = `assets/scenes/vca/${name}-${w}.${ext}`;
     return `/${p}?v=${createHash('sha1').update(readFileSync(join(PUB, p))).digest('hex').slice(0, 8)}`;
   };
   const set = (ext) => ws.map((w) => `${url(w, ext)} ${w}w`).join(', ');
-  const sizes = '(max-aspect-ratio: 1/1) 72vh, 104vw';
-  // le fond porte la description de toute la scène (les trois plans recomposent la photo)
+  const [x0, y0, x1, y1] = P.bbox;
+  const fw = (x1 - x0) / VCA.w, fh = (y1 - y0) / VCA.h;
+  const sizes = `(max-aspect-ratio: 1/1) ${Math.ceil(72 * fw)}vh, ${Math.ceil(104 * fw)}vw`;
+  const r = (v) => +v.toFixed(4);
+  const piece = P.anchor ? ` vp--piece" data-s0="${P.s0}" style="--px:${r(x0 / VCA.w)};--py:${r(y0 / VCA.h)};--pw:${r(fw)};--ph:${r(fh)};`
+    + `--ox:${r(((P.anchor[0] - x0) / (x1 - x0)) * 100)}%;--oy:${r(((P.anchor[1] - y0) / (y1 - y0)) * 100)}%` : '';
+  // le fond porte la description de toute la scène (les plans recomposent la photo)
   const alt = name === 'back' ? 'Chalet en bois sous la neige, vu à travers des branches de sapin enneigées' : '';
-  return `<picture class="vp vp--${name}"><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}">`
-    + `<img src="${url(ws[ws.length - 1], 'webp')}" alt="${alt}" width="${VCA.w}" height="${VCA.h}" loading="lazy" decoding="async"></picture>`;
+  return `<picture class="vp vp--${name}${piece}"><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}">`
+    + `<img src="${url(ws[ws.length - 1], 'webp')}" alt="${alt}" width="${x1 - x0}" height="${y1 - y0}" loading="lazy" decoding="async"></picture>`;
 }
 
 /* ——— logo ——— */
