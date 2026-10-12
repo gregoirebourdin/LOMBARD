@@ -216,8 +216,44 @@
     lb.addEventListener('pointerup', (e) => { if (x0 !== null && Math.abs(e.clientX - x0) > 50) show(i + (e.clientX < x0 ? 1 : -1)); x0 = null; });
   }
 
-  /* ——— apparitions : une fois, quand l'élément arrive ——— */
+  /* ——— à votre mesure : le chalet se réorganise (fonctionne aussi sans mouvement) ——— */
+  const conf = $('[data-conf]');
+  if (conf) {
+    const tabs = $$('[role="tab"]', conf), stage = $('#conf-stage'), count = $('[data-conf-count]', conf);
+    const LABEL = { base: '3 suites + dortoir', v1: '4 chambres · séjour traversant', v2: '3 chambres · vide sur salon', v3: 'Espace détente + parking couvert' };
+    const setConf = (v, user) => {
+      tabs.forEach((t) => { const on = t.dataset.confV === v; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+      stage.dataset.state = v;
+      stage.setAttribute('aria-labelledby', `conf-${v}`);
+      let k = 0;
+      $$('[data-in]', stage).forEach((el) => {
+        const on = el.dataset.in.split(' ').includes(v);
+        el.classList.toggle('is-off', !on);
+        if (on && el.classList.contains('lp-room-t')) el.style.setProperty('--k', k++);
+      });
+      stage.classList.remove('is-anim'); void stage.offsetWidth; stage.classList.add('is-anim');
+      count.textContent = LABEL[v];
+      if (user) track('config', { version: v });
+    };
+    tabs.forEach((t) => t.addEventListener('click', () => setConf(t.dataset.confV, true)));
+    conf.addEventListener('keydown', (e) => {
+      const i = tabs.indexOf(document.activeElement);
+      if (i < 0 || !['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp'].includes(e.key)) return;
+      e.preventDefault();
+      const n = tabs[(i + (e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : -1) + tabs.length) % tabs.length];
+      n.focus(); setConf(n.dataset.confV, true);
+    });
+    setConf('base', false);
+  }
+
+  /* ——— petits ciels de la journée : le soleil sur son arc, puis la lune ——— */
+  const skyAt = (t) => [60 - 50 * Math.cos(Math.PI * t), 56 - 50 * Math.sin(Math.PI * t)];
+  const placeSky = (svg, t) => { const [x, y] = skyAt(t); $('.lp-sky__body', svg).setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)})`); };
+  $$('.lp-sky').forEach((svg) => placeSky(svg, motion ? 0 : +svg.dataset.sky));
+
   if (!motion || !('IntersectionObserver' in window)) return;
+
+  /* ——— apparitions : une fois, quand l'élément arrive ——— */
   const SPACE = /([ \t\n\r]+)/;
   function words(el) {
     const label = el.textContent.replace(/\s+/g, ' ').trim();
@@ -239,15 +275,143 @@
     el.setAttribute('aria-label', label);
     el.classList.add('fx-t');
   }
+  const ease = (t) => 1 - Math.pow(1 - t, 3);
+  const tween = (ms, fn, done) => { const t0 = performance.now(); const f = (now) => { const k = Math.min(1, (now - t0) / ms); fn(ease(k)); if (k < 1) requestAnimationFrame(f); else done?.(); }; requestAnimationFrame(f); };
+  const NNBSP = ' ';
+  const fmt = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, NNBSP);
+  // ce qui se passe quand un élément arrive à l'écran
+  const enter = (el) => {
+    el.classList.add('is-in');
+    if (el.matches('.lp-fact')) {                                       // les chiffres comptent jusqu'à leur valeur
+      const n = $('[data-count]', el), to = +n.dataset.count;
+      tween(1400, (k) => { n.textContent = fmt(to * k); });
+    }
+    if (el.matches('[data-ask]')) {                                     // la question s'écrit, sans rien décaler
+      const q = $('.lp-ask__q', el), full = q.dataset.full, typed = q.firstChild, rest = q.lastChild;
+      let i = 0;
+      el.classList.add('is-typing');
+      const step = () => { i++; typed.textContent = full.slice(0, i); rest.textContent = full.slice(i); if (i < full.length) setTimeout(step, full[i - 1] === ' ' ? 18 : 32); else setTimeout(() => el.classList.remove('is-typing'), 1400); };
+      setTimeout(step, 300);
+    }
+    if (el.matches('.lp-sky')) tween(1800, (k) => placeSky(el, +el.dataset.sky * k));
+    if (el.matches('[data-route]')) route(el);
+  };
   const io = new IntersectionObserver((es) => es.forEach((e) => {
     if (!e.isIntersecting) return;
-    e.target.classList.add('is-in');
+    enter(e.target);
     io.unobserve(e.target);
   }), { rootMargin: '0px 0px -8% 0px', threshold: .12 });
   $$('[data-reveal]').forEach((el) => { if (el.matches('h2, h3')) words(el); io.observe(el); });
+  // le titre du hero monte mot à mot dès l'arrivée ; le titre entier reste lu d'un seul tenant
+  const hh = $('.lp-hero__t');
+  if (hh) {
+    const label = [...hh.children].map((c) => c.textContent.replace(/\s+/g, ' ').trim()).join(' — ');
+    words(hh);
+    hh.setAttribute('aria-label', label);
+    requestAnimationFrame(() => requestAnimationFrame(() => hh.classList.add('is-in')));
+  }
   $$('[data-reveal-item]').forEach((el) => {
     const sibs = [...el.parentElement.children].filter((c) => c.hasAttribute('data-reveal-item'));
     el.style.setProperty('--d', `${(sibs.indexOf(el) % 4) * .08}s`);
     io.observe(el);
+  });
+  $$('[data-ask]').forEach((el) => {
+    const q = $('.lp-ask__q', el);
+    q.dataset.full = q.textContent;
+    const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = q.textContent;
+    q.after(sr); q.setAttribute('aria-hidden', 'true');
+    // ce qui est écrit, puis le reste, invisible : la place de la question est réservée dès le départ
+    q.innerHTML = '<span class="lp-ask__t"></span><span class="lp-ask__r"></span>';
+    q.lastChild.textContent = q.dataset.full;
+    io.observe(el);
+  });
+  $$('.lp-fact').forEach((el) => { const n = $('[data-count]', el); n.textContent = '0'; io.observe(el); });
+  $$('.lp-sky, .lp-rv, [data-route], [data-steps], .lp-how__ring, .lp-inc__g').forEach((el) => io.observe(el));
+  $$('.lp-ring circle').forEach((c, i) => { c.setAttribute('pathLength', '1'); c.style.setProperty('--r', i); });
+
+  /* ——— 300 m jusqu'aux pistes : le trait se dessine, puis un point fait le trajet, de temps en temps ——— */
+  function route(fig) {
+    const path = $('.lp-route__path', fig), dot = $('.lp-route__dot', fig), L = path.getTotalLength();
+    let on = true;
+    new IntersectionObserver(([e]) => { on = e.isIntersecting; }).observe(fig);
+    const run = () => {
+      if (!on || document.hidden) { setTimeout(run, 1200); return; }
+      tween(2600, (k) => { const pt = path.getPointAtLength(L * k); dot.setAttribute('cx', pt.x.toFixed(1)); dot.setAttribute('cy', pt.y.toFixed(1)); }, () => setTimeout(run, 2200));
+    };
+    setTimeout(run, 1400);
+  }
+
+  /* ——— neige sur le hero : légère, en pause hors de l'écran ——— */
+  (() => {
+    const cv = document.createElement('canvas');
+    cv.className = 'lp-snow'; cv.setAttribute('aria-hidden', 'true');
+    $('.lp-hero__veil', hero).after(cv);
+    const ctx = cv.getContext('2d');
+    let W = 0, H = 0, flakes = [], visible = true, raf = 0;
+    const dpr = Math.min(devicePixelRatio || 1, 1.5);
+    const size = () => {
+      W = cv.clientWidth; H = cv.clientHeight;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const n = W < 768 ? 46 : 90;
+      flakes = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, r: .7 + Math.random() * 2.1, v: .25 + Math.random() * .8, a: .35 + Math.random() * .5, p: Math.random() * 6.28 }));
+    };
+    const draw = (t) => {
+      ctx.clearRect(0, 0, W, H);
+      for (const f of flakes) {
+        f.y += f.v; f.x += Math.sin(t / 1600 + f.p) * .35;
+        if (f.y > H + 4) { f.y = -4; f.x = Math.random() * W; }
+        ctx.globalAlpha = f.a; ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.2832); ctx.fillStyle = '#fff'; ctx.fill();
+      }
+      raf = visible && !document.hidden ? requestAnimationFrame(draw) : 0;
+    };
+    const wake = () => { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(draw); };
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; wake(); }).observe(hero);
+    document.addEventListener('visibilitychange', wake);
+    addEventListener('resize', size, { passive: true });
+    size(); wake();
+  })();
+
+  /* ——— lecture : un fil violet en haut de l'écran ; images qui respirent au défilement ——— */
+  const bar0 = document.createElement('div'); bar0.className = 'lp-progress'; bar0.innerHTML = '<i></i>'; document.body.append(bar0);
+  const pxs = $$('[data-px]');
+  const pxOn = new Set();
+  const ioPx = new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? pxOn.add(e.target) : pxOn.delete(e.target))), { rootMargin: '10% 0px' });
+  pxs.forEach((el) => ioPx.observe(el));
+  let raf2 = 0;
+  const frame = () => {
+    raf2 = 0;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar0.firstChild.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+    pxOn.forEach((el) => {
+      const r = el.getBoundingClientRect(), k = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+      el.style.setProperty('--py', `${(-k * 5).toFixed(2)}%`);
+    });
+  };
+  addEventListener('scroll', () => { if (!raf2) raf2 = requestAnimationFrame(frame); }, { passive: true });
+  frame();
+
+  /* ——— boutons : légèrement aimantés à la souris, un reflet passe de temps en temps ——— */
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    $$('.lp .btn, .lp-btn2').forEach((b) => {
+      b.addEventListener('pointermove', (e) => {
+        const r = b.getBoundingClientRect();
+        b.style.setProperty('--mx', `${((e.clientX - r.left) / r.width - .5) * 8}px`);
+        b.style.setProperty('--my', `${((e.clientY - r.top) / r.height - .5) * 6}px`);
+      });
+      b.addEventListener('pointerleave', () => { b.style.setProperty('--mx', '0px'); b.style.setProperty('--my', '0px'); });
+    });
+  }
+  const seen = new Set();
+  const ioB = new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target))));
+  $$('.lp .btn:not(.btn--submit), .lp-bar__cta').forEach((b) => ioB.observe(b));
+  setInterval(() => {
+    if (document.hidden) return;
+    seen.forEach((b) => { b.classList.remove('is-shine'); void b.offsetWidth; b.classList.add('is-shine'); });
+  }, 6500);
+  // une case cochée fait un petit bond
+  document.addEventListener('change', (e) => {
+    const chip = e.target.closest('.chip');
+    if (chip) { chip.classList.remove('is-pop'); void chip.offsetWidth; chip.classList.add('is-pop'); }
   });
 })();
