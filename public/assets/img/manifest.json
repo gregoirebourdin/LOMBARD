@@ -1026,5 +1026,439 @@
   },
   "alt": "Photographie : le terrain de La Rouya vu vers l'est, bordé de grands arbres",
   "label": ""
+ },
+ "r-ete-sud": {
+  "w": 1731,
+  "h": 909,
+  "ratio": 1.9043,
+  "alpha": true,
+  "widths": [
+   800,
+   1200,
+   1731
+  ],
+  "color": "#6b6959",
+  "lqip": null,
+  "bytes": {
+   "800": {
+    "avif": 64722,
+    "webp": 89298
+   },
+   "1200": {
+    "avif": 131820,
+    "webp": 185936
+   },
+   "1731": {
+    "avif": 179703,
+    "webp": 280476
+   }
+  },
+  "alt": "Image générée par IA : La Rouya en été, façade sud, transats sur la terrasse et sommets au loin",
+  "label": ""
+ },
+ "r-ete-nord": {
+  "w": 1672,
+  "h": 941,
+  "ratio": 1.7768,
+  "alpha": true,
+  "widths": [
+   800,
+   1200,
+   1672
+  ],
+  "color": "#637471",
+  "lqip": null,
+  "bytes": {
+   "800": {
+    "avif": 71066,
+    "webp": 99602
+   },
+   "1200": {
+    "avif": 145016,
+    "webp": 203146
+   },
+   "1672": {
+    "avif": 186664,
+    "webp": 294522
+   }
+  },
+  "alt": "Image générée par IA : La Rouya en été, façade nord et allée du garage",
+  "label": ""
+ },
+ "r-sejour-ete": {
+  "w": 1672,
+  "h": 941,
+  "ratio": 1.7768,
+  "alpha": true,
+  "widths": [
+   800,
+   1200,
+   1672
+  ],
+  "color": "#72614d",
+  "lqip": null,
+  "bytes": {
+   "800": {
+    "avif": 53474,
+    "webp": 79584
+   },
+   "1200": {
+    "avif": 107678,
+    "webp": 155070
+   },
+   "1672": {
+    "avif": 142940,
+    "webp": 214634
+   }
+  },
+  "alt": "Image générée par IA : le séjour de La Rouya en été, table et salon face aux baies sur les sommets",
+  "label": ""
+ },
+ "r-terrain-sud": {
+  "w": 1200,
+  "h": 675,
+  "ratio": 1.7778,
+  "alpha": false,
+  "widths": [
+   800,
+   1200
+  ],
+  "color": "#54657a",
+  "lqip": "data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAABQBACdASoYAA4APt1apkyopSOiMAgBEBuJZgCdMoMYACy1CxeGD5lT8HAAAP7s0asjrWedvEN8MCAQKybp3qZho4W+LRh4ZC8FDseVvEuo5O1A97KzCayCHx7H7Bq/hUb8TlkorrZuGMBL1xNRpgyc8qkPxDSz1Q/d3UG3lEN3q3rfQrFsZu8DG0faPyfZH0yUpGeTn3JEdPg57Bhun9bP0AA=",
+  "bytes": {
+   "800": {
+    "avif": 86621,
+    "webp": 123592
+   },
+   "1200": {
+    "avif": 157467,
+    "webp": 219804
+   }
+  },
+  "alt": "Photographie : le terrain de La Rouya vu vers le sud, chalets voisins et forêt d'automne",
+  "label": ""
+ },
+ "r-terrain-acces": {
+  "w": 1200,
+  "h": 675,
+  "ratio": 1.7778,
+  "alpha": false,
+  "widths": [
+   800,
+   1200
+  ],
+  "color": "#6a7982",
+  "lqip": "data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAABQBACdASoYAA4APt1apkyopSOiMAgBEBuJbACdEf/gMkR5PlptJ9WE3iZAAP5JpLvyDdfjKc7is+uxDy+miH5N6f+ZDX+NqhFM4k+MPy0oEPaYqGb0OvWKcJrEL/hbkvP2XLADHKGkBF/bDuupEiG4UM8z5iVVlNkbTxVvBDXuZNn5/4yXNprLZnBO6qBmB63kIfimDycjeeYA",
+  "bytes": {
+   "800": {
+    "avif": 67402,
+    "webp": 89784
+   },
+   "1200": {
+    "avif": 120651,
+    "webp": 160296
+   }
+  },
+  "alt": "Photographie : l'accès au terrain de La Rouya, vue vers l'ouest sur les sommets enneigés",
+  "label": ""
+ },
+ "f-sdb": {
+  "w": 1920,
+  "h": 1281,
+  "ratio": 1.4988,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#9f948b",
+  "lqip": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAACQBACdASoYABAAPt1apkyopSOiMAgBEBuJQBWAO6Rw5JOKOIpD9YUOKYc++AAA/qFIakdsvIyf4ugeQTmuceGRppHSoZkuGay9Ioxkc+K4KXUUQIeJ+onJoVF/VdeVdjeuK3L5WpIrM0EVbbMGQyH+5Ln28iCtXgPJDtMGFhjN4NdPsifi1Sayfsf6whVfaueJ4Za1DJvkijJkU52yXkAA",
+  "bytes": {
+   "800": {
+    "avif": 49242,
+    "webp": 61348
+   },
+   "1200": {
+    "avif": 97364,
+    "webp": 125422
+   },
+   "1600": {
+    "avif": 159020,
+    "webp": 207330
+   }
+  },
+  "alt": "Salle de bain d'un chalet réalisé par Lombard Vasina : double vasque sur meuble bois, douche à l'italienne",
+  "label": ""
+ },
+ "f-bain": {
+  "w": 801,
+  "h": 1200,
+  "ratio": 0.6675,
+  "alpha": false,
+  "widths": [
+   600,
+   801
+  ],
+  "color": "#896e5c",
+  "lqip": "data:image/webp;base64,UklGRiYBAABXRUJQVlA4IBoBAAAQBwCdASoYACQAPt1opk8opiMiKrgMARAbiWIAs4WugF9RfYo1U8+y7KY4adotCDOShZ8Qj44pSqZ6fumZzlOYQAD+8yZTeWxNaYqiOaOrcrmGuAZtyrCIyDwfsk/UcU3sJgxQeqDVHz9ZNahkHCmaq+E2cW9vQmq+XjqZd1H/q3eIO1KGCtfISsVc+U6uFNh242x8NU4SgQjMwcHvkxQwCdOHjSfuy5Z4/egkfolw2zVdNMF0cTSWpFd4i/GVTqV772FTYMhH76KxJc/+MTzGfWYioDz1Z1/z52ULGXHmmEAI2nFsRdlbGkbcBVRi6nsnqOpl48kYmHdkyh4XHiWL42iZFQe1FUSPZCvVYwk1U61iSOGZHgBTAAA=",
+  "bytes": {
+   "600": {
+    "avif": 55305,
+    "webp": 69050
+   },
+   "801": {
+    "avif": 92458,
+    "webp": 105228
+   }
+  },
+  "alt": "Baignoire îlot sous un plafond en bois, dans un chalet réalisé par Lombard Vasina",
+  "label": ""
+ },
+ "f-cuisine": {
+  "w": 7360,
+  "h": 4912,
+  "ratio": 1.4984,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#877567",
+  "lqip": "data:image/webp;base64,UklGRs4AAABXRUJQVlA4IMIAAABQBQCdASoYABAAPt1apkyopSOiMAgBEBuJZgCdMoMrin/G8C4LGB6IqY4dvOTzeO2Fd4AA8h69+Fa4y7gzy8yUbDPjJUk0skVFHp4eeuC1im0vahQbmCwXlRyovM1yEVWjOdMHgzaHdMGqgHst49maR3lYN2tWcuEBJ0LC/GIKrpQqkRZX6hH+acwCWiPiHazKgyG/SJAoB9wC2nsGw31TifReg27dp57ZaIfxo+dGrI3unjhATWNUkh7+SvMWRvzgAA==",
+  "bytes": {
+   "800": {
+    "avif": 42209,
+    "webp": 58828
+   },
+   "1200": {
+    "avif": 79912,
+    "webp": 116012
+   },
+   "1600": {
+    "avif": 129130,
+    "webp": 191318
+   }
+  },
+  "alt": "Cuisine d'un chalet réalisé par Lombard Vasina : îlot noir, poutres apparentes, grande baie sur la neige",
+  "label": ""
+ },
+ "f-sejour-cuisine": {
+  "w": 1920,
+  "h": 1281,
+  "ratio": 1.4988,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#77645b",
+  "lqip": "data:image/webp;base64,UklGRswAAABXRUJQVlA4IMAAAABwBACdASoYABAAPt1apkyopSOiMAgBEBuJagCdAYxs2er0jHF5V2eCt5FlQAD+pqvC6UROCwU9qUMRnqWKDbSiL93b08r0k5vpO33U7qT7QqroVg/mv1p5GWEDD/sj7HonLUWatAU02bBtx1R8BGzlEuzRDmkaBNFHCSCkCesrXI+4sej/lXB/O/a08gz4Re4Phz2JSrirnvv7S7CUCeNIKMPp5hTfSnsiMiGZej0hJAIxBGwLA2xjU3m6ijMAAAA=",
+  "bytes": {
+   "800": {
+    "avif": 68396,
+    "webp": 101082
+   },
+   "1200": {
+    "avif": 139954,
+    "webp": 213498
+   },
+   "1600": {
+    "avif": 229253,
+    "webp": 348710
+   }
+  },
+  "alt": "Séjour et salle à manger d'un chalet réalisé par Lombard Vasina, baies ouvertes sur les sommets",
+  "label": ""
+ },
+ "f-chambre-placard": {
+  "w": 1920,
+  "h": 1281,
+  "ratio": 1.4988,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#a3784e",
+  "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAACQBACdASoYABAAPt1apkyopSOiMAgBEBuJbACdMoR4Or+AkMxb4LVw5geOvWAA/kZ+nPCL2kaGUyKcb6dZoxf2JIA9blrRNH8v7JF5LH45pT2puU+veDbyj19iA3zc5B57Czeba7FMI37m993gW7o8bHFBD9sySD/9VRkgf2IeI9J30OEfV77FHMbEb/obnN/8AC2hKcwhIxULOWsAAA==",
+  "bytes": {
+   "800": {
+    "avif": 44426,
+    "webp": 56718
+   },
+   "1200": {
+    "avif": 93281,
+    "webp": 131548
+   },
+   "1600": {
+    "avif": 163922,
+    "webp": 244422
+   }
+  },
+  "alt": "Chambre d'un chalet réalisé par Lombard Vasina : placard en bois sur mesure et tête de lit",
+  "label": ""
+ },
+ "f-chambre": {
+  "w": 1618,
+  "h": 1080,
+  "ratio": 1.4981,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#a87651",
+  "lqip": "data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAABQBACdASoYABAAPt1apkyopSOiMAgBEBuJbACdMoR3ACULxFo/gjuOyDogAMwmjcMulq0esM9sJ9Hlr56FBDSOE7D0L05EQwiRFbcfAjjMRoPIzzlDl1ZGUwSEvDY72Cb36wm8NFPNHKKK5Bn5N76+gSmIjH3QCV4tShlq9xCdxlxzDH9NJPuPfaS3kHo24zGa4WNoPGjKdycJqJwTsuUBlY5/qBMMjZoGgAAA",
+  "bytes": {
+   "800": {
+    "avif": 44802,
+    "webp": 55766
+   },
+   "1200": {
+    "avif": 82604,
+    "webp": 109912
+   },
+   "1600": {
+    "avif": 130732,
+    "webp": 177578
+   }
+  },
+  "alt": "Chambre en mélèze d'un chalet réalisé par Lombard Vasina, appliques et coussins",
+  "label": ""
+ },
+ "f-dortoir": {
+  "w": 1920,
+  "h": 1281,
+  "ratio": 1.4988,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#896f5f",
+  "lqip": "data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAABwBACdASoYABAAPt1apkyopSOiMAgBEBuJQBOmUGQQCIKLmmN2XgfC2QjrQAD6DoWpAtJq5T2v2QjjAhqmpwCVvJSBuJMVMkPyB4dVT4b3F9t5k1RaAsEU3p/kQBVyVVAq8knFR3fPZByw2yKAJ4EyQsuN6AV+O219DrU0cU7XPXWzGcwY3NfvJOoyvDpm2onM3JFVrh0+AAAA",
+  "bytes": {
+   "800": {
+    "avif": 42578,
+    "webp": 52360
+   },
+   "1200": {
+    "avif": 91577,
+    "webp": 120882
+   },
+   "1600": {
+    "avif": 163561,
+    "webp": 223632
+   }
+  },
+  "alt": "Dortoir d'un chalet réalisé par Lombard Vasina : lits superposés encastrés dans le bois",
+  "label": ""
+ },
+ "f-entree": {
+  "w": 7316,
+  "h": 4883,
+  "ratio": 1.4983,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1600
+  ],
+  "color": "#85705b",
+  "lqip": "data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAADwAwCdASoYABAAPt1cpkyopSOiMAgBEBuJZACdLwDs/wEVX/LR9zzoAP6jYFsvbdC1L3Gh52jh6w/UsUfsaCzgaloPPjvwpbihGGv7e5K7IgIMyFmvPQWjwWzVilTNNV4edFGc9WUgIuz6KMhbbgawG5RSJ/qQiBhf6RYlsi1HeVt3nGJagIdZCcD98ySotd9/kTsrvG4LFJiREI2g9actI4AAAA==",
+  "bytes": {
+   "800": {
+    "avif": 50016,
+    "webp": 64724
+   },
+   "1200": {
+    "avif": 98796,
+    "webp": 130628
+   },
+   "1600": {
+    "avif": 163594,
+    "webp": 216310
+   }
+  },
+  "alt": "Entrée d'un chalet réalisé par Lombard Vasina : escalier, mur de pierre et rangements sur mesure",
+  "label": ""
+ },
+ "f-charpente": {
+  "w": 1281,
+  "h": 1920,
+  "ratio": 0.6672,
+  "alpha": false,
+  "widths": [
+   800,
+   1281
+  ],
+  "color": "#ae7756",
+  "lqip": "data:image/webp;base64,UklGRmQBAABXRUJQVlA4IFgBAADwBwCdASoYACQAPt1kq0+opaOiKrgKARAbiWgArDlBVt4hCtsZBqfHFO5CpnftlnTMUWZElXeqLjDdl/aUiT79GFDLxjSyeQAA/s+ZzATkPlZgC3i1sNCKY71Kp49JOOIK1Z9oiK7zwrHmXjhaDC9EftXxOQYV4LHaBC3gogF6iah8appAx0o5bKwI1KlUPeqcAnhUVEXYMELfcOo/QWRDSmdEwJDoi+nea4W5xUUfrAgaVrQP5sMi5Du+CD9bVNycu9nzC/ADZSy372vPUgKM5Jck9dXXq8Xh+FSjtzv4JDcteqMZGNVMW1XTJ+1ZQ1gYqvo7ztg9LcUTQ4474a6b6GTDxAuwq3SQa/hGto2SEKY5eSpezoIDo2Dq0Bz1wIQL6kxQIBQfFsGVQ8748agkQ4QfKuZ3QRi/bNsNsMuUFaI2UU70LgfBT7TLL7ArOAWSLGeGGLgAAA==",
+  "bytes": {
+   "800": {
+    "avif": 104428,
+    "webp": 140984
+   },
+   "1281": {
+    "avif": 220975,
+    "webp": 289794
+   }
+  },
+  "alt": "Charpente apparente et séjour cathédrale d'un chalet réalisé par Lombard Vasina",
+  "label": ""
+ },
+ "f-assemblage": {
+  "w": 1281,
+  "h": 1920,
+  "ratio": 0.6672,
+  "alpha": false,
+  "widths": [
+   800,
+   1281
+  ],
+  "color": "#c28c66",
+  "lqip": "data:image/webp;base64,UklGRiIBAABXRUJQVlA4IBYBAACQBgCdASoYACQAPt1cpEyopSOiKq35EBuJYgCsMyS6ACN2hE0xgg1tBgOI8ZqDAjxlX3afqyVnmd/eG85AAPtDFy3PiPWoNL0cTUdHFh//scMLpmgaO++vQvzjEhuz6k6epViGV/jk6eNUZmlAY6DFgh0DUsrKMWk6/tYKvyBDOPdkoh7FhoQ7s+Tk4smAsZvL8JxMxuvcK06Q8GbMCZZE5dceRCG7aoq9mfI1/bvekCSQH2DMPGm07MF/M4h7Yy7Ju/CwuBMfzhpcn+v+ypGSeTOxQpjz07ybwG2NjdHuMHgnZVLNobeIFxfoyuHtd3k1jfcnFJCLrq+b0tx7JabcgsKnkeCViPud2A232i4hsMADMHAAAA==",
+  "bytes": {
+   "800": {
+    "avif": 44537,
+    "webp": 63888
+   },
+   "1281": {
+    "avif": 83988,
+    "webp": 125928
+   }
+  },
+  "alt": "Détail d'un assemblage de charpente traditionnel, dans un chalet réalisé par Lombard Vasina",
+  "label": ""
+ },
+ "f-balcon": {
+  "w": 1200,
+  "h": 801,
+  "ratio": 1.4981,
+  "alpha": false,
+  "widths": [
+   800,
+   1200
+  ],
+  "color": "#97806f",
+  "lqip": "data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAACQBACdASoYABAAPt1apkyopSOiMAgBEBuJbACdMoR3JoA1gBVx2E9IA6W4PQAA/CWM19AVLTMvCZIBYOMlExJ47M+hfqKJ/UjIATcGkSUirJM2XDr5cZm2KZtRnxKnGXhKNYp2s9ov8JC0SpF+/6ewGu+bQkoSAOd4WtlBNXOrfacYhqHsVSGXtNe4MVGUtgNULN/yvIvkXNIDWsB2hDIAEUaNJ0FkoCg8IAAA",
+  "bytes": {
+   "800": {
+    "avif": 60605,
+    "webp": 80188
+   },
+   "1200": {
+    "avif": 112807,
+    "webp": 135570
+   }
+  },
+  "alt": "Chambre ouverte sur un balcon et les sommets, dans un chalet réalisé par Lombard Vasina",
+  "label": ""
  }
 }

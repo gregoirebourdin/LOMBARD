@@ -1,5 +1,5 @@
 {
- "_doc": "Page de vente La Rouya (src/la-rouya.html). Vues 3D et images du site actuel (page vefa-la-rouya), sans retouche : « 3D » = vues 3D non contractuelles ; « IA » = images marquées « Image générée par IA » sur le site, la mention reste dans l'image et dans la légende ; « terrain » = photographies réelles du terrain et de sa vue. Le hero et le salon reprennent les vues 3D retouchées et étalonnées de l'accueil (v-V26, v-V27 : tools/images.d/flats.json).",
+ "_doc": "Page de vente La Rouya (src/la-rouya.html). Images du site actuel, sans retouche : « 3D » = vues 3D non contractuelles de La Rouya ; « IA » = images de La Rouya marquées « Image générée par IA » sur le site (la mention reste dans l'image et dans la légende) ; « terrain » = photographies réelles du terrain et de sa vue ; « réalisation » = photographies de chalets livrés par Lombard Vasina (page Réalisations), montrées comme références de finition, jamais comme La Rouya. Le hero et le salon reprennent les vues 3D retouchées et étalonnées de l'accueil (v-V26, v-V27 : tools/images.d/flats.json).",
  "images": {
   "r-hiver-nord": {
    "id": "3D",
@@ -77,6 +77,160 @@
     1200
    ],
    "alt": "Photographie : le terrain de La Rouya vu vers l'est, bordé de grands arbres"
+  },
+  "r-ete-sud": {
+   "id": "IA",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2026/06/chalet-puy-saint-vincent-1400-facade-sud.webp.webp",
+   "widths": [
+    800,
+    1200,
+    1731
+   ],
+   "alt": "Image générée par IA : La Rouya en été, façade sud, transats sur la terrasse et sommets au loin"
+  },
+  "r-ete-nord": {
+   "id": "IA",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2026/06/chalet-puy-saint-vincent-1400-facade-nord.webp.webp",
+   "widths": [
+    800,
+    1200,
+    1672
+   ],
+   "alt": "Image générée par IA : La Rouya en été, façade nord et allée du garage"
+  },
+  "r-sejour-ete": {
+   "id": "IA",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2026/06/chalet-puy-saint-vincent-1400-sejour.webp.webp",
+   "widths": [
+    800,
+    1200,
+    1672
+   ],
+   "alt": "Image générée par IA : le séjour de La Rouya en été, table et salon face aux baies sur les sommets"
+  },
+  "r-terrain-sud": {
+   "id": "terrain",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/11/La-Rouya-Vue-Sud.jpg",
+   "widths": [
+    800,
+    1200
+   ],
+   "alt": "Photographie : le terrain de La Rouya vu vers le sud, chalets voisins et forêt d'automne"
+  },
+  "r-terrain-acces": {
+   "id": "terrain",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/11/La-Rouya-Acces-vue-Ouest.jpg",
+   "widths": [
+    800,
+    1200
+   ],
+   "alt": "Photographie : l'accès au terrain de La Rouya, vue vers l'ouest sur les sommets enneigés"
+  },
+  "f-sdb": {
+   "id": "réalisation",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalets_Lombard_salle-de-bain_meleze-thermo-traite-7.jpg",
+   "widths": [
+    800,
+    1200,
+    1600
+   ],
+   "alt": "Salle de bain d'un chalet réalisé par Lombard Vasina : double vasque sur meuble bois, douche à l'italienne"
+  },
+  "f-bain": {
+   "id": "réalisation",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2025/01/Chalets_Lombard_interieurs_bain.jpg",
+   "widths": [
+    600,
+    801
+   ],
+   "alt": "Baignoire îlot sous un plafond en bois, dans un chalet réalisé par Lombard Vasina"
+  },
+  "f-cuisine": {
+   "id": "réalisation",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalets_Lombard_interieur_cuisine.jpg",
+   "widths": [
+    800,
+    1200,
+    1600
+   ],
+   "alt": "Cuisine d'un chalet réalisé par Lombard Vasina : îlot noir, poutres apparentes, grande baie sur la neige"
+  },
+  "f-sejour-cuisine": {
+   "id": "réalisation",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalets_Lombard_interieurs_sejour_cuisine_melezes.jpg",
+   "widths": [
+    800,
+    1200,
+    1600
+   ],
+   "alt": "Séjour et salle à manger d'un chalet réalisé par Lombard Vasina, baies ouvertes sur les sommets"
+  },
+  "f-chambre-placard": {
+   "id": "réalisation",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalets_Lombrd_chambre_placard_-melezes-thermo-traite.jpg",
+   "widths": [
+    800,
+    1200,
+    1600
+   ],
+   "alt": "Chambre d'un chalet réalisé par Lombard Vasina : placard en bois sur mesure et tête de lit"
+  },
+  "f-chambre": {
+   "id": "réalisation",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalets_Lombard_chambre_melezes.jpg",
+   "widths": [
+    800,
+    1200,
+    1600
+   ],
+   "alt": "Chambre en mélèze d'un chalet réalisé par Lombard Vasina, appliques et coussins"
+  },
+  "f-dortoir": {
+   "id": "réalisation",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalets_Lombard_dortoire_chambre_melezes.jpg",
+   "widths": [
+    800,
+    1200,
+    1600
+   ],
+   "alt": "Dortoir d'un chalet réalisé par Lombard Vasina : lits superposés encastrés dans le bois"
+  },
+  "f-entree": {
+   "id": "réalisation",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalets_Lombard_interieur_chalets300m²_meleze_escalier.jpg",
+   "widths": [
+    800,
+    1200,
+    1600
+   ],
+   "alt": "Entrée d'un chalet réalisé par Lombard Vasina : escalier, mur de pierre et rangements sur mesure"
+  },
+  "f-charpente": {
+   "id": "réalisation",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalets_Lombard_interieurs_chalets-220m²_melezes_charpente.jpg",
+   "widths": [
+    800,
+    1281
+   ],
+   "alt": "Charpente apparente et séjour cathédrale d'un chalet réalisé par Lombard Vasina"
+  },
+  "f-assemblage": {
+   "id": "réalisation",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/09/Chalets_Lombard_detail_interieur.jpg",
+   "widths": [
+    800,
+    1281
+   ],
+   "alt": "Détail d'un assemblage de charpente traditionnel, dans un chalet réalisé par Lombard Vasina"
+  },
+  "f-balcon": {
+   "id": "réalisation",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2025/01/Chalets_Lombard_vu_montagne.jpg",
+   "widths": [
+    800,
+    1200
+   ],
+   "alt": "Chambre ouverte sur un balcon et les sommets, dans un chalet réalisé par Lombard Vasina"
   }
  }
 }

@@ -17,15 +17,16 @@ Les titres apparaissent mot après mot au fil du défilement : chaque mot monte,
 
 Une page d’atterrissage pour les annonces : même papier, mêmes caractères, mais peu d’animation (aucun défilement détourné, aucune bibliothèque) pour qu’elle s’affiche vite et se lise vite. Chaque section répond à une question de l’acheteur, dans l’ordre où il se la pose :
 
-1. **La promesse** (hero) : « Un chalet neuf de 167 m², à 300 m des pistes », la vue 3D, et, sur grand écran, le formulaire court à droite (nom, e-mail, téléphone facultatif).
+1. **La promesse** (hero) : « Un chalet neuf de 167 m², à 300 m des pistes », la vue 3D, et, sur grand écran, le formulaire à droite.
 2. **Les chiffres qui décident** (167 m², 1 240 m², jusqu’à 12 couchages, 300 m des pistes) et la confiance (depuis 1979, 800+ chalets, 40 passionnés, permis purgé).
-3. **Les images** en grand, avec une visionneuse ; puis la visite virtuelle proposée.
-4. **Quatre raisons**, **la fiche détaillée**, **le plan à votre mesure**, **le terrain** (photographies réelles), **« Profiter aujourd’hui. Transmettre demain. »** (location saisonnière possible), **les prestations**, **le constructeur** (vraies réalisations, vrais avis), **les étapes**, **les questions**.
-5. **La demande** : formulaire complet et coordonnées.
+3. **Une journée à La Rouya** : cinq moments (8 h 30, 13 h, 16 h, 20 h, 22 h), chacun tenu par un fait (garage, pièce de vie, terrain, couchages, plancher chauffant), pour se projeter.
+4. **Toutes les vues** en planche, avec visionneuse ; **ce que vous achetez, dans le détail** (terrain, construction, espaces, confort, accompagnement, options) ; **les finitions, en vrai**, pièce par pièce, avec des photographies de chalets livrés par Lombard Vasina (jamais présentées comme La Rouya).
+5. **Le plan à votre mesure**, **le terrain** (cinq photographies réelles), **« Profiter aujourd’hui. Transmettre demain. »**, **comment nous construisons** (poteau-poutre, assemblages traditionnels, douglas), **le constructeur** (vrais avis), **les étapes**, **les questions**.
+6. **La demande**, avec les coordonnées.
 
-La demande est toujours à portée : bouton de l’en-tête, hero, galerie, fiche, questions, barre fixe « Appeler / Recevoir les plans et le prix » sur mobile, tiroir. Après l’envoi, tous les formulaires de la page laissent place à un remerciement.
+**Un seul formulaire, partout** (hero, tiroir, fin de page), en deux étapes : d’abord ce qu’on veut recevoir (plans, prix, visite virtuelle, rendez-vous) et le projet (résidence familiale, location saisonnière, retraite, simple renseignement), en un clic ; puis les coordonnées, avec un récapitulatif. Les boutons disent ce qu’on obtient (« Recevoir les plans et le prix », « Recevoir la visite virtuelle ») et, dessous, ce que ça engage (« Gratuit et sans engagement »). La demande est toujours à portée : en-tête, hero, journée, galerie, inventaire, étapes, questions, barre fixe « Appeler / Recevoir les plans et le prix » sur mobile. Après l’envoi, tous les formulaires laissent place à un remerciement.
 
-**Mesure des conversions.** `lp.js` pousse dans `dataLayer` (Google Tag Manager) : `cta_click`, `form_start`, `form_error`, `generate_lead`, `lead_fallback`, `contact` (clic sur le téléphone ou l’e-mail), `gallery_open`. Si `gtag` ou le pixel Meta (`fbq`) sont installés, `generate_lead` / `Lead` et `Contact` leur sont aussi envoyés. Aucun traceur n’est chargé par la page : ajoutez GTM ou les balises de vos comptes publicitaires (avec le bandeau de consentement) avant de lancer les campagnes. La provenance de la visite (`utm_*`, `gclid`, `gbraid`, `wbraid`, `fbclid`, `msclkid`, page d’origine) est jointe à chaque demande.
+**Mesure des conversions.** `lp.js` pousse dans `dataLayer` (Google Tag Manager) : `cta_click`, `form_start`, `form_step`, `form_error`, `generate_lead`, `lead_fallback`, `contact` (clic sur le téléphone ou l’e-mail), `gallery_open`. Si `gtag` ou le pixel Meta (`fbq`) sont installés, `generate_lead` / `Lead` et `Contact` leur sont aussi envoyés. Aucun traceur n’est chargé par la page : ajoutez GTM ou les balises de vos comptes publicitaires (avec le bandeau de consentement) avant de lancer les campagnes. La provenance de la visite (`utm_*`, `gclid`, `gbraid`, `wbraid`, `fbclid`, `msclkid`, page d’origine) est jointe à chaque demande.
 
 Le violet Lombard n’est qu’une touche : il apparaît seulement dans le logo, le bouton principal, deux mots, le point « en vente » et quelques filets d’un pixel. Aucune section n’a un fond violet.
 
@@ -34,9 +35,9 @@ Le violet Lombard n’est qu’une touche : il apparaît seulement dans le logo,
 | Chemin | Rôle |
 |---|---|
 | `src/index.html` | Gabarit de la page (hero, sections 01 à 06, pied de page, intro, tiroir). |
-| `src/la-rouya.html`, `src/_form-rouya.html`, `src/_form-rouya-court.html` | Page de vente La Rouya et ses deux formulaires (complet, court). |
+| `src/la-rouya.html`, `src/_form-rouya.html` | Page de vente La Rouya et son formulaire unique en deux étapes. |
 | `public/assets/css/lp.css`, `public/assets/js/lp.js` | Styles et script de la page de vente (par-dessus `site.css`, sans GSAP ni Lenis). |
-| `tools/images.d/rouya.json` | Images de la page de vente : vues 3D, images générées par IA (étiquetées comme telles), photographies du terrain. |
+| `tools/images.d/rouya.json` | Images de la page de vente : vues 3D, images générées par IA (étiquetées comme telles, mention toujours visible), photographies du terrain, photographies de chalets livrés (références de finition). |
 | `src/_intro_logo.svg`, `src/_trait.svg`, `src/_form.html` | Fragments inclus au build. |
 | `data/programmes.json` | **Source unique des programmes en vente** : textes verbatim, lots, surfaces, vues 3D, date de vérification. |
 | `tools/build.mjs` | Assemble `public/index.html` et `public/la-rouya.html` : images, plans du hero, logo inline, programmes, JSON-LD, typographie française, empreintes de cache. |
@@ -101,7 +102,7 @@ La licence FFL interdit de modifier ou de sous-ensembler les fichiers. **Le clie
 - Tous les textes entre « » sont repris mot pour mot du site actuel. Seules quelques coquilles ont été corrigées : « m2 » devient « m² », « A l’étage » devient « À l’étage », et les coupes sont signalées par « […] ».
 - Aucun prix, aucune date de livraison, aucune note, aucun avis inventé.
 - Chaque programme porte la mention « Vues 3D non contractuelles » sous ses vues 3D.
-- Page La Rouya : chaque image dit ce qu’elle est (« vue 3D non contractuelle », « image générée par IA, non contractuelle », « photographie du terrain », « chalets réalisés »). Les images générées par IA gardent la mention incrustée du site actuel. Le prix n’est jamais affiché : il est envoyé sur demande, comme sur le site actuel.
+- Page La Rouya : chaque image dit ce qu’elle est (« vue 3D non contractuelle », « image générée par IA, non contractuelle », « photographie du terrain », « chalet réalisé par Lombard Vasina »). Les finitions montrées pièce par pièce sont celles de chalets déjà livrés, présentées comme la référence de qualité annoncée par le site (« de la qualité de nos précédentes réalisations »), jamais comme La Rouya. L’inventaire « ce que vous achetez » ne reprend que des faits publiés (page La Rouya, pages Savoir-faire et Construction bois) ; ce que le site ne dit pas (cuisine, raccordements, délais) n’est pas affirmé. Les images générées par IA gardent la mention incrustée du site actuel. Le prix n’est jamais affiché : il est envoyé sur demande, comme sur le site actuel.
 - Les photos de la section 01 sont des chalets réalisés. Elles ne sont jamais présentées comme à vendre, et la page le dit explicitement.
 
 ## Questions à valider avec le client avant la mise en ligne
@@ -114,7 +115,9 @@ La licence FFL interdit de modifier ou de sous-ensembler les fichiers. **Le clie
 4. La Rouya :
    - nombre de chambres : le site dit à la fois « 4 chambres en suite » et « 3 suites + dortoir » ; la page de vente reprend « 3 suites et un dortoir » (chiffres clés et image du dortoir), et « jusqu’à 5 chambres avec salle de bain selon le plan » ;
    - terrain exact ;
-   - accord pour avoir retiré l’enfant, la voiture et la table de pique-nique de la vue 3D.
+   - accord pour avoir retiré l’enfant, la voiture et la table de pique-nique de la vue 3D ;
+   - ce que le site ne dit pas et que les acheteurs demandent : terrain viabilisé (eau, électricité, assainissement) ? cuisine équipée ? cheminée (présente sur les vues 3D) ? date de livraison prévue ? Chaque réponse confirmée peut rejoindre l’inventaire « ce que vous achetez » de la page de vente ;
+   - accord pour montrer, sur la page de vente, des photographies de chalets livrés comme référence de finition.
 5. Accord pour citer les témoignages sur l’accueil, avec les coupes signalées.
 6. Crédit photo de chaque image, destinataire du formulaire, texte de consentement, URL de la politique de confidentialité.
 7. Téléchargement des polices Fontshare par le client (licence FFL).

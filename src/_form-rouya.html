@@ -1,29 +1,52 @@
-<form class="form lp-form" action="mailto:contact@chalets-lombard.fr" method="post" enctype="text/plain" novalidate data-lead-form data-form-place="%p%">
+<form class="form lp-form" action="mailto:contact@chalets-lombard.fr" method="post" enctype="text/plain" novalidate data-lead-form data-form-place="%p%" data-step="1">
   <input type="hidden" name="programme" value="la-rouya">
-  <fieldset class="form__set">
-    <legend class="form__l">Je souhaite recevoir</legend>
-    <div class="chips">
-      <label class="chip chip--check"><input type="checkbox" name="souhait" value="plans" checked><span>Les plans</span></label>
-      <label class="chip chip--check"><input type="checkbox" name="souhait" value="prix" checked><span>Le prix</span></label>
-      <label class="chip chip--check"><input type="checkbox" name="souhait" value="visite" checked><span>La visite virtuelle</span></label>
-      <label class="chip chip--check"><input type="checkbox" name="souhait" value="rdv"><span>Un rendez-vous</span></label>
+  <div class="lp-form__top" aria-hidden="true">
+    <p class="lp-form__count mono"><span data-step-n>Étape 1</span> sur 2</p>
+    <span class="lp-form__bar"><i></i><i></i></span>
+  </div>
+  <!-- étape 1 : ce qu'on veut recevoir, et pour quel projet (un clic, rien à écrire) -->
+  <div class="lp-form__panel" data-panel="1">
+    <fieldset class="form__set">
+      <legend class="form__l lp-form__q">Que voulez-vous recevoir&nbsp;?</legend>
+      <div class="chips">
+        <label class="chip chip--check"><input type="checkbox" name="souhait" value="plans" checked><span><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Les plans</span></label>
+        <label class="chip chip--check"><input type="checkbox" name="souhait" value="prix" checked><span><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Le prix</span></label>
+        <label class="chip chip--check"><input type="checkbox" name="souhait" value="visite" checked><span><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>La visite virtuelle</span></label>
+        <label class="chip chip--check"><input type="checkbox" name="souhait" value="rdv"><span><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Un rendez-vous</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="form__set">
+      <legend class="form__l lp-form__q">Votre projet <span class="form__opt">(facultatif)</span></legend>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="usage" value="famille"><span>Résidence familiale</span></label>
+        <label class="chip"><input type="radio" name="usage" value="location"><span>Location saisonnière</span></label>
+        <label class="chip"><input type="radio" name="usage" value="retraite"><span>Retraite à la montagne</span></label>
+        <label class="chip"><input type="radio" name="usage" value="decouverte"><span>Je me renseigne</span></label>
+      </div>
+    </fieldset>
+    <div class="form__end">
+      <button class="btn lp-next" type="button" data-next><span class="btn__label">Continuer</span><svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <p class="lp-form__micro">Gratuit et sans engagement · 2 étapes, 30 secondes</p>
     </div>
-  </fieldset>
-  <div class="form__row">
+  </div>
+  <!-- étape 2 : les coordonnées -->
+  <div class="lp-form__panel" data-panel="2">
+    <p class="lp-form__recap" data-recap hidden></p>
     <div class="field"><label class="form__l" for="%p%-nom">Prénom et nom</label><input class="field__i" id="%p%-nom" name="nom" type="text" autocomplete="name" required aria-describedby="%p%-nom-e"><p class="field__e" id="%p%-nom-e" hidden>Indiquez votre prénom et votre nom.</p></div>
-    <div class="field"><label class="form__l" for="%p%-email">E-mail</label><input class="field__i" id="%p%-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="%p%-email-e"><p class="field__e" id="%p%-email-e" hidden>Indiquez une adresse e-mail valide.</p></div>
-  </div>
-  <div class="field"><label class="form__l" for="%p%-tel">Téléphone <span class="form__opt">(facultatif, pour un premier échange)</span></label><input class="field__i" id="%p%-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel"></div>
-  <div class="field"><label class="form__l" for="%p%-msg">Votre projet <span class="form__opt">(facultatif)</span></label><textarea class="field__i" id="%p%-msg" name="message" rows="3" placeholder="Résidence familiale, location saisonnière, nombre de chambres souhaité…"></textarea></div>
-  <div class="form__hp" aria-hidden="true"><label for="%p%-site">Site web</label><input id="%p%-site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
-  <div class="consent">
-    <input id="%p%-ok" name="consentement" type="checkbox" required aria-describedby="%p%-ok-e">
-    <label for="%p%-ok">J’accepte que Lombard Vasina utilise ces informations pour me recontacter au sujet de La Rouya. <a class="link" href="https://www.chalets-lombard.fr/mentions-legales/">Mentions légales</a></label>
-    <p class="field__e" id="%p%-ok-e" hidden>Votre accord est nécessaire pour que nous puissions vous répondre.</p>
-    <p class="consent__info">Vos coordonnées servent uniquement à répondre à votre demande ; elles ne sont ni vendues ni cédées. Accès, rectification, effacement : contact@chalets-lombard.fr.</p>
-  </div>
-  <div class="form__end">
-    <button class="btn btn--submit lp-submit" type="submit"><span class="btn__label">Recevoir les plans et le prix</span><svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg><svg class="btn__check" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg></button>
-    <p class="form__msg" role="status" aria-live="polite"></p>
+    <div class="field"><label class="form__l" for="%p%-email">E-mail <span class="form__opt">(pour recevoir le dossier)</span></label><input class="field__i" id="%p%-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="%p%-email-e"><p class="field__e" id="%p%-email-e" hidden>Indiquez une adresse e-mail valide.</p></div>
+    <div class="field"><label class="form__l" for="%p%-tel">Téléphone <span class="form__opt">(facultatif, pour un premier échange)</span></label><input class="field__i" id="%p%-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel"></div>
+    <details class="lp-form__more"><summary>Ajouter un message <span class="form__opt">(facultatif)</span></summary><div class="field"><label class="sr-only" for="%p%-msg">Votre message</label><textarea class="field__i" id="%p%-msg" name="message" rows="3" placeholder="Nombre de chambres souhaité, dates, questions…"></textarea></div></details>
+    <div class="form__hp" aria-hidden="true"><label for="%p%-site">Site web</label><input id="%p%-site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
+    <div class="consent">
+      <input id="%p%-ok" name="consentement" type="checkbox" required aria-describedby="%p%-ok-e">
+      <label for="%p%-ok">J’accepte que Lombard Vasina utilise ces informations pour me recontacter au sujet de La Rouya. <a class="link" href="https://www.chalets-lombard.fr/mentions-legales/">Mentions légales</a></label>
+      <p class="field__e" id="%p%-ok-e" hidden>Votre accord est nécessaire pour que nous puissions vous répondre.</p>
+    </div>
+    <div class="form__end">
+      <button class="btn btn--submit lp-submit" type="submit"><span class="btn__label">Recevoir mon dossier</span><svg class="ico ico--arrow" aria-hidden="true"><use href="#i-arrow"/></svg><svg class="btn__check" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg></button>
+      <p class="lp-form__micro">Vos coordonnées ne sont ni vendues ni cédées.</p>
+      <button class="lp-back" type="button" data-back>← Modifier mes choix</button>
+      <p class="form__msg" role="status" aria-live="polite"></p>
+    </div>
   </div>
 </form>

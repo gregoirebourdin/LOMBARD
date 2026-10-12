@@ -7,6 +7,7 @@
 const NOMS = { 'serre-orchis': 'Le Serre d’Orchis', 'sabot-venus': 'Le Sabot de Vénus', 'la-rouya': 'La Rouya', terrain: 'Un chalet sur mon terrain' };
 const SOUHAITS = { plans: 'Recevoir les plans', prix: 'Connaître les prix', visite: 'Recevoir la visite virtuelle', rdv: 'Prendre rendez-vous' };
 const PAGES = { 'la-rouya': 'la page de vente La Rouya' };
+const USAGES = { famille: 'Résidence familiale', location: 'Location saisonnière', retraite: 'Retraite à la montagne', decouverte: 'Je me renseigne' };
 const SOURCE_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid', 'referrer', 'arrivee'];
 const clean = (v, n = 500) => String(v ?? '').replace(/[\u0000-\u001f\u007f]/g, ' ').trim().slice(0, n);
 
@@ -30,7 +31,7 @@ module.exports = async (req, res) => {
   const src = {};
   if (b.source && typeof b.source === 'object') for (const k of SOURCE_KEYS) if (b.source[k]) src[k] = clean(b.source[k], 200);
   const lead = {
-    projet, programme: clean(b.programme, 40) || null, lot: lot || null, souhaits,
+    projet, programme: clean(b.programme, 40) || null, lot: lot || null, souhaits, usage: USAGES[b.usage] || null,
     nom, email, tel: clean(b.tel, 40) || null, message: clean(b.message, 4000) || null,
     page: clean(b.page, 40) || 'accueil', emplacement: clean(b.place, 40) || null, provenance: src, recu_le: new Date().toISOString(),
   };
@@ -38,6 +39,7 @@ module.exports = async (req, res) => {
   const text = [
     `Projet : ${projet}${lot ? `, chalet ${lot}` : ''}`,
     `Je souhaite : ${souhaits.join(', ') || '—'}`,
+    ...(lead.usage ? [`Usage envisagé : ${lead.usage}`] : []),
     `Nom : ${nom}`, `E-mail : ${email}`, `Téléphone : ${lead.tel || '—'}`,
     '', lead.message || '(pas de message)', '',
     `— Envoyé depuis ${page} chalets-lombard${lead.emplacement ? ` (formulaire : ${lead.emplacement})` : ''}`,

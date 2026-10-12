@@ -52,12 +52,12 @@
   function openDrawer(place, souhait) {
     back = document.activeElement;
     const form = $('form', drawer);
-    if (souhait) { const c = form.querySelector(`input[name="souhait"][value="${souhait}"]`); if (c) c.checked = true; }
+    if (form && souhait) { const c = form.querySelector(`input[name="souhait"][value="${souhait}"]`); if (c) c.checked = true; }
     if (typeof drawer.showModal === 'function') drawer.showModal(); else drawer.setAttribute('open', '');
     html.style.overflow = 'hidden';
     syncBar();
     track('cta_click', { place: place || null, souhait: souhait || null });
-    setTimeout(() => form.elements.nom?.focus({ preventScroll: true }), 80);
+    setTimeout(() => (form ? form.querySelector('[data-panel]:not([hidden]) input, [data-next]') : $('.lp-done', drawer))?.focus({ preventScroll: true }), 80);
   }
   function closeDrawer() {
     drawer.close?.(); drawer.removeAttribute('open');
@@ -74,15 +74,35 @@
   drawer.addEventListener('cancel', (e) => { e.preventDefault(); closeDrawer(); });
   drawer.addEventListener('click', (e) => { if (e.target === drawer || e.target.closest('[data-close]')) closeDrawer(); });
 
-  /* ——— formulaires ——— */
+  /* ——— formulaires : un seul, partout (hero, tiroir, fin de page), en deux étapes ———
+     1. ce qu'on veut recevoir et pour quel projet (des cases, rien à écrire) ; 2. les coordonnées.
+     Sans JavaScript, les deux étapes s'affichent ensemble. */
   const SOUHAITS = { plans: 'les plans', prix: 'le prix', visite: 'la visite virtuelle', rdv: 'un rendez-vous' };
+  const list = (a) => a.join(', ').replace(/, ([^,]*)$/, ' et $1');
   $$('form[data-lead-form]').forEach((form) => {
     const t0 = Date.now();
     const place = form.dataset.formPlace;
     form.setAttribute('action', '/api/lead');
     form.removeAttribute('enctype');
     let started = false;
-    form.addEventListener('focusin', () => { if (!started) { started = true; track('form_start', { place }); } });
+    const start = () => { if (!started) { started = true; track('form_start', { place }); } };
+    form.addEventListener('focusin', start);
+    form.addEventListener('change', start);
+    const panels = $$('[data-panel]', form), n = $('[data-step-n]', form), recap = $('[data-recap]', form);
+    const go = (k, focus = true) => {
+      form.dataset.step = String(k);
+      panels.forEach((p) => { p.hidden = p.dataset.panel !== String(k); });
+      if (n) n.textContent = `Étape ${k}`;
+      if (k === 2 && recap) {
+        const w = $$('input[name="souhait"]:checked', form).map((i) => SOUHAITS[i.value]);
+        recap.innerHTML = w.length ? `Vous recevrez <strong>${list(w)}</strong>.` : 'Nous vous envoyons votre dossier La Rouya.';
+        recap.hidden = false;
+      }
+      if (focus) (k === 2 ? form.elements.nom : $('input[name="souhait"]', form))?.focus({ preventScroll: true });
+    };
+    go(1, false);
+    $('[data-next]', form)?.addEventListener('click', () => { go(2); track('form_step', { place, step: 2, usage: form.elements.usage?.value || null }); });
+    $('[data-back]', form)?.addEventListener('click', () => go(1));
     const msg = $('.form__msg', form), btn = $('.btn--submit', form);
     const err = (input, on) => {
       const id = input.getAttribute('aria-describedby'), e = id && document.getElementById(id);
@@ -100,7 +120,7 @@
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) bad.push(email);
       if (!ok.checked) bad.push(ok);
       [nom, email, ok].forEach((i) => err(i, bad.includes(i)));
-      if (bad.length) { bad[0].focus(); track('form_error', { place, champs: bad.map((i) => i.name).join(',') }); return; }
+      if (bad.length) { go(2, false); bad[0].focus(); track('form_error', { place, champs: bad.map((i) => i.name).join(',') }); return; }
       const fd = new FormData(form);
       const data = Object.fromEntries(fd);
       data.souhait = fd.getAll('souhait');
@@ -119,7 +139,8 @@
       } catch (x) {
         btn.disabled = false;
         const what = data.souhait.map((s) => SOUHAITS[s] || s).join(', ');
-        const body = encodeURIComponent(`Projet : La Rouya, Puy-Saint-Vincent 1400\nJe souhaite recevoir : ${what || '—'}\nNom : ${data.nom}\nE-mail : ${data.email}\nTéléphone : ${data.tel || '—'}\n\n${data.message || ''}`);
+        const USAGES = { famille: 'Résidence familiale', location: 'Location saisonnière', retraite: 'Retraite à la montagne', decouverte: 'Je me renseigne' };
+        const body = encodeURIComponent(`Projet : La Rouya, Puy-Saint-Vincent 1400\nJe souhaite recevoir : ${what || '—'}\nUsage envisagé : ${USAGES[data.usage] || '—'}\nNom : ${data.nom}\nE-mail : ${data.email}\nTéléphone : ${data.tel || '—'}\n\n${data.message || ''}`);
         const mailto = `mailto:contact@chalets-lombard.fr?subject=${encodeURIComponent(`La Rouya — ${data.nom}`)}&body=${body}`;
         track('lead_fallback', { place, raison: String(x && x.message) });
         if (String(x && x.message) === '503') {
@@ -135,7 +156,7 @@
   // après l'envoi : tous les formulaires de la page cèdent la place au remerciement
   function done(form, data) {
     const prenom = String(data.nom || '').trim().split(/\s+/)[0];
-    const what = data.souhait.length ? data.souhait.map((s) => SOUHAITS[s] || s).join(', ').replace(/, ([^,]*)$/, ' et $1') : 'votre dossier';
+    const what = data.souhait.length ? list(data.souhait.map((s) => SOUHAITS[s] || s)) : 'votre dossier';
     const panel = () => {
       const d = document.createElement('div');
       d.className = 'lp-done';
@@ -151,34 +172,36 @@
     if (drawer.open) $('.lp-done', drawer)?.focus?.();
   }
 
-  /* ——— visionneuse ——— */
+  /* ——— visionneuse : chaque image [data-shot] s'ouvre en grand ; on parcourt celles de sa section ——— */
   const lb = $('#lb'), shots = $$('[data-shot]');
   if (lb && shots.length) {
     const img = $('.lb__img', lb), avifSrc = $('.lb__pic source', lb), cap = $('.lb__cap', lb), count = $('.lb__count', lb);
     // la plus grande largeur exportée de chaque image ; le navigateur choisit l'AVIF ou le WebP
     const last = (s) => (s || '').split(',').pop().trim().split(' ')[0];
-    const items = shots.map((b) => {
+    const item = (b) => {
       const im = b.querySelector('img');
       return {
         avif: last(b.querySelector('source[type="image/avif"]')?.getAttribute('srcset')),
         webp: last(b.querySelector('source[type="image/webp"]')?.getAttribute('srcset')) || im.src,
-        alt: im.alt, cap: b.closest('figure').querySelector('figcaption')?.textContent || '',
+        alt: im.alt, cap: b.dataset.cap || '',
       };
-    });
-    let i = 0, opener = null;
+    };
+    let set = [], i = 0, opener = null;
     function show(k) {
-      i = (k + items.length) % items.length;
-      const it = items[i];
+      i = (k + set.length) % set.length;
+      const it = set[i];
       avifSrc.srcset = it.avif || '';
       img.src = it.webp;
-      img.alt = it.alt; cap.textContent = it.cap; count.textContent = `${i + 1} / ${items.length}`;
+      img.alt = it.alt; cap.textContent = it.cap; count.textContent = `${i + 1} / ${set.length}`;
     }
-    shots.forEach((b, k) => b.addEventListener('click', () => {
+    shots.forEach((b) => b.addEventListener('click', () => {
       opener = b;
-      show(k);
+      const group = $$('[data-shot]', b.closest('section'));
+      set = group.map(item);
+      show(group.indexOf(b));
       if (typeof lb.showModal === 'function') lb.showModal(); else lb.setAttribute('open', '');
       html.style.overflow = 'hidden';
-      track('gallery_open', { image: k + 1 });
+      track('gallery_open', { section: b.closest('section').id || b.closest('section').className.split(' ')[1] || null });
     }));
     const close = () => { lb.close?.(); lb.removeAttribute('open'); html.style.overflow = ''; opener?.focus({ preventScroll: true }); };
     lb.addEventListener('cancel', (e) => { e.preventDefault(); close(); });
