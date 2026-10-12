@@ -1,8 +1,8 @@
-# Chalets Lombard Vasina — page d’accueil
+# Chalets Lombard Vasina — page d’accueil et page de vente La Rouya
 
-Page d’accueil seule, statique (HTML, CSS, JavaScript sans framework), publiée sur Vercel depuis `public/`.
+Deux pages statiques (HTML, CSS, JavaScript sans framework), publiées sur Vercel depuis `public/` : l’accueil (`/`) et la page de vente du chalet La Rouya (`/la-rouya`), faite pour les campagnes Google Ads et Meta.
 
-Le parcours :
+Le parcours de l’accueil :
 
 1. **Intro.** On traverse un nuage : une brume ivoire, deux nappes proches qui s’ouvrent et grandissent, une nappe lointaine qui se dissipe, puis la photo du hero, d’abord floue, se met au point.
 2. **Hero.** La photo du chalet au crépuscule, découpée en trois plans (ciel, montagne et forêt, chalet). Au défilement, « Le soir tombe. » se couche derrière la montagne et le chalet, et le ciel s’assombrit. Le titre « Chalets bois d’exception dans les Hautes-Alpes » est en bas à gauche, en blanc sur un voile sombre.
@@ -13,6 +13,20 @@ Le parcours :
 
 Les titres apparaissent mot après mot au fil du défilement : chaque mot monte, passe de transparent à opaque et du flou au net (comme « Scroll Blur Reveal » de Framer). Les textes apparaissent en fondu, avec un flou très léger.
 
+## La page de vente La Rouya (`/la-rouya`)
+
+Une page d’atterrissage pour les annonces : même papier, mêmes caractères, mais peu d’animation (aucun défilement détourné, aucune bibliothèque) pour qu’elle s’affiche vite et se lise vite. Chaque section répond à une question de l’acheteur, dans l’ordre où il se la pose :
+
+1. **La promesse** (hero) : « Un chalet neuf de 167 m², à 300 m des pistes », la vue 3D, et, sur grand écran, le formulaire court à droite (nom, e-mail, téléphone facultatif).
+2. **Les chiffres qui décident** (167 m², 1 240 m², jusqu’à 12 couchages, 300 m des pistes) et la confiance (depuis 1979, 800+ chalets, 40 passionnés, permis purgé).
+3. **Les images** en grand, avec une visionneuse ; puis la visite virtuelle proposée.
+4. **Quatre raisons**, **la fiche détaillée**, **le plan à votre mesure**, **le terrain** (photographies réelles), **« Profiter aujourd’hui. Transmettre demain. »** (location saisonnière possible), **les prestations**, **le constructeur** (vraies réalisations, vrais avis), **les étapes**, **les questions**.
+5. **La demande** : formulaire complet et coordonnées.
+
+La demande est toujours à portée : bouton de l’en-tête, hero, galerie, fiche, questions, barre fixe « Appeler / Recevoir les plans et le prix » sur mobile, tiroir. Après l’envoi, tous les formulaires de la page laissent place à un remerciement.
+
+**Mesure des conversions.** `lp.js` pousse dans `dataLayer` (Google Tag Manager) : `cta_click`, `form_start`, `form_error`, `generate_lead`, `lead_fallback`, `contact` (clic sur le téléphone ou l’e-mail), `gallery_open`. Si `gtag` ou le pixel Meta (`fbq`) sont installés, `generate_lead` / `Lead` et `Contact` leur sont aussi envoyés. Aucun traceur n’est chargé par la page : ajoutez GTM ou les balises de vos comptes publicitaires (avec le bandeau de consentement) avant de lancer les campagnes. La provenance de la visite (`utm_*`, `gclid`, `gbraid`, `wbraid`, `fbclid`, `msclkid`, page d’origine) est jointe à chaque demande.
+
 Le violet Lombard n’est qu’une touche : il apparaît seulement dans le logo, le bouton principal, deux mots, le point « en vente » et quelques filets d’un pixel. Aucune section n’a un fond violet.
 
 ## Arborescence
@@ -20,9 +34,12 @@ Le violet Lombard n’est qu’une touche : il apparaît seulement dans le logo,
 | Chemin | Rôle |
 |---|---|
 | `src/index.html` | Gabarit de la page (hero, sections 01 à 06, pied de page, intro, tiroir). |
+| `src/la-rouya.html`, `src/_form-rouya.html`, `src/_form-rouya-court.html` | Page de vente La Rouya et ses deux formulaires (complet, court). |
+| `public/assets/css/lp.css`, `public/assets/js/lp.js` | Styles et script de la page de vente (par-dessus `site.css`, sans GSAP ni Lenis). |
+| `tools/images.d/rouya.json` | Images de la page de vente : vues 3D, images générées par IA (étiquetées comme telles), photographies du terrain. |
 | `src/_intro_logo.svg`, `src/_trait.svg`, `src/_form.html` | Fragments inclus au build. |
 | `data/programmes.json` | **Source unique des programmes en vente** : textes verbatim, lots, surfaces, vues 3D, date de vérification. |
-| `tools/build.mjs` | Assemble `public/index.html` : images, plans du hero, logo inline, programmes, JSON-LD, typographie française, empreintes de cache. |
+| `tools/build.mjs` | Assemble `public/index.html` et `public/la-rouya.html` : images, plans du hero, logo inline, programmes, JSON-LD, typographie française, empreintes de cache. |
 | `tools/images.py`, `tools/images.json`, `tools/images.d/*.json` | Export des photos en AVIF et WebP, avec couleur d’attente et aperçu flou. |
 | `tools/grade.py` | Étalonnage commun des photos et des vues 3D. |
 | `tools/hero_planes.py` | Découpe la photo du hero en trois plans de parallaxe (`public/assets/hero/<d|m>/`) : profondeur, segmentation, fond reconstitué derrière le chalet. |
@@ -39,7 +56,7 @@ Le violet Lombard n’est qu’une touche : il apparaît seulement dans le logo,
 ## Construire
 
 ```bash
-node tools/build.mjs                       # public/index.html
+node tools/build.mjs                       # public/index.html et public/la-rouya.html
 python tools/images.py [nom …]             # exporte les photos (Pillow avec AVIF)
 python tools/hero_planes.py [d|m]          # plans du hero → public/assets/hero (modèles hors ligne)
 ```
@@ -63,8 +80,9 @@ Le formulaire envoie un `POST /api/lead`. La fonction transmet la demande par e-
 | `RESEND_API_KEY` | Clé d’API Resend. |
 | `LEAD_TO` | Destinataire(s), séparés par des virgules (par exemple `contact@chalets-lombard.fr`). |
 | `LEAD_FROM` | Facultatif : expéditeur sur un domaine vérifié chez Resend. |
+| `LEAD_WEBHOOK` | Facultatif : URL qui reçoit chaque demande en JSON (scénario Make ou Zapier, CRM…), avec sa provenance. |
 
-Tant que ces variables ne sont pas définies, la fonction répond 503. La page affiche alors un message qui propose d’écrire à contact@chalets-lombard.fr (le lien ouvre un e-mail déjà rempli avec la demande) ou d’appeler. Aucune demande n’est perdue en silence.
+L’e-mail et le webhook peuvent être activés ensemble ; la demande est acceptée dès qu’un des deux l’a reçue. Tant qu’aucun n’est configuré, la fonction répond 503. La page affiche alors un message qui propose d’écrire à contact@chalets-lombard.fr (le lien ouvre un e-mail déjà rempli avec la demande) ou d’appeler. Aucune demande n’est perdue en silence.
 
 Le formulaire est protégé par un champ piège et un délai minimal de saisie.
 
@@ -83,6 +101,7 @@ La licence FFL interdit de modifier ou de sous-ensembler les fichiers. **Le clie
 - Tous les textes entre « » sont repris mot pour mot du site actuel. Seules quelques coquilles ont été corrigées : « m2 » devient « m² », « A l’étage » devient « À l’étage », et les coupes sont signalées par « […] ».
 - Aucun prix, aucune date de livraison, aucune note, aucun avis inventé.
 - Chaque programme porte la mention « Vues 3D non contractuelles » sous ses vues 3D.
+- Page La Rouya : chaque image dit ce qu’elle est (« vue 3D non contractuelle », « image générée par IA, non contractuelle », « photographie du terrain », « chalets réalisés »). Les images générées par IA gardent la mention incrustée du site actuel. Le prix n’est jamais affiché : il est envoyé sur demande, comme sur le site actuel.
 - Les photos de la section 01 sont des chalets réalisés. Elles ne sont jamais présentées comme à vendre, et la page le dit explicitement.
 
 ## Questions à valider avec le client avant la mise en ligne
@@ -93,7 +112,7 @@ La licence FFL interdit de modifier ou de sous-ensembler les fichiers. **Le clie
    - orthographe « Serre Barbin » ou « Serre Babin » ?
 3. Sabot de Vénus : sur la vue extérieure, quel chalet est le A et lequel est le B ?
 4. La Rouya :
-   - nombre de chambres ;
+   - nombre de chambres : le site dit à la fois « 4 chambres en suite » et « 3 suites + dortoir » ; la page de vente reprend « 3 suites et un dortoir » (chiffres clés et image du dortoir), et « jusqu’à 5 chambres avec salle de bain selon le plan » ;
    - terrain exact ;
    - accord pour avoir retiré l’enfant, la voiture et la table de pique-nique de la vue 3D.
 5. Accord pour citer les témoignages sur l’accueil, avec les coupes signalées.

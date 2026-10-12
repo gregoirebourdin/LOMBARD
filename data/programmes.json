@@ -135,6 +135,7 @@
    ],
    "devise": "Profiter aujourd’hui. Transmettre demain.",
    "url": "https://www.chalets-lombard.fr/vefa-la-rouya/",
+   "page": "/la-rouya",
    "lot_defaut": "unique",
    "lots": [
     {

@@ -1,4 +1,4 @@
-// Assemble public/index.html à partir de src/index.html et des données de data/.
+// Assemble les pages de public/ (index.html, la-rouya.html) à partir de src/ et des données de data/.
 //   node tools/build.mjs
 // - {{pic name="…" sizes="…" alt="…" class="…" mobile="…" media="…" eager}} : <picture> AVIF + WebP
 //   aux largeurs exportées (public/assets/img/manifest.json), dimensions, couleur d'attente, aperçu flou ;
@@ -73,10 +73,10 @@ function picture(a) {
     + '></picture>';
 }
 
-function preload(name, media) {
+function preload(name, media, sizes = '100vw') {
   const m = man[name];
   if (!m) { missing.add(name); return ''; }
-  return `<link rel="preload" as="image" type="image/avif" imagesrcset="${srcset(name, m, 'avif')}" imagesizes="100vw" media="${media}" fetchpriority="high">`;
+  return `<link rel="preload" as="image" type="image/avif" imagesrcset="${srcset(name, m, 'avif')}" imagesizes="${sizes}" media="${media}" fetchpriority="high">`;
 }
 
 /* ——— hero en trois plans (tools/hero_planes.py) ——— */
@@ -202,7 +202,7 @@ const partials = {
       + `<table class="lots"><caption class="sr-only">Chalets du programme ${esc(p.nom)}</caption><thead><tr><th scope="col">Chalet</th><th scope="col">Surface</th><th scope="col">Terrain</th><th scope="col">${lab}</th></tr></thead><tbody>${rows}</tbody></table>`
       + `<div class="prog__cta"><button class="btn" type="button" data-drawer data-programme="${p.id}" data-lot="${def.id}" data-magnetic>`
       + `<span class="btn__label" data-roll>Recevoir les plans et les prix</span>${arrow}</button>`
-      + `<a class="link" href="${p.url}">Voir le programme</a></div></div></article>`;
+      + `<a class="link" href="${p.page || p.url}">Voir le programme</a></div></div></article>`;
   }).join(''),
   menu: () => PR.map((p) => `<li><a href="#${p.id}" class="menu__prog" data-menu-link>${thumb(p, 'md')}<span>${p.nom}</span></a></li>`).join(''),
   footer: () => PR.map((p) => `<li><a href="#${p.id}">${p.nom}</a></li>`).join(''),
@@ -247,34 +247,37 @@ function typoHtml(html) {
     .map((seg, i) => (i % 2 ? seg : typo(seg))).join('');
 }
 
-/* ——— assemblage ——— */
-let html = read(join(SRC, 'index.html'));
-html = html.replace(/\{\{include ([\w.-]+)(?: (\w+))?\}\}/g, (_, f, prefix) => {
-  if (!existsSync(join(SRC, f))) { missing.add(f); return ''; }
-  const t = read(join(SRC, f)).trim();
-  return prefix ? t.replace(/%p%/g, prefix) : t;
-});
-html = html.replace(/\{\{logo([^}]*)\}\}/g, (_, s) => logo(attrs(s)));
-html = html.replace(/\{\{programmes:(\w+)\}\}/g, (_, k) => partials[k]());
-html = html.replace(/\{\{hero:(back|mid|front)\}\}/g, (_, n) => hero(n));
-html = html.replace(/\{\{hero:fog\}\}/g, heroFog);
-html = html.replace(/\{\{scene:(back|mid|front)\}\}/g, (_, n) => scenePic(n));
-html = html.replace(/\{\{hero:preload\}\}/g, heroPreload);
-html = html.replace(/\{\{hero:css\}\}/g, heroCss);
-html = html.replace(/\{\{site\}\}/g, process.env.SITE_URL || 'https://chalets-lombard.vercel.app');
-html = html.replace(/\{\{jsonld\}\}/g, jsonld);
-html = html.replace(/\{\{preload ([\w-]+) "([^"]+)"\}\}/g, (_, n, media) => preload(n, media));
-html = html.replace(/\{\{pic ([^}]+)\}\}/g, (_, s) => picture(attrs(s)));
-html = html.replace(/\{\{src ([\w-]+) (\d+) (avif|webp)\}\}/g, (_, n, w, ext) => {
-  const m = man[n];
-  if (!m) { missing.add(n); return ''; }
-  const b = m.widths.filter((x) => x <= +w).pop() || m.widths[0];
-  return `/assets/img/${n}-${b}.${ext}`;
-});
-html = typoHtml(html);
+/* ——— assemblage : une page par modèle de src/ ——— */
 const hash = (p) => createHash('sha1').update(readFileSync(join(PUB, p))).digest('hex').slice(0, 8);
-html = html.replace(/(\/assets\/(?:css|js)\/[\w./-]+\.(?:css|js))(?=")/g, (p) => `${p}?v=${hash(p.slice(1))}`);
-writeFileSync(join(PUB, 'index.html'), html);
-const kb = (Buffer.byteLength(html) / 1024).toFixed(1);
-console.log(`public/index.html : ${kb} Ko`);
+function render(name) {
+  let html = read(join(SRC, name));
+  html = html.replace(/\{\{include ([\w.-]+)(?: (\w+))?\}\}/g, (_, f, prefix) => {
+    if (!existsSync(join(SRC, f))) { missing.add(f); return ''; }
+    const t = read(join(SRC, f)).trim();
+    return prefix ? t.replace(/%p%/g, prefix) : t;
+  });
+  html = html.replace(/\{\{logo([^}]*)\}\}/g, (_, s) => logo(attrs(s)));
+  html = html.replace(/\{\{programmes:(\w+)\}\}/g, (_, k) => partials[k]());
+  html = html.replace(/\{\{hero:(back|mid|front)\}\}/g, (_, n) => hero(n));
+  html = html.replace(/\{\{hero:fog\}\}/g, heroFog);
+  html = html.replace(/\{\{scene:(back|mid|front)\}\}/g, (_, n) => scenePic(n));
+  html = html.replace(/\{\{hero:preload\}\}/g, heroPreload);
+  html = html.replace(/\{\{hero:css\}\}/g, heroCss);
+  html = html.replace(/\{\{site\}\}/g, process.env.SITE_URL || 'https://chalets-lombard.vercel.app');
+  html = html.replace(/\{\{jsonld\}\}/g, jsonld);
+  html = html.replace(/\{\{preload ([\w-]+) "([^"]+)"(?: "([^"]+)")?\}\}/g, (_, n, media, sizes) => preload(n, media, sizes));
+  html = html.replace(/\{\{pic ([^}]+)\}\}/g, (_, s) => picture(attrs(s)));
+  html = html.replace(/\{\{src ([\w-]+) (\d+) (avif|webp)\}\}/g, (_, n, w, ext) => {
+    const m = man[n];
+    if (!m) { missing.add(n); return ''; }
+    const b = m.widths.filter((x) => x <= +w).pop() || m.widths[0];
+    return `/assets/img/${n}-${b}.${ext}`;
+  });
+  html = typoHtml(html);
+  html = html.replace(/(\/assets\/(?:css|js)\/[\w./-]+\.(?:css|js))(?=")/g, (p) => `${p}?v=${hash(p.slice(1))}`);
+  writeFileSync(join(PUB, name), html);
+  console.log(`public/${name} : ${(Buffer.byteLength(html) / 1024).toFixed(1)} Ko`);
+}
+// l'accueil, et la page de vente de La Rouya (campagnes Google Ads / Meta)
+['index.html', 'la-rouya.html'].filter((f) => existsSync(join(SRC, f))).forEach(render);
 if (missing.size) console.warn(`images manquantes (cadre neutre) : ${[...missing].join(', ')}`);

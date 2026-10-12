@@ -1,0 +1,82 @@
+{
+ "_doc": "Page de vente La Rouya (src/la-rouya.html). Vues 3D et images du site actuel (page vefa-la-rouya), sans retouche : « 3D » = vues 3D non contractuelles ; « IA » = images marquées « Image générée par IA » sur le site, la mention reste dans l'image et dans la légende ; « terrain » = photographies réelles du terrain et de sa vue. Le hero et le salon reprennent les vues 3D retouchées et étalonnées de l'accueil (v-V26, v-V27 : tools/images.d/flats.json).",
+ "images": {
+  "r-hiver-nord": {
+   "id": "3D",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2025/12/LA-ROUYA-Vue-3D-facade-Nord-Version-2-chambres-Chalet-a-vendre-Puy-Saint-Vincent-1400.png",
+   "widths": [
+    800,
+    1200,
+    1536
+   ],
+   "alt": "Vue 3D du chalet La Rouya sous la neige, entouré de sapins : façade nord et garage"
+  },
+  "r-sejour-hiver": {
+   "id": "3D",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2025/12/LA-ROUYA-Vue-3D-sejour-Version-2-chambres-Chalet-a-vendre-Puy-Saint-Vincent-1400.png",
+   "widths": [
+    800,
+    1200,
+    1536
+   ],
+   "alt": "Vue 3D du séjour de La Rouya : grande table, poutres apparentes, cheminée et fenêtres sur la montagne"
+  },
+  "r-salon-ete": {
+   "id": "IA",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2026/06/chalet-puy-saint-vincent-1400-salon.webp.webp",
+   "widths": [
+    800,
+    1200,
+    1672
+   ],
+   "alt": "Image générée par IA : salon de La Rouya en été, grandes baies sur les sommets"
+  },
+  "r-dortoir": {
+   "id": "IA",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2026/06/chalet-puy-saint-vincent-1400-dortoir.webp.webp",
+   "widths": [
+    800,
+    1200,
+    1672
+   ],
+   "alt": "Image générée par IA : le dortoir de La Rouya, lits superposés en bois et baie sur les sapins"
+  },
+  "r-ete-nord-ouest": {
+   "id": "IA",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2026/06/chalet-puy-saint-vincent-1400-facade-nord-ouest.webp.webp",
+   "widths": [
+    800,
+    1200,
+    1672
+   ],
+   "alt": "Image générée par IA : La Rouya en été, façade nord-ouest, garage et allée"
+  },
+  "r-terrain-nord": {
+   "id": "terrain",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/11/La-Rouya-Vue-Nord.jpg",
+   "widths": [
+    800,
+    1200
+   ],
+   "alt": "Photographie : le terrain de La Rouya sous une fine neige, vue vers le nord sur un grand sommet enneigé"
+  },
+  "r-terrain-so": {
+   "id": "terrain",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/11/La-Rouya-Vue-Sud-Ouest-1.jpg",
+   "widths": [
+    800,
+    1200
+   ],
+   "alt": "Photographie : le terrain de La Rouya vu vers le sud-ouest, chalets voisins et sommets enneigés"
+  },
+  "r-terrain-est": {
+   "id": "terrain",
+   "url": "https://www.chalets-lombard.fr/wp-content/uploads/2024/11/La-Rouya-Vue-Est.jpg",
+   "widths": [
+    800,
+    1200
+   ],
+   "alt": "Photographie : le terrain de La Rouya vu vers l'est, bordé de grands arbres"
+  }
+ }
+}

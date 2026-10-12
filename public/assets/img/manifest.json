@@ -809,5 +809,222 @@
   },
   "alt": "Séjour lumineux en bois clair, cheminée vitrée et baies ouvertes sur les sommets",
   "label": ""
+ },
+ "r-hiver-nord": {
+  "w": 1536,
+  "h": 1024,
+  "ratio": 1.5,
+  "alpha": true,
+  "widths": [
+   800,
+   1200,
+   1536
+  ],
+  "color": "#6d6e68",
+  "lqip": null,
+  "bytes": {
+   "800": {
+    "avif": 96279,
+    "webp": 137876
+   },
+   "1200": {
+    "avif": 203670,
+    "webp": 297036
+   },
+   "1536": {
+    "avif": 280491,
+    "webp": 419128
+   }
+  },
+  "alt": "Vue 3D du chalet La Rouya sous la neige, entouré de sapins : façade nord et garage",
+  "label": ""
+ },
+ "r-sejour-hiver": {
+  "w": 1536,
+  "h": 1024,
+  "ratio": 1.5,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1536
+  ],
+  "color": "#695439",
+  "lqip": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABQBACdASoYABAAPt1apkyopSOiMAgBEBuJZgCdMoMxjBACBgkuNEjOX9HgAP7ZWFQ9RpgWlHnp8pJScSsK4b+NEg5pA5Y3AM6cL8GgkI3eTyxe9lnIg1XAo4f5ep7eNsg9MtnmL8NSwZlBhD2R8sc8+Ge9m5u2VbD4xeUhSk4eUNn7r086aJpnmThJeqBwW5rZVR4yo0mwKAFYaGiMRcAA",
+  "bytes": {
+   "800": {
+    "avif": 39203,
+    "webp": 51588
+   },
+   "1200": {
+    "avif": 75523,
+    "webp": 101354
+   },
+   "1536": {
+    "avif": 108915,
+    "webp": 143122
+   }
+  },
+  "alt": "Vue 3D du séjour de La Rouya : grande table, poutres apparentes, cheminée et fenêtres sur la montagne",
+  "label": ""
+ },
+ "r-salon-ete": {
+  "w": 1672,
+  "h": 941,
+  "ratio": 1.7768,
+  "alpha": true,
+  "widths": [
+   800,
+   1200,
+   1672
+  ],
+  "color": "#7c7c72",
+  "lqip": null,
+  "bytes": {
+   "800": {
+    "avif": 66530,
+    "webp": 97042
+   },
+   "1200": {
+    "avif": 129579,
+    "webp": 185572
+   },
+   "1672": {
+    "avif": 167337,
+    "webp": 253718
+   }
+  },
+  "alt": "Image générée par IA : salon de La Rouya en été, grandes baies sur les sommets",
+  "label": ""
+ },
+ "r-dortoir": {
+  "w": 1672,
+  "h": 941,
+  "ratio": 1.7768,
+  "alpha": true,
+  "widths": [
+   800,
+   1200,
+   1672
+  ],
+  "color": "#8b653f",
+  "lqip": null,
+  "bytes": {
+   "800": {
+    "avif": 54471,
+    "webp": 76466
+   },
+   "1200": {
+    "avif": 106695,
+    "webp": 144786
+   },
+   "1672": {
+    "avif": 142273,
+    "webp": 194532
+   }
+  },
+  "alt": "Image générée par IA : le dortoir de La Rouya, lits superposés en bois et baie sur les sapins",
+  "label": ""
+ },
+ "r-ete-nord-ouest": {
+  "w": 1672,
+  "h": 940,
+  "ratio": 1.7787,
+  "alpha": false,
+  "widths": [
+   800,
+   1200,
+   1672
+  ],
+  "color": "#5a5c42",
+  "lqip": "data:image/webp;base64,UklGRr4AAABXRUJQVlA4ILIAAAAQBACdASoYAA0APt1apkyopSOiMAgBEBuJagC7ABMvjpqMun3VEPqxAAD+zxxvqInjhVBf+zRATA1V1Zx+JzS44Yy5RC1zRUcIbvxwQ1Hh5ZKoRJPQL/WAFVbv9yg//GdIV4ydbVuHwYmLU7O3iG+H9+Jy/tB4wkf2tf/odB7A3Z+bk/AO4QMMAbYS0xNMb8GYZ/RByo2YfSI75YRKqATCJ0Xd4RHzkrmBwe6lUJblPaAA",
+  "bytes": {
+   "800": {
+    "avif": 88238,
+    "webp": 130636
+   },
+   "1200": {
+    "avif": 179084,
+    "webp": 266682
+   },
+   "1672": {
+    "avif": 226585,
+    "webp": 385988
+   }
+  },
+  "alt": "Image générée par IA : La Rouya en été, façade nord-ouest, garage et allée",
+  "label": ""
+ },
+ "r-terrain-nord": {
+  "w": 1200,
+  "h": 675,
+  "ratio": 1.7778,
+  "alpha": false,
+  "widths": [
+   800,
+   1200
+  ],
+  "color": "#848c93",
+  "lqip": "data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAABwBACdASoYAA4APt1apkyopSOiMAgBEBuJQBOj+DE/wHPBqLzLE6xpYMt0SAD+51gYm/Fawhy/6YH4FsCpf66LvY0epf6LxjxaSFr2p73zlBeX8hwpt1FrksT1VflTV2HuS5JOJVlPGVND0T2bryt7RFAtxMIix06QWiC2/TSJedo/xBzgmV+V4tpEkh5JJQyib5fQHWlKpaadxnS7QeFR7vmUAAAA",
+  "bytes": {
+   "800": {
+    "avif": 97909,
+    "webp": 138200
+   },
+   "1200": {
+    "avif": 173015,
+    "webp": 249034
+   }
+  },
+  "alt": "Photographie : le terrain de La Rouya sous une fine neige, vue vers le nord sur un grand sommet enneigé",
+  "label": ""
+ },
+ "r-terrain-so": {
+  "w": 1200,
+  "h": 675,
+  "ratio": 1.7778,
+  "alpha": false,
+  "widths": [
+   800,
+   1200
+  ],
+  "color": "#6c7d8c",
+  "lqip": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAADwBACdASoYAA4APt1apkyopSOiMAgBEBuJagCdMoR3JoM3/AMwHiToIiZJSG+oYgAA/sBfk3TGu+np0qhqmv7La9QT2haY8M+kN7W4C5dlYQope7hzovimDQQr9vSrfw0DT5ZQfp5LLZXf27k9Ul4ty9n9UZMwa0BO/Ydrq844vPcERGmdvlwP840UAtqyPvfBRq1oi6doUgvqwqWHd3AA",
+  "bytes": {
+   "800": {
+    "avif": 83678,
+    "webp": 118026
+   },
+   "1200": {
+    "avif": 151282,
+    "webp": 210732
+   }
+  },
+  "alt": "Photographie : le terrain de La Rouya vu vers le sud-ouest, chalets voisins et sommets enneigés",
+  "label": ""
+ },
+ "r-terrain-est": {
+  "w": 1200,
+  "h": 675,
+  "ratio": 1.7778,
+  "alpha": false,
+  "widths": [
+   800,
+   1200
+  ],
+  "color": "#657179",
+  "lqip": "data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAABwBACdASoYAA4APt1apkyopSOiMAgBEBuJaACdIDZC+YDO0295EiPhjM/9kAD+1J8viUfTpbQy3eghVd3fmBGaw9r3lwpBFFafB66/Ir+0V0BKuXFerxQR7NsEOzN8FmYOaKl99c64sgx7cj21JkhlUPG1mYsrWdLfMBljwoIAKl9kknfw6u0spxlSjE7gPnb9OhrTAd6M4BxpOX9n1e1YpAgAAA==",
+  "bytes": {
+   "800": {
+    "avif": 87067,
+    "webp": 115924
+   },
+   "1200": {
+    "avif": 154961,
+    "webp": 213496
+   }
+  },
+  "alt": "Photographie : le terrain de La Rouya vu vers l'est, bordé de grands arbres",
+  "label": ""
  }
 }
